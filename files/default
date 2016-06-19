@@ -1,0 +1,28 @@
+# Default server configuration
+#
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	index index.php index.html index.htm index.nginx-debian.html;
+
+	server_name moodlebox;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ [^/]\.php(/|$) {
+		include fastcgi_params;
+		fastcgi_split_path_info	^(.+\.php)(/.+)$;
+		fastcgi_pass	unix:/var/run/php5-fpm.sock;
+		fastcgi_index	index.php;
+		fastcgi_param	PATH_INFO	$fastcgi_path_info;
+		fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
+		fastcgi_param	PHP_VALUE "upload_max_filesize = 50M \n post_max_size=50M";
+		client_max_body_size	50M;
+	}
+
+}
