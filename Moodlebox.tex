@@ -2,7 +2,7 @@
 %!TEX TS-program = xelatex
 \documentclass[11pt]{article}
 %% Versionning info
-\usepackage[mark]{gitinfo2}
+\usepackage[draft]{gitinfo2}
 %% Polices OTF
 \usepackage{fontspec,xltxtra,xunicode}
 \usepackage{libertine}
@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{12 juin 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
+\date{19 juin 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -636,6 +636,40 @@ Pour cette plateforme dont la destination n'est pas d'être publiée sur Interne
 \begin{verification}
 Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app mobile Moodle et se connecter à la plateforme au moyen de l'URL \url{http://moodlebox.local}, avec le compte administrateur. Aucune erreur ne doit être signalée, et le message \emph{Aucune information de cours à afficher} est affiché sur l'écran du smartphone.
 \end{verification}
+
+\subsection{Installation du plugin Administration MoodleBox}
+
+Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin local \emph{Administration MoodleBox} pour Moodle.
+
+Le plus simple est de l'installer via Git.
+
+\begin{lstlisting}[language=bash]
+$ cd /var/www/html/local
+$ sudo git clone git@github.com:martignoni/moodlebox.git
+$ cd /var/www/html/local/moodlebox
+$ sudo touch .reboot-server; touch .shutdown-server
+$ sudo chown -R www-data:www-data /var/www/html/local/moodlebox
+\end{lstlisting}
+
+On termine l'installation du plugin en visitant la page \url{http://moodlebox.local/admin}. On installe pour terminer le paquetage \emph{incron}.
+
+\begin{lstlisting}[language=bash]
+$ sudo apt-get install incron
+\end{lstlisting}
+
+On autorise l'utilisation de \emph{incron} par \emph{root}, puis modifie la table des tâches de \emph{incron}.
+
+\begin{lstlisting}[language=bash]
+$ echo root | sudo tee -a /etc/incron.allow
+$ sudo incrontab -e
+\end{lstlisting}
+
+en y ajoutant les lignes
+\begin{lstlisting}[language=bash]
+/var/www/html/local/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
+/var/www/html/local/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
+\end{lstlisting}
+
 
 \section{Configuration de PhpMyAdmin (optionnel)}
 
