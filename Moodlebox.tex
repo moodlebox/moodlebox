@@ -688,7 +688,7 @@ Charger l'URL \url{http://moodlebox.local/phpmyadmin/}. L'interface de PhpMyAdmi
 
 Pour que la MoodleBox soit utilisable en pratique, il est nécessaire de prendre soin à son optimisation. On configure ainsi le cache de Moodle, ainsi que sa gestion des dépôts et téléchargements de fichiers.
 
-\subsubsection[Disque RAM pour le cache de Moodle]{Disque RAM pour le cache de Moodle\footnote{Cette section est inspirée de \url{https://www.leading-interactive.de/e-learning/moodle-performance-tuning-mit-tmpfs/}.}}
+\subsubsection[Disque RAM pour certains dossiers de Moodle]{Disque RAM pour certains dossiers de Moodle\footnote{Cette section est en partie inspirée de \url{https://www.leading-interactive.de/e-learning/moodle-performance-tuning-mit-tmpfs/}.}}
 
 Créer un dossier comme point de montage pour le disque RAM.
 \begin{lstlisting}[language=bash]
@@ -697,9 +697,13 @@ $ sudo mkdir moodle
 $ sudo chown www-data:www-data moodle/
 \end{lstlisting}
 
-On définit ensuite dans la table des partitions du Raspberry le disque RAM. Pour ce faire, on ajoute au fichier \lstinline{/etc/fstab}, la ligne suivante
+On utilise également des disques RAM pour le dossier temporaire et le dossiers des sessions de Moodle. Ces deux dossiers sont situés dans le dossier \emph{moodledata}.
+
+On définit dans la table des partitions du Raspberry les disques RAM. Pour ce faire, on ajoute au fichier \lstinline{/etc/fstab}, les lignes suivantes
 \begin{lstlisting}[language=bash]
 tmpfs /var/cache/moodle tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/temp tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/sessions tmpfs size=32M,mode=775,uid=www-data,gid=www-data 0 0
 \end{lstlisting}
 
 \begin{lstlisting}[language=bash]
