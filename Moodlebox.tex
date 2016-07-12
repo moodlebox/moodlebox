@@ -648,7 +648,7 @@ Le plus simple est de l'installer via Git.
 $ cd /var/www/html/local
 $ sudo git clone git@github.com:martignoni/moodlebox.git
 $ cd /var/www/html/local/moodlebox
-$ sudo touch .reboot-server; touch .shutdown-server
+$ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
 $ sudo chown -R www-data:www-data /var/www/html/local/moodlebox
 \end{lstlisting}
 
@@ -669,6 +669,7 @@ en y ajoutant les lignes
 \begin{lstlisting}[language=bash]
 /var/www/html/local/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
 /var/www/html/local/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
+/var/www/html/local/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash /var/www/html/local/moodlebox/.set-server-datetime
 \end{lstlisting}
 
 
