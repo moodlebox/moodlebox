@@ -669,7 +669,7 @@ en y ajoutant les lignes
 \begin{lstlisting}[language=bash]
 /var/www/html/local/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
 /var/www/html/local/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
-/var/www/html/local/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash /var/www/html/local/moodlebox/.set-server-datetime
+/var/www/html/local/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/local/moodlebox/.set-server-datetime
 \end{lstlisting}
 
 
