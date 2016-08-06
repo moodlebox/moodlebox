@@ -28,17 +28,17 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 44c699
 
 ### Release notes
 
-#### version 1.1, 2016-08-06
+#### Version 1.1, 2016-08-06
 
 * Updated to version 1.1 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This version adds display of free space on SD card of the MoodleBox.
 * Added advertising of mDNS services (Avahi service file created).
 
-#### version 1.0, 2016-07-11
+#### Version 1.0, 2016-07-11
 
 * Updated to Moodle 3.1.1.
 * Updated to version 1.0 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This version adds a time setting feature for the MoodleBox.
 
-#### version 1.0b (beta), 2016-06-26
+#### Version 1.0b (beta), 2016-06-26
 
 * Two temporary folders configured as RAM disks, for much better performance (see [this forum discussion on moodle.org](https://moodle.org/mod/forum/discuss.php?d=335066#p1350156)).
 
