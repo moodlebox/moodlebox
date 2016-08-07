@@ -4,7 +4,7 @@
 [ "$(whoami)" == "root" ] || { echo "Must be run as sudo!"; exit 1; }
 
 # e.g. it could be launched like this
-# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox_step1.sh | bash
+# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox_step1.sh | sudo bash
 
 # Script start!
 clear
