@@ -7,6 +7,9 @@
 # the root account of the Raspberry Pi. You'll have to enter the
 # password of the "pi" account; default is "raspberry" (without quotes).
 
+# rsync should be installed on the RPi before running this script.
+# ssh into your RPi and launch sudo apt-get install rsync
+
 # The very folder where this script is stored
 SELFDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Default key file
@@ -28,6 +31,6 @@ KEYFILE=${1:-$DEFAULTKEYFILE}
 
 # Copy SSH keys to root account using rsync
 # http://superuser.com/questions/270911/run-rsync-with-root-permission-on-remote-machine
-rsync -rlptDqz -e ssh --rsync-path="echo mypassword | sudo -S mkdir -p /root/.ssh && sudo rsync" --include='/authorized_keys' --exclude='*' ./ moodlebox@moodlebox.local:/root/.ssh/
+rsync -rlptDqz -e ssh --rsync-path="echo mypassword | sudo -S mkdir -p /root/.ssh && sudo rsync" --include='/authorized_keys' --exclude='*' ./ pi@raspberrypi.local:/root/.ssh/
 
 # The end
