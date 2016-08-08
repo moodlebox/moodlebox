@@ -10,9 +10,15 @@ GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 
 cat << "EOF" > /etc/init.d/makemoodlebox
-#! /bin/bash
+#! /bin/sh
 ### BEGIN INIT INFO
 # Provides:          makemoodlebox
+# Required-Start:
+# Required-Stop:
+# Default-Start:
+# Default-Stop:
+# Short-Description: Execute the makemoodlebox command.
+# Description:
 ### END INIT INFO
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
@@ -21,8 +27,15 @@ case "$1" in
     start)
         curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
         ;;
-    stop|status|restart|reload|force-reload)
+    stop|restart|reload|force-reload)
         echo "Error: argument '$1' not supported" >&2
+        exit 3
+        ;;
+    status)
+        exit 0
+        ;;
+    *)
+        echo "Usage: $0 start" >&2
         exit 3
         ;;
 esac
