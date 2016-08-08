@@ -16,10 +16,10 @@ sync
 
 echo -e "\e[96mMake MoodleBox"
 echo -e "Author: Nicolas Martignoni"
-echo -e "Version: 1.0\n\e[97m"
+echo -e "Version: 1.0\n"
 
 # Configure important settings (done via raspi-config when GUI used)
-echo -e "\e[93mConfiguring important settings...\e[94m"
+echo -e "\e[93mConfiguring important settings...\e[97m"
 ## Change locale
 # # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
 sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
@@ -46,7 +46,7 @@ sed -i "s/127.0.1.1.*$CURRENT_HOSTNAME/127.0.1.1\t$NEW_HOSTNAME/g" /etc/hosts
 
 # Rename default user from "pi" to "$GENERICNAME"
 # http://unixetc.co.uk/2016/01/07/how-to-rename-the-default-raspberry-pi-user/
-echo -e "\e[93mRenaming default user to \"$GENERICNAME\"...\e[94m"
+echo -e "\e[93mRenaming default user to \"$GENERICNAME\"...\e[97m"
 cd /etc
 # tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers systemd/system/autologin@.service
 sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/$GENERICNAME/g' passwd group shadow gshadow sudoers systemd/system/autologin@.service
@@ -72,7 +72,7 @@ bind 'TAB:menu-complete'
 EOF
 
 # Update system to latest stable release
-echo -e "\e[93mUpdating system to latest stable release...\e[94m"
+echo -e "\e[93mUpdating system to latest stable release...\e[97m"
 apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
 
 # mysql-server preseed selections (https://serversforhackers.com/video/installing-mysql-with-debconf)
@@ -88,13 +88,13 @@ debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multisel
 debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 
 ## Install all packages needed for the whole process
-echo -e "\e[93mPackages installation...\e[94m"
+echo -e "\e[93mPackages installation...\e[97m"
 apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl mysql-server php5-mysql git usbmount incron
 echo root > /etc/incron.allow
 apt-get install -y phpmyadmin
 
 ## Access point and network configuration: edit configuration files
-echo -e "\e[93mAccess point and network configuration...\e[94m"
+echo -e "\e[93mAccess point and network configuration...\e[97m"
 # 1. /etc/dhcpcd.conf
 cat << "EOF" >> /etc/dhcpcd.conf
 
@@ -216,7 +216,7 @@ cat << "EOF" > /etc/avahi/services/$GENERICNAME.service
 EOF
 
 ## Edit web server configuration
-echo -e "\e[93mWebserver (nginx) configuration...\e[94m"
+echo -e "\e[93mWebserver (nginx) configuration...\e[97m"
 cat << "EOF" > /etc/nginx/sites-available/default
 # Default server configuration
 #
@@ -254,7 +254,7 @@ server {
 EOF
 
 ## Create database for Moodle and configure MySQL vars
-echo -e "\e[93mMySQL and Moodle database configuration...\e[94m"
+echo -e "\e[93mMySQL and Moodle database configuration...\e[97m"
 mysql -u root -p$GENERICPASSWORD -t <<STOP
 create database moodle;
 grant all on moodle.* to 'root'@'localhost' identified by '$GENERICPASSWORD';
@@ -268,7 +268,7 @@ sed -i '/query_cache_size/c\query_cache_size        = 8M' /etc/mysql/my.cnf
 sed -i '/query_cache_size/i query_cache_type        = 0' /etc/mysql/my.cnf
 
 ## Download Moodle via git and create all needed directories, with adequate permissions
-echo -e "\e[93mDownloading Moodle 3.1.x via Git and directories configuration...\e[94m"
+echo -e "\e[93mDownloading Moodle 3.1.x via Git and directories configuration...\e[97m"
 cd /var/www/
 git clone git://git.moodle.org/moodle.git
 cd moodle
@@ -301,7 +301,7 @@ tmpfs /var/www/moodledata/sessions tmpfs size=32M,mode=775,uid=www-data,gid=www-
 EOF
 
 ## Install Moodle via cli
-echo -e "\e[93mMoodle installation (via CLI)...\e[94m"
+echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
 /usr/bin/php "/var/www/html/admin/cli/install.php" \
   --lang=fr \
   --wwwroot="http://$GENERICNAME.local" \
@@ -321,7 +321,7 @@ chown www-data:www-data /var/www/html/config.php
 /usr/bin/php /var/www/html/admin/cli/mysql_compressed_rows.php -f
 
 ## Install MoodleBox Admin Moodle plugin
-echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[94m"
+echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[97m"
 cd /var/www/html/local
 git clone https://github.com/martignoni/moodlebox.git
 cd /var/www/html/local/$GENERICNAME
@@ -331,7 +331,7 @@ chown -R www-data:www-data /var/www/html/local/$GENERICNAME
 /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
 
 # Cron and incron jobs configuration
-echo -e "\e[93mCron and incron jobs configuration...\e[94m"
+echo -e "\e[93mCron and incron jobs configuration...\e[97m"
 ## Configure incron jobs (for restart/shutdown from web interface)
 (incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/$GENERICNAME/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
 (incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/$GENERICNAME/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
@@ -343,7 +343,7 @@ echo -e "\e[93mCron and incron jobs configuration...\e[94m"
 (crontab -l -u root 2>/dev/null; echo "@reboot cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/") | crontab -
 
 ## Cleanup tasks
-echo -e "\e[93mCleaning up...\e[94m"
+echo -e "\e[93mCleaning up...\e[97m"
 rm -r /var/www/moodledata/cache/*
 rm -r /var/www/moodledata/localcache/*
 rm -r /var/www/moodledata/temp/*
@@ -364,7 +364,7 @@ sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
 ## Expand filesystem
 # TODO
 echo -e "\e[93mYou should now expand your file system. Wait for raspi-config"
-echo -e "and select the appropriate options. You'll be then prompted to reboot.\e[94m"
+echo -e "and select the appropriate options. You'll be then prompted to reboot.\e[97m"
 sleep 2
 raspi-config
 ## The end
