@@ -27,13 +27,6 @@ case "$1" in
     start)
         curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
         ;;
-    stop|restart|reload|force-reload)
-        echo "Error: argument '$1' not supported" >&2
-        exit 3
-        ;;
-    status)
-        exit 0
-        ;;
     *)
         echo "Usage: $0 start" >&2
         exit 3
