@@ -1,5 +1,6 @@
 ## Files specific to this project
 private-util/*
+authorized_keys
 
 # Mac finder files and hidden folders
 .DS_Store

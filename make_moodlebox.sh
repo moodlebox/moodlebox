@@ -10,7 +10,7 @@
 clear
 sync
 
-echo -e "\e[96mMake MoodleBox, first step"
+echo -e "\e[96mMake MoodleBox"
 echo -e "Author: Nicolas Martignoni"
 echo -e "Version: 1.0\n\e[97m"
 
@@ -20,23 +20,15 @@ apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
 
 # Configure important settings (done via raspi-config when GUI used)
 echo -e "\e[93mConfiguring important settings...\e[94m"
-## Change user password
-echo "moodlebox:Moodlebox4$" | chpasswd
+export DEBIAN_FRONTEND="noninteractive"
 ## Change locale
 # # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
-# sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
-# sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
-# dpkg-reconfigure -f noninteractive locales
-# update-locale LANG=fr_FR.UTF-8
-# Maybe better way to do it using debconf
-echo "locales locales/locales_to_be_generated multiselect fr_FR.UTF-8 UTF-8" | debconf-set-selections
-echo "locales locales/default_environment_locale select fr_FR.UTF-8" | debconf-set-selections
+sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
+sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
 dpkg-reconfigure -f noninteractive locales
+update-locale LANG=fr_FR.UTF-8
 ## Change timezone
-# echo "Europe/Paris" > /etc/timezone
-# Maybe better way to do it using debconf
-echo "tzdata tzdata/Areas select Europe" | debconf-set-selections
-echo "tzdata tzdata/Zones/Europe select Paris" | debconf-set-selections
+echo "Europe/Paris" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
 ## Change WiFi country
 COUNTRY=CH
@@ -58,6 +50,8 @@ cd /etc
 # tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers systemd/system/autologin@.service
 sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers systemd/system/autologin@.service
 mv /home/pi /home/moodlebox
+## Change user password
+echo "moodlebox:Moodlebox4$" | chpasswd
 
 ## Remove logging to /dev/xconsole from the default rsyslog configuration
 # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
@@ -80,7 +74,7 @@ EOF
 echo -e "\e[93mPackages installation...\e[94m"
 echo -e "\e[93mPrepare to set the admin password for MySQL\e[94m"
 apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl mysql-server php5-mysql git usbmount incron
-echo root >> /etc/incron.allow
+echo root > /etc/incron.allow
 echo -e "\e[93mPrepare now to set the admin password for PhpMyAdmin\e[94m"
 apt-get install -y phpmyadmin
 
