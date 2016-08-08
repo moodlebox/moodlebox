@@ -88,7 +88,7 @@ bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 # TAB cycles through the list of partial matches
 bind 'TAB:menu-complete'
-    EOF
+EOF
 
     # Update system to latest stable release
     echo -e "\e[93mUpdating system to latest stable release...\e[97m"
@@ -120,7 +120,7 @@ after_reboot(){
     cat << "EOF" >> /etc/dhcpcd.conf
 
 denyinterfaces wlan0
-    EOF
+EOF
 
     # 2. /etc/network/interfaces
     cat << "EOF" > /etc/network/interfaces
@@ -145,7 +145,7 @@ iface wlan0 inet static
 allow-hotplug wlan1
 iface wlan1 inet manual
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-    EOF
+EOF
 
     # 3. /etc/hostapd/hostapd.conf
     cat << "EOF" > /etc/hostapd/hostapd.conf
@@ -177,7 +177,7 @@ wpa_key_mgmt=WPA-PSK
 wpa_passphrase=moodlebox
 # Use AES, instead of TKIP
 rsn_pairwise=CCMP
-    EOF
+EOF
 
     sed -i '/#DAEMON_CONF/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
 
@@ -193,7 +193,7 @@ bogus-priv              # Don't forward addresses in the non-routed spaces
 # Assign IP addresses between 10.0.0.100 and 10.0.0.199 with 12 h lease time
 dhcp-range=10.0.0.100,10.0.0.199,255.255.255.0,12h
 # log-facility=/var/log/dnsmasq.log # Enable log
-    EOF
+EOF
 
     # 5. /etc/sysctl.conf
     sed -i '/#net.ipv4.ip_forward/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
@@ -208,7 +208,7 @@ dhcp-range=10.0.0.100,10.0.0.199,255.255.255.0,12h
     # 7. /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
     cat << "EOF" > /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
 iptables-restore < /etc/iptables.ipv4.nat
-    EOF
+EOF
 
     # 8. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
     cat << "EOF" > /etc/avahi/services/moodlebox.service
@@ -234,7 +234,7 @@ iptables-restore < /etc/iptables.ipv4.nat
     <port>80</port>
   </service>
 </service-group>
-    EOF
+EOF
 
     ## Edit web server configuration
     echo -e "\e[93mWebserver (nginx) configuration...\e[97m"
@@ -272,7 +272,7 @@ server {
   }
 
 }
-    EOF
+EOF
 
     ## Create database for Moodle and configure MySQL vars
     echo -e "\e[93mMySQL and Moodle database configuration...\e[97m"
@@ -280,7 +280,7 @@ server {
 create database moodle;
 grant all on moodle.* to 'root'@'localhost' identified by '$GENERICPASSWORD';
 \q
-    STOP
+STOP
 
     sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/my.cnf
     sed -i '/table_cache/i table_definition_cache  = 512' /etc/mysql/my.cnf
@@ -319,7 +319,7 @@ grant all on moodle.* to 'root'@'localhost' identified by '$GENERICPASSWORD';
 tmpfs /var/cache/moodle tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
 tmpfs /var/www/moodledata/temp tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
 tmpfs /var/www/moodledata/sessions tmpfs size=32M,mode=775,uid=www-data,gid=www-data 0 0
-    EOF
+EOF
 
     ## Install Moodle via cli
     echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
