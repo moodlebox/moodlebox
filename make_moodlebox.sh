@@ -20,12 +20,12 @@ echo -e "Version: 1.0\n"
 # Configure important settings (done via raspi-config when GUI used)
 echo -e "\e[93mConfiguring important settings...\e[97m"
 ## Change locale
-# # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
+export LANG=fr_FR.UTF-8
+# Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
 sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
 sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
 dpkg-reconfigure -f noninteractive locales
 update-locale LANG=fr_FR.UTF-8
-export LANG=fr_FR.UTF-8
 ## Change timezone
 echo "Europe/Paris" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
@@ -73,14 +73,13 @@ EOF
 echo -e "\e[93mUpdating system to latest stable release...\e[97m"
 apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
 
-
+### We have to reboot here, and continue afterwards
 
 # mysql-server preseed selections (https://serversforhackers.com/video/installing-mysql-with-debconf)
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $GENERICPASSWORD"
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $GENERICPASSWORD"
 
 # phpmyadmin preseed selections
-#debconf-set-selections <<< "phpmyadmin phpmyadmin/internal/skip-preseed boolean true"
 debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $GENERICPASSWORD"
 debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $GENERICPASSWORD"
 debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password $GENERICPASSWORD"
