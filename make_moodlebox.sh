@@ -14,12 +14,9 @@ echo -e "\e[96mMake MoodleBox"
 echo -e "Author: Nicolas Martignoni"
 echo -e "Version: 1.0\n\e[97m"
 
-# Update system to latest stable release
-echo -e "\e[93mUpdating system to latest stable release...\e[94m"
-apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
-
 # Configure important settings (done via raspi-config when GUI used)
 echo -e "\e[93mConfiguring important settings...\e[94m"
+# export DEBIAN_FRONTEND="noninteractive"
 ## Change locale
 # # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
 sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
@@ -68,6 +65,10 @@ bind '"\e[B":history-search-forward'
 # TAB cycles through the list of partial matches
 bind 'TAB:menu-complete'
 EOF
+
+# Update system to latest stable release
+echo -e "\e[93mUpdating system to latest stable release...\e[94m"
+apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
 
 ## Install all packages needed for the whole process
 echo -e "\e[93mPackages installation...\e[94m"
