@@ -26,6 +26,8 @@ sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
 sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
 dpkg-reconfigure -f noninteractive locales
 update-locale LANG=fr_FR.UTF-8
+# reload environment vars to avoid output locale errors
+while read -r env; do export "$env"; done
 ## Change timezone
 echo "Europe/Paris" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
