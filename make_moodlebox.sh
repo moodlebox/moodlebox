@@ -25,6 +25,7 @@ sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
 sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
 dpkg-reconfigure -f noninteractive locales
 update-locale LANG=fr_FR.UTF-8
+export LANG=fr_FR.UTF-8
 ## Change timezone
 echo "Europe/Paris" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
@@ -71,6 +72,8 @@ EOF
 # Update system to latest stable release
 echo -e "\e[93mUpdating system to latest stable release...\e[97m"
 apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
+
+
 
 # mysql-server preseed selections (https://serversforhackers.com/video/installing-mysql-with-debconf)
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $GENERICPASSWORD"
@@ -348,8 +351,8 @@ rm -r /var/www/moodledata/trashdir/*
 rm -r /var/www/moodledata/sessions/*
 rm -r /var/cache/moodle/*
 rm -r /var/cache/moodle-cache-backup/*
-mysql -u root -p'$GENERICPASSWORD' moodle -e "truncate table moodle.mdl_logstore_standard_log"
-mysql -u root -p'$GENERICPASSWORD' moodle -e "truncate table moodle.mdl_config_log"
+mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_logstore_standard_log"
+mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_config_log"
 apt-get clean
 rm -r /var/cache/debconf/*
 rm -r /tmp/*
