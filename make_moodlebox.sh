@@ -20,7 +20,6 @@ apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
 
 # Configure important settings (done via raspi-config when GUI used)
 echo -e "\e[93mConfiguring important settings...\e[94m"
-export DEBIAN_FRONTEND="noninteractive"
 ## Change locale
 # # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
 sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
