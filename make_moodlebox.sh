@@ -6,7 +6,6 @@
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
-GENERICNAME="moodlebox"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 
@@ -40,19 +39,19 @@ else
 fi
 ## Change hostname
 CURRENT_HOSTNAME=`cat /etc/hostname | tr -d " \t\n\r"`
-NEW_HOSTNAME=$GENERICNAME
+NEW_HOSTNAME=moodlebox
 echo $NEW_HOSTNAME > /etc/hostname
 sed -i "s/127.0.1.1.*$CURRENT_HOSTNAME/127.0.1.1\t$NEW_HOSTNAME/g" /etc/hosts
 
-# Rename default user from "pi" to "$GENERICNAME"
+# Rename default user from "pi" to "moodlebox"
 # http://unixetc.co.uk/2016/01/07/how-to-rename-the-default-raspberry-pi-user/
-echo -e "\e[93mRenaming default user to \"$GENERICNAME\"...\e[97m"
+echo -e "\e[93mRenaming default user to \"moodlebox\"...\e[97m"
 cd /etc
 # tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers systemd/system/autologin@.service
-sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/$GENERICNAME/g' passwd group shadow gshadow sudoers systemd/system/autologin@.service
-mv /home/pi /home/$GENERICNAME
+sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers systemd/system/autologin@.service
+mv /home/pi /home/moodlebox
 ## Change user password
-echo "$GENERICNAME:$GENERICPASSWORD" | chpasswd
+echo "moodlebox:$GENERICPASSWORD" | chpasswd
 
 ## Remove logging to /dev/xconsole from the default rsyslog configuration
 # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
@@ -60,7 +59,7 @@ sed -i '/# The named pipe \/dev\/xconsole/,$d' /etc/rsyslog.conf
 service rsyslog restart
 
 ## Some bash configurations for default account
-cat << "EOF" >> /home/$GENERICNAME/.bashrc
+cat << "EOF" >> /home/moodlebox/.bashrc
 
 alias ll='ls -la'
 
@@ -153,7 +152,7 @@ wpa=2
 # Use a pre-shared key
 wpa_key_mgmt=WPA-PSK
 # The network passphrase
-wpa_passphrase=$GENERICNAME
+wpa_passphrase=moodlebox
 # Use AES, instead of TKIP
 rsn_pairwise=CCMP
 EOF
@@ -189,8 +188,8 @@ cat << "EOF" > /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
 iptables-restore < /etc/iptables.ipv4.nat
 EOF
 
-# 8. /etc/avahi/services/$GENERICNAME.service (Advertise mDNS services)
-cat << "EOF" > /etc/avahi/services/$GENERICNAME.service
+# 8. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
+cat << "EOF" > /etc/avahi/services/moodlebox.service
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
 <service-group>
@@ -228,7 +227,7 @@ server {
 
 	index index.php index.html index.htm index.nginx-debian.html;
 
-	server_name $GENERICNAME;
+	server_name moodlebox;
 
 	location / {
 		try_files $uri $uri/ =404;
@@ -281,10 +280,10 @@ mkdir /var/www/moodledata
 mkdir -p /var/www/moodledata/repository
 chown -R www-data:www-data /var/www/moodledata/
 
-mkdir -p /home/$GENERICNAME/files
-chown -R $GENERICNAME:www-data /home/$GENERICNAME/files
-chmod g+s /home/$GENERICNAME/files
-ln -s /home/$GENERICNAME/files /var/www/moodledata/repository
+mkdir -p /home/moodlebox/files
+chown -R moodlebox:www-data /home/moodlebox/files
+chmod g+s /home/moodlebox/files
+ln -s /home/moodlebox/files /var/www/moodledata/repository
 ln -s /media/usb /var/www/moodledata/repository
 
 ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
@@ -304,7 +303,7 @@ EOF
 echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
 /usr/bin/php "/var/www/html/admin/cli/install.php" \
   --lang=fr \
-  --wwwroot="http://$GENERICNAME.local" \
+  --wwwroot="http://moodlebox.local" \
   --dataroot="/var/www/moodledata" \
   --dbname="moodle" \
   --prefix="mdl_" \
@@ -324,18 +323,18 @@ chown www-data:www-data /var/www/html/config.php
 echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[97m"
 cd /var/www/html/local
 git clone https://github.com/martignoni/moodlebox.git
-cd /var/www/html/local/$GENERICNAME
+cd /var/www/html/local/moodlebox
 touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
-chown -R www-data:www-data /var/www/html/local/$GENERICNAME
+chown -R www-data:www-data /var/www/html/local/moodlebox
 
 /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
 
 # Cron and incron jobs configuration
 echo -e "\e[93mCron and incron jobs configuration...\e[97m"
 ## Configure incron jobs (for restart/shutdown from web interface)
-(incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/$GENERICNAME/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
-(incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/$GENERICNAME/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
-(incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/$GENERICNAME/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/local/$GENERICNAME/.set-server-datetime") | incrontab -
+(incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
+(incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
+(incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/local/moodlebox/.set-server-datetime") | incrontab -
 
 ## Configure cron jobs
 (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/html/admin/cli/cron.php") | crontab -
