@@ -28,6 +28,7 @@ case "$1" in
 esac
 EOF
 
+# http://unix.stackexchange.com/questions/145294/how-to-continue-a-script-after-it-reboots-the-machine
 before_reboot(){
     # Script start!
     clear
