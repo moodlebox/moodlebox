@@ -14,6 +14,16 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 * GUI to set date and time of the MoodleBox (when away from Internet connection).
 * [PhpMyAdmin](http://moodlebox.local/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
 
+## Building the MoodleBox
+
+1. Clone Rasbpian Jessie Lite on your microSD card
+1. Login to your RPi with the default user pi: `ssh pi@raspberrypi.local`
+1. Install `rsync`: `sudo apt-get install rsync`, then logout
+1. Prepare a file `authorized_keys` containing your public keys
+1. Launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password
+1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
+1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash`
+
 ## Usage of the MoodleBox
 
 Read the [user manual](https://moodle.org/mod/book/view.php?id=8265), in french.
