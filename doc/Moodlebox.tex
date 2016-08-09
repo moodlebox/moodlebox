@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{11 juillet 2016}
+\date{9 août 2016\footnote{Version 1.1.1}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -104,7 +104,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
-\item Interface graphique pour redémarrer et éteindre la MoodleBox (au moyen d'un plugin local de Moodle).
+\item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin local de Moodle\footnote{\url{https://github.com/martignoni/moodlebox}.}).
 \item Plateforme Moodle 3.1.x accessible via Wi-Fi (\url{http://moodlebox.local/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
