@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Uncomment for debugging
+exec 1> >(logger -s -t $(basename $0)) 2>&1
+
 # This script MUST be run as root
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
 
@@ -9,13 +12,19 @@
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 
-cat << "EOF" > /etc/init.d/makemoodlebox
+# http://unix.stackexchange.com/questions/145294/how-to-continue-a-script-after-it-reboots-the-machine
+before_reboot(){
+    # Script start!
+    clear
+    sync
+
+    cat << "EOF" > /etc/init.d/makemoodlebox
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:          makemoodlebox
-# Required-Start:
-# Required-Stop:
-# Default-Start:
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     3 4 5
 # Default-Stop:
 # Short-Description: Execute the makemoodlebox command.
 # Description:
@@ -26,6 +35,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 case "$1" in
     start)
         curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
+        #bash /root/make_moodlebox.sh
         ;;
     *)
         echo "Usage: $0 start" >&2
@@ -34,13 +44,7 @@ case "$1" in
 esac
 EOF
 
-chmod a+x /etc/init.d/makemoodlebox
-
-# http://unix.stackexchange.com/questions/145294/how-to-continue-a-script-after-it-reboots-the-machine
-before_reboot(){
-    # Script start!
-    clear
-    sync
+    chmod a+x /etc/init.d/makemoodlebox
 
     echo -e "\e[96mMake MoodleBox"
     echo -e "Author: Nicolas Martignoni"
@@ -388,24 +392,20 @@ EOF
     rm -r /var/tmp/*
     rm ~/.mysql_history
     rm ~/.nano_history
+    rm ~/.bash_history
     sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
-
-    ## Expand filesystem
-    # TODO
-    echo -e "\e[93mYou should now expand your file system. Wait for raspi-config"
-    echo -e "and select the appropriate options. You'll be then prompted to reboot.\e[97m"
-    sleep 2
-    raspi-config
 }
 
-if [ -f /var/run/rebooting-for-updates ]; then
+if [ -f /root/rebooting-for-secondstep ]; then
     after_reboot
-    rm /var/run/rebooting-for-updates
+    rm /root/rebooting-for-secondstep
+    rm /etc/init.d/makemoodlebox
     update-rc.d makemoodlebox remove
+    reboot
 else
     before_reboot
-    touch /var/run/rebooting-for-updates
+    touch /root/rebooting-for-secondstep
     update-rc.d makemoodlebox defaults
-    sudo reboot
+    reboot
 fi
 ## The end
