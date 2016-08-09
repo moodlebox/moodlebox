@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Uncomment for debugging
-exec 1> >(logger -s -t $(basename $0)) 2>&1
+#exec 1> >(logger -s -t $(basename $0)) 2>&1
 
 # This script MUST be run as root
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
@@ -394,6 +394,7 @@ EOF
     rm ~/.nano_history
     rm ~/.bash_history
     sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
+    rm -rf ~/.ssh
 }
 
 if [ -f /root/rebooting-for-secondstep ]; then
