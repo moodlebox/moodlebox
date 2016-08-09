@@ -38,6 +38,11 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 44c699
 
 ### Release notes
 
+#### Version 1.1.1, 2016-08-09
+
+* Documentation Updated
+* Scripts to build the MoodleBox enhanced and updated
+
 #### Version 1.1, 2016-08-06
 
 * Updated to version 1.1 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This version adds display of free space on SD card of the MoodleBox.
@@ -47,6 +52,7 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 44c699
 
 * Updated to Moodle 3.1.1.
 * Updated to version 1.0 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This version adds a time setting feature for the MoodleBox.
+* First publication of scripts to build the MoodleBox
 
 #### Version 1.0b (beta), 2016-06-26
 
@@ -61,21 +67,21 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 44c699
 
 * Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This local plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
 
-#### Version 0.8 (pre-release), 2016-06-04
+#### Version 0.4 (pre-release), 2016-06-04
 
-* The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/).
+* The Moodle platform is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/).
 
-#### Version 0.7 (pre-release), 2016-05-29
+#### Version 0.3 (pre-release), 2016-05-29
 
 * Updated to Moodle 3.1.
 * Default account for SSH is now _moodlebox_ (instead of _pi_). Password is unchanged: _Moodlebox4$_.
 
-#### Version 0.6 (pre-release), 2016-05-19
+#### Version 0.2 (pre-release), 2016-05-19
 
 * When a USB key is inserted in the MoodleBox, all the files on it are available for the admins and teachers of the Moodle server, via a _File system_ repository.
 * Option to upload files on the MoodleBox via SFTP (username: _moodlebox_, password: _Moodlebox4$_); these files are available for the admins and teachers of the Moodle server, via a _File system_ repository.
 
-#### Version 0.5 (pre-release), 2016-04-13 (first version)
+#### Version 0.1 (pre-release), 2016-04-13 (first version)
 
 * The MoodleBox can be reached via SSH, username: _pi_, password: _Moodlebox4$_.
 * The MoodleBox acts as a Wi-Fi access point. SSID: _MoodleBox_; password: _moodlebox_.;
