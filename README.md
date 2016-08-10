@@ -45,13 +45,13 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 0f1814
 
 #### Version 1.1, 2016-08-06
 
-* Updated to version 1.1 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This version adds display of free space on SD card of the MoodleBox.
+* Updated to version 1.1 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This version adds display of free space on SD card of the MoodleBox.
 * Added advertising of mDNS services (Avahi service file created).
 
 #### Version 1.0, 2016-07-11
 
 * Updated to Moodle 3.1.1.
-* Updated to version 1.0 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This version adds a time setting feature for the MoodleBox.
+* Updated to version 1.0 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This version adds a time setting feature for the MoodleBox.
 * First publication of scripts to build the MoodleBox
 
 #### Version 1.0b (beta), 2016-06-26
@@ -61,11 +61,11 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 0f1814
 #### Version 1.0a2 (alpha), 2016-06-19
 
 * Reorganisation of the project
-* Updated to version 1.0a2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle.
+* Updated to version 1.0a2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
 
 #### Version 1.0a1 (alpha), 2016-06-16
 
-* Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://github.com/martignoni/moodlebox) for Moodle. This local plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
+* Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This local plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
 
 #### Version 0.4 (pre-release), 2016-06-04
 

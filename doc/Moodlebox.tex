@@ -104,7 +104,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
-\item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin local de Moodle\footnote{\url{https://github.com/martignoni/moodlebox}.}).
+\item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin local de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
 \item Plateforme Moodle 3.1.x accessible via Wi-Fi (\url{http://moodlebox.local/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
@@ -309,9 +309,9 @@ Il s'agit d'éviter que le client DHCP de la Raspberry récupère une adresse dy
 $ sudo nano /etc/dhcpcd.conf
 \end{lstlisting}
 
-On ajoute tout à la fin du fichier\footnote{Cette ligne doit être insérée cependant avant toute ligne \emph{interface} qui aurait été ajoutée au fichier.} la ligne 
+On ajoute tout à la fin du fichier\footnote{Cette ligne doit être insérée cependant avant toute ligne \emph{interface} qui aurait été ajoutée au fichier.} la ligne
 \begin{lstlisting}[language=bash]
-denyinterfaces wlan0  
+denyinterfaces wlan0
 \end{lstlisting}
 
 On modifie ensuite le fichier \lstinline{/etc/network/interfaces} afin de configurer l'interface Wi-Fi de manière statique, en fixant son adresse IP. Pour la MoodleBox, on choisit l'adresse \lstinline{10.0.0.1}.
@@ -746,7 +746,7 @@ Pour terminer, il reste à associer ces nouvelles instances de cache à leur des
 \end{figure}
 
 \begin{verification}
-Après quelques actions sur la plateforme Moodle de la MoodleBox, se connecter via SSH à la MoodleBox, puis lancer la commande 
+Après quelques actions sur la plateforme Moodle de la MoodleBox, se connecter via SSH à la MoodleBox, puis lancer la commande
 \begin{lstlisting}[language=bash]
 ls -l /var/cache/moodle/
 \end{lstlisting}
