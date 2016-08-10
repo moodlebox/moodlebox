@@ -357,18 +357,18 @@ EOF
     echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[97m"
     cd /var/www/html/local
     git clone https://github.com/martignoni/moodlebox-plugin.git
-    cd /var/www/html/local/moodlebox
+    cd /var/www/html/admin/tool/moodlebox
     touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
-    chown -R www-data:www-data /var/www/html/local/moodlebox
+    chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 
     /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
 
     # Cron and incron jobs configuration
     echo -e "\e[93mCron and incron jobs configuration...\e[97m"
     ## Configure incron jobs (for restart/shutdown from web interface)
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/local/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/local/moodlebox/.set-server-datetime") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
 
     ## Configure cron jobs
     (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/html/admin/cli/cron.php") | crontab -
