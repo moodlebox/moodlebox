@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{9 août 2016\footnote{Version 1.1.1}}
+\date{11 août 2016\footnote{Version 1.2}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -104,7 +104,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
-\item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin local de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
+\item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
 \item Plateforme Moodle 3.1.x accessible via Wi-Fi (\url{http://moodlebox.local/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
@@ -304,10 +304,9 @@ $ sudo apt-get install hostapd dnsmasq
 \subsection{Configuration des interfaces réseau}
 
 Il s'agit d'éviter que le client DHCP de la Raspberry récupère une adresse dynamique sur son interface Wi-Fi, risquant d'entrer en conflit avec son adresse fixe. On commence pour cela par modifier le fichier \lstinline{dhcpcd.conf}.
-
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/dhcpcd.conf
-\end{lstlisting}
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/dhcpcd.conf
+%\end{lstlisting}
 
 On ajoute tout à la fin du fichier\footnote{Cette ligne doit être insérée cependant avant toute ligne \emph{interface} qui aurait été ajoutée au fichier.} la ligne
 \begin{lstlisting}[language=bash]
@@ -315,9 +314,9 @@ denyinterfaces wlan0
 \end{lstlisting}
 
 On modifie ensuite le fichier \lstinline{/etc/network/interfaces} afin de configurer l'interface Wi-Fi de manière statique, en fixant son adresse IP. Pour la MoodleBox, on choisit l'adresse \lstinline{10.0.0.1}.
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/network/interfaces
-\end{lstlisting}
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/network/interfaces
+%\end{lstlisting}
 
 La partie \lstinline{wlan0} de ce fichier doit ressembler à quelque chose comme cela
 \begin{lstlisting}[language=bash]
@@ -340,10 +339,9 @@ Le contenu du fichier \lstinline{/etc/network/interfaces} devient alors
 \subsection[Configuration du point d'accès (\lstinline{hostapd})]{Configuration du point d'accès (\lstinline{hostapd})}
 
 Modifier le contenu du fichier \lstinline{hostapd.conf}. C'est ici que l'on définit le nom du réseau Wi-Fi (SSID) et le mot de passe pour y accéder et d'autres options, comme le canal de diffusion. Le nom du réseau choisi est \emph{MoodleBox} et le mot de passe \emph{moodlebox}.
-
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/hostapd/hostapd.conf
-\end{lstlisting}
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/hostapd/hostapd.conf
+%\end{lstlisting}
 
 Contenu du fichier \lstinline{/etc/hostapd/hostapd.conf} :
 
@@ -359,14 +357,11 @@ L'affichage annonce une erreur (puisque la configuration n'est pas finie), mais 
 \end{verification}
 
 Il reste maintenant à définir où \lstinline{hostapd} doit chercher sa configuration au démarrage. Pour ce faire, on modifie le fichier \lstinline{/etc/default/hostapd}.
-
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/default/hostapd
-\end{lstlisting}
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/default/hostapd
+%\end{lstlisting}
 
 On y remplace la ligne \lstinline{#DAEMON_CONF=""} par \lstinline{DAEMON_CONF="/etc/hostapd/hostapd.conf"}.
-
-
 \iffalse
 Contenu du fichier \lstinline{/etc/default/hostapd} :
 
@@ -375,43 +370,19 @@ Contenu du fichier \lstinline{/etc/default/hostapd} :
 
 \subsection{Configuration du serveur DHCP}
 
-Modifier le contenu du fichier \lstinline{dnsmasq.conf}.
-
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/dnsmasq.conf
-\end{lstlisting}
-
-Contenu du fichier \lstinline{/etc/dnsmasq.conf}
+On modifie le contenu du fichier \lstinline{dnsmasq.conf}. Son contenu sera:
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/dnsmasq.conf
+%\end{lstlisting}
 
 \lstinputlisting[language=bash]{files/dnsmasq.conf}
-
-\iffalse
-Modifier ensuite le contenu du fichier \lstinline{dhcpcd.conf} afin de fixer l'adresse IP de la MoodleBox.
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/dhcpcd.conf
-\end{lstlisting}
-
-On ajoute simplement les lignes
-\begin{lstlisting}[language=bash]
-interface wlan0
-    static ip_address=10.0.0.1/24
-\end{lstlisting}
-à la fin du fichier existant.
-\fi
-
-\iffalse
-Contenu du fichier \lstinline{/etc/dhcpcd.conf}
-
-\lstinputlisting[language=bash]{files/dhcpcd.conf}
-\fi
 
 \subsection{Configuration du routage}
 
 On modifie le fichier fichier \lstinline{/etc/sysctl.conf}
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/sysctl.conf
-\end{lstlisting}
-
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/sysctl.conf
+%\end{lstlisting}
 en dé-commentant (ou en ajoutant) la ligne
 \begin{lstlisting}[language=bash]
 net.ipv4.ip_forward=1
@@ -432,10 +403,9 @@ $ sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 \end{lstlisting}
 
 On crée ensuite le fichier {/lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat}.
-\begin{lstlisting}[language=bash]
-$ sudo nano /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
-\end{lstlisting}
-
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
+%\end{lstlisting}
 Son contenu doit être le suivant.
 
 \lstinputlisting[language=bash]{files/70-ipv4-nat}
@@ -451,6 +421,11 @@ $ sudo reboot
 \begin{verification}
 Au terme du démarrage, un client doit pouvoir surfer sur Internet après s'être connecté au réseau Wi-Fi \emph{MoodleBox} au moyen du mot de passe \emph{moodlebox}.
 \end{verification}
+
+\subsection{Publication des services mDNS}
+
+Afin de rendre visible sur le réseau les services fournis par la MoodleBox, on crée le fichier \lstinline{/etc/avahi/services/moodlebox.service}, avec le contenu ci-dessous.
+\lstinputlisting[language=bash]{files/moodlebox.service.xml}
 
 \section{Installation du serveur web}
 
@@ -469,12 +444,10 @@ Depuis un ordinateur connecté sur la MoodleBox via Wi-Fi, charger dans un navig
 \end{verification}
 
 Configurer le serveur web en modifiant le fichier \lstinline{/etc/nginx/sites-available/default}.
-
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/nginx/sites-available/default
-\end{lstlisting}
-
-Contenu du fichier \lstinline{/etc/nginx/sites-available/default}
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/nginx/sites-available/default
+%\end{lstlisting}
+Son contenu sera le suivant.
 
 \lstinputlisting[language=bash]{files/default}
 
@@ -641,16 +614,16 @@ Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app m
 
 \subsection{Installation du plugin Administration MoodleBox}
 
-Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin local \emph{Administration MoodleBox} pour Moodle.
+Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle.
 
 Le plus simple est de l'installer via Git.
 
 \begin{lstlisting}[language=bash]
-$ cd /var/www/html/local
-$ sudo git clone git@github.com:martignoni/moodlebox.git
-$ cd /var/www/html/local/moodlebox
+$ cd /var/www/html/admin/tool/
+$ sudo git clone https://github.com/martignoni/moodlebox-plugin.git
+$ cd /var/www/html/admin/tool/moodlebox
 $ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
-$ sudo chown -R www-data:www-data /var/www/html/local/moodlebox
+$ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 \end{lstlisting}
 
 On termine l'installation du plugin en visitant la page \url{http://moodlebox.local/admin}. On installe pour terminer le paquetage \emph{incron}.
@@ -668,9 +641,9 @@ $ sudo incrontab -e
 
 en y ajoutant les lignes
 \begin{lstlisting}[language=bash]
-/var/www/html/local/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
-/var/www/html/local/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
-/var/www/html/local/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/local/moodlebox/.set-server-datetime
+/var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
+/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
+/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime
 \end{lstlisting}
 
 
@@ -708,10 +681,10 @@ tmpfs /var/www/moodledata/temp tmpfs size=64M,mode=775,uid=www-data,gid=www-data
 tmpfs /var/www/moodledata/sessions tmpfs size=32M,mode=775,uid=www-data,gid=www-data 0 0
 \end{lstlisting}
 
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/fstab
-\end{lstlisting}
-
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/fstab
+%\end{lstlisting}
+%
 Le contenu du fichier \lstinline{/etc/fstab} sera alors :
 \lstinputlisting[language=bash]{files/fstab}
 
@@ -785,9 +758,9 @@ $CFG->xsendfilealiases = array (
 \end{lstlisting}
 après la ligne \lstinline{$CFG->admin = 'admin';} dans le fichier de configuration de Moodle \lstinline{/var/www/html/config.php}.
 
-\begin{lstlisting}[language=bash]
-$ sudo nano /var/www/html/config.php
-\end{lstlisting}
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /var/www/html/config.php
+%\end{lstlisting}
 
 Le contenu du fichier \lstinline{/var/www/html/config.php} sera alors :
 \lstinputlisting[language=bash]{files/config.php}
@@ -807,10 +780,9 @@ Le contenu du fichier \lstinline{/etc/nginx/sites-available/default} devient alo
 \subsubsection{Optimisation de MySQL}
 
 On modifie les valeurs de quelques variables de MySQL dans le fichier \lstinline{/etc/mysql/my.cnf}. Pour ce faire, on ouvre le fichier en question
-\begin{lstlisting}[language=bash]
-$ sudo nano /etc/mysql/my.cnf
-\end{lstlisting}
-
+%\begin{lstlisting}[language=bash]
+%$ sudo nano /etc/mysql/my.cnf
+%\end{lstlisting}
 et on y modifie les lignes adéquates, à savoir:
 \begin{lstlisting}[language=bash]
 table_cache             = 512

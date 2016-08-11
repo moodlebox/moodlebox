@@ -65,7 +65,7 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 0f1814
 
 #### Version 1.0a1 (alpha), 2016-06-16
 
-* Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This local plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
+* Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
 
 #### Version 0.4 (pre-release), 2016-06-04
 
@@ -98,7 +98,7 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 0f1814
 
 To build a MoodleBox from scratch, you need a Raspberri Pi 3 (Wi-Fi!) and follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) (in french).
 
-The local plugin needs to be installed in the Moodle tree of the MoodleBox, in the _local_ folder. Once installed, an new option _MoodleBox administration_ will be available in Moodle, under _Site administration > Server_ in the _Administration_ block.
+The plugin needs to be installed in the Moodle tree of the MoodleBox, in the _admin/tool_ folder. Once installed, an new option _MoodleBox_ will be available in Moodle, under _Site administration > Server_ in the _Administration_ block.
 
 ## Thanks
 

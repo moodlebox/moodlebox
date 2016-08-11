@@ -355,7 +355,7 @@ EOF
 
     ## Install MoodleBox Admin Moodle plugin
     echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[97m"
-    cd /var/www/html/local
+    cd /var/www/html/admin/tool/
     git clone https://github.com/martignoni/moodlebox-plugin.git
     cd /var/www/html/admin/tool/moodlebox
     touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
