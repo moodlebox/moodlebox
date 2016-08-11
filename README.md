@@ -38,6 +38,11 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 0f1814
 
 ### Release notes
 
+#### Version 1.2, 2016-08-11
+
+* Updated to version 1.2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* No other new features
+
 #### Version 1.1.1, 2016-08-09
 
 * Documentation Updated
