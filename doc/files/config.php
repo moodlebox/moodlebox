@@ -4,7 +4,7 @@ unset($CFG);
 global $CFG;
 $CFG = new stdClass();
 
-$CFG->dbtype    = 'mysqli';
+$CFG->dbtype    = 'mariadb';
 $CFG->dblibrary = 'native';
 $CFG->dbhost    = 'localhost';
 $CFG->dbname    = 'moodle';
@@ -17,7 +17,7 @@ $CFG->dboptions = array (
   'dbsocket' => '',
 );
 
-$CFG->wwwroot   = 'http://moodlebox.local';
+$CFG->wwwroot   = 'http://moodle.box';
 $CFG->dataroot  = '/var/www/moodledata';
 $CFG->admin     = 'admin';
 
@@ -26,7 +26,7 @@ $CFG->xsendfilealiases = array (
   '/dataroot/' => $CFG->dataroot
 );
 
-$CFG->directorypermissions = 0777;
+$CFG->directorypermissions = 02777;
 
 require_once(dirname(__FILE__) . '/lib/setup.php');
 

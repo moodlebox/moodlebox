@@ -76,7 +76,7 @@ EOF
     CURRENT_HOSTNAME=`cat /etc/hostname | tr -d " \t\n\r"`
     NEW_HOSTNAME=moodlebox
     echo $NEW_HOSTNAME > /etc/hostname
-    sed -i "s/127.0.1.1.*$CURRENT_HOSTNAME/127.0.1.1\t$NEW_HOSTNAME/g" /etc/hosts
+    sed -i "s/127.0.1.1.*$CURRENT_HOSTNAME/10.0.0.1\tmoodle/g" /etc/hosts
 
     # Rename default user from "pi" to "moodlebox"
     # http://unixetc.co.uk/2016/01/07/how-to-rename-the-default-raspberry-pi-user/
@@ -202,15 +202,19 @@ EOF
 
     # 4. /etc/dnsmasq.conf
     cat << "EOF" > /etc/dnsmasq.conf
-interface=wlan0         # Use interface wlan0
-listen-address=10.0.0.1 # Explicitly specify the address to listen on
-bind-interfaces         # Make sure we aren't sending things elsewhere
-server=8.8.8.8          # Forward DNS requests to Google DNS
-server=8.8.4.4          # Forward DNS requests to Google DNS
-domain-needed           # Don't forward short names
-bogus-priv              # Don't forward addresses in the non-routed spaces
-# Assign IP addresses between 10.0.0.100 and 10.0.0.199 with 12 h lease time
-dhcp-range=10.0.0.100,10.0.0.199,255.255.255.0,12h
+interface=wlan0             # Use interface wlan0
+listen-address=127.0.0.1    # Explicitly specify the address to listen on
+listen-address=10.0.0.1     # Explicitly specify the address to listen on
+bind-interfaces             # Make sure we aren't sending things elsewhere
+server=8.8.8.8              # Forward DNS requests to Google DNS
+server=8.8.4.4              # Forward DNS requests to Google DNS
+domain-needed               # Don't forward short names
+bogus-priv                  # Don't forward addresses in the non-routed spaces
+domain=box                  # Set private domain name to 'box'
+local=/box/                 # Don't forward queries for private domain 'box'
+expand-hosts                # Add private domain name to hostnames
+dhcp-range=wifi,10.0.0.100,10.0.0.199,255.255.255.0,12h # Assign IP addresses with 12h lease, subnet name 'wifi'
+dhcp-option=wifi,6,10.0.0.1 # Set DNS server for subnet wifi
 # log-facility=/var/log/dnsmasq.log # Enable log
 EOF
 
@@ -344,7 +348,7 @@ EOF
     echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
     /usr/bin/php "/var/www/html/admin/cli/install.php" \
       --lang=fr \
-      --wwwroot="http://moodlebox.local" \
+      --wwwroot="http://moodle.box" \
       --dataroot="/var/www/moodledata" \
       --dbtype="mariadb" \
       --dbname="moodle" \
