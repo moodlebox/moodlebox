@@ -51,17 +51,19 @@ EOF
     echo -e "Version: 1.0\n"
 
     # Configure important settings (done via raspi-config when GUI used)
-    echo -e "\e[93mConfiguring important settings...\e[97m"
+    echo -e "\e[93mConfiguring locale...\e[97m"
     ## Change locale
-    export LANG=fr_FR.UTF-8
     # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
     sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
     sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
     dpkg-reconfigure -f noninteractive locales
+    export LANG=fr_FR.UTF-8
     update-locale LANG=fr_FR.UTF-8
+    echo -e "\e[93mConfiguring timezone...\e[97m"
     ## Change timezone
     echo "Europe/Paris" > /etc/timezone
     dpkg-reconfigure -f noninteractive tzdata
+    echo -e "\e[93mConfiguring Wi-Fi country...\e[97m"
     ## Change WiFi country
     COUNTRY=CH
     if grep -q "^country=" /etc/wpa_supplicant/wpa_supplicant.conf ; then
@@ -69,6 +71,7 @@ EOF
     else
         sed -i "1i country=$COUNTRY" /etc/wpa_supplicant/wpa_supplicant.conf
     fi
+    echo -e "\e[93mChanging hostname...\e[97m"
     ## Change hostname
     CURRENT_HOSTNAME=`cat /etc/hostname | tr -d " \t\n\r"`
     NEW_HOSTNAME=moodlebox
@@ -104,14 +107,18 @@ EOF
 
     # Update system to latest stable release
     echo -e "\e[93mUpdating system to latest stable release...\e[97m"
-    apt-get update -y && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
+    apt-get update -y && apt-get dist-upgrade -y && apt-get upgrade -y
     ### We have to reboot here, and continue afterwards
 }
 
 after_reboot(){
+    # mariadb-server preseed selections (http://dba.stackexchange.com/questions/59317/install-mariadb-10-on-ubuntu-without-prompt-and-no-root-password)
+    debconf-set-selections <<< "mariadb-server mysql-server/root_password password $GENERICPASSWORD"
+    debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $GENERICPASSWORD"
+
     # mysql-server preseed selections (https://serversforhackers.com/video/installing-mysql-with-debconf)
-    debconf-set-selections <<< "mysql-server mysql-server/root_password password $GENERICPASSWORD"
-    debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $GENERICPASSWORD"
+    # debconf-set-selections <<< "mysql-server mysql-server/root_password password $GENERICPASSWORD"
+    # debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $GENERICPASSWORD"
 
     # phpmyadmin preseed selections
     debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $GENERICPASSWORD"
@@ -122,7 +129,7 @@ after_reboot(){
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl mysql-server php5-mysql git usbmount incron
+    apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl mariadb-server php5-mysql git usbmount incron
     echo root > /etc/incron.allow
     apt-get install -y phpmyadmin
 
@@ -297,7 +304,7 @@ STOP
     sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/my.cnf
     sed -i '/table_cache/i table_definition_cache  = 512' /etc/mysql/my.cnf
     sed -i '/max_connections/c\max_connections         = 100' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/c\query_cache_size        = 8M' /etc/mysql/my.cnf
+    sed -i '/query_cache_size/c\query_cache_size        = 16M' /etc/mysql/my.cnf
     sed -i '/query_cache_size/i query_cache_type        = 0' /etc/mysql/my.cnf
 
     ## Download Moodle via git and create all needed directories, with adequate permissions
@@ -339,6 +346,7 @@ EOF
       --lang=fr \
       --wwwroot="http://moodlebox.local" \
       --dataroot="/var/www/moodledata" \
+      --dbtype="mariadb" \
       --dbname="moodle" \
       --prefix="mdl_" \
       --dbuser="root" \
@@ -394,7 +402,7 @@ EOF
     rm ~/.nano_history
     rm ~/.bash_history
     sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
-    rm -rf ~/.ssh
+    rm -rf /root/.ssh
 }
 
 if [ -f /root/rebooting-for-secondstep ]; then
