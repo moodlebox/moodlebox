@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{11 août 2016\footnote{Version 1.2}}
+\date{20 août 2016\footnote{Version 1.2.1}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -429,7 +429,7 @@ Afin de rendre visible sur le réseau les services fournis par la MoodleBox, on 
 
 \section{Installation du serveur web}
 
-On va installer le serveur web nginx avec PHP et MySQL.
+On va installer le serveur web nginx avec PHP et MariaDB.
 
 \subsection{Installation et configuration de nginx et PHP}
 
@@ -466,10 +466,10 @@ $ echo '<?php phpinfo(); ?>' | sudo tee -a /var/www/html/info.php
 puis lancer dans un navigateur l'URL \url{http://moodlebox.local/info.php}. La longue page des réglages PHP doit s'afficher, avec les variables \lstinline{upload_max_filesize} et \lstinline{post_max_size} sont fixées à 50~Mo.
 \end{verification}
 
-\subsubsection[Installation et configuration de MySql]{Installation et configuration de MySql\footnote{Cette section est inspirée de \url{http://www.syndrega.ch/?p=108}.}}
+\subsubsection[Installation et configuration de MariaDB]{Installation et configuration de MariaDB\footnote{Cette section est inspirée de \url{http://www.syndrega.ch/?p=108}.}}
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install mysql-server php5-mysql
+$ sudo apt-get install mariadb-server php5-mysql
 \end{lstlisting}
 
 Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{root}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
@@ -538,7 +538,7 @@ et ajouter à la table des crons la ligne
 Dans Moodle, visiter l'administration sous \emph{Administration du site > Serveur > Tâches programmées}, vérifier que les tâches programmées se lancent régulièrement.
 \end{verification}
 
-\subsection{Correction du format des tables MySQL}
+\subsection{Correction du format des tables de la base de données}
 
 Pour corriger le format des tables éventuellement encore en format Antelope, on lance la commande
 
@@ -777,9 +777,9 @@ location /dataroot/ {
 Le contenu du fichier \lstinline{/etc/nginx/sites-available/default} devient alors :
 \lstinputlisting[language=bash]{files/default2}
 
-\subsubsection{Optimisation de MySQL}
+\subsubsection{Optimisation de MariaDB}
 
-On modifie les valeurs de quelques variables de MySQL dans le fichier \lstinline{/etc/mysql/my.cnf}. Pour ce faire, on ouvre le fichier en question
+On modifie les valeurs de quelques variables de MariaDB dans le fichier \lstinline{/etc/mysql/my.cnf}. Pour ce faire, on ouvre le fichier en question
 %\begin{lstlisting}[language=bash]
 %$ sudo nano /etc/mysql/my.cnf
 %\end{lstlisting}
@@ -788,7 +788,7 @@ et on y modifie les lignes adéquates, à savoir:
 table_cache             = 512
 table_definition_cache  = 512
 max_connections         = 100
-query_cache_size        = 8M
+query_cache_size        = 16M
 query_cache_type        = 0
 \end{lstlisting}
 
