@@ -38,6 +38,10 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 032fb4
 
 ### Release notes
 
+#### Version 1.2.1, 2016-08-20
+
+* Changed database from MySQL to MariaDB, version 10.0.26
+
 #### Version 1.2, 2016-08-11
 
 * Updated to version 1.2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
