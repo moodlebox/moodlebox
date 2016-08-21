@@ -348,7 +348,7 @@ EOF
     echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
     /usr/bin/php "/var/www/html/admin/cli/install.php" \
       --lang=fr \
-      --wwwroot="http://moodle.box" \
+      --wwwroot="http://moodlebox.home" \
       --dataroot="/var/www/moodledata" \
       --dbtype="mariadb" \
       --dbname="moodle" \
