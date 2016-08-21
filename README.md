@@ -20,7 +20,7 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 1. Login to your RPi with the default user pi: `ssh pi@raspberrypi.local`
 1. Install `rsync`: `sudo apt-get install rsync`, then logout
 1. Prepare a file `authorized_keys` containing your public keys
-1. Launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password
+1. Launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
 1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash`
 
@@ -34,23 +34,28 @@ The code is available at [https://github.com/martignoni/make-moodlebox](https://
 
 An [prepared disk image](https://moodle.org/mod/url/view.php?id=8269) of the latest released version is [available for downloading](https://moodle.org/mod/url/view.php?id=8269), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
-SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 032fb4239d13ad3e269b1e2ac250d829b9f86725
+SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): c0f0bdc1f8b5271f080038c907c21895f10c37d9
 
 ### Release notes
 
+#### Version 1.3, 2016-08-21
+
+* Local DNS provided, enabling every device (with or without zeroconf) to access the MoodleBox via the FQDN `moodlebox.home`.
+* Moodle URL changed from moodlebox.local to moodlebox.home; the old URL redirects to the new one.
+
 #### Version 1.2.1, 2016-08-20
 
-* Changed database from MySQL to MariaDB, version 10.0.26
+* Changed database from MySQL to MariaDB, version 10.0.26.
 
 #### Version 1.2, 2016-08-11
 
 * Updated to version 1.2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
-* No other new features
+* No other new features.
 
 #### Version 1.1.1, 2016-08-09
 
-* Documentation Updated
-* Scripts to build the MoodleBox enhanced and updated
+* Documentation Updated.
+* Scripts to build the MoodleBox enhanced and updated.
 
 #### Version 1.1, 2016-08-06
 
@@ -61,7 +66,7 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 032fb4
 
 * Updated to Moodle 3.1.1.
 * Updated to version 1.0 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This version adds a time setting feature for the MoodleBox.
-* First publication of scripts to build the MoodleBox
+* First publication of scripts to build the MoodleBox.
 
 #### Version 1.0b (beta), 2016-06-26
 
@@ -69,7 +74,7 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): 032fb4
 
 #### Version 1.0a2 (alpha), 2016-06-19
 
-* Reorganisation of the project
+* Reorganisation of the project.
 * Updated to version 1.0a2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
 
 #### Version 1.0a1 (alpha), 2016-06-16

@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{20 août 2016\footnote{Version 1.2.1}}
+\date{21 août 2016\footnote{Version 1.3}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -105,11 +105,11 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
 \item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
-\item Plateforme Moodle 3.1.x accessible via Wi-Fi (\url{http://moodlebox.local/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
+\item Plateforme Moodle 3.1.x accessible via Wi-Fi (\url{http://moodlebox.home/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Accès à Internet : si la MoodleBox est connectée par câble à un réseau relié à Internet, elle agit comme routeur et les clients Wi-Fi ont accès à Internet.
-\item PhpMyAdmin installé (\url{http://moodlebox.local/phpmyadmin}), avec un compte administrateur, nom d'utilisateur : \emph{root}, mot de passe : \emph{Moodlebox4\$}.
+\item PhpMyAdmin installé (\url{http://moodlebox.home/phpmyadmin}), avec un compte administrateur, nom d'utilisateur : \emph{root}, mot de passe : \emph{Moodlebox4\$}.
 \end{itemize}
 
 \subsection{Ce que la MoodleBox ne fait pas}
@@ -137,7 +137,7 @@ La diode rouge — indiquant la présence d'une alimentation — s'allume ; la v
 
 Dès maintenant, toutes les manipulations se font en ligne de commande, par \lstinline{ssh} (\lstinline{Putty} sur Windows, terminal sur OS X ou Linux).
 
-Connecter la Raspberry au moyen d'un câble Ethernet sur un réseau avec un serveur DHCP. La Raspberry sera dès lors accessible sur le réseau au moyen de l'adresse \lstinline{raspberrypi.local}\footnote{Cette adresse sera changée ultérieurement en \lstinline{moodlebox.local}.}.
+Connecter la Raspberry au moyen d'un câble Ethernet sur un réseau avec un serveur DHCP. La Raspberry sera dès lors accessible sur le réseau au moyen de l'adresse \lstinline{raspberrypi.local}\footnote{Cette adresse est fournie par le protocole standard \emph{zeroconf}. Certaines anciennes machines sous Android et Windows ne respectent pas ce protocole. Avec de telles machines, il est donc nécessaire d'accéder à la MoodleBox via son adresse IP numérique, qu'il faudra découvrir manuellement.}.
 \iffalse
 Le serveur DHCP (la box par exemple) indique l'adresse IP de la Raspberry. Dans la suite du document, on suppose que l'adresse IP de la Raspberry est \lstinline{192.168.1.212}.
 \fi
@@ -368,14 +368,20 @@ Contenu du fichier \lstinline{/etc/default/hostapd} :
 \lstinputlisting[language=bash]{files/hostapd}
 \fi
 
-\subsection{Configuration du serveur DHCP}
+\subsection{Configuration du serveur DHCP et du serveur DNS}
 
-On modifie le contenu du fichier \lstinline{dnsmasq.conf}. Son contenu sera:
+On modifie le contenu du fichier \lstinline{/etc/dnsmasq.conf}\footnote{La configuration DNS est inspirée de \url{https://www.linux.com/learn/dnsmasq-easy-lan-name-services}.}. Son contenu sera:
 %\begin{lstlisting}[language=bash]
 %$ sudo nano /etc/dnsmasq.conf
 %\end{lstlisting}
 
 \lstinputlisting[language=bash]{files/dnsmasq.conf}
+
+On modifie ensuite le fichier \lstinline{/etc/hosts}, en remplaçant la ligne finale, qui commence par \lstinline{127.0.1.1}, par le contenu suivant:
+\begin{lstlisting}[language=bash]
+10.0.0.1	moodlebox
+\end{lstlisting}
+Cette configuration permettra à n'importe quel type d'appareil, même ceux qui ne respectent pas la technologie \emph{zeroconf}\footnote{\url{https://fr.wikipedia.org/wiki/Zeroconf}}, d'accéder à la MoodleBox au moyen de l'adresse \url{http://moodlebox.home/}.
 
 \subsection{Configuration du routage}
 
@@ -440,7 +446,7 @@ $ sudo apt-get install nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php
 \end{lstlisting}
 
 \begin{verification}
-Depuis un ordinateur connecté sur la MoodleBox via Wi-Fi, charger dans un navigateur l'URL \url{http://moodlebox.local/}. Une page web «Welcome to nginx on Debian!» doit s'afficher.
+Depuis un ordinateur connecté sur la MoodleBox via Wi-Fi, charger dans un navigateur l'URL \url{http://moodlebox.home/}. Une page web «Welcome to nginx on Debian!» doit s'afficher.
 \end{verification}
 
 Configurer le serveur web en modifiant le fichier \lstinline{/etc/nginx/sites-available/default}.
@@ -463,7 +469,7 @@ Taper la commande
 \begin{lstlisting}[language=bash]
 $ echo '<?php phpinfo(); ?>' | sudo tee -a /var/www/html/info.php
 \end{lstlisting}
-puis lancer dans un navigateur l'URL \url{http://moodlebox.local/info.php}. La longue page des réglages PHP doit s'afficher, avec les variables \lstinline{upload_max_filesize} et \lstinline{post_max_size} sont fixées à 50~Mo.
+puis lancer dans un navigateur l'URL \url{http://moodlebox.home/info.php}. La longue page des réglages PHP doit s'afficher, avec les variables \lstinline{upload_max_filesize} et \lstinline{post_max_size} sont fixées à 50~Mo.
 \end{verification}
 
 \subsubsection[Installation et configuration de MariaDB]{Installation et configuration de MariaDB\footnote{Cette section est inspirée de \url{http://www.syndrega.ch/?p=108}.}}
@@ -475,7 +481,7 @@ $ sudo apt-get install mariadb-server php5-mysql
 Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{root}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
 
 \begin{verification}
-Recharger l'URL \url{http://moodlebox.local/info.php}. Une section \emph{MySQL} supplémentaire doit apparaître dans la page.
+Recharger l'URL \url{http://moodlebox.home/info.php}. Une section \emph{MySQL} supplémentaire doit apparaître dans la page.
 \end{verification}
 
 Créer une nouvelle base de données pour Moodle.
@@ -517,7 +523,7 @@ $ sudo mkdir /var/www/moodledata
 $ sudo chown -R www-data:www-data /var/www/moodledata
 \end{lstlisting}
 
-Pour terminer l'installation de Moodle, on lance dans un navigateur l'URL \url{http://moodlebox.local/} et l'on suit les indications données à l'écran. Cette phase dure plus de 10 minutes. Patience donc !
+Pour terminer l'installation de Moodle, on lance dans un navigateur l'URL \url{http://moodlebox.home/} et l'on suit les indications données à l'écran. Cette phase dure plus de 10 minutes. Patience donc !
 
 Pour cette installation, le compte administrateur a été défini avec le nom d'utilisateur \emph{admin} et le mot de passe \emph{Moodlebox4\$}.
 
@@ -547,7 +553,7 @@ $ sudo php /var/www/html/admin/cli/mysql_compressed_rows.php -f
 \end{lstlisting}
 
 \begin{verification}
-La page \url{http://moodlebox.local/admin/environment.php} n'affiche plus l'avertissement sur la conversion des tables en format Barracuda.
+La page \url{http://moodlebox.home/admin/environment.php} l'avertissement sur la conversion des tables en format Barracuda n'est plus affiché.
 \end{verification}
 
 \section{Accès depuis Moodle aux fichiers d'une clef USB ou déposés par SFTP}
@@ -609,7 +615,7 @@ Après s'être connecté à la plateforme avec le compte administrateur,  on vis
 Pour cette plateforme dont la destination n'est pas d'être publiée sur Internet, l'avertissement concernant le certificat SSL peut être ignoré sans risque.
 
 \begin{verification}
-Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app mobile Moodle et se connecter à la plateforme au moyen de l'URL \url{http://moodlebox.local}, avec le compte administrateur. Aucune erreur ne doit être signalée, et le message \emph{Aucune information de cours à afficher} est affiché sur l'écran du smartphone.
+Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app mobile Moodle et se connecter à la plateforme au moyen de l'URL \url{http://moodlebox.home}, avec le compte administrateur. Aucune erreur ne doit être signalée, et le message \emph{Aucune information de cours à afficher} est affiché sur l'écran du smartphone.
 \end{verification}
 
 \subsection{Installation du plugin Administration MoodleBox}
@@ -626,7 +632,7 @@ $ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
 $ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 \end{lstlisting}
 
-On termine l'installation du plugin en visitant la page \url{http://moodlebox.local/admin}. On installe pour terminer le paquetage \emph{incron}.
+On termine l'installation du plugin en visitant la page \url{http://moodlebox.home/admin}. On installe pour terminer le paquetage \emph{incron}.
 
 \begin{lstlisting}[language=bash]
 $ sudo apt-get install incron
@@ -656,7 +662,7 @@ $ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 Définir un mot de passe fort. Pour cette installation, le mot de passe choisi est \emph{Moodlebox4\$}.
 
 \begin{verification}
-Charger l'URL \url{http://moodlebox.local/phpmyadmin/}. L'interface de PhpMyAdmin doit s'afficher. Pour s'y connecter, utiliser le nom d'utilisateur \emph{root} et le mot de passe \emph{Moodlebox4\$}.
+Charger l'URL \url{http://moodlebox.home/phpmyadmin/}. L'interface de PhpMyAdmin doit s'afficher. Pour s'y connecter, utiliser le nom d'utilisateur \emph{root} et le mot de passe \emph{Moodlebox4\$}.
 \end{verification}
 
 \section{Optimisation}
