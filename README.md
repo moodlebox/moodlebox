@@ -8,11 +8,11 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 
 * Wi-Fi access point. SSID: _MoodleBox_; password: _moodlebox_.
 * Internet access: when the MoodleBox is connected via ethernet to a network connected to Internet, the MoodleBox acts as a router (IP forwarding) and the Wi-Fi clients have access to Internet.
-* Moodle 3.1.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.local/](http://moodlebox.local/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
+* Moodle 3.1.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.home/](http://moodlebox.home/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
 * When a USB key is inserted in the MoodleBox, all the files on it are available for the admins and teachers of the Moodle server, via a _File system_ repository.
 * GUI to restart and shutdown the MoodleBox.
 * GUI to set date and time of the MoodleBox (when away from Internet connection).
-* [PhpMyAdmin](http://moodlebox.local/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
+* [PhpMyAdmin](http://moodlebox.home/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
 
 ## Building the MoodleBox
 
@@ -41,7 +41,7 @@ SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): c0f0bd
 #### Version 1.3, 2016-08-21
 
 * Local DNS provided, enabling every device (with or without zeroconf) to access the MoodleBox via the FQDN `moodlebox.home`.
-* Moodle URL changed from moodlebox.local to moodlebox.home; the old URL redirects to the new one.
+* Moodle URL changed from `moodlebox.local` to `moodlebox.home`; the old URL redirects to the new one.
 
 #### Version 1.2.1, 2016-08-20
 
