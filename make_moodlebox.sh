@@ -129,7 +129,7 @@ after_reboot(){
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl mariadb-server php5-mysql git usbmount incron
+    apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl mariadb-server php5-mysqlnd git usbmount incron
     echo root > /etc/incron.allow
     apt-get install -y phpmyadmin
 
@@ -370,7 +370,7 @@ EOF
     cd /var/www/html/admin/tool/
     git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
     cd /var/www/html/admin/tool/moodlebox
-    touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
+    touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword
     chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 
     /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
@@ -381,6 +381,7 @@ EOF
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
 
     ## Configure cron jobs
     (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/html/admin/cli/cron.php") | crontab -
