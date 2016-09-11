@@ -11,6 +11,7 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 * Moodle 3.1.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.home/](http://moodlebox.home/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
 * When a USB key is inserted in the MoodleBox, all the files on it are available for the admins and teachers of the Moodle server, via a _File system_ repository.
 * GUI to restart and shutdown the MoodleBox.
+* GUI to change the password of the MoodleBox.
 * GUI to set date and time of the MoodleBox (when away from Internet connection).
 * [PhpMyAdmin](http://moodlebox.home/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
 
@@ -34,9 +35,14 @@ The code is available at [https://github.com/martignoni/make-moodlebox](https://
 
 An [prepared disk image](https://moodle.org/mod/url/view.php?id=8269) of the latest released version is [available for downloading](https://moodle.org/mod/url/view.php?id=8269), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
-SHA1 fingerprint of the current compressed disk image (moodlebox.img.gz): c0f0bdc1f8b5271f080038c907c21895f10c37d9
+SHA1 fingerprint of the current compressed disk image: a05340e310a110f5b76e4c7294cac0e4a21d4ffa
 
 ### Release notes
+
+#### Version 1.3.1, 2016-09-10
+
+* Updated to version 1.3 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* No other new features.
 
 #### Version 1.3, 2016-08-21
 

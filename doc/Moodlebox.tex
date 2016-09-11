@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{21 août 2016\footnote{Version 1.3}}
+\date{11 septembre 2016\footnote{Version 1.3.1}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -104,7 +104,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
-\item Interface graphique pour redémarrer et éteindre la MoodleBox, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
+\item Interface graphique pour redémarrer et éteindre la MoodleBox, pour changer le mot de passe, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
 \item Plateforme Moodle 3.1.x accessible via Wi-Fi (\url{http://moodlebox.home/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
@@ -553,7 +553,7 @@ $ sudo php /var/www/html/admin/cli/mysql_compressed_rows.php -f
 \end{lstlisting}
 
 \begin{verification}
-La page \url{http://moodlebox.home/admin/environment.php} l'avertissement sur la conversion des tables en format Barracuda n'est plus affiché.
+La page \url{http://moodlebox.home/admin/environment.php} l'avertissement sur la conversion en format Barracuda des tables n'est plus affiché.
 \end{verification}
 
 \section{Accès depuis Moodle aux fichiers d'une clef USB ou déposés par SFTP}
@@ -620,7 +620,7 @@ Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app m
 
 \subsection{Installation du plugin Administration MoodleBox}
 
-Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle.
+Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, la modification du mot de passe, le réglage de l'heure ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle\footnote{Plugin MoodleBox, version 1.3, \url{https://github.com/martignoni/moodlebox-plugin/releases/tag/v1.3}.}.
 
 Le plus simple est de l'installer via Git.
 
@@ -628,7 +628,7 @@ Le plus simple est de l'installer via Git.
 $ cd /var/www/html/admin/tool/
 $ sudo git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
 $ cd /var/www/html/admin/tool/moodlebox
-$ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime
+$ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword
 $ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 \end{lstlisting}
 
@@ -650,6 +650,7 @@ en y ajoutant les lignes
 /var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
 /var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
 /var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime
+/var/www/html/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/changepassword.sh
 \end{lstlisting}
 
 
