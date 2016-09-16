@@ -196,6 +196,9 @@ wpa_key_mgmt=WPA-PSK
 wpa_passphrase=moodlebox
 # Use AES, instead of TKIP
 rsn_pairwise=CCMP
+# Enable hostapd_cli
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
 EOF
 
     sed -i '/#DAEMON_CONF/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
