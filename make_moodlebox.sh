@@ -373,7 +373,7 @@ EOF
     cd /var/www/html/admin/tool/
     git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
     cd /var/www/html/admin/tool/moodlebox
-    touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword
+    touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
     chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 
     /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
@@ -385,6 +385,7 @@ EOF
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.wifipassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/setwifipassword.sh") | incrontab -
 
     ## Configure cron jobs
     (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/html/admin/cli/cron.php") | crontab -

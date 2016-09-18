@@ -12,6 +12,7 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 * When a USB key is inserted in the MoodleBox, all the files on it are available for the admins and teachers of the Moodle server, via a _File system_ repository.
 * GUI to restart and shutdown the MoodleBox.
 * GUI to change the password of the MoodleBox.
+* GUI to change the password of the Wi-Fi network published by the MoodleBox.
 * GUI to set date and time of the MoodleBox (when away from Internet connection).
 * [PhpMyAdmin](http://moodlebox.home/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
 
@@ -38,6 +39,11 @@ An [prepared disk image](https://moodle.org/mod/url/view.php?id=8269) of the lat
 SHA1 fingerprint of the current compressed disk image: a05340e310a110f5b76e4c7294cac0e4a21d4ffa
 
 ### Release notes
+
+#### Version 1.3.2, 2016-09-18
+
+* Updated to version 1.4 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* No other new features.
 
 #### Version 1.3.1, 2016-09-10
 
