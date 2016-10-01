@@ -9,6 +9,7 @@
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
+VERSION="1.3.2"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 
@@ -48,7 +49,7 @@ EOF
 
     echo -e "\e[96mMake MoodleBox"
     echo -e "Author: Nicolas Martignoni"
-    echo -e "Version: 1.0\n"
+    echo -e "Version: $VERSION\n"
 
     # Configure important settings (done via raspi-config when GUI used)
     echo -e "\e[93mConfiguring locale...\e[97m"
