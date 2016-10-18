@@ -15,10 +15,9 @@ SELFDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Default key file
 DEFAULTKEYFILE=$SELFDIR/authorized_keys
 
-# These are my personal public keys.
+# This is my personal public key.
 # cat << "EOF" > $DEFAULTKEYFILE
-# ssh-dss AAAAB3NzaC1kc3MAAACBANUzp1IPYgFP6GqnmIjtW7IRL0Wakn8TDD12nLNTEtyz6anGcuuuP6VyZIw0lLEKMf3Al+9j+u4dP66o7xwLtm1vvqtgKppEf+Yo9isb50Jj6dXIB3kYpmcWseV5qtQX78Yui7+DXHZ8ow6zxXbTHzx+mdMJm4ebLQbdLpAhRRHLAAAAFQDzz4F+03vlY5lPVT9ZLsA/MBcCoQAAAIBz5FEnqAMwzQekk7Ljr+yuIcYMBS974nJzT9ZcJoXVEL/uhVvzRiprFrID1/7DwruIXAJSImHW34jwqCGoSHj0fkCcsHIh/KOuJOwGaRbbW3kfIu4+1yZoQovQdxREjTLEJSKBLqEghRB+RcDRp38yHfUfi3kfDWOPYbULO0sNsgAAAIEAs8MTEMOZtke8ICfL3KyV3wprBrUEG3H4QhqsJWdYVU7Y/0XZ6fN9YOWFNAs94MYg/b/RnPT5kRqXq3u5NttMfgg7gnV7Xuh0ik7HtOd5D4uM+o0Xyq+j/eBqxXSizaapDvspkkhFcOtSSf2hZdeHpKvan+PaKmpBm0Vx8PhKgAo= nicolas@Martignoni.local.
-# ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAkfAVq+GubMYwgEktSbJJJDcqr7GvJ4nJS6wDVkjeHGVqIt0LqsJMHTdSexT6mglu/3A2nIozyc3VkK1XKsfg821HsupTV6cdDp7dRuysxkJfV3FRq3dV6X3ohY/fO7QYtkAHPjYqss5hr+Fs6uUGU8PbMpcsT+E6CktZenETUR0= nicolas@Martignoni.local.
+# ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC079Tammp9qcjhQ2PhFqJvvX0hqogk9fsE0hQwUEl2TswSyTUFyijEE/oJxkERdBPmcVofEfTk7aDTfNOoRQaHpgRYHzWh3B7cs5zfmd8H8vptwb8zRHiTD77nIE55aA1XEBTDnYJ9RJI77xgPV7xKR/G1syz14jEEoIjW3irBSUc3S2UWBS5uctlWv31/+cVrOf6NcJ+FZXGMCkllT+za7r7T6RNI8i+1dg9vAebfJ7VIUOlA2vJquBmH72KP49c7vOqlyNIwZ5UlOv5txe+HHWUn2f34D/i2qFXQKn+wKsTFSf/QJdNXtDYsgE+/cS04PKumhXyqz5Tt5qenpx+8KUi+urafddf+4Wqa6LOENuAASRwNg3Y66lrho2TLK/XMaPRe9SJI2jjkM6bRizzkTykvzk/r22Nk/I9XsPTqOKGnMiBZFP+tggwZHPKhfGZPDe6ZpBx9t1UgKpr6UXnNHdxQTU0pMBYmSyBqSsalHAPpKGA1Nzrpk9bLpcUyk05apxfokO+391LGA1hF/4/p8pFnxW2jijLYTQ1/x/x1Pj4wEG3lE1BDrly621OFvZ8VoJhMntVez3z5UNwHGhCcM0VXHvRYr7UXGmROwzNd4otphpuCzVgCryYNVn4n/YRvw4+CFcAHx0PA6MAyGOrZeoB/8T/loCU6bE0L2Mqn3Q== nicolas@martignoni.net
 # EOF
 
 # Set $KEYFILE to the value of the first argument given to the script.
