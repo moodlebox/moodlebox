@@ -92,7 +92,7 @@ EOF
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
     sed -i '/# The named pipe \/dev\/xconsole/,$d' /etc/rsyslog.conf
-    service rsyslog restart
+    systemctl restart rsyslog
 
     ## Some bash configurations for default account
     cat << "EOF" >> /home/moodlebox/.bashrc
