@@ -84,9 +84,10 @@ EOF
     # http://unixetc.co.uk/2016/01/07/how-to-rename-the-default-raspberry-pi-user/
     echo -e "\e[93mRenaming default user to \"moodlebox\"...\e[97m"
     cd /etc
-    # tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers systemd/system/autologin@.service
-    sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers systemd/system/autologin@.service
+    # tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
+    sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
     mv /home/pi /home/moodlebox
+    mv /etc/sudoers.d/010_pi-nopasswd mv /etc/sudoers.d/010_moodlebox-nopasswd
     ## Change user password
     echo "moodlebox:$GENERICPASSWORD" | chpasswd
 
