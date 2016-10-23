@@ -12,6 +12,7 @@
 VERSION="1.3.2"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
+export APT_LISTCHANGES_FRONTEND="none"
 
 # http://unix.stackexchange.com/questions/145294/how-to-continue-a-script-after-it-reboots-the-machine
 before_reboot(){
