@@ -243,12 +243,13 @@ Une fois connecté à la MoodleBox, on commence par sauvegarder les fichiers que
 
 \begin{lstlisting}[language=bash]
 $ cd /etc
-$ sudo tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers systemd/system/autologin@.service
+$ sudo tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
 \end{lstlisting}
 
 On modifie ensuite dans les fichiers adéquats le nom de l'utilisateur, en le définissant à \emph{moodlebox}, puis change le nom du dossier.
 \begin{lstlisting}[language=bash]
-$ sudo sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers systemd/system/autologin@.service
+$ sudo sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
+$ sudo mv /etc/sudoers.d/010_pi-nopasswd mv /etc/sudoers.d/010_moodlebox-nopasswd
 $ sudo mv /home/pi /home/moodlebox
 $ exit
 \end{lstlisting}
