@@ -34,7 +34,7 @@ Read the [user manual](https://moodle.org/mod/book/view.php?id=8265), in french.
 
 The code is available at [https://github.com/martignoni/make-moodlebox](https://github.com/martignoni/make-moodlebox).
 
-An [prepared disk image](https://moodle.org/mod/url/view.php?id=8269) of the latest released version is [available for downloading](https://moodle.org/mod/url/view.php?id=8269), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+An [prepared disk image](https://moodlebox.net/downloading/) of the latest released version is [available for downloading](https://moodlebox.net/downloading/), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 SHA1 fingerprint of the current compressed disk image: ad4c86949cacdb4e9dee9979fef8cbaf5aed8041
 
@@ -123,8 +123,6 @@ SHA1 fingerprint of the current compressed disk image: ad4c86949cacdb4e9dee9979f
 ## Building and installation
 
 To build a MoodleBox from scratch, you need a Raspberri Pi 3 (Wi-Fi!) and follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) (in french).
-
-The plugin needs to be installed in the Moodle tree of the MoodleBox, in the _admin/tool_ folder. Once installed, an new option _MoodleBox_ will be available in Moodle, under _Site administration > Server_ in the _Administration_ block.
 
 ## Thanks
 
