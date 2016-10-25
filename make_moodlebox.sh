@@ -171,6 +171,8 @@ EOF
 
     # 3. /etc/hostapd/hostapd.conf
     cat << "EOF" > /etc/hostapd/hostapd.conf
+# Set country code
+country_code=CH
 # Name of the Wi-Fi interface
 interface=wlan0
 # Use the nl80211 driver
