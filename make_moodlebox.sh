@@ -86,7 +86,7 @@ EOF
     cd /etc
     # tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
     sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
-    mv /etc/sudoers.d/010_pi-nopasswd mv /etc/sudoers.d/010_moodlebox-nopasswd
+    mv /etc/sudoers.d/010_pi-nopasswd /etc/sudoers.d/010_moodlebox-nopasswd
     mv /home/pi /home/moodlebox
     ## Change user password
     echo "moodlebox:$GENERICPASSWORD" | chpasswd
