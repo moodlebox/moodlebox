@@ -417,6 +417,7 @@ EOF
     rm ~/.bash_history
     sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
     rm -rf /root/.ssh
+    apt-get --purge autoremove
 }
 
 if [ -f /root/rebooting-for-secondstep ]; then
