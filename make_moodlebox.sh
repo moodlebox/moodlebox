@@ -322,10 +322,7 @@ STOP
     ## Download Moodle via git and create all needed directories, with adequate permissions
     echo -e "\e[93mDownloading Moodle 3.1.x via Git and directories configuration...\e[97m"
     cd /var/www/
-    git clone git://git.moodle.org/moodle.git
-    cd moodle
-    git checkout MOODLE_31_STABLE
-    cd ..
+    git clone --depth=1 -b MOODLE_31_STABLE git://git.moodle.org/moodle.git
     rm -r html
     mv moodle html
     chown -R www-data:www-data /var/www/html
