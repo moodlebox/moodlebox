@@ -502,26 +502,19 @@ On installe Moodle à l'aide de Git, pour faciliter les mises à jour ultérieur
 $ sudo apt-get install git
 \end{lstlisting}
 
-\subsection{Téléchargement de Moodle}
+\subsection{Téléchargement et installation de Moodle}
 
 \begin{lstlisting}[language=bash]
 $ cd /var/www/
-$ sudo git clone git://git.moodle.org/moodle.git
-$ cd moodle
-$ sudo git checkout MOODLE_31_STABLE
-\end{lstlisting}
-La dernière commande ci-dessus détermine la branche installée par Git. Dans ce cas, il s'agit de la version 3.1.x stable actuelle.
-
-\subsection{Installation de Moodle}
-
-On règle maintenant les permissions et crée le dossier de données de Moodle.
-\begin{lstlisting}[language=bash]
-$ cd ..
 $ sudo rm -r html
-$ sudo mv moodle html
-$ sudo chown -R www-data:www-data html
+$ sudo git clone --depth=1 -b MOODLE_31_STABLE git://git.moodle.org/moodle.git html
+\end{lstlisting}
+La dernière commande ci-dessus spécifie la branche installée par Git. Dans ce cas, il s'agit de la version 3.1.x stable actuelle.
+
+On crée le dossier de données de Moodle et règle adéquatement les permissions.
+\begin{lstlisting}[language=bash]
 $ sudo mkdir /var/www/moodledata
-$ sudo chown -R www-data:www-data /var/www/moodledata
+$ sudo chown -R www-data:www-data /var/www/html /var/www/moodledata/
 \end{lstlisting}
 
 Pour terminer l'installation de Moodle, on lance dans un navigateur l'URL \url{http://moodlebox.home/} et l'on suit les indications données à l'écran. Cette phase dure plus de 10 minutes. Patience donc !
