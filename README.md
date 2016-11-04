@@ -40,9 +40,14 @@ SHA1 fingerprint of the current compressed disk image: c6acdd6c1c77b61c2bb230737
 
 ### Release notes
 
+#### Version 1.3.4, 2016-11-04
+
+* Download Moodle with a shallow git clone, reducing dramatically the image size
+* Minor cleanup enhancements
+
 #### Version 1.3.3, 2016-10-27
 
-* Based on Raspbian Jessie Lite version of 2016-09-23
+* Based now on Raspbian Jessie Lite version of 2016-09-23
 * Fix to Wi-Fi configuration, enabling channel 12 and 13 if needed
 * Wi-Fi access point channel changed
 * Minor fixes to potential installation hiccups
