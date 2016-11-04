@@ -412,6 +412,9 @@ EOF
     rm ~/.bash_history
     sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
     rm -rf /root/.ssh
+    truncate -s 0 /root/.bash_history
+    systemctl stop dnsmasq
+    truncate -s 0 /var/lib/misc/dnsmasq.leases
     apt-get --purge autoremove
 }
 
