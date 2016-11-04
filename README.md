@@ -36,7 +36,7 @@ The code is available at [https://github.com/martignoni/make-moodlebox](https://
 
 An [prepared disk image](https://moodlebox.net/downloading/) of the latest released version is [available for downloading](https://moodlebox.net/downloading/), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
-SHA1 fingerprint of the current compressed disk image: c6acdd6c1c77b61c2bb230737c7c9beefff1a51e
+SHA1 fingerprint of the current compressed disk image: c31ca335493831a13c19fd8eea3299f375f485b2
 
 ### Release notes
 
