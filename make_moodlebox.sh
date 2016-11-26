@@ -93,6 +93,7 @@ EOF
 
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
+    # https://blog.dantup.com/2016/04/removing-rsyslog-spam-on-raspberry-pi-raspbian-jessie/
     sed -i '/# The named pipe \/dev\/xconsole/,$d' /etc/rsyslog.conf
     systemctl restart rsyslog
 
