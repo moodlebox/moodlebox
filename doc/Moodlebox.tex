@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{4 novembre 2016\footnote{Version 1.3.4}}
+\date{1 décembre 2016\footnote{Version 1.3.5}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -119,12 +119,21 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 \item Machine à café : cette fonctionnalité, ainsi que l'implémentation du protocole HTCPCP\footnote{\url{https://tools.ietf.org/html/rfc2324}.}, sera mise en œuvre ultérieurement. Il n'est en revanche pas prévu d'implémenter le protocole HTCPCP-TEA\footnote{\url{https://tools.ietf.org/html/rfc7168}.}.
 \end{itemize}
 
-
 \section{Installation initiale de la Raspberry}
 
 \subsection{Préparation de la carte microSD}
 
-Télécharger l'image \emph{Raspbian Jessie Lite} depuis le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/downloads/raspbian/}.}, puis la copier sur une carte microSD. Les procédures détaillées, qui varient suivant le système d'exploitation, sont disponibles sur le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/documentation/installation/installing-images/}.}.
+Télécharger l'image \emph{Raspbian Jessie Lite} depuis le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/downloads/raspbian/}.}, puis la copier sur une carte microSD. La procédure, qui dépend système d'exploitation, est décrite sur le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/documentation/installation/installing-images/}.}.
+
+\subsection{Activation de l'accès via SSH}
+
+L'accès via SSH n'est pas actif par défaut, pour des raisons de sécurité\footnote{Voir \url{https://www.raspberrypi.org/blog/a-security-update-for-raspbian-pixel/}}. Pour activer l'accès SSH, on créera un fichier vide de nom \lstinline{ssh} à la racine de la partition \lstinline{boot} de la carte micro SD, par exemple au moyen de la simple commande ci-dessous.
+
+\begin{lstlisting}[language=bash]
+$ cd <point de montage de la partition boot>
+$ > ssh
+\end{lstlisting}
+
 
 \subsection{Démarrage de la Raspberry et connexion}
 
@@ -137,7 +146,7 @@ La diode rouge — indiquant la présence d'une alimentation — s'allume ; la v
 
 Dès maintenant, toutes les manipulations se font en ligne de commande, par \lstinline{ssh} (\lstinline{Putty} sur Windows, terminal sur OS X ou Linux).
 
-Connecter la Raspberry au moyen d'un câble Ethernet sur un réseau avec un serveur DHCP. La Raspberry sera dès lors accessible sur le réseau au moyen de l'adresse \lstinline{raspberrypi.local}\footnote{Cette adresse est fournie par le protocole standard \emph{zeroconf}. Certaines anciennes machines sous Android et Windows ne respectent pas ce protocole. Avec de telles machines, il est donc nécessaire d'accéder à la MoodleBox via son adresse IP numérique, qu'il faudra découvrir manuellement.}.
+Connecter la Raspberry au moyen d'un câble Ethernet sur un réseau avec un serveur DHCP. La Raspberry sera dès lors accessible sur le réseau au moyen de l'adresse \lstinline{raspberrypi.local}\footnote{Cette adresse est fournie par le protocole standard \emph{zeroconf}. Certaines anciennes machines sous Android et Windows ne respectent pas ce protocole. Avec de telles machines, il est donc nécessaire d'accéder à la Raspberry via son adresse IP numérique, qu'il faudra découvrir manuellement.}.
 \iffalse
 Le serveur DHCP (la box par exemple) indique l'adresse IP de la Raspberry. Dans la suite du document, on suppose que l'adresse IP de la Raspberry est \lstinline{192.168.1.212}.
 \fi
@@ -175,6 +184,11 @@ individual files in /usr/share/doc/*/copyright.
 
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
+
+SSH is enabled and the default password for the 'pi' user has not been changed.
+This is a security risk - please login as the 'pi' user and type 'passwd'
+to set a new password.
+
 pi@raspberrypi:~ $
 \end{lstlisting}
 \end{verification}
@@ -248,7 +262,7 @@ $ sudo tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers sudoe
 
 On modifie ensuite dans les fichiers adéquats le nom de l'utilisateur, en le définissant à \emph{moodlebox}, puis change le nom du dossier.
 \begin{lstlisting}[language=bash]
-$ sudo sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
+$ sudo sed -i 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
 $ sudo mv /etc/sudoers.d/010_pi-nopasswd /etc/sudoers.d/010_moodlebox-nopasswd
 $ sudo mv /home/pi /home/moodlebox
 $ exit
