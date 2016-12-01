@@ -7,7 +7,7 @@
 # the root account of the Raspberry Pi. You'll have to enter the
 # password of the "pi" account; default is "raspberry" (without quotes).
 
-# rsync should be installed on the RPi before running this script.
+# ssh should be enabled and rsync installed on the RPi before running this script.
 # ssh into your RPi and launch sudo apt-get install rsync
 
 # The very folder where this script is stored
