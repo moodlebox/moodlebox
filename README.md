@@ -19,6 +19,7 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 ## Building the MoodleBox
 
 1. Clone Rasbpian Jessie Lite on your microSD card
+1. Create a `ssh` file on the `boot` partition, e.g. `touch ssh`
 1. Login to your RPi with the default user pi: `ssh pi@raspberrypi.local`
 1. Install `rsync`: `sudo apt-get install rsync`, then logout
 1. Prepare a file `authorized_keys` containing your public keys
@@ -34,7 +35,7 @@ Read the [user manual](https://moodle.org/mod/book/view.php?id=8265), in french.
 
 The code is available at [https://github.com/martignoni/make-moodlebox](https://github.com/martignoni/make-moodlebox).
 
-An [prepared disk image](https://moodlebox.net/downloading/) of the latest released version is [available for downloading](https://moodlebox.net/downloading/), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+A [prepared disk image](https://moodlebox.net/downloading/) of the latest released version is [available for downloading](https://moodlebox.net/downloading/), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
