@@ -300,7 +300,7 @@ server {
     fastcgi_index	index.php;
     fastcgi_param	PATH_INFO	$fastcgi_path_info;
     fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
-    fastcgi_param	PHP_VALUE "upload_max_filesize = 50M \n post_max_size=50M";
+    fastcgi_param	PHP_VALUE "max_execution_time=300\n upload_max_filesize=50M\n post_max_size=50M";
     client_max_body_size	50M;
   }
 
