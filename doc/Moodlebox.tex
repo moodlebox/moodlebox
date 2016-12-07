@@ -304,7 +304,7 @@ On profite de corriger un bogue qui a pour conséquence de remplir certains fich
 % sudo nano /etc/rsyslog.conf
 \begin{lstlisting}[language=bash]
 $ sudo sed -i '/# The named pipe \/dev\/xconsole/,$d' /etc/rsyslog.conf
-$ sudo service rsyslog restart
+$ sudo systemctl restart rsyslog
 \end{lstlisting}
 
 \section[Configuration du point d'accès Wi-Fi]{Configuration du point d'accès Wi-Fi\footnote{Les configurations décrites dans cette section et la suivante sont inspirées de \url{https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/}.}}
@@ -472,11 +472,11 @@ Son contenu sera le suivant.
 
 \lstinputlisting[language=bash]{files/default}
 
-La dernière ligne \lstinline{fastcgi_param} et la ligne \lstinline{client_max_body_size} permettent d'augmenter la taille maximale autorisée pour les dépôts de fichiers. Elle a été fixée, sur cette installation, à 50~Mo.
+La dernière ligne \lstinline{fastcgi_param} et la ligne \lstinline{client_max_body_size} permettent d'augmenter à 50~Mo la taille maximale autorisée pour les dépôts de fichiers, ainsi que la durée maximale d'exécution des scripts à 300~s.
 
 Relancer le serveur web
 \begin{lstlisting}[language=bash]
-$ sudo service nginx restart
+$ sudo systemctl restart php5-fpm nginx
 \end{lstlisting}
 
 \begin{verification}
