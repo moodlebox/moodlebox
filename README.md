@@ -35,7 +35,7 @@ Read the [user manual](https://moodle.org/mod/book/view.php?id=8265), in french.
 
 The code is available at [https://github.com/martignoni/make-moodlebox](https://github.com/martignoni/make-moodlebox).
 
-A [prepared disk image](https://moodlebox.net/downloading/) of the latest released version is [available for downloading](https://moodlebox.net/downloading/), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](https://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
