@@ -39,6 +39,12 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.3.6, 2016-12-07
+
+* Augmentation of maximum script execution time
+* Uses version 1.4.3 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* Minor fixes
+
 #### Version 1.3.5, 2016-12-01
 
 * Based on Raspbian Jessie Lite version of 2016-11-25
