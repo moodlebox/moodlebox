@@ -79,7 +79,7 @@ frametitlebackgroundcolor=yellow!50!white
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
 %\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{7 décembre 2016\footnote{Version 1.3.6}}
+\date{21 décembre 2016\footnote{Version 1.4}}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -808,6 +808,24 @@ query_cache_size        = 16M
 query_cache_type        = 0
 \end{lstlisting}
 
+\section{Redimensionnement automatique de la partition au premier démarrage}
+
+Afin d'éviter à l'utilisateur de devoir redimensionner manuellement la partition de travail, on configure le redimensionnement automatique au premier démarrage. La méthode est identique à celle utilisée lors de la construction de l'image-disque de \emph{Raspbian Jessie Lite}\footnote{\url{https://github.com/RPi-Distro/pi-gen}}.
+
+On copie le fichier \lstinline{resize2fs_once} ci-dessous dans le dossier \lstinline{/etc/init.d/}, et on lui donne les permissions adéquates pour être lancé au redémarrage.
+\lstinputlisting[language=bash]{files/resize2fs_once}
+
+Finalement, avant la dernière extinction précédant le clonage et le redimensionnement de l'image disque, on termine en lançant la commande
+\begin{lstlisting}[language=bash]
+$ sudo systemctl enable resize2fs_once
+\end{lstlisting}
+puis on ajoute à la fin de la ligne du fichier \lstinline{/boot/cmdline.txt} les instructions ci-dessous, immédiatement après le texte \lstinline{rootwait} (sans oublier un espace).
+\begin{lstlisting}[language=bash]
+quiet init=/usr/lib/raspi-config/init_resize.sh
+\end{lstlisting}
+
+Il est indispensable de ne pas redémarrer la MoodleBox, sans quoi l'opération décrite dans cette section devra être intégralement recommencée.
+
 \section{Nettoyage de la distribution}
 
 Les commandes ci-dessous permettent de nettoyer la MoodleBox et de diminuer l'espace disque qui lui est nécessaire, avant de la cloner et de la distribuer.
@@ -831,7 +849,7 @@ $ sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
 $ cat /dev/null > ~/.bash_history && history -c && sudo shutdown -h now
 \end{lstlisting}
 
-Si tout s'est bien passé, la totalité ne doit pas dépasser la taille de 1.8~Go. L'image-disque, une fois tronquée, a une taille d'envion 2.5~Go. Compressée, elle tient dans un peu plus d'1~Go.
+Si tout s'est bien passé, la totalité ne doit pas dépasser la taille de 1.6~Go. L'image-disque, une fois tronquée, a une taille d'environ 2.3~Go. Compressée, elle tient dans environ 750~Mo.
 
 
 \end{document}

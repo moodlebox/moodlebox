@@ -48,6 +48,36 @@ EOF
 
     chmod a+x /etc/init.d/makemoodlebox
 
+    cat << "EOF" > /etc/init.d/resize2fs_once
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          resize2fs_once
+# Required-Start:
+# Required-Stop:
+# Default-Start: 3
+# Default-Stop:
+# Short-Description: Resize the root filesystem to fill partition
+# Description:
+### END INIT INFO
+. /lib/lsb/init-functions
+case "$1" in
+  start)
+    log_daemon_msg "Starting resize2fs_once"
+    ROOT_DEV=`grep -Eo 'root=[[:graph:]]+' /proc/cmdline | cut -d '=' -f 2-` &&
+    resize2fs $ROOT_DEV &&
+    update-rc.d resize2fs_once remove &&
+    rm /etc/init.d/resize2fs_once &&
+    log_end_msg $?
+    ;;
+  *)
+    echo "Usage: $0 start" >&2
+    exit 3
+    ;;
+esac
+EOF
+
+    chmod a+x /etc/init.d/resize2fs_once
+
     echo -e "\e[96mMake MoodleBox"
     echo -e "Author: Nicolas Martignoni"
     echo -e "Version: $VERSION\n"
