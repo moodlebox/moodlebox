@@ -142,7 +142,7 @@ EOF
 
     # Update system to latest stable release
     echo -e "\e[93mUpdating system to latest stable release...\e[97m"
-    apt-get update -y && apt-get dist-upgrade -y && apt-get upgrade -y
+    apt-get update -y && apt-get dist-upgrade -y
     ### We have to reboot here, and continue afterwards
 }
 

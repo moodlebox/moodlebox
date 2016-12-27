@@ -142,7 +142,7 @@ EOF
 
     # Update system to latest stable release
     echo -e "\e[93mUpdating system to latest stable release...\e[97m"
-    apt-get update -y && apt-get dist-upgrade -y && apt-get upgrade -y
+    apt-get update -y && apt-get dist-upgrade -y
     ### We have to reboot here, and continue afterwards
 }
 
@@ -179,7 +179,7 @@ EOF
     apt-get install -y hostapd dnsmasq git usbmount incron mariadb-server
     echo root > /etc/incron.allow
     # install nginx 1.10 and php 7.0
-    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-mysqlnd
+    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-mysql
     apt-get install -y -t stretch phpmyadmin
 
     ## Access point and network configuration: edit configuration files
