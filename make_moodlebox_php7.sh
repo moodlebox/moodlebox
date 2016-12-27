@@ -167,10 +167,10 @@ after_reboot(){
 
     # use jessie packages by default
     cat << "EOF" >> /etc/apt/preferences
-    Package: *
-    Pin: release n=jessie
-    Pin-Priority: 600
-    EOF
+Package: *
+Pin: release n=jessie
+Pin-Priority: 600
+EOF
 
     sudo apt-get update -y
 
