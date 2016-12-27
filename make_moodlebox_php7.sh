@@ -367,10 +367,10 @@ STOP
     sed -i '/query_cache_size/i query_cache_type        = 0' /etc/mysql/my.cnf
 
     ## Download Moodle via git and create all needed directories, with adequate permissions
-    echo -e "\e[93mDownloading Moodle 3.1.x via Git and directories configuration...\e[97m"
+    echo -e "\e[93mDownloading Moodle 3.2.x via Git and directories configuration...\e[97m"
     cd /var/www/
     rm -r html
-    git clone --depth=1 -b MOODLE_31_STABLE git://git.moodle.org/moodle.git html
+    git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
     mkdir /var/www/moodledata
     mkdir -p /var/www/moodledata/repository
     chown -R www-data:www-data /var/www/html /var/www/moodledata/
