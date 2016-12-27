@@ -427,22 +427,22 @@ EOF
 
     ## Cleanup tasks
     echo -e "\e[93mCleaning up...\e[97m"
-    rm -r /var/www/moodledata/cache/*
-    rm -r /var/www/moodledata/localcache/*
-    rm -r /var/www/moodledata/temp/*
-    rm -r /var/www/moodledata/trashdir/*
-    rm -r /var/www/moodledata/sessions/*
-    rm -r /var/cache/moodle/*
-    rm -r /var/cache/moodle-cache-backup/*
+    rm -rf /var/www/moodledata/cache/*
+    rm -rf /var/www/moodledata/localcache/*
+    rm -rf /var/www/moodledata/temp/*
+    rm -rf /var/www/moodledata/trashdir/*
+    rm -rf /var/www/moodledata/sessions/*
+    rm -rf /var/cache/moodle/*
+    rm -rf /var/cache/moodle-cache-backup/*
     mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_logstore_standard_log"
     mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_config_log"
     apt-get clean
-    rm -r /var/cache/debconf/*
-    rm -r /tmp/*
-    rm -r /var/tmp/*
-    rm ~/.mysql_history
-    rm ~/.nano_history
-    rm ~/.bash_history
+    rm -rf /var/cache/debconf/*
+    rm -rf /tmp/*
+    rm -rf /var/tmp/*
+    rm -f ~/.mysql_history
+    rm -f ~/.nano_history
+    rm -f ~/.bash_history
     sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
     rm -rf /root/.ssh
     truncate -s 0 /root/.bash_history
