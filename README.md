@@ -39,6 +39,11 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.4.1, 2017-01-11
+
+* Based on Raspbian Jessie Lite version of 2017-01-11
+* Updated to Moodle 3.1.4
+
 #### Version 1.4, 2016-12-21
 
 * Added automatic filesystem resizing at first boot
