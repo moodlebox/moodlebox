@@ -9,7 +9,7 @@
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
-VERSION="1.4"
+VERSION="1.4.1"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 export APT_LISTCHANGES_FRONTEND="none"
@@ -179,7 +179,7 @@ EOF
     apt-get install -y hostapd dnsmasq git usbmount incron mariadb-server
     echo root > /etc/incron.allow
     # install nginx 1.10 and php 7.0
-    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-mysql
+    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-mysql php7.0-apcu
     apt-get install -y -t stretch phpmyadmin
 
     ## Access point and network configuration: edit configuration files

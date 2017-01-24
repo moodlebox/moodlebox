@@ -457,7 +457,7 @@ On va installer le serveur web nginx avec PHP et MariaDB.
 Installer les paquetages nécessaires.
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl
+$ sudo apt-get install nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl php5-apcu
 \end{lstlisting}
 
 \begin{verification}
@@ -521,9 +521,9 @@ $ sudo apt-get install git
 \begin{lstlisting}[language=bash]
 $ cd /var/www/
 $ sudo rm -r html
-$ sudo git clone --depth=1 -b MOODLE_31_STABLE git://git.moodle.org/moodle.git html
+$ sudo git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
 \end{lstlisting}
-La dernière commande ci-dessus spécifie la branche installée par Git. Dans ce cas, il s'agit de la version 3.1.x stable actuelle.
+La dernière commande ci-dessus spécifie la branche installée par Git. Dans ce cas, il s'agit de la version 3.2.x stable actuelle.
 
 On crée le dossier de données de Moodle et règle adéquatement les permissions.
 \begin{lstlisting}[language=bash]
