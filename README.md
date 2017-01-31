@@ -8,7 +8,7 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 
 * Wi-Fi access point. SSID: _MoodleBox_; password: _moodlebox_.
 * Internet access: when the MoodleBox is connected via ethernet to a network connected to Internet, the MoodleBox acts as a router (IP forwarding) and the Wi-Fi clients have access to Internet.
-* Moodle 3.1.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.home/](http://moodlebox.home/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
+* Moodle 3.2.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.home/](http://moodlebox.home/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
 * When a USB key is inserted in the MoodleBox, all the files on it are available for the admins and teachers of the Moodle server, via a _File system_ repository.
 * GUI to restart and shutdown the MoodleBox.
 * GUI to change the password of the MoodleBox.
@@ -38,6 +38,11 @@ The code is available at [https://github.com/martignoni/make-moodlebox](https://
 A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](https://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
+
+#### Version 1.5dev, not released yet
+
+* Updated to Moodle 3.2.1
+* APCu cache module for PHP installed
 
 #### Version 1.4.1, 2017-01-11
 
