@@ -39,7 +39,7 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
-#### Version 1.5dev, not released yet
+#### Version 1.5, 2017-01-31
 
 * Updated to Moodle 3.2.1
 * APCu cache module for PHP installed

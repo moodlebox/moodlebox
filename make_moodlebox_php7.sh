@@ -9,7 +9,7 @@
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
-VERSION="1.4.1"
+VERSION="1.5"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 export APT_LISTCHANGES_FRONTEND="none"
