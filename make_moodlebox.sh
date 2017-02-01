@@ -164,8 +164,10 @@ after_reboot(){
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y hostapd dnsmasq nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl php5-apcu mariadb-server php5-mysqlnd git usbmount incron
+    apt-get install -y hostapd dnsmasq git usbmount incron mariadb-server
     echo root > /etc/incron.allow
+    # install nginx and php
+    apt-get install -y nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl php5-apcu php5-mysqlnd
     apt-get install -y phpmyadmin
 
     ## Access point and network configuration: edit configuration files
