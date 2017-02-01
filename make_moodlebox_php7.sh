@@ -36,7 +36,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 case "$1" in
     start)
-        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
+        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox_php7.sh | bash
         #bash /root/make_moodlebox.sh
         ;;
     *)
