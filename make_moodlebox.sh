@@ -359,7 +359,6 @@ STOP
     cd /var/www/
     rm -r html
     git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
-    mkdir /var/www/moodledata
     mkdir -p /var/www/moodledata/repository
     chown -R www-data:www-data /var/www/html /var/www/moodledata/
 

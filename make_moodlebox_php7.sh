@@ -172,15 +172,15 @@ Pin: release n=jessie
 Pin-Priority: 600
 EOF
 
-    sudo apt-get update -y
+    apt-get update -y
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    # install nginx 1.10 and php 7.0
-    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-apcu php7.0-mysql
-    apt-get install -y -t stretch phpmyadmin
     apt-get install -y hostapd dnsmasq git usbmount incron mariadb-server
     echo root > /etc/incron.allow
+    # install nginx 1.10 and php 7.0
+    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
+    apt-get install -y -t stretch phpmyadmin
 
     ## Access point and network configuration: edit configuration files
     echo -e "\e[93mAccess point and network configuration...\e[97m"
@@ -371,7 +371,6 @@ STOP
     cd /var/www/
     rm -r html
     git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
-    mkdir /var/www/moodledata
     mkdir -p /var/www/moodledata/repository
     chown -R www-data:www-data /var/www/html /var/www/moodledata/
 
