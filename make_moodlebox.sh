@@ -9,7 +9,7 @@
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
-VERSION="1.5"
+VERSION="1.5.1"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 export APT_LISTCHANGES_FRONTEND="none"
@@ -121,6 +121,8 @@ EOF
     mv /home/pi /home/moodlebox
     ## Change user password
     echo "moodlebox:$GENERICPASSWORD" | chpasswd
+    ## Add link to avoid some side effects after renaming the default user
+    sudo ln -s /home/moodlebox /home/pi
 
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
