@@ -78,8 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-%\date{11 juillet 2016\footnote{Version \gitAbbrevHash, \gitAuthorDate}}
-\date{31 janvier 2017\footnote{Version 1.5}}
+\date{5 février 2017\footnote{Version 1.5.1}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -260,11 +259,12 @@ $ cd /etc
 $ sudo tar -czf /home/pi/authfiles.tgz passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
 \end{lstlisting}
 
-On modifie ensuite dans les fichiers adéquats le nom de l'utilisateur, en le définissant à \emph{moodlebox}, puis change le nom du dossier.
+On modifie ensuite dans les fichiers adéquats le nom de l'utilisateur, en le définissant à \emph{moodlebox}, puis change le nom du dossier. On laisse un lien symbolique vers l'ancien dossier, afin d'éviter certains effets de bord dus à ce changement de nom.
 \begin{lstlisting}[language=bash]
 $ sudo sed -i 's/\bpi\b/moodlebox/g' passwd group shadow gshadow sudoers sudoers.d/010_pi-nopasswd systemd/system/autologin@.service
 $ sudo mv /etc/sudoers.d/010_pi-nopasswd /etc/sudoers.d/010_moodlebox-nopasswd
 $ sudo mv /home/pi /home/moodlebox
+$ sudo ln -s /home/moodlebox /home/pi
 $ exit
 \end{lstlisting}
 
