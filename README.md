@@ -39,6 +39,10 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.5.1, 2017-02-05
+
+* Prevent side effects after renaming the default user
+
 #### Version 1.5, 2017-01-31
 
 * Updated to Moodle 3.2.1
