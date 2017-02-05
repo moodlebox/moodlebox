@@ -9,7 +9,7 @@
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
-VERSION="1.5.1"
+VERSION="1.6.1dev"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
 export APT_LISTCHANGES_FRONTEND="none"
@@ -164,13 +164,25 @@ after_reboot(){
     debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
     debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 
+    ## Add stretch to sources.list
+    echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" >> /etc/apt/sources.list
+
+    # use jessie packages by default
+    cat << "EOF" >> /etc/apt/preferences
+Package: *
+Pin: release n=jessie
+Pin-Priority: 600
+EOF
+
+    apt-get update -y
+
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
     apt-get install -y hostapd dnsmasq git usbmount incron mariadb-server
     echo root > /etc/incron.allow
-    # install nginx and php
-    apt-get install -y nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl php5-apcu php5-mysqlnd
-    apt-get install -y phpmyadmin
+    # install nginx 1.10 and php 7.0
+    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
+    apt-get install -y -t stretch phpmyadmin
 
     ## Access point and network configuration: edit configuration files
     echo -e "\e[93mAccess point and network configuration...\e[97m"
@@ -331,7 +343,7 @@ server {
     include fastcgi_params;
     fastcgi_split_path_info	^(.+\.php)(/.+)$;
     fastcgi_read_timeout	300;
-    fastcgi_pass	unix:/var/run/php5-fpm.sock;
+    fastcgi_pass	unix:/var/run/php/php7.0-fpm.sock;
     fastcgi_index	index.php;
     fastcgi_param	PATH_INFO	$fastcgi_path_info;
     fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
