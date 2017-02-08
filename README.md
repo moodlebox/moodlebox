@@ -6,6 +6,7 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 
 ## Features of the MoodleBox
 
+* MoodleBox hostname is _moodlebox_. It's reachable on the local network with FQDN _moodlebox.home_. Access via SSH is enabled on port 22 ; username: _moodlebox_, password: _Moodlebox4$_ (e.g. `ssh moodlebox@moodlebox.home`).
 * Wi-Fi access point. SSID: _MoodleBox_; password: _moodlebox_.
 * Internet access: when the MoodleBox is connected via ethernet to a network connected to Internet, the MoodleBox acts as a router (IP forwarding) and the Wi-Fi clients have access to Internet.
 * Moodle 3.2.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.home/](http://moodlebox.home/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
