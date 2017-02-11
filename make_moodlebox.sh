@@ -123,7 +123,7 @@ EOF
     ## Change user password
     echo "moodlebox:$GENERICPASSWORD" | chpasswd
     ## Add link to avoid some side effects after renaming the default user
-    sudo ln -s /home/moodlebox /home/pi
+    ln -s /home/moodlebox /home/pi
 
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
