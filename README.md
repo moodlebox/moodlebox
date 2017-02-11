@@ -40,9 +40,10 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
-#### Version 1.5.1, 2017-02-05
+#### Version 1.5.1, 2017-02-11
 
-* Prevent side effects after renaming the default user
+* Prevent side effects after renaming the default user (symbolic link added)
+* Updated package installation ordering
 
 #### Version 1.5, 2017-01-31
 
