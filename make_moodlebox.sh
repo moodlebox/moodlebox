@@ -7,9 +7,9 @@
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
 
 # e.g. it could be launched from the root account like this
-# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
+# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/with-php7/make_moodlebox.sh | sudo bash
 
-VERSION="1.6.1dev"
+VERSION="1.5.1-with-php7"
 DATE="2017-02-11"
 GENERICPASSWORD="Moodlebox4$"
 export DEBIAN_FRONTEND="noninteractive"
@@ -37,7 +37,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 case "$1" in
     start)
-        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
+        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/with-php7/make_moodlebox.sh | bash
         #bash /root/make_moodlebox.sh
         ;;
     *)
