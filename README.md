@@ -19,14 +19,21 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 
 ## Building the MoodleBox
 
+To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (Wi-Fi!) and follow these instructions.
+
 1. Clone Rasbpian Jessie Lite on your microSD card
 1. Create a `ssh` file on the `boot` partition, e.g. `touch ssh`
 1. Login to your RPi with the default user pi: `ssh pi@raspberrypi.local`
+1. Upgrade your Raspbian installation: `sudo apt-get update && sudo apt-get dist-upgrade -y`
 1. Install `rsync`: `sudo apt-get install rsync`, then logout
 1. Prepare a file `authorized_keys` containing your public keys
 1. Launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
 1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash`
+
+### Building the MoodleBox manually
+
+To build a MoodleBox manually, follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) (in french).
 
 ## Usage of the MoodleBox
 
@@ -162,10 +169,6 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 * RAM disk for `/var/cache/moodle`.
 * No mail server, since the MoodleBox intended use is outside of any connection.
 * Built on Raspbian Jessie Lite.
-
-## Building and installation
-
-To build a MoodleBox from scratch, you need a Raspberri Pi 3 (Wi-Fi!) and follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) (in french).
 
 ## Thanks
 
