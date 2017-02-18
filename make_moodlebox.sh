@@ -38,7 +38,6 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 case "$1" in
     start)
         curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
-        #bash /root/make_moodlebox.sh
         ;;
     *)
         echo "Usage: $0 start" >&2
@@ -49,6 +48,7 @@ EOF
 
     chmod a+x /etc/init.d/makemoodlebox
 
+# stolen from https://github.com/RPi-Distro/pi-gen/blob/dev/stage2/01-sys-tweaks/files/resize2fs_once
     cat << "EOF" > /etc/init.d/resize2fs_once
 #!/bin/sh
 ### BEGIN INIT INFO
