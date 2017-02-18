@@ -29,7 +29,7 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 1. Prepare a file `authorized_keys` containing your public keys
 1. Launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
-1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash`
+1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash`
 
 ### Building the MoodleBox manually
 
