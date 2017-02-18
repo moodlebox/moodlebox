@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
+# Change this to customize your build
+GENERICPASSWORD="Moodlebox4$"
+
+# Do NOT change anything under this line.
+# You'll get ABSOLUTELY NO SUPPORT for any problems due to changes after this!
+
 # Uncomment for debugging
 #exec 1> >(logger -s -t $(basename $0)) 2>&1
 
 # This script MUST be run as root
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
-
 # e.g. it could be launched from the root account like this
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
 
+# Version related variables
 VERSION="1.5.1"
 DATE="2017-02-11"
-GENERICPASSWORD="Moodlebox4$"
+
+# The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
 export APT_LISTCHANGES_FRONTEND="none"
 
@@ -81,7 +88,7 @@ EOF
 
     echo -e "\e[96mMake MoodleBox"
     echo -e "Author: Nicolas Martignoni"
-    echo -e "Version: $VERSION\n"
+    echo -e "Version: $VERSION, $DATE\n"
 
     # Configure important settings (done via raspi-config when GUI used)
     echo -e "\e[93mConfiguring locale...\e[97m"
