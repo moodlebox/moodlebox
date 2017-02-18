@@ -109,7 +109,7 @@ EOF
     # Comment all uncommented lines in /etc/locale.gen
     sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
     # Uncomment line containing $LANGUAGE.UTF-8 and configure locales
-    sed -i "/^# $LANGUAGE.UTF-8/s/^# //" locale.gen
+    sed -i "/^# $LANGUAGE.UTF-8/s/^# //" /etc/locale.gen
     dpkg-reconfigure -f noninteractive locales
     # Export LANG environment variable and updates the locale
     export LANG=$LANGUAGE.UTF-8
