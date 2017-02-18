@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
-# Change this to customize your build
+# Change these to customize your build
+
+# The password that will be set for ALL admin settings of the MoodleBox.
 GENERICPASSWORD="Moodlebox4$"
+# The language used to build the MoodleBox. Used to set the locale of the RPi and the default
+# language of the Moodle installation. Use valid locale codes (see /usr/share/i18n/SUPPORTED).
+# Example values: fr_FR, fr_CH, en_GB, en_US.
+LANGUAGE="fr_FR"
+# The country where you'll use your MoodleBox. Used to set the Wi-Fi access point settings.
+# Use ISO 639-1 two letter codes.
+COUNTRY="CH"
+# The timezone of the place where you'll use your MoodleBox.
+# Use standard IANA time zone database identifiers, e.g. "Europe/Zurich", "America/Toronto", etc.
+TIMEZONE="Europe/Paris"
 
 # Do NOT change anything under this line.
 # You'll get ABSOLUTELY NO SUPPORT for any problems due to changes after this!
@@ -11,8 +23,8 @@ GENERICPASSWORD="Moodlebox4$"
 
 # This script MUST be run as root
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
-# e.g. it could be launched from the root account like this
-# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | sudo bash
+# e.g. it can be launched from the root account like this
+# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
 VERSION="1.5.1"
@@ -93,24 +105,31 @@ EOF
     # Configure important settings (done via raspi-config when GUI used)
     echo -e "\e[93mConfiguring locale...\e[97m"
     ## Change locale
-    # Comment all uncommented lines, then uncomment line fr_FR.UTF-8 in /etc/locale.gen
+    # This uses the $LANGUAGE variable defined at the top of the script
+    # Comment all uncommented lines in /etc/locale.gen
     sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
-    sed -i "/fr_FR.UTF-8/c\fr_FR.UTF-8 UTF-8" /etc/locale.gen
+    # Uncomment line containing $LANGUAGE.UTF-8 and configure locales
+    sed -i "/^# $LANGUAGE.UTF-8/s/^# //" locale.gen
     dpkg-reconfigure -f noninteractive locales
-    export LANG=fr_FR.UTF-8
-    update-locale LANG=fr_FR.UTF-8
+    # Export LANG environment variable and updates the locale
+    export LANG=$LANGUAGE.UTF-8
+    update-locale LANG=$LANGUAGE.UTF-8
+
     echo -e "\e[93mConfiguring timezone...\e[97m"
     ## Change timezone
-    echo "Europe/Paris" > /etc/timezone
+    # This uses the $TIMEZONE variable defined at the top of the script
+    echo $TIMEZONE > /etc/timezone
     dpkg-reconfigure -f noninteractive tzdata
+
     echo -e "\e[93mConfiguring Wi-Fi country...\e[97m"
     ## Change WiFi country
-    COUNTRY=CH
+    # This uses the $COUNTRY variable defined at the top of the script
     if grep -q "^country=" /etc/wpa_supplicant/wpa_supplicant.conf ; then
         sed -i "s/^country=.*/country=$COUNTRY/g" /etc/wpa_supplicant/wpa_supplicant.conf
     else
         sed -i "1i country=$COUNTRY" /etc/wpa_supplicant/wpa_supplicant.conf
     fi
+
     echo -e "\e[93mChanging hostname...\e[97m"
     ## Change hostname
     CURRENT_HOSTNAME=`cat /etc/hostname | tr -d " \t\n\r"`
@@ -394,7 +413,7 @@ EOF
     ## Install Moodle via cli
     echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
     /usr/bin/php "/var/www/html/admin/cli/install.php" \
-      --lang=fr \
+      --lang=$(echo $LANGUAGE | cut -d"_" -f 1) \
       --wwwroot="http://moodlebox.home" \
       --dataroot="/var/www/moodledata" \
       --dbtype="mariadb" \
