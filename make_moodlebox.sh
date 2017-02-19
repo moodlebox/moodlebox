@@ -1,20 +1,51 @@
 #!/usr/bin/env bash
+#
+# This script is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This script is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this script. If not, see <http:#www.gnu.org/licenses/>.
+#
+# Copyright (c) 2016 onwards Nicolas Martignoni <nicolas@martignoni.net>
 
-# Change these to customize your build
+# #############################################################################
+# make_moodlebox.sh
+# A bash script to build automatically a MoodleBox on a Raspberry Pi 3.
+#
+# Instructions:
+# * Clone Rasbpian Jessie Lite on your microSD card
+# * Login to your RPi with the user root: `ssh root@raspberrypi.local`
+# * Launch the script
+#
+# Source: https://github.com/martignoni/make-moodlebox
 
-# The password that will be set for ALL admin settings of the MoodleBox.
+# #############################################################################
+# Change these variables to customize your build
+#
+# Sets the password that will be set for ALL admin settings of the MoodleBox.
 GENERICPASSWORD="Moodlebox4$"
-# The language used to build the MoodleBox. Used to set the locale of the RPi and the default
-# language of the Moodle installation. Use valid locale codes (see /usr/share/i18n/SUPPORTED).
-# Example values: fr_FR, fr_CH, en_GB, en_US.
+#
+# Sets the language used to build the MoodleBox. Used to set the locale of the RPi and the default
+# language of the Moodle installation.
+# Use valid locale codes (see /usr/share/i18n/SUPPORTED).
 LANGUAGE="fr_FR"
-# The country where you'll use your MoodleBox. Used to set the Wi-Fi access point settings.
-# Use ISO 639-1 two letter codes.
+#
+# Sets the country where you'll use your MoodleBox. Used to set the Wi-Fi access point settings.
+# Use ISO 3166-1 alpha-2 two letter codes (see /usr/share/zoneinfo/iso3166.tab).
 COUNTRY="CH"
+#
 # The timezone of the place where you'll use your MoodleBox.
-# Use standard IANA time zone database identifiers, e.g. "Europe/Zurich", "America/Toronto", etc.
+# Use standard IANA time zone database identifiers (see output of timedatectl list-timezones).
 TIMEZONE="Europe/Paris"
-
+#
+# #############################################################################
 # Do NOT change anything under this line.
 # You'll get ABSOLUTELY NO SUPPORT for any problems due to changes after this!
 
@@ -505,4 +536,5 @@ else
     update-rc.d makemoodlebox defaults
     reboot
 fi
-## The end
+# #############################################################################
+# The end
