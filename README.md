@@ -47,6 +47,11 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.6, 2017-02-27
+
+* Based on Raspbian Jessie Lite version of 2017-02-16
+* Uses now PHP7, for a 30% performance improvement :-)
+
 #### Version 1.5.1, 2017-02-11
 
 * Prevent side effects after renaming the default user (symbolic link added)

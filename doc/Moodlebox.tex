@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{11 février 2017\footnote{Version 1.5.1}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{27 février 2017\footnote{Version 1.6}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -454,10 +454,17 @@ On va installer le serveur web nginx avec PHP et MariaDB.
 
 \subsection{Installation et configuration de nginx et PHP}
 
-Installer les paquetages nécessaires.
+Pour une performance accrue on installe nginx 1.10 et PHP7, à partir de la future distribution Debian Stretch. On commence par ajouter les lignes suivantes à la fin du fichier \lstinline{/etc/apt/preferences}.
+\begin{lstlisting}[language=bash]
+Package: *
+Pin: release n=jessie
+Pin-Priority: 600
+\end{lstlisting}
+
+On met à jour ensuite la liste des paquetages, puis installe ceux qui sont nécessaires.
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install nginx php5-fpm php5-cli php5-xmlrpc php5-curl php5-gd php5-intl php5-apcu
+$ sudo apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 \end{lstlisting}
 
 \begin{verification}
@@ -666,7 +673,7 @@ en y ajoutant les lignes
 \section{Configuration de PhpMyAdmin (optionnel)}
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install phpmyadmin
+$ sudo apt-get install -y -t stretch phpmyadmin
 $ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 \end{lstlisting}
 Définir un mot de passe fort. Pour cette installation, le mot de passe choisi est \emph{Moodlebox4\$}.
