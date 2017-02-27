@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.5.1-with-php7"
-DATE="2017-02-11"
+VERSION="1.6"
+DATE="2017-02-27"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -87,7 +87,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 case "$1" in
     start)
-        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/with-php7/make_moodlebox.sh | bash
+        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
         ;;
     *)
         echo "Usage: $0 start" >&2
