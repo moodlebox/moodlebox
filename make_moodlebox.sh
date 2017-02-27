@@ -232,7 +232,7 @@ Pin: release n=jessie
 Pin-Priority: 600
 EOF
 
-    apt-get update -y
+    apt-get update
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
