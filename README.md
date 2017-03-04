@@ -47,6 +47,11 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.6.1, 2017-03-04
+
+* Based on Raspbian Jessie Lite version of 2017-03-02
+* MariaDB default character encoding and collation updated (see issue [MDL-48228](https://tracker.moodle.org/browse/MDL-48228))
+
 #### Version 1.6, 2017-02-27
 
 * Based on Raspbian Jessie Lite version of 2017-02-16
