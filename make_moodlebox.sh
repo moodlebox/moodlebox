@@ -399,14 +399,14 @@ server {
 
   location ~ [^/]\.php(/|$) {
     include fastcgi_params;
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-    fastcgi_read_timeout    300;
-    fastcgi_pass    unix:/var/run/php/php7.0-fpm.sock;
-    fastcgi_index   index.php;
-    fastcgi_param   PATH_INFO   $fastcgi_path_info;
-    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param   PHP_VALUE   "max_execution_time=300\n upload_max_filesize=50M\n post_max_size=50M";
-    client_max_body_size    50M;
+    fastcgi_split_path_info	^(.+\.php)(/.+)$;
+    fastcgi_read_timeout	300;
+    fastcgi_pass	unix:/var/run/php/php7.0-fpm.sock;
+    fastcgi_index	index.php;
+    fastcgi_param	PATH_INFO	$fastcgi_path_info;
+    fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
+    fastcgi_param	PHP_VALUE	"max_execution_time=300\n upload_max_filesize=50M\n post_max_size=50M";
+    client_max_body_size	50M;
   }
 
 }
