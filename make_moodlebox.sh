@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.6"
-DATE="2017-02-27"
+VERSION="1.6.1"
+DATE="2017-03-04"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -134,7 +134,7 @@ EOF
     echo -e "Version: $VERSION, $DATE\n"
 
     # Configure important settings (done via raspi-config when GUI used)
-    echo -e "\e[93mConfiguring locale...\e[97m"
+    echo -e "\e[93mConfiguring locale to $LANGUAGE...\e[97m"
     ## Change locale
     # This uses the $LANGUAGE variable defined at the top of the script
     # Comment all uncommented lines in /etc/locale.gen
@@ -146,13 +146,13 @@ EOF
     export LANG=$LANGUAGE.UTF-8
     update-locale LANG=$LANGUAGE.UTF-8
 
-    echo -e "\e[93mConfiguring timezone...\e[97m"
+    echo -e "\e[93mConfiguring timezone to $TIMEZONE...\e[97m"
     ## Change timezone
     # This uses the $TIMEZONE variable defined at the top of the script
     echo $TIMEZONE > /etc/timezone
     dpkg-reconfigure -f noninteractive tzdata
 
-    echo -e "\e[93mConfiguring Wi-Fi country...\e[97m"
+    echo -e "\e[93mConfiguring Wi-Fi country to $COUNTRY...\e[97m"
     ## Change WiFi country
     # This uses the $COUNTRY variable defined at the top of the script
     if grep -q "^country=" /etc/wpa_supplicant/wpa_supplicant.conf ; then
@@ -240,6 +240,24 @@ EOF
     echo root > /etc/incron.allow
     # install nginx 1.10 and php 7.0
     apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
+
+    # configure MariaDB server parameters
+    sed -i '/\[client\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
+    sed -i '/skip-external-locking/a \character-set-client-handshake = FALSE' /etc/mysql/my.cnf
+    sed -i '/character-set-client-handshake/a \character-set-server = utf8mb4' /etc/mysql/my.cnf
+    sed -i '/character-set-server/a \collation-server = utf8mb4_unicode_ci' /etc/mysql/my.cnf
+    sed -i '/table_cache/c\table_cache            = 512' /etc/mysql/my.cnf
+    sed -i '/table_cache/a table_definition_cache = 512' /etc/mysql/my.cnf
+    sed -i '/max_connections/c\max_connections        = 100' /etc/mysql/my.cnf
+    sed -i '/query_cache_size/c\query_cache_size    = 16M' /etc/mysql/my.cnf
+    sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/my.cnf
+    sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format    = Barracuda' /etc/mysql/my.cnf
+    sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/my.cnf
+    sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/my.cnf
+    sed -i '/\[mysql\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
+    systemctl restart mysql.service
+
+    # install phpMyAdmin
     apt-get install -y -t stretch phpmyadmin
 
     ## Access point and network configuration: edit configuration files
@@ -412,27 +430,13 @@ server {
 }
 EOF
 
-    ## Create database for Moodle and configure MySQL vars
+    ## Create database for Moodle
     echo -e "\e[93mMySQL and Moodle database configuration...\e[97m"
     mysql -u root -p$GENERICPASSWORD -t << STOP
-create database moodle;
-grant all on moodle.* to 'root'@'localhost' identified by '$GENERICPASSWORD';
+CREATE DATABASE moodle;
+GRANT ALL ON moodle.* TO 'root'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
 \q
 STOP
-
-    sed -i '/\[client\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
-    sed -i '/skip-external-locking/a \character-set-client-handshake = FALSE' /etc/mysql/my.cnf
-    sed -i '/character-set-client-handshake/a \character-set-server = utf8mb4' /etc/mysql/my.cnf
-    sed -i '/character-set-server/a \collation-server = utf8mb4_unicode_ci' /etc/mysql/my.cnf
-    sed -i '/table_cache/c\table_cache            = 512' /etc/mysql/my.cnf
-    sed -i '/table_cache/a table_definition_cache = 512' /etc/mysql/my.cnf
-    sed -i '/max_connections/c\max_connections        = 100' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/c\query_cache_size    = 16M' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/my.cnf
-    sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format    = Barracuda' /etc/mysql/my.cnf
-    sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/my.cnf
-    sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/my.cnf
-    sed -i '/\[mysql\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
 
     ## Download Moodle via git and create all needed directories, with adequate permissions
     echo -e "\e[93mDownloading Moodle 3.2.x via Git and directories configuration...\e[97m"
