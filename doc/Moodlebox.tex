@@ -483,7 +483,7 @@ La dernière ligne \lstinline{fastcgi_param} et la ligne \lstinline{client_max_b
 
 Relancer le serveur web
 \begin{lstlisting}[language=bash]
-$ sudo systemctl restart php5-fpm nginx
+$ sudo systemctl restart php7.0-fpm nginx
 \end{lstlisting}
 
 \begin{verification}
@@ -494,10 +494,10 @@ $ echo '<?php phpinfo(); ?>' | sudo tee -a /var/www/html/info.php
 puis lancer dans un navigateur l'URL \url{http://moodlebox.home/info.php}. La longue page des réglages PHP doit s'afficher, avec les variables \lstinline{upload_max_filesize} et \lstinline{post_max_size} sont fixées à 50~Mo.
 \end{verification}
 
-\subsubsection[Installation et configuration de MariaDB]{Installation et configuration de MariaDB\footnote{Cette section est inspirée de \url{http://www.syndrega.ch/?p=108}.}}
+\subsubsection{Installation de MariaDB}
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install mariadb-server php5-mysql
+$ sudo apt-get install mariadb-server php7.0-mysql
 \end{lstlisting}
 
 Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{root}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
@@ -506,7 +506,32 @@ Au cours de l'installation, on définit le mot de passe de l'utilisateur princip
 Recharger l'URL \url{http://moodlebox.home/info.php}. Une section \emph{MySQL} supplémentaire doit apparaître dans la page.
 \end{verification}
 
-Créer une nouvelle base de données pour Moodle.
+\subsubsection{Configuration de MariaDB et création de la base de données pour Moodle}
+
+Depuis la version 3.1.2+\footnote{Version du début du mois de mars 2017.} de Moodle, avec l'encodage de MariaDB \lstinline{utf8mb4} est nécessaire, afin de corriger un bogue\footnote{Voir \url{https://tracker.moodle.org/browse/MDL-48228}.}. Il s'agit donc de paramétrer MariaDB pour cela. On ajoute à cet effet quelques lignes au fichier \lstinline{/etc/mysql/my.cnf}. Dans la section \lstinline{[client]}, on ajoute:
+\begin{lstlisting}[language=bash]
+default-character-set = utf8mb4
+\end{lstlisting}
+Dans la section \lstinline{[mysqld]}, on ajoute:
+\begin{lstlisting}[language=bash]
+innodb_file_format = Barracuda
+innodb_file_per_table = 1
+innodb_large_prefix
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+\end{lstlisting}
+Pour terminer, on ajoute dans la section \lstinline{[mysqld]}:
+\begin{lstlisting}[language=bash]
+default-character-set = utf8mb4
+\end{lstlisting}
+
+On relance ensuite le serveur MariaDB.
+\begin{lstlisting}[language=bash]
+$ sudo systemctl restart mysql.service
+\end{lstlisting}
+
+On peut maintenant créer la base de données que Moodle utilisera.
 
 \begin{lstlisting}[language=bash]
 $ mysql -u root -p
