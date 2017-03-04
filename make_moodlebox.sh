@@ -399,14 +399,14 @@ server {
 
   location ~ [^/]\.php(/|$) {
     include fastcgi_params;
-    fastcgi_split_path_info	^(.+\.php)(/.+)$;
-    fastcgi_read_timeout	300;
-    fastcgi_pass	unix:/var/run/php/php7.0-fpm.sock;
-    fastcgi_index	index.php;
-    fastcgi_param	PATH_INFO	$fastcgi_path_info;
-    fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
-    fastcgi_param	PHP_VALUE	"max_execution_time=300\n upload_max_filesize=50M\n post_max_size=50M";
-    client_max_body_size	50M;
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    fastcgi_read_timeout    300;
+    fastcgi_pass    unix:/var/run/php/php7.0-fpm.sock;
+    fastcgi_index   index.php;
+    fastcgi_param   PATH_INFO   $fastcgi_path_info;
+    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param   PHP_VALUE   "max_execution_time=300\n upload_max_filesize=50M\n post_max_size=50M";
+    client_max_body_size    50M;
   }
 
 }
@@ -420,11 +420,19 @@ grant all on moodle.* to 'root'@'localhost' identified by '$GENERICPASSWORD';
 \q
 STOP
 
-    sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/my.cnf
-    sed -i '/table_cache/i table_definition_cache  = 512' /etc/mysql/my.cnf
-    sed -i '/max_connections/c\max_connections         = 100' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/c\query_cache_size        = 16M' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/i query_cache_type        = 0' /etc/mysql/my.cnf
+    sed -i '/\[client\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
+    sed -i '/skip-external-locking/a \character-set-client-handshake = FALSE' /etc/mysql/my.cnf
+    sed -i '/character-set-client-handshake/a \character-set-server = utf8mb4' /etc/mysql/my.cnf
+    sed -i '/character-set-server/a \collation-server = utf8mb4_unicode_ci' /etc/mysql/my.cnf
+    sed -i '/table_cache/c\table_cache            = 512' /etc/mysql/my.cnf
+    sed -i '/table_cache/a table_definition_cache = 512' /etc/mysql/my.cnf
+    sed -i '/max_connections/c\max_connections        = 100' /etc/mysql/my.cnf
+    sed -i '/query_cache_size/c\query_cache_size    = 16M' /etc/mysql/my.cnf
+    sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/my.cnf
+    sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format    = Barracuda' /etc/mysql/my.cnf
+    sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/my.cnf
+    sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/my.cnf
+    sed -i '/\[mysql\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
 
     ## Download Moodle via git and create all needed directories, with adequate permissions
     echo -e "\e[93mDownloading Moodle 3.2.x via Git and directories configuration...\e[97m"
