@@ -239,21 +239,18 @@ EOF
     apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 
     # configure MariaDB server parameters
+    sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/table_cache/a table_definition_cache  = 512' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/max_connections/c\max_connections        = 100' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/query_cache_size/c\query_cache_size    = 16M' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/mariadb.conf.d/50-server.cnf
+    # configure MariaDB InnoDB parameters (encodings are already OK on 10.1.21-5, Debian Stretch)
     # see https://mathiasbynens.be/notes/mysql-utf8mb4
     # see https://docs.moodle.org/32/en/admin/environment/custom_check/mysql_full_unicode_support
-    sed -i '/\[client\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
-    sed -i '/skip-external-locking/a \character-set-client-handshake = FALSE' /etc/mysql/my.cnf
-    sed -i '/character-set-client-handshake/a \character-set-server = utf8mb4' /etc/mysql/my.cnf
-    sed -i '/character-set-server/a \collation-server = utf8mb4_unicode_ci' /etc/mysql/my.cnf
-    sed -i '/table_cache/c\table_cache            = 512' /etc/mysql/my.cnf
-    sed -i '/table_cache/a table_definition_cache = 512' /etc/mysql/my.cnf
-    sed -i '/max_connections/c\max_connections        = 100' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/c\query_cache_size    = 16M' /etc/mysql/my.cnf
-    sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/my.cnf
-    sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format    = Barracuda' /etc/mysql/my.cnf
-    sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/my.cnf
-    sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/my.cnf
-    sed -i '/\[mysql\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
+    sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format = Barracuda' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/collation-server/a \character-set-client-handshake = FALSE' /etc/mysql/mariadb.conf.d/50-server.cnf
     systemctl restart mysql.service
 
     # install phpMyAdmin
