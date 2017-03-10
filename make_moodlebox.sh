@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.6.1"
-DATE="2017-03-04"
+VERSION="1.6.2"
+DATE="2017-03-10"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -241,7 +241,7 @@ EOF
     # configure MariaDB server parameters
     sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/table_cache/a table_definition_cache  = 512' /etc/mysql/mariadb.conf.d/50-server.cnf
-    sed -i '/max_connections/c\max_connections        = 100' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/max_connections/c\max_connections         = 100' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/query_cache_size/c\query_cache_size    = 16M' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/mariadb.conf.d/50-server.cnf
     # configure MariaDB InnoDB parameters (encodings are already OK on 10.1.21-5, Debian Stretch)

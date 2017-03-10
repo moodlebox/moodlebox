@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{4 mars 2017\footnote{Version 1.6.1}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{10 mars 2017\footnote{Version 1.6.2}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -497,7 +497,7 @@ puis lancer dans un navigateur l'URL \url{http://moodlebox.home/info.php}. La lo
 \subsubsection{Installation de MariaDB}
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install mariadb-server php7.0-mysql
+$ sudo apt-get install -t stretch mariadb-server php7.0-mysql
 \end{lstlisting}
 
 Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{root}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
@@ -508,22 +508,12 @@ Recharger l'URL \url{http://moodlebox.home/info.php}. Une section \emph{MySQL} s
 
 \subsubsection{Configuration de MariaDB et création de la base de données pour Moodle}
 
-Depuis la version 3.1.2+\footnote{Version du début du mois de mars 2017.} de Moodle, avec l'encodage de MariaDB \lstinline{utf8mb4} est nécessaire, afin de corriger un bogue\footnote{Voir \url{https://tracker.moodle.org/browse/MDL-48228}.}. Il s'agit donc de paramétrer MariaDB pour cela. On ajoute à cet effet quelques lignes au fichier \lstinline{/etc/mysql/my.cnf}. Dans la section \lstinline{[client]}, on ajoute:
-\begin{lstlisting}[language=bash]
-default-character-set = utf8mb4
-\end{lstlisting}
-Dans la section \lstinline{[mysqld]}, on ajoute:
+Depuis la version 3.1.2+\footnote{Version du début du mois de mars 2017.} de Moodle, avec l'encodage de MariaDB \lstinline{utf8mb4} est nécessaire, afin de corriger un bogue\footnote{Voir \url{https://tracker.moodle.org/browse/MDL-48228}.}. La version de MariaDB installée ici est déjà configurée correctement. Il s'agit cependant d'effectuer d'autres paramétrages. On ajoute à cet effet quelques lignes au fichier \lstinline{/etc/mysql/mariadb.conf.d/50-server.cnf}. Dans la section \lstinline{[mysqld]}, on ajoute:
 \begin{lstlisting}[language=bash]
 innodb_file_format = Barracuda
 innodb_file_per_table = 1
 innodb_large_prefix
 character-set-client-handshake = FALSE
-character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci
-\end{lstlisting}
-Pour terminer, on ajoute dans la section \lstinline{[mysqld]}:
-\begin{lstlisting}[language=bash]
-default-character-set = utf8mb4
 \end{lstlisting}
 
 On relance ensuite le serveur MariaDB.
@@ -535,9 +525,10 @@ On peut maintenant créer la base de données que Moodle utilisera.
 
 \begin{lstlisting}[language=bash]
 $ mysql -u root -p
-    > create database moodle;
-    > grant all on moodle.* to 'root'@'localhost' identified by 'Moodlebox4$';
-    > exit
+    > CREATE DATABASE moodle;
+    > GRANT ALL ON moodle.* TO 'root'@'localhost' IDENTIFIED BY 'Moodlebox4$';
+    > FLUSH PRIVILEGES;
+    > QUIT;
 \end{lstlisting}
 
 \section{Installation de Moodle (enfin!)}
@@ -827,10 +818,7 @@ Le contenu du fichier \lstinline{/etc/nginx/sites-available/default} devient alo
 
 \subsubsection{Optimisation de MariaDB}
 
-On modifie les valeurs de quelques variables de MariaDB dans le fichier \lstinline{/etc/mysql/my.cnf}. Pour ce faire, on ouvre le fichier en question
-%\begin{lstlisting}[language=bash]
-%$ sudo nano /etc/mysql/my.cnf
-%\end{lstlisting}
+On modifie les valeurs de quelques variables de MariaDB dans le fichier \lstinline{/etc/mysql/mariadb.conf.d/50-server.cnf}. Pour ce faire, on ouvre le fichier en question
 et on y modifie les lignes adéquates, à savoir:
 \begin{lstlisting}[language=bash]
 table_cache             = 512

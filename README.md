@@ -47,6 +47,12 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.6.2, 2017-03-10
+
+* Uses now MariaDB 10.1.21
+* Better cleanup, for a smaller disk image
+* Other minor fixes
+
 #### Version 1.6.1, 2017-03-04
 
 * Based on Raspbian Jessie Lite version of 2017-03-02
