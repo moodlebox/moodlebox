@@ -211,10 +211,6 @@ after_reboot(){
     debconf-set-selections <<< "mariadb-server mysql-server/root_password password $GENERICPASSWORD"
     debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password $GENERICPASSWORD"
 
-    # mysql-server preseed selections (https://serversforhackers.com/video/installing-mysql-with-debconf)
-    # debconf-set-selections <<< "mysql-server mysql-server/root_password password $GENERICPASSWORD"
-    # debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $GENERICPASSWORD"
-
     # phpmyadmin preseed selections
     debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $GENERICPASSWORD"
     debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $GENERICPASSWORD"
@@ -236,8 +232,9 @@ EOF
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y hostapd dnsmasq git usbmount incron mariadb-server
+    apt-get install -y hostapd dnsmasq git usbmount incron
     echo root > /etc/incron.allow
+    apt-get install -y -t stretch mariadb-server
     # install nginx 1.10 and php 7.0
     apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 
