@@ -242,6 +242,8 @@ EOF
     apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 
     # configure MariaDB server parameters
+    # see https://mathiasbynens.be/notes/mysql-utf8mb4
+    # see https://docs.moodle.org/32/en/admin/environment/custom_check/mysql_full_unicode_support
     sed -i '/\[client\]/a \default-character-set = utf8mb4' /etc/mysql/my.cnf
     sed -i '/skip-external-locking/a \character-set-client-handshake = FALSE' /etc/mysql/my.cnf
     sed -i '/character-set-client-handshake/a \character-set-server = utf8mb4' /etc/mysql/my.cnf
@@ -435,6 +437,7 @@ EOF
     mysql -u root -p$GENERICPASSWORD -t << STOP
 CREATE DATABASE moodle;
 GRANT ALL ON moodle.* TO 'root'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
+FLUSH PRIVILEGES;
 \q
 STOP
 
