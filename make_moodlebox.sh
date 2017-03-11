@@ -182,6 +182,10 @@ EOF
     ## Add link to avoid some side effects after renaming the default user
     ln -s /home/moodlebox /home/pi
 
+    # Reduce memory split down to 16Mb, as we are on a headless system
+    echo -e "\e[93mReducing memory split down to 16Mb...\e[97m"
+    echo "gpu_mem=16" >> /boot/config.txt
+
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
     # https://blog.dantup.com/2016/04/removing-rsyslog-spam-on-raspberry-pi-raspbian-jessie/
