@@ -242,6 +242,9 @@ after_reboot(){
     sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format = Barracuda' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/innodb_large_prefix/a \innodb_log_file_size = 16M' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/innodb_log_file_size/a \innodb_buffer_pool_instances = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/innodb_buffer_pool_instances/a \innodb_buffer_pool_size = 128M' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/collation-server/a \character-set-client-handshake = FALSE' /etc/mysql/mariadb.conf.d/50-server.cnf
     systemctl restart mysql.service
 
