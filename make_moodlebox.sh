@@ -61,6 +61,11 @@ TIMEZONE="Europe/Paris"
 VERSION="1.6.2"
 DATE="2017-03-10"
 
+# Summary to be displayed on the front page
+SUMMARY="<p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span></p>
+<p><span lang='en' class='multilang'>MoodleBox is done by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span></p>
+<p><span lang='en' class='multilang'>Version $VERSION, $DATE.</span><span lang='fr' class='multilang'>Version $VERSION, $DATE.</span></p>"
+
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
 export APT_LISTCHANGES_FRONTEND="none"
@@ -482,6 +487,7 @@ EOF
       --dbpass="$GENERICPASSWORD" \
       --fullname="MoodleBox" \
       --shortname="MoodleBox" \
+      --summary="$SUMMARY" \
       --adminuser=admin \
       --adminpass="$GENERICPASSWORD" \
       --adminemail="admin@moodlebox.invalid" \
