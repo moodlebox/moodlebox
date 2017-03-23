@@ -484,6 +484,7 @@ EOF
       --shortname="MoodleBox" \
       --adminuser=admin \
       --adminpass="$GENERICPASSWORD" \
+      --adminemail="admin@moodlebox.invalid" \
       --non-interactive \
       --agree-license
     sed -i "/$CFG->directorypermissions/i \$CFG->xsendfile = 'X-Accel-Redirect';\n\$CFG->xsendfilealiases = array ('/dataroot/' => \$CFG->dataroot);\n" /var/www/html/config.php
