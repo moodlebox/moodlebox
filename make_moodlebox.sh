@@ -137,8 +137,6 @@ EOF
     echo -e "\e[93mConfiguring locale to $LANGUAGE...\e[97m"
     ## Change locale
     # This uses the $LANGUAGE variable defined at the top of the script
-    # Comment all uncommented lines in /etc/locale.gen
-    sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
     # Uncomment line containing $LANGUAGE.UTF-8 and configure locales
     sed -i "/^# $LANGUAGE.UTF-8/s/^# //" /etc/locale.gen
     dpkg-reconfigure -f noninteractive locales
