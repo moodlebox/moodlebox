@@ -47,6 +47,13 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.6.3, 2017-03-25
+
+* Updated to Moodle 3.2.2
+* Description on front page now uses localisation
+* Better memory usage
+* InnoDB parameters tweaks for small performance improvements
+
 #### Version 1.6.2, 2017-03-10
 
 * Uses now MariaDB 10.1.21
