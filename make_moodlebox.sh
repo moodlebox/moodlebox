@@ -472,7 +472,7 @@ EOF
     # Summary to be displayed on the front page
     SUMMARY="<p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span></p>
     <p><span lang='en' class='multilang'>MoodleBox is made by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span></p>
-    <p><span lang='en' class='multilang'>Version $VERSION, $(LC_ALL=en_GB.utf8 date --date '$DATE' '+%d %B %Y').</span><span lang='fr' class='multilang'>Version $VERSION, $(LC_ALL=fr_FR.utf8 date --date '$DATE' '+%d %B %Y').</span></p>"
+    <p><span lang='en' class='multilang'>Version $VERSION, $(LC_ALL=en_GB.utf8 date --date $DATE '+%d %B %Y').</span><span lang='fr' class='multilang'>Version $VERSION, $(LC_ALL=fr_FR.utf8 date --date $DATE '+%d %B %Y').</span></p>"
     # Start installation
     /usr/bin/php "/var/www/html/admin/cli/install.php" \
       --lang=$(echo $LANGUAGE | cut -d"_" -f 1) \
