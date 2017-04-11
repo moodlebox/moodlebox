@@ -495,11 +495,14 @@ EOF
     chown www-data:www-data /var/www/html/config.php
     /usr/bin/php /var/www/html/admin/cli/mysql_compressed_rows.php -f
 
-    ## Install MoodleBox Admin Moodle plugin
+    ## Install last stable version of MoodleBox Admin Moodle plugin
     echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[97m"
     cd /var/www/html/admin/tool/
     git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
     cd /var/www/html/admin/tool/moodlebox
+    # Get latest published tag (see https://gist.github.com/rponte/fdc0724dd984088606b0)
+    LASTTAG=$(git describe --abbrev=0 --tags)
+    git checkout tags/$LASTTAG
     touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
     chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 
