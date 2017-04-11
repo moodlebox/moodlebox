@@ -47,6 +47,11 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 ### Release notes
 
+#### Version 1.6.4, 2017-04-11
+
+* Based on Raspbian Jessie Lite version of 2017-04-10
+* Uses version 1.4.4 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle
+
 #### Version 1.6.3, 2017-03-25
 
 * Updated to Moodle 3.2.2

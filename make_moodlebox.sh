@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.6.3"
-DATE="2017-03-25"
+VERSION="1.6.4"
+DATE="2017-04-11"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
