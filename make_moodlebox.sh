@@ -513,7 +513,7 @@ EOF
     ## Configure incron jobs (for restart/shutdown from web interface)
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.wifipassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/setwifipassword.sh") | incrontab -
 
