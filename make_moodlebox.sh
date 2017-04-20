@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.6.2-with-stretch"
-DATE="2017-03-10"
+VERSION="1.6.4-with-stretch"
+DATE="2017-04-11"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -133,12 +133,10 @@ EOF
     echo -e "Author: Nicolas Martignoni"
     echo -e "Version: $VERSION, $DATE\n"
 
-    # Configure important settings (done via raspi-config when GUI used)
+    # Configure important settings
     echo -e "\e[93mConfiguring locale to $LANGUAGE...\e[97m"
     ## Change locale
     # This uses the $LANGUAGE variable defined at the top of the script
-    # Comment all uncommented lines in /etc/locale.gen
-    sed -i "/^#/! {/./ s/^#*/# /}" /etc/locale.gen
     # Uncomment line containing $LANGUAGE.UTF-8 and configure locales
     sed -i "/^# $LANGUAGE.UTF-8/s/^# //" /etc/locale.gen
     dpkg-reconfigure -f noninteractive locales
@@ -459,6 +457,11 @@ EOF
 
     ## Install Moodle via cli
     echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
+    # Summary to be displayed on the front page
+    SUMMARY="<p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span></p>
+    <p><span lang='en' class='multilang'>MoodleBox is made by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span></p>
+    <p><span lang='en' class='multilang'>Version $VERSION, $(LC_ALL=en_GB.utf8 date --date $DATE '+%d %B %Y').</span><span lang='fr' class='multilang'>Version $VERSION, $(LC_ALL=fr_FR.utf8 date --date $DATE '+%d %B %Y').</span></p>"
+    # Start installation
     /usr/bin/php "/var/www/html/admin/cli/install.php" \
       --lang=$(echo $LANGUAGE | cut -d"_" -f 1) \
       --wwwroot="http://moodlebox.home" \
@@ -470,19 +473,24 @@ EOF
       --dbpass="$GENERICPASSWORD" \
       --fullname="MoodleBox" \
       --shortname="MoodleBox" \
+      --summary="$SUMMARY" \
       --adminuser=admin \
       --adminpass="$GENERICPASSWORD" \
+      --adminemail="admin@moodlebox.invalid" \
       --non-interactive \
       --agree-license
     sed -i "/$CFG->directorypermissions/i \$CFG->xsendfile = 'X-Accel-Redirect';\n\$CFG->xsendfilealiases = array ('/dataroot/' => \$CFG->dataroot);\n" /var/www/html/config.php
     chown www-data:www-data /var/www/html/config.php
     /usr/bin/php /var/www/html/admin/cli/mysql_compressed_rows.php -f
 
-    ## Install MoodleBox Admin Moodle plugin
+    ## Install last stable version of MoodleBox Admin Moodle plugin
     echo -e "\e[93mMoodleBox plugin installation (via CLI)...\e[97m"
     cd /var/www/html/admin/tool/
-    git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
+    git clone https://github.com/martignoni/moodle-tool_moodlebox.git moodlebox
     cd /var/www/html/admin/tool/moodlebox
+    # Get latest published tag (see https://gist.github.com/rponte/fdc0724dd984088606b0)
+    LASTTAG=$(git describe --abbrev=0 --tags)
+    git checkout tags/$LASTTAG
     touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
     chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 
@@ -493,7 +501,7 @@ EOF
     ## Configure incron jobs (for restart/shutdown from web interface)
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/html/admin/tool/moodlebox/.wifipassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/setwifipassword.sh") | incrontab -
 

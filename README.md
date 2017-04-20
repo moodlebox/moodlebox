@@ -11,10 +11,11 @@ The documentation is included in the `doc` folder, as a LaTeX document (in frenc
 * Internet access: when the MoodleBox is connected via ethernet to a network connected to Internet, the MoodleBox acts as a router (IP forwarding) and the Wi-Fi clients have access to Internet.
 * Moodle 3.2.x LMS reachable via Wi-Fi (or ethernet, see below), URL: [http://moodlebox.home/](http://moodlebox.home/); standard configuration of Moodle with no customisation. An admin account for the Moodle, username: _admin_, password: _Moodlebox4$_. The Moodle server is configured to accept the clients from the Moodle [official mobile app](https://download.moodle.org/mobile/). The maximal size of uploaded files is set to 50Mb. The cron is launched every 3 minutes.
 * When a USB key is inserted in the MoodleBox, all the files on it are available for the admins and teachers of the Moodle server, via a _File system_ repository.
-* GUI to restart and shutdown the MoodleBox.
-* GUI to change the password of the MoodleBox.
-* GUI to change the password of the Wi-Fi network published by the MoodleBox.
-* GUI to set date and time of the MoodleBox (when away from Internet connection).
+* Integrated in Moodle administration interface ([MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox)):
+  * GUI to restart and shutdown the MoodleBox.
+  * GUI to change the password of the MoodleBox.
+  * GUI to change the password of the Wi-Fi network published by the MoodleBox.
+  * GUI to set date and time of the MoodleBox (when away from Internet connection).
 * [PhpMyAdmin](http://moodlebox.home/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
 
 ## Building the MoodleBox
@@ -46,6 +47,18 @@ The code is available at [https://github.com/martignoni/make-moodlebox](https://
 A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](https://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
+
+#### Version 1.6.4, 2017-04-11
+
+* Based on Raspbian Jessie Lite version of 2017-04-10
+* Uses now last released version of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle
+
+#### Version 1.6.3, 2017-03-25
+
+* Updated to Moodle 3.2.2
+* Description on front page now uses localisation
+* Better memory usage
+* InnoDB parameters tweaks for small performance improvements
 
 #### Version 1.6.2, 2017-03-10
 
@@ -85,7 +98,7 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 #### Version 1.3.6, 2016-12-07
 
 * Augmentation of maximum script execution time
-* Uses version 1.4.3 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* Uses version 1.4.3 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 * Minor fixes
 
 #### Version 1.3.5, 2016-12-01
@@ -108,12 +121,12 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 #### Version 1.3.2, 2016-09-18
 
-* Updated to version 1.4 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* Updated to version 1.4 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 * No other new features.
 
 #### Version 1.3.1, 2016-09-10
 
-* Updated to version 1.3 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* Updated to version 1.3 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 * No other new features.
 
 #### Version 1.3, 2016-08-21
@@ -127,7 +140,7 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 #### Version 1.2, 2016-08-11
 
-* Updated to version 1.2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* Updated to version 1.2 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 * No other new features.
 
 #### Version 1.1.1, 2016-08-09
@@ -137,13 +150,13 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 
 #### Version 1.1, 2016-08-06
 
-* Updated to version 1.1 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This version adds display of free space on SD card of the MoodleBox.
+* Updated to version 1.1 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This version adds display of free space on SD card of the MoodleBox.
 * Added advertising of mDNS services (Avahi service file created).
 
 #### Version 1.0, 2016-07-11
 
 * Updated to Moodle 3.1.1.
-* Updated to version 1.0 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This version adds a time setting feature for the MoodleBox.
+* Updated to version 1.0 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This version adds a time setting feature for the MoodleBox.
 * First publication of scripts to build the MoodleBox.
 
 #### Version 1.0b (beta), 2016-06-26
@@ -153,11 +166,11 @@ A [prepared disk image](https://moodlebox.net/en/dl) of the latest released vers
 #### Version 1.0a2 (alpha), 2016-06-19
 
 * Reorganisation of the project.
-* Updated to version 1.0a2 of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle.
+* Updated to version 1.0a2 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 
 #### Version 1.0a1 (alpha), 2016-06-16
 
-* Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle. This plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
+* Installation of a preliminary version (1.0a1) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This plugin helps the administrator of the MoodleBox to monitor some hardware settings and allows restart and shutdown of the MoodleBox via GUI.
 
 #### Version 0.4 (pre-release), 2016-06-04
 
