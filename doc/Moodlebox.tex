@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{11 avril 2017\footnote{Version 1.6.4}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{29 avril 2017\footnote{Version 1.6.5}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -552,6 +552,7 @@ On crée le dossier de données de Moodle et règle adéquatement les permission
 \begin{lstlisting}[language=bash]
 $ sudo mkdir /var/www/moodledata
 $ sudo chown -R www-data:www-data /var/www/html /var/www/moodledata/
+$ sudo chmod -R ug+w,o-w /var/www/html /var/www/moodledata/
 \end{lstlisting}
 
 Pour terminer l'installation de Moodle, on lance dans un navigateur l'URL \url{http://moodlebox.home/} et l'on suit les indications données à l'écran. Cette phase dure plus de 10 minutes. Patience donc !
@@ -661,6 +662,7 @@ $ sudo git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
 $ cd /var/www/html/admin/tool/moodlebox
 $ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
 $ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
+$ sudo chmod -R ug+w,o-w /var/www/html/admin/tool/moodlebox
 \end{lstlisting}
 
 On termine l'installation du plugin en visitant la page \url{http://moodlebox.home/admin}. On installe pour terminer le paquetage \emph{incron}.

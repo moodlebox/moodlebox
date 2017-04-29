@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.6.5, 2017-04-29
+
+* Permissions changes to fix issue #16
+* Cosmetic fix in incron command
+* Release notes have now their own file
+* Some documentation improvements
+
 ## Version 1.6.4, 2017-04-11
 
 * Based on Raspbian Jessie Lite version of 2017-04-10
