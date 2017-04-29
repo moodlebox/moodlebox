@@ -447,6 +447,7 @@ STOP
     git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
     mkdir -p /var/www/moodledata/repository
     chown -R www-data:www-data /var/www/html /var/www/moodledata/
+    chmod -R ug+w,o-w /var/www/html /var/www/moodledata/
 
     mkdir -p /home/moodlebox/files
     chown -R moodlebox:www-data /home/moodlebox/files
@@ -505,6 +506,7 @@ EOF
     git checkout tags/$LASTTAG
     touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
     chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
+    chmod -R ug+w,o-w /var/www/html/admin/tool/moodlebox
 
     /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
 
