@@ -2,7 +2,9 @@
 
 A project to build a Moodle server and Wi-Fi router on a Raspberry Pi 3.
 
-The documentation is included in the `doc` folder, as a LaTeX document (in french; sorry, no english version as of now, pull request highly desirable).
+## How to use a MoodleBox
+
+Visit the [MoodleBox web site](https://moodlebox.net) for any question about the usage of a MoodleBox.
 
 ## Features of the MoodleBox
 
@@ -32,13 +34,9 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
 1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash`
 
-### Building the MoodleBox manually
+### Building a MoodleBox manually
 
-To build a MoodleBox manually, follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) (in french).
-
-## Usage of the MoodleBox
-
-Read the [user manual](https://moodle.org/mod/book/view.php?id=8265), in french.
+If you prefer to build a MoodleBox manually, follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) included in the `doc` folder of this project, as a LaTeX document (in french; sorry, no english version as of now, pull request highly desirable).
 
 ## Availability
 
