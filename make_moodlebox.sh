@@ -546,6 +546,7 @@ EOF
     rm -rf /var/cache/moodle-cache-backup/*
     mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_logstore_standard_log"
     mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_config_log"
+    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_upgrade_log"
     apt-get autoremove -y
     apt-get clean
     rm -rf /var/lib/apt/lists/*
