@@ -506,6 +506,18 @@ Au cours de l'installation, on définit le mot de passe de l'utilisateur princip
 Recharger l'URL \url{http://moodlebox.home/info.php}. Une section \emph{MySQL} supplémentaire doit apparaître dans la page.
 \end{verification}
 
+\subsubsection{Ajout d'un utilisateur de MariaDB}
+
+Afin de permettre un accès flexible aux bases de données, on crée un nouvel utilisateur de base de données dans MariaDB.
+
+\begin{lstlisting}[language=bash]
+$ mysql -u root -p
+    > CREATE USER 'moodlebox'@'localhost' IDENTIFIED BY 'Moodlebox4$';
+    > GRANT ALL PRIVILEGES ON *.* TO 'moodlebox'@'localhost';
+    > FLUSH PRIVILEGES;
+    > QUIT;
+\end{lstlisting}
+
 \subsubsection{Configuration de MariaDB et création de la base de données pour Moodle}
 
 Depuis la version 3.1.2+\footnote{Version du début du mois de mars 2017.} de Moodle, avec l'encodage de MariaDB \lstinline{utf8mb4} est nécessaire, afin de corriger un bogue\footnote{Voir \url{https://tracker.moodle.org/browse/MDL-48228}.}. La version de MariaDB installée ici est déjà configurée correctement. Il s'agit cependant d'effectuer d'autres paramétrages. On ajoute à cet effet quelques lignes au fichier \lstinline{/etc/mysql/mariadb.conf.d/50-server.cnf}. Dans la section \lstinline{[mysqld]}, on ajoute:
@@ -694,10 +706,10 @@ en y ajoutant les lignes
 $ sudo apt-get install -y -t stretch phpmyadmin
 $ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 \end{lstlisting}
-Définir un mot de passe fort. Pour cette installation, le mot de passe choisi est \emph{Moodlebox4\$}.
+Définir un mot de passe fort. Pour cette installation, le mot de passe choisi est \emph{Moodlebox4\$}. Pour accéder à la totalité des fonctionnalités de PhpMyAdmin, on accèdera à l'interface au moyen de l'utilisateur \emph{moodlebox} et du mot de passe \emph{Moodlebox4\$}.
 
 \begin{verification}
-Charger l'URL \url{http://moodlebox.home/phpmyadmin/}. L'interface de PhpMyAdmin doit s'afficher. Pour s'y connecter, utiliser le nom d'utilisateur \emph{root} et le mot de passe \emph{Moodlebox4\$}.
+Charger l'URL \url{http://moodlebox.home/phpmyadmin/}. L'interface de PhpMyAdmin doit s'afficher. Pour s'y connecter, utiliser le nom d'utilisateur \emph{moodlebox} et le mot de passe \emph{Moodlebox4\$}.
 \end{verification}
 
 \section{Optimisation}

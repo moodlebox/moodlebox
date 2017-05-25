@@ -256,7 +256,18 @@ EOF
     sed -i '/innodb_log_file_size/a \innodb_buffer_pool_instances = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_buffer_pool_instances/a \innodb_buffer_pool_size = 128M' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/collation-server/a \character-set-client-handshake = FALSE' /etc/mysql/mariadb.conf.d/50-server.cnf
-    systemctl restart mysql.service
+
+    ## Create database user for Moodle and phpMyAdmin
+    echo -e "\e[93mDatabase user creation...\e[97m"
+    mysql -u root -p$GENERICPASSWORD -t << STOP
+CREATE USER 'moodlebox'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO 'moodlebox'@'localhost';
+FLUSH PRIVILEGES;
+\q
+STOP
+
+    ## Restart MariaDB
+    systemctl restart mariadb
 
     # install phpMyAdmin
     apt-get install -y -t stretch phpmyadmin
