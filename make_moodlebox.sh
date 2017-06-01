@@ -493,7 +493,7 @@ EOF
       --dbtype="mariadb" \
       --dbname="moodle" \
       --prefix="mdl_" \
-      --dbuser="root" \
+      --dbuser="moodlebox" \
       --dbpass="$GENERICPASSWORD" \
       --fullname="MoodleBox" \
       --shortname="MoodleBox" \
