@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.6.4-with-stretch"
-DATE="2017-04-11"
+VERSION="1.6.5-with-stretch"
+DATE="2017-04-29"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -244,7 +244,18 @@ after_reboot(){
     sed -i '/innodb_log_file_size/a \innodb_buffer_pool_instances = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_buffer_pool_instances/a \innodb_buffer_pool_size = 128M' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/collation-server/a \character-set-client-handshake = FALSE' /etc/mysql/mariadb.conf.d/50-server.cnf
-    systemctl restart mysql.service
+
+    ## Create database user for Moodle and phpMyAdmin
+    echo -e "\e[93mDatabase user creation...\e[97m"
+    mysql -u root -p$GENERICPASSWORD -t << STOP
+CREATE USER 'moodlebox'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO 'moodlebox'@'localhost';
+FLUSH PRIVILEGES;
+\q
+STOP
+
+    ## Restart MariaDB
+    systemctl restart mariadb
 
     # install phpMyAdmin
     apt-get install -y phpmyadmin
@@ -435,6 +446,7 @@ STOP
     git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
     mkdir -p /var/www/moodledata/repository
     chown -R www-data:www-data /var/www/html /var/www/moodledata/
+    chmod -R ug+w,o-w /var/www/html /var/www/moodledata/
 
     mkdir -p /home/moodlebox/files
     chown -R moodlebox:www-data /home/moodlebox/files
@@ -469,7 +481,7 @@ EOF
       --dbtype="mariadb" \
       --dbname="moodle" \
       --prefix="mdl_" \
-      --dbuser="root" \
+      --dbuser="moodlebox" \
       --dbpass="$GENERICPASSWORD" \
       --fullname="MoodleBox" \
       --shortname="MoodleBox" \
@@ -493,6 +505,7 @@ EOF
     git checkout tags/$LASTTAG
     touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
     chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
+    chmod -R ug+w,o-w /var/www/html/admin/tool/moodlebox
 
     /usr/bin/php "/var/www/html/admin/cli/upgrade.php" --non-interactive
 
@@ -521,6 +534,7 @@ EOF
     rm -rf /var/cache/moodle-cache-backup/*
     mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_logstore_standard_log"
     mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_config_log"
+    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_upgrade_log"
     apt-get autoremove -y
     apt-get clean
     rm -rf /var/lib/apt/lists/*
