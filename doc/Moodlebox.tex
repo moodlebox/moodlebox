@@ -318,7 +318,7 @@ $ sudo apt-get install hostapd dnsmasq
 
 \subsection{Configuration des interfaces réseau}
 
-Il s'agit d'éviter que le client DHCP de la Raspberry récupère une adresse dynamique sur son interface Wi-Fi, risquant d'entrer en conflit avec son adresse fixe. On commence pour cela par modifier le fichier \lstinline{dhcpcd.conf}.
+Il s'agit d'éviter que le client DHCP de la Raspberry récupère une adresse dynamique sur son interface Wi-Fi, risquant d'entrer en conflit avec son adresse fixe. On commence pour cela par modifier le fichier \lstinline{/etc/dhcpcd.conf}.
 %\begin{lstlisting}[language=bash]
 %$ sudo nano /etc/dhcpcd.conf
 %\end{lstlisting}
