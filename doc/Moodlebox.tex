@@ -882,7 +882,9 @@ $ sudo rm -r /var/cache/moodle/*
 $ sudo rm -r /var/cache/moodle-cache-backup/*
 $ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_logstore_standard_log"
 $ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_config_log"
+$ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_upgrade_log"
 $ sudo apt-get clean
+$ sudo rm -r /var/lib/apt/lists/*
 $ sudo rm -r /var/cache/debconf/*
 $ sudo rm -r /tmp/*
 $ sudo rm -r /var/tmp/*
