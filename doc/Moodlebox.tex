@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{29 avril 2017\footnote{Version 1.6.5}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{xx juin 2017\footnote{Version 1.7b}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -664,20 +664,28 @@ Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app m
 
 \subsection{Installation du plugin Administration MoodleBox}
 
-Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, la modification du mot de passe, le réglage de l'heure, le changement du mot de passe du réseau Wi-Fi, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle\footnote{Plugin MoodleBox, version 1.5.3, \url{https://github.com/martignoni/moodlebox-plugin/releases/tag/v1.5.3}.}.
+Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, la modification du mot de passe, le réglage de l'heure, le changement du mot de passe du réseau Wi-Fi, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle\footnote{Plugin MoodleBox \url{https://github.com/martignoni/moodlebox-plugin}.}.
 
-Le plus simple est de l'installer via Git.
+Le plus simple est de l'installer au moyen de l'interface graphique de Moodle, en visitant \emph{Administration du site > Plugins > Dépôts > Installer des plugins}. On clique sur le bouton \emph{Installer des plugins à partir du répertoire des plugins Moodle} et choisit le plugin d'administration \emph{MoodleBox} (\emph{Admin tools}).
+
+Il est aussi possible de l'installer via Git\footnote{Le code source du plugin MoodleBox est disponible à l'adresse \url{https://moodle.org/plugins/tool_moodlebox}.}.
 
 \begin{lstlisting}[language=bash]
 $ cd /var/www/html/admin/tool/
 $ sudo git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
+\end{lstlisting}
+
+On termine dans ce cas l'installation du plugin en visitant la page \url{http://moodlebox.home/admin}. 
+
+Pour finaliser l'installation du plugin, il est nécessaire de créer quelques fichiers et d'en régler les autorisations.
+\begin{lstlisting}[language=bash]
 $ cd /var/www/html/admin/tool/moodlebox
 $ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
 $ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 $ sudo chmod -R ug+w,o-w /var/www/html/admin/tool/moodlebox
 \end{lstlisting}
 
-On termine l'installation du plugin en visitant la page \url{http://moodlebox.home/admin}. On installe pour terminer le paquetage \emph{incron}.
+On installe finalement le paquetage \emph{incron}.
 
 \begin{lstlisting}[language=bash]
 $ sudo apt-get install incron
