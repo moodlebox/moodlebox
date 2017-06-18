@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.6.5-with-stretch"
-DATE="2017-04-29"
+VERSION="1.7.0-with-stretch"
+DATE="2017-06-08"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -236,7 +236,7 @@ after_reboot(){
     sed -i '/query_cache_size/a query_cache_type    = 0' /etc/mysql/mariadb.conf.d/50-server.cnf
     # configure MariaDB InnoDB parameters (encodings are already OK on 10.1.21-5, Debian Stretch)
     # see https://mathiasbynens.be/notes/mysql-utf8mb4
-    # see https://docs.moodle.org/32/en/admin/environment/custom_check/mysql_full_unicode_support
+    # see https://docs.moodle.org/33/en/MySQL_full_unicode_support
     sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format = Barracuda' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -440,10 +440,10 @@ FLUSH PRIVILEGES;
 STOP
 
     ## Download Moodle via git and create all needed directories, with adequate permissions
-    echo -e "\e[93mDownloading Moodle 3.2.x via Git and directories configuration...\e[97m"
+    echo -e "\e[93mDownloading Moodle 3.3.x via Git and directories configuration...\e[97m"
     cd /var/www/
     rm -r html
-    git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
+    git clone --depth=1 -b MOODLE_33_STABLE git://git.moodle.org/moodle.git html
     mkdir -p /var/www/moodledata/repository
     chown -R www-data:www-data /var/www/html /var/www/moodledata/
     chmod -R ug+w,o-w /var/www/html /var/www/moodledata/
@@ -470,7 +470,7 @@ EOF
     ## Install Moodle via cli
     echo -e "\e[93mMoodle installation (via CLI)...\e[97m"
     # Summary to be displayed on the front page
-    SUMMARY="<p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.2.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span></p>
+    SUMMARY="<p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.3.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.3.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi&nbsp;3</a>.</span></p>
     <p><span lang='en' class='multilang'>MoodleBox is made by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span></p>
     <p><span lang='en' class='multilang'>Version $VERSION, $(LC_ALL=en_GB.utf8 date --date $DATE '+%d %B %Y').</span><span lang='fr' class='multilang'>Version $VERSION, $(LC_ALL=fr_FR.utf8 date --date $DATE '+%d %B %Y').</span></p>"
     # Start installation

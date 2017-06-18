@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.7, 2017-06-08
+
+* Updated to Moodle 3.3+
+* New database user `moodlebox` for Moodle and phpMyAdmin database access
+* Cleanup enhanced at end of build
+* Documentation updated
+
 ## Version 1.6.5, 2017-04-29
 
 * Permissions changes to fix issue #16

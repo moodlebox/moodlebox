@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{29 avril 2017\footnote{Version 1.6.5}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{8 juin 2017\footnote{Version 1.7}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -104,7 +104,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
 \item Interface graphique pour redémarrer et éteindre la MoodleBox, pour changer le mot de passe, pour modifier le mot de passe du réseau Wi-Fi, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
-\item Plateforme Moodle 3.2.x accessible via Wi-Fi (\url{http://moodlebox.home/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
+\item Plateforme Moodle 3.3.x accessible via Wi-Fi (\url{http://moodlebox.home/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Accès à Internet : si la MoodleBox est connectée par câble à un réseau relié à Internet, elle agit comme routeur et les clients Wi-Fi ont accès à Internet.
@@ -318,7 +318,7 @@ $ sudo apt-get install hostapd dnsmasq
 
 \subsection{Configuration des interfaces réseau}
 
-Il s'agit d'éviter que le client DHCP de la Raspberry récupère une adresse dynamique sur son interface Wi-Fi, risquant d'entrer en conflit avec son adresse fixe. On commence pour cela par modifier le fichier \lstinline{dhcpcd.conf}.
+Il s'agit d'éviter que le client DHCP de la Raspberry récupère une adresse dynamique sur son interface Wi-Fi, risquant d'entrer en conflit avec son adresse fixe. On commence pour cela par modifier le fichier \lstinline{/etc/dhcpcd.conf}.
 %\begin{lstlisting}[language=bash]
 %$ sudo nano /etc/dhcpcd.conf
 %\end{lstlisting}
@@ -556,9 +556,9 @@ $ sudo apt-get install git
 \begin{lstlisting}[language=bash]
 $ cd /var/www/
 $ sudo rm -r html
-$ sudo git clone --depth=1 -b MOODLE_32_STABLE git://git.moodle.org/moodle.git html
+$ sudo git clone --depth=1 -b MOODLE_33_STABLE git://git.moodle.org/moodle.git html
 \end{lstlisting}
-La dernière commande ci-dessus spécifie la branche installée par Git. Dans ce cas, il s'agit de la version 3.2.x stable actuelle\footnote{Les changements des réglages du thème par défaut Boost sont très lents (plus d'une minute). Cependant, une fois les modifications enregistrées, aucun ralentissement n'est perceptible.}.
+La dernière commande ci-dessus spécifie la branche installée par Git. Dans ce cas, il s'agit de la version 3.3.x stable actuelle\footnote{Les changements des réglages du thème par défaut Boost sont très lents (plus d'une minute). Cependant, une fois les modifications enregistrées, aucun ralentissement n'est perceptible.}.
 
 On crée le dossier de données de Moodle et règle adéquatement les permissions.
 \begin{lstlisting}[language=bash]
@@ -664,20 +664,28 @@ Depuis un smartphone connecté en Wi-Fi sur le réseau MoodleBox, lancer l'app m
 
 \subsection{Installation du plugin Administration MoodleBox}
 
-Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, la modification du mot de passe, le réglage de l'heure, le changement du mot de passe du réseau Wi-Fi, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle\footnote{Plugin MoodleBox, version 1.4.2, \url{https://github.com/martignoni/moodlebox-plugin/releases/tag/v1.4.2}.}.
+Afin de permettre le redémarrage et l'arrêt de la MoodleBox sans risque de corruption de la carte microSD, la modification du mot de passe, le réglage de l'heure, le changement du mot de passe du réseau Wi-Fi, ainsi que pour donner des informations utiles sur son fonctionnement, on installe le plugin d'administration \emph{MoodleBox} pour Moodle\footnote{Plugin MoodleBox \url{https://github.com/martignoni/moodlebox-plugin}.}.
 
-Le plus simple est de l'installer via Git.
+Le plus simple est de l'installer au moyen de l'interface graphique de Moodle, en visitant \emph{Administration du site > Plugins > Dépôts > Installer des plugins}. On clique sur le bouton \emph{Installer des plugins à partir du répertoire des plugins Moodle} et choisit le plugin d'administration \emph{MoodleBox} (\emph{Admin tools}).
+
+Il est aussi possible de l'installer via Git\footnote{Le code source du plugin MoodleBox est disponible à l'adresse \url{https://moodle.org/plugins/tool_moodlebox}.}.
 
 \begin{lstlisting}[language=bash]
 $ cd /var/www/html/admin/tool/
 $ sudo git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
+\end{lstlisting}
+
+On termine dans ce cas l'installation du plugin en visitant la page \url{http://moodlebox.home/admin}. 
+
+Pour finaliser l'installation du plugin, il est nécessaire de créer quelques fichiers et d'en régler les autorisations.
+\begin{lstlisting}[language=bash]
 $ cd /var/www/html/admin/tool/moodlebox
 $ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
 $ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
 $ sudo chmod -R ug+w,o-w /var/www/html/admin/tool/moodlebox
 \end{lstlisting}
 
-On termine l'installation du plugin en visitant la page \url{http://moodlebox.home/admin}. On installe pour terminer le paquetage \emph{incron}.
+On installe finalement le paquetage \emph{incron}.
 
 \begin{lstlisting}[language=bash]
 $ sudo apt-get install incron
@@ -874,7 +882,9 @@ $ sudo rm -r /var/cache/moodle/*
 $ sudo rm -r /var/cache/moodle-cache-backup/*
 $ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_logstore_standard_log"
 $ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_config_log"
+$ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_upgrade_log"
 $ sudo apt-get clean
+$ sudo rm -r /var/lib/apt/lists/*
 $ sudo rm -r /var/cache/debconf/*
 $ sudo rm -r /tmp/*
 $ sudo rm -r /var/tmp/*
@@ -883,7 +893,7 @@ $ sudo bash -c 'for logs in `find /var/log -type f`; do > $logs; done'
 $ cat /dev/null > ~/.bash_history && history -c && sudo shutdown -h now
 \end{lstlisting}
 
-Si tout s'est bien passé, la totalité ne doit pas dépasser la taille de 1.6~Go. L'image-disque, une fois tronquée, a une taille d'environ 2.3~Go. Compressée, elle tient dans environ 750~Mo.
+Si tout s'est bien passé, la totalité a une taille d'environ 1.6~Go. L'image-disque, une fois tronquée, a une taille d'environ 1.9~Go. Compressée, elle tient dans environ 550~Mo.
 
 
 \end{document}
