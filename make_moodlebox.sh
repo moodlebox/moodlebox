@@ -475,8 +475,8 @@ STOP
 
     cat << "EOF" >> /etc/fstab
 tmpfs /var/cache/moodle tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
-tmpfs /var/www/moodledata/temp tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
-tmpfs /var/www/moodledata/sessions tmpfs size=32M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/temp tmpfs size=128M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/sessions tmpfs size=16M,mode=775,uid=www-data,gid=www-data 0 0
 EOF
 
     ## Install Moodle via cli
