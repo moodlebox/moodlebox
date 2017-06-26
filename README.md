@@ -18,7 +18,7 @@ Visit the [MoodleBox web site](https://moodlebox.net) for any question about the
   * GUI to change the password of the MoodleBox.
   * GUI to change the password of the Wi-Fi network published by the MoodleBox.
   * GUI to set date and time of the MoodleBox (when away from Internet connection).
-* [PhpMyAdmin](http://moodlebox.home/phpmyadmin) is installed with an admin account; username: _root_, password: _Moodlebox4$_.
+* [PhpMyAdmin](http://moodlebox.home/phpmyadmin) is installed with an admin account; username: _moodlebox_, password: _Moodlebox4$_.
 
 ## Building the MoodleBox
 
