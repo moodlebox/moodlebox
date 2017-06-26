@@ -259,7 +259,7 @@ EOF
 
     ## Create database user for Moodle and phpMyAdmin
     echo -e "\e[93mDatabase user creation...\e[97m"
-    mysql -u root -p$GENERICPASSWORD -t << STOP
+    mysql -t << STOP
 CREATE USER 'moodlebox'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
 GRANT ALL PRIVILEGES ON *.* TO 'moodlebox'@'localhost';
 FLUSH PRIVILEGES;
@@ -444,9 +444,9 @@ EOF
 
     ## Create database for Moodle
     echo -e "\e[93mMySQL and Moodle database configuration...\e[97m"
-    mysql -u root -p$GENERICPASSWORD -t << STOP
+    mysql -t << STOP
 CREATE DATABASE moodle;
-GRANT ALL ON moodle.* TO 'root'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
+GRANT ALL ON moodle.* TO 'moodlebox'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
 FLUSH PRIVILEGES;
 \q
 STOP
@@ -544,9 +544,9 @@ EOF
     rm -rf /var/www/moodledata/sessions/*
     rm -rf /var/cache/moodle/*
     rm -rf /var/cache/moodle-cache-backup/*
-    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_logstore_standard_log"
-    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_config_log"
-    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_upgrade_log"
+    mysql -e "truncate table moodle.mdl_logstore_standard_log"
+    mysql -e "truncate table moodle.mdl_config_log"
+    mysql -e "truncate table moodle.mdl_upgrade_log"
     apt-get autoremove -y
     apt-get clean
     rm -rf /var/lib/apt/lists/*
