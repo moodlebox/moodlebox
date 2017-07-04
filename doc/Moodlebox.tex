@@ -108,7 +108,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Accès à Internet : si la MoodleBox est connectée par câble à un réseau relié à Internet, elle agit comme routeur et les clients Wi-Fi ont accès à Internet.
-\item PhpMyAdmin installé (\url{http://moodlebox.home/phpmyadmin}), avec un compte administrateur, nom d'utilisateur : \emph{root}, mot de passe : \emph{Moodlebox4\$}.
+\item PhpMyAdmin installé (\url{http://moodlebox.home/phpmyadmin}), avec un compte administrateur, nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}.
 \end{itemize}
 
 \subsection{Ce que la MoodleBox ne fait pas}
@@ -500,7 +500,7 @@ puis lancer dans un navigateur l'URL \url{http://moodlebox.home/info.php}. La lo
 $ sudo apt-get install -t stretch mariadb-server php7.0-mysql
 \end{lstlisting}
 
-Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{root}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
+Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{moodlebox}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
 
 \begin{verification}
 Recharger l'URL \url{http://moodlebox.home/info.php}. Une section \emph{MySQL} supplémentaire doit apparaître dans la page.
@@ -511,7 +511,7 @@ Recharger l'URL \url{http://moodlebox.home/info.php}. Une section \emph{MySQL} s
 Afin de permettre un accès flexible aux bases de données, on crée un nouvel utilisateur de base de données dans MariaDB.
 
 \begin{lstlisting}[language=bash]
-$ mysql -u root -p
+$ sudo mysql
     > CREATE USER 'moodlebox'@'localhost' IDENTIFIED BY 'Moodlebox4$';
     > GRANT ALL PRIVILEGES ON *.* TO 'moodlebox'@'localhost';
     > FLUSH PRIVILEGES;
@@ -525,6 +525,9 @@ Depuis la version 3.1.2+\footnote{Version du début du mois de mars 2017.} de Mo
 innodb_file_format = Barracuda
 innodb_file_per_table = 1
 innodb_large_prefix
+innodb_log_file_size = 64M
+innodb_buffer_pool_instances = 1
+innodb_buffer_pool_size = 128M
 character-set-client-handshake = FALSE
 \end{lstlisting}
 
@@ -536,9 +539,9 @@ $ sudo systemctl restart mysql.service
 On peut maintenant créer la base de données que Moodle utilisera.
 
 \begin{lstlisting}[language=bash]
-$ mysql -u root -p
+$ sudo mysql
     > CREATE DATABASE moodle;
-    > GRANT ALL ON moodle.* TO 'root'@'localhost' IDENTIFIED BY 'Moodlebox4$';
+    > GRANT ALL ON moodle.* TO 'moodlebox'@'localhost' IDENTIFIED BY 'Moodlebox4$';
     > FLUSH PRIVILEGES;
     > QUIT;
 \end{lstlisting}
@@ -880,9 +883,9 @@ $ sudo rm -r /var/www/moodledata/trashdir/*
 $ sudo rm -r /var/www/moodledata/sessions/*
 $ sudo rm -r /var/cache/moodle/*
 $ sudo rm -r /var/cache/moodle-cache-backup/*
-$ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_logstore_standard_log"
-$ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_config_log"
-$ mysql -u root -p'Moodlebox4$' moodle -e "truncate table moodle.mdl_upgrade_log"
+$ sudo mysql moodle -e "truncate table moodle.mdl_logstore_standard_log"
+$ sudo mysql moodle -e "truncate table moodle.mdl_config_log"
+$ sudo mysql moodle -e "truncate table moodle.mdl_upgrade_log"
 $ sudo apt-get clean
 $ sudo rm -r /var/lib/apt/lists/*
 $ sudo rm -r /var/cache/debconf/*

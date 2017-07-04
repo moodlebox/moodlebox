@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.7.0-with-stretch"
-DATE="2017-06-08"
+VERSION="1.8.0-with-stretch"
+DATE="2017-06-23"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -240,14 +240,14 @@ after_reboot(){
     sed -i '/# Read the manual for more InnoDB related options/a \innodb_file_format = Barracuda' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_file_format/a \innodb_file_per_table = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_file_per_table/a \innodb_large_prefix' /etc/mysql/mariadb.conf.d/50-server.cnf
-    sed -i '/innodb_large_prefix/a \innodb_log_file_size = 16M' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -i '/innodb_large_prefix/a \innodb_log_file_size = 64M' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_log_file_size/a \innodb_buffer_pool_instances = 1' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/innodb_buffer_pool_instances/a \innodb_buffer_pool_size = 128M' /etc/mysql/mariadb.conf.d/50-server.cnf
     sed -i '/collation-server/a \character-set-client-handshake = FALSE' /etc/mysql/mariadb.conf.d/50-server.cnf
 
     ## Create database user for Moodle and phpMyAdmin
     echo -e "\e[93mDatabase user creation...\e[97m"
-    mysql -u root -p$GENERICPASSWORD -t << STOP
+    mysql -t << STOP
 CREATE USER 'moodlebox'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
 GRANT ALL PRIVILEGES ON *.* TO 'moodlebox'@'localhost';
 FLUSH PRIVILEGES;
@@ -432,9 +432,9 @@ EOF
 
     ## Create database for Moodle
     echo -e "\e[93mMySQL and Moodle database configuration...\e[97m"
-    mysql -u root -p$GENERICPASSWORD -t << STOP
+    mysql -t << STOP
 CREATE DATABASE moodle;
-GRANT ALL ON moodle.* TO 'root'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
+GRANT ALL ON moodle.* TO 'moodlebox'@'localhost' IDENTIFIED BY '$GENERICPASSWORD';
 FLUSH PRIVILEGES;
 \q
 STOP
@@ -463,8 +463,8 @@ STOP
 
     cat << "EOF" >> /etc/fstab
 tmpfs /var/cache/moodle tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
-tmpfs /var/www/moodledata/temp tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
-tmpfs /var/www/moodledata/sessions tmpfs size=32M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/temp tmpfs size=128M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/sessions tmpfs size=16M,mode=775,uid=www-data,gid=www-data 0 0
 EOF
 
     ## Install Moodle via cli
@@ -532,9 +532,9 @@ EOF
     rm -rf /var/www/moodledata/sessions/*
     rm -rf /var/cache/moodle/*
     rm -rf /var/cache/moodle-cache-backup/*
-    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_logstore_standard_log"
-    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_config_log"
-    mysql -u root -p$GENERICPASSWORD moodle -e "truncate table moodle.mdl_upgrade_log"
+    mysql -e "truncate table moodle.mdl_logstore_standard_log"
+    mysql -e "truncate table moodle.mdl_config_log"
+    mysql -e "truncate table moodle.mdl_upgrade_log"
     apt-get autoremove -y
     apt-get clean
     rm -rf /var/lib/apt/lists/*
