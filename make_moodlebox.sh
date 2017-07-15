@@ -202,7 +202,7 @@ bind '"\e[B":history-search-forward'
 bind 'TAB:menu-complete'
 EOF
 
-    sed -i '/PS1=.*01;32m.*01;34m.*/c\    PS1="${debian_chroot:+($debian_chroot)}\\[\\e[0;93m\\]\\u\\[\\e[0m\\]@\\[\\e[0;95m\\]\\h\\[\\e[0m\\]:\\[\\e[0;96m\\]\\w \\$\\[\\e[0m\\] "' /home/moodlebox/.bashrc
+    sed -i '/PS1=.*01;32m.*01;34m.*/c\    PS1="${debian_chroot:+($debian_chroot)}\\[\\e[0;93m\\]\\u\\[\\e[0m\\]@\\[\\e[38;5;208m\\]\\h\\[\\e[0m\\]:\\[\\e[0;96m\\]\\w \\$\\[\\e[0m\\] "' /home/moodlebox/.bashrc
 
     # Update system to latest stable release
     echo -e "\e[93mUpdating system to latest stable release...\e[97m"
