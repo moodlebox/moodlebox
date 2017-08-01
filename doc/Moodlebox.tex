@@ -297,6 +297,15 @@ $ sudo rm authfiles.tgz
 
 Désormais, on se connectera à la MoodleBox avec le nom d'utilisateur \emph{moodlebox} et le mot de passe \emph{Moodlebox4\$}.
 
+\subsection{Augmentation de la mémoire disponible, suppression de l'extinction de l'écran}
+
+Pour augmenter la mémoire disponible, on réduit la mémoire réservée à la puce graphique à 16 Mo. Cela ne porte pas à conséquence, puisque notre système n'a pas d'interface graphique. Pour ce faire, on ajoute à la fin du fichier \lstinline{/boot/config.txt} la ligne ci-dessous.
+\begin{lstlisting}[language=bash]
+gpu_mem=16
+\end{lstlisting}
+
+On désactive également l'extinction automatique de l'écran, puisque la MoodleBox n'est pas destinée à être connectée à un écran. On ajoute pour cela le paramètre \lstinline{consoleblank=0} à l'unique ligne du fichier \lstinline{/boot/cmdline.txt}.
+
 \subsection{Correction d'un bogue dans Debian Jessie}
 
 On profite de corriger un bogue qui a pour conséquence de remplir certains fichiers d'historique de la MoodleBox\footnote{Voir \url{https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839}.}.

@@ -184,6 +184,10 @@ EOF
     echo -e "\e[93mReducing memory split down to 16Mb...\e[97m"
     echo "gpu_mem=16" >> /boot/config.txt
 
+    # Turn off screen blanking
+    echo -e "\e[93mTurning off screen blanking...\e[97m"
+    sed -i 's/\bconsole=tty1\b/& consoleblank=0/' /boot/cmdline.txt
+
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
     # https://blog.dantup.com/2016/04/removing-rsyslog-spam-on-raspberry-pi-raspbian-jessie/
