@@ -58,7 +58,7 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.8.1"
+VERSION="1.8.1-with-stretch"
 DATE="2017-07-08"
 
 # The real thing begins here
@@ -226,25 +226,13 @@ after_reboot(){
     debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
     debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 
-    ## Add stretch to sources.list
-    echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" >> /etc/apt/sources.list
-
-    # use jessie packages by default
-    cat << "EOF" >> /etc/apt/preferences
-Package: *
-Pin: release n=jessie
-Pin-Priority: 600
-EOF
-
-    apt-get update
-
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
     apt-get install -y hostapd dnsmasq git usbmount incron
     echo root > /etc/incron.allow
-    apt-get install -y -t stretch mariadb-server
+    apt-get install -y mariadb-server
     # install nginx 1.10 and php 7.0
-    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
+    apt-get install -y nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 
     # configure MariaDB server parameters
     sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -276,7 +264,7 @@ STOP
     systemctl restart mariadb
 
     # install phpMyAdmin
-    apt-get install -y -t stretch phpmyadmin
+    apt-get install -y phpmyadmin
 
     ## Access point and network configuration: edit configuration files
     echo -e "\e[93mAccess point and network configuration...\e[97m"
