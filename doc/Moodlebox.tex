@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{8 juin 2017\footnote{Version 1.7}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{8 juillet 2017\footnote{Version 1.8.1}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -296,6 +296,15 @@ $ sudo rm authfiles.tgz
 \end{lstlisting}
 
 Désormais, on se connectera à la MoodleBox avec le nom d'utilisateur \emph{moodlebox} et le mot de passe \emph{Moodlebox4\$}.
+
+\subsection{Augmentation de la mémoire disponible, suppression de l'extinction de l'écran}
+
+Pour augmenter la mémoire disponible, on réduit la mémoire réservée à la puce graphique à 16 Mo. Cela ne porte pas à conséquence, puisque notre système n'a pas d'interface graphique. Pour ce faire, on ajoute à la fin du fichier \lstinline{/boot/config.txt} la ligne ci-dessous.
+\begin{lstlisting}[language=bash]
+gpu_mem=16
+\end{lstlisting}
+
+On désactive également l'extinction automatique de l'écran, puisque la MoodleBox n'est pas destinée à être connectée à un écran. On ajoute pour cela le paramètre \lstinline{consoleblank=0} à l'unique ligne du fichier \lstinline{/boot/cmdline.txt}.
 
 \subsection{Correction d'un bogue dans Debian Jessie}
 

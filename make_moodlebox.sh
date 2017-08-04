@@ -58,8 +58,8 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.8.0-with-stretch"
-DATE="2017-06-23"
+VERSION="1.8.1-with-stretch"
+DATE="2017-07-08"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
@@ -184,6 +184,10 @@ EOF
     echo -e "\e[93mReducing memory split down to 16Mb...\e[97m"
     echo "gpu_mem=16" >> /boot/config.txt
 
+    # Turn off screen blanking
+    echo -e "\e[93mTurning off screen blanking...\e[97m"
+    sed -i 's/\bconsole=tty1\b/& consoleblank=0/' /boot/cmdline.txt
+
     ## Remove logging to /dev/xconsole from the default rsyslog configuration
     # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
     # https://blog.dantup.com/2016/04/removing-rsyslog-spam-on-raspberry-pi-raspbian-jessie/
@@ -201,6 +205,8 @@ bind '"\e[B":history-search-forward'
 # TAB cycles through the list of partial matches
 bind 'TAB:menu-complete'
 EOF
+
+    sed -i '/PS1=.*01;32m.*01;34m.*/c\    PS1="${debian_chroot:+($debian_chroot)}\\[\\e[0;93m\\]\\u\\[\\e[0m\\]@\\[\\e[38;5;208m\\]\\h\\[\\e[0m\\]:\\[\\e[0;96m\\]\\w \\[\\e[0m\\]\\$ "' /home/moodlebox/.bashrc
 
     # Update system to latest stable release
     echo -e "\e[93mUpdating system to latest stable release...\e[97m"

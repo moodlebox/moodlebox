@@ -1,7 +1,15 @@
-# MoodleBox Release notes
+# MoodleBox – Release notes
 
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+## Version 1.8.1, 2017-07-08
+
+- Based on Raspbian Jessie Lite version of 2017-07-05
+- Size of RAM partitions tweaked, as partial workaround for issue #18
+- Fixed value for `innodb_log_file_size`, which was set much too low (issue #19)
+- Uses now new MariaDB root mecanism (with sudo, instead of DB password)
+- Prompt of default shell user changed for better readability
 
 ## Version 1.8, 2017-06-23
 
