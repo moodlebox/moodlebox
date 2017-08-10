@@ -11,6 +11,8 @@ git commit -m "Changelog for upcoming release x.y.z."
 ```
 bumpversion patch
 ```
+- [ ] Update version date in doc/MoodleBox.tex
+- [ ] Update version date in make_moodlebox.sh
 
 - [ ] Push: `git push`
 - [ ] Push tags: `git push --tags`
