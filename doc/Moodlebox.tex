@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{8 juillet 2017\footnote{Version 1.9.0}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{18 août 2017\footnote{Version 1.9.0}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -122,7 +122,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 
 \subsection{Préparation de la carte microSD}
 
-Télécharger l'image \emph{Raspbian Jessie Lite} depuis le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/downloads/raspbian/}.}, puis la copier sur une carte microSD. La procédure, qui dépend système d'exploitation, est décrite sur le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/documentation/installation/installing-images/}.}.
+Télécharger l'image \emph{Raspbian Stretch Lite} depuis le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/downloads/raspbian/}.}, puis la copier sur une carte microSD. La procédure, qui dépend système d'exploitation, est décrite sur le site de Raspberry Pi\footnote{\url{https://www.raspberrypi.org/documentation/installation/installing-images/}.}.
 
 \subsection{Activation de l'accès via SSH}
 
@@ -297,7 +297,7 @@ $ sudo rm authfiles.tgz
 
 Désormais, on se connectera à la MoodleBox avec le nom d'utilisateur \emph{moodlebox} et le mot de passe \emph{Moodlebox4\$}.
 
-\subsection{Augmentation de la mémoire disponible, suppression de l'extinction de l'écran}
+\subsection{Augmentation de la mémoire disponible, suppression de l'extinction de l'écran, désactivation de la fonctionnalité des noms d'interface réseau prédictibles}
 
 Pour augmenter la mémoire disponible, on réduit la mémoire réservée à la puce graphique à 16 Mo. Cela ne porte pas à conséquence, puisque notre système n'a pas d'interface graphique. Pour ce faire, on ajoute à la fin du fichier \lstinline{/boot/config.txt} la ligne ci-dessous.
 \begin{lstlisting}[language=bash]
@@ -306,15 +306,7 @@ gpu_mem=16
 
 On désactive également l'extinction automatique de l'écran, puisque la MoodleBox n'est pas destinée à être connectée à un écran. On ajoute pour cela le paramètre \lstinline{consoleblank=0} à l'unique ligne du fichier \lstinline{/boot/cmdline.txt}.
 
-\subsection{Correction d'un bogue dans Debian Jessie}
-
-On profite de corriger un bogue qui a pour conséquence de remplir certains fichiers d'historique de la MoodleBox\footnote{Voir \url{https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839}.}.
-
-% sudo nano /etc/rsyslog.conf
-\begin{lstlisting}[language=bash]
-$ sudo sed -i '/# The named pipe \/dev\/xconsole/,$d' /etc/rsyslog.conf
-$ sudo systemctl restart rsyslog
-\end{lstlisting}
+Finalement, on désactive la fonctionnalité des noms d'interface réseau prédictibles en ajoutant le paramètre \lstinline{net.ifnames=0} à cette même ligne du fichier \lstinline{/boot/cmdline.txt}.
 
 \section[Configuration du point d'accès Wi-Fi]{Configuration du point d'accès Wi-Fi\footnote{Les configurations décrites dans cette section et la suivante sont inspirées de \url{https://frillip.com/using-your-raspberry-pi-3-as-a-wifi-access-point-with-hostapd/}.}}
 
@@ -463,17 +455,10 @@ On va installer le serveur web nginx avec PHP et MariaDB.
 
 \subsection{Installation et configuration de nginx et PHP}
 
-Pour une performance accrue on installe nginx 1.10 et PHP7, à partir de la future distribution Debian Stretch. On commence par ajouter les lignes suivantes à la fin du fichier \lstinline{/etc/apt/preferences}.
-\begin{lstlisting}[language=bash]
-Package: *
-Pin: release n=jessie
-Pin-Priority: 600
-\end{lstlisting}
-
 On met à jour ensuite la liste des paquetages, puis installe ceux qui sont nécessaires.
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
+$ sudo apt-get install -y nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 \end{lstlisting}
 
 \begin{verification}
@@ -506,7 +491,7 @@ puis lancer dans un navigateur l'URL \url{http://moodlebox.home/info.php}. La lo
 \subsubsection{Installation de MariaDB}
 
 \begin{lstlisting}[language=bash]
-$ sudo apt-get install -t stretch mariadb-server php7.0-mysql
+$ sudo apt-get install mariadb-server php7.0-mysql
 \end{lstlisting}
 
 Au cours de l'installation, on définit le mot de passe de l'utilisateur principal de la base de données \emph{moodlebox}. Comme plus haut,  on définira un mot de passe fort. Pour cette installation, le mot de passe est défini à \emph{Moodlebox4\$}.
@@ -864,7 +849,7 @@ query_cache_type        = 0
 
 \section{Redimensionnement automatique de la partition au premier démarrage}
 
-Afin d'éviter à l'utilisateur de devoir redimensionner manuellement la partition de travail, on configure le redimensionnement automatique au premier démarrage. La méthode est identique à celle utilisée lors de la construction de l'image-disque de \emph{Raspbian Jessie Lite}\footnote{\url{https://github.com/RPi-Distro/pi-gen}}.
+Afin d'éviter à l'utilisateur de devoir redimensionner manuellement la partition de travail, on configure le redimensionnement automatique au premier démarrage. La méthode est identique à celle utilisée lors de la construction de l'image-disque de \emph{Raspbian Stretch Lite}\footnote{\url{https://github.com/RPi-Distro/pi-gen}}.
 
 On copie le fichier \lstinline{resize2fs_once} ci-dessous dans le dossier \lstinline{/etc/init.d/}, et on lui donne les permissions adéquates pour être lancé au redémarrage.
 \lstinputlisting[language=bash]{files/resize2fs_once}

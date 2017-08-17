@@ -59,7 +59,7 @@ TIMEZONE="Europe/Paris"
 
 # Version related variables
 VERSION="1.9.0"
-DATE="2017-07-08"
+DATE="2017-08-18"
 
 # The real thing begins here
 export DEBIAN_FRONTEND="noninteractive"
