@@ -58,7 +58,7 @@ TIMEZONE="Europe/Paris"
 # curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
-VERSION="1.8.1"
+VERSION="1.9.0"
 DATE="2017-07-08"
 
 # The real thing begins here
