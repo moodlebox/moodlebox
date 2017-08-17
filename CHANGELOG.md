@@ -6,7 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ## Unreleased
 
 ### Changed
-- Updated to Moodle 3.3.1
+- Debian Stretch!
+- Based on Raspbian Stretch Lite version of 2017-08-16
+- Updated to Moodle 3.3.1+
 - Prompt color of moodlebox shell user changed to orange
 
 ### Fixed

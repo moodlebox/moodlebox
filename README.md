@@ -24,7 +24,7 @@ Visit the [MoodleBox web site](https://moodlebox.net) for any question about the
 
 To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (Wi-Fi!) and follow these instructions.
 
-1. Clone Rasbpian Jessie Lite on your microSD card
+1. Clone Rasbpian Stretch Lite on your microSD card
 1. Create a `ssh` file on the `boot` partition, e.g. `touch ssh`
 1. Login to your RPi with the default user pi: `ssh pi@raspberrypi.local`
 1. Upgrade your Raspbian installation: `sudo apt-get update && sudo apt-get dist-upgrade -y`
