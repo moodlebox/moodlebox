@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 - Prompt color of moodlebox shell user changed to orange
 
 ### Fixed
+- Fixed automount of USB drives, replacing USBmount
 - Screen blanking is now turned off
 
 ## Version 1.8.1, 2017-07-08
