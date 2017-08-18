@@ -224,9 +224,71 @@ after_reboot(){
     debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
     debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 
+    ## Configure automount
+    echo -e "\e[93mAutomount configuration...\e[97m"
+    cat >> /etc/fstab <<EOF
+# Rules for automounting both at boot and upon USB plugin. Rely on udev rules
+/dev/USBdrive  /media/USBdrive         auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive1 /media/USBdrive1        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive2 /media/USBdrive2        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive3 /media/USBdrive3        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive4 /media/USBdrive4        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive5 /media/USBdrive5        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive6 /media/USBdrive6        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive7 /media/USBdrive7        auto    defaults,noatime,auto,nofail    0       2
+/dev/USBdrive8 /media/USBdrive8        auto    defaults,noatime,auto,nofail    0       2
+EOF
+
+    cat > /usr/local/etc/blknum <<'EOF'
+#!/bin/bash
+
+# we perform a cleanup with the first one
+ls -d /dev/USBdrive* &>/dev/null || {
+  rmdir /media/USBdrive*
+  for f in `ls /media/`; do
+    test -L $f && rm $f
+  done
+  exit 0
+}
+
+for i in `seq 1 1 8`; do
+  test -e /media/USBdrive$i && continue
+  echo $i
+  exit 0
+done
+
+exit 1
+EOF
+
+    chmod +x /usr/local/etc/blknum
+
+    # Create udev automount rules.
+    cat > /etc/udev/rules.d/50-automount.rules <<'EOF'
+# Need to be a block device
+KERNEL!="sd[a-z][0-9]", GOTO="exit"
+
+# Import some useful filesystem info as variables
+IMPORT{program}="/sbin/blkid -o udev -p %N"
+
+# Need to be a filesystem
+ENV{ID_FS_TYPE}!="vfat|ntfs|ext4|iso9660", GOTO="exit"
+
+# Create symlink that will be understood by fstab, and a directory in /media
+ACTION!="remove", PROGRAM="/usr/local/etc/blknum", RUN+="/bin/mkdir -p /media/USBdrive%c", SYMLINK+="USBdrive%c"
+
+# Get a label if present, otherwise specify one
+ENV{ID_FS_LABEL}!="", ENV{dir_name}="%E{ID_FS_LABEL}"
+
+# Link with label name if exists
+ACTION=="add", ENV{ID_FS_LABEL}!="", ENV{ID_FS_LABEL}!="USBdrive*", RUN+="/bin/rm /media/%E{ID_FS_LABEL}", RUN+="/bin/ln -sT /media/USBdrive%c /media/%E{ID_FS_LABEL}"
+
+# Exit
+LABEL="exit"
+EOF
+
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y hostapd dnsmasq git usbmount incron
+    apt-get install -y hostapd dnsmasq git incron
     echo root > /etc/incron.allow
     apt-get install -y mariadb-server
     # install nginx 1.10 and php 7.0
@@ -460,7 +522,7 @@ STOP
     chown -R moodlebox:www-data /home/moodlebox/files
     chmod g+s /home/moodlebox/files
     ln -s /home/moodlebox/files /var/www/moodledata/repository
-    ln -s /media/usb /var/www/moodledata/repository
+    ln -s /media/USBdrive /var/www/moodledata/repository/usb
 
     ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
