@@ -188,12 +188,6 @@ EOF
     echo -e "\e[93mTurning off screen blanking...\e[97m"
     sed -i 's/\bconsole=tty1\b/& consoleblank=0/' /boot/cmdline.txt
 
-    ## Remove logging to /dev/xconsole from the default rsyslog configuration
-    # https://anonscm.debian.org/cgit/collab-maint/rsyslog.git/commit/?id=67bc8e5326b0d3564c7e2153dede25f9690e6839
-    # https://blog.dantup.com/2016/04/removing-rsyslog-spam-on-raspberry-pi-raspbian-jessie/
-    sed -i '/# The named pipe \/dev\/xconsole/,$d' /etc/rsyslog.conf
-    systemctl restart rsyslog
-
     ## Some bash configurations for default account
     cat << "EOF" >> /home/moodlebox/.bashrc
 
@@ -226,25 +220,13 @@ after_reboot(){
     debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
     debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 
-    ## Add stretch to sources.list
-    echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" >> /etc/apt/sources.list
-
-    # use jessie packages by default
-    cat << "EOF" >> /etc/apt/preferences
-Package: *
-Pin: release n=jessie
-Pin-Priority: 600
-EOF
-
-    apt-get update
-
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
     apt-get install -y hostapd dnsmasq git usbmount incron
     echo root > /etc/incron.allow
-    apt-get install -y -t stretch mariadb-server
+    apt-get install -y mariadb-server
     # install nginx 1.10 and php 7.0
-    apt-get install -y -t stretch nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
+    apt-get install -y nginx php7.0-fpm php7.0-cli php7.0-xmlrpc php7.0-curl php7.0-gd php7.0-intl php7.0-soap php7.0-mysql php-apcu
 
     # configure MariaDB server parameters
     sed -i '/table_cache/c\table_cache             = 512' /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -276,7 +258,7 @@ STOP
     systemctl restart mariadb
 
     # install phpMyAdmin
-    apt-get install -y -t stretch phpmyadmin
+    apt-get install -y phpmyadmin
 
     ## Access point and network configuration: edit configuration files
     echo -e "\e[93mAccess point and network configuration...\e[97m"
