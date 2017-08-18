@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Unreleased
+<!-- ## Unreleased -->
+
+## Version 1.9, 2017-08-18
 
 ### Changed
 - Debian Stretch!
