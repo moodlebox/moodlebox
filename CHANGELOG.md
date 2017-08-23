@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 <!-- ## Unreleased -->
 
+## Version 1.9.1, 2017-08-23
+
+### Fixed
+- Fix issue #25 (non-persistent setting of IP forwarding rules) using `iptables-persistent` package
+
+### Changed
+- Moodle source is now installed in a new folder, preserving original nginx installation
+
 ## Version 1.9, 2017-08-18
 
 ### Changed
