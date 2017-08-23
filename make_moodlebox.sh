@@ -288,7 +288,7 @@ EOF
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y hostapd dnsmasq git incron
+    apt-get install -y iptables-persistent hostapd dnsmasq git incron
     echo root > /etc/incron.allow
     apt-get install -y mariadb-server
     # install nginx 1.10 and php 7.0
@@ -427,15 +427,8 @@ EOF
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
     iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
-    sh -c "iptables-save > /etc/iptables.ipv4.nat"
-    sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 
-    # 7. /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
-    cat << "EOF" > /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
-iptables-restore < /etc/iptables.ipv4.nat
-EOF
-
-    # 8. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
+    # 7. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
     cat << "EOF" > /etc/avahi/services/moodlebox.service
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
