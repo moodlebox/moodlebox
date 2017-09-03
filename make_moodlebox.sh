@@ -164,7 +164,7 @@ EOF
     CURRENT_HOSTNAME=`cat /etc/hostname | tr -d " \t\n\r"`
     NEW_HOSTNAME=moodlebox
     echo $NEW_HOSTNAME > /etc/hostname
-    sed -i "s/127.0.1.1.*$CURRENT_HOSTNAME/10.0.0.1\t$NEW_HOSTNAME/g" /etc/hosts
+    sed -i "s/127.0.1.1.*$CURRENT_HOSTNAME/10.0.0.1\t$NEW_HOSTNAME.me/g" /etc/hosts
 
     # Rename default user from "pi" to "moodlebox"
     # http://unixetc.co.uk/2016/01/07/how-to-rename-the-default-raspberry-pi-user/
@@ -288,7 +288,7 @@ EOF
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y iptables-persistent hostapd dnsmasq git incron
+    apt-get install -y iptables-persistent hostapd dnsmasq git incron certbot
     echo root > /etc/incron.allow
     apt-get install -y mariadb-server
     # install nginx 1.10 and php 7.0
@@ -412,11 +412,12 @@ server=209.244.0.3          # Forward DNS requests to Level3 DNS
 server=209.244.0.4          # Forward DNS requests to Level3 DNS
 domain-needed               # Don't forward short names
 bogus-priv                  # Don't forward addresses in the non-routed spaces
-domain=home                 # Set private domain name to 'home'
-local=/home/                # Don't forward queries for private domain 'home'
+domain=moodlebox.me         # Set private domain name to 'moodlebox.me'
+local=/moodlebox.me/        # Don't forward queries for private domain 'moodlebox.me'
 expand-hosts                # Add private domain name to hostnames
 dhcp-range=wifi,10.0.0.100,10.0.0.199,255.255.255.0,12h # Assign IP addresses with 12h lease, subnet name 'wifi'
 dhcp-option=wifi,6,10.0.0.1 # Set DNS server for subnet wifi
+txt-record=moodlebox.me,"MoodleBox by Nicolas Martignoni"
 # log-facility=/var/log/dnsmasq.log # Enable log
 EOF
 
@@ -539,7 +540,7 @@ EOF
     # Start installation
     /usr/bin/php "/var/www/html/admin/cli/install.php" \
       --lang=$(echo $LANGUAGE | cut -d"_" -f 1) \
-      --wwwroot="http://moodlebox.home" \
+      --wwwroot="http://moodlebox.me" \
       --dataroot="/var/www/moodledata" \
       --dbtype="mariadb" \
       --dbname="moodle" \
