@@ -566,7 +566,7 @@ EOF
     # Get latest published tag (see https://gist.github.com/rponte/fdc0724dd984088606b0)
     LASTTAG=$(git describe --abbrev=0 --tags)
     git checkout tags/$LASTTAG
-    touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
+    touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifisettings
     chown -R www-data:www-data /var/www/moodle/admin/tool/moodlebox
     chmod -R ug+w,o-w /var/www/moodle/admin/tool/moodlebox
 
@@ -579,7 +579,7 @@ EOF
     (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/.set-server-datetime") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.wifipassword IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/setwifipassword.sh") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/changewifisettings.sh") | incrontab -
 
     ## Configure cron jobs
     (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/moodle/admin/cli/cron.php") | crontab -
