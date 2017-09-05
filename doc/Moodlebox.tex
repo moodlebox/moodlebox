@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{23 août 2017\footnote{Version 1.9.1}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{5 septembre 2017\footnote{Version 1.9.1}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -103,7 +103,7 @@ Grâce à la persévérance d'un membre de la communauté\footnote{Christian Wes
 
 \begin{itemize}
 \item Point d'accès sans fil. Le nom du réseau Wi-Fi fourni est \emph{MoodleBox} ; le mot de passe de connexion est \emph{moodlebox}.
-\item Interface graphique pour redémarrer et éteindre la MoodleBox, pour changer le mot de passe, pour modifier le mot de passe du réseau Wi-Fi, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
+\item Interface graphique pour redémarrer et éteindre la MoodleBox, pour changer le mot de passe, pour modifier le nom du réseau Wi-Fi (SSID), son canal et son mot de passe, ainsi que pour régler la date et l'heure de la MoodleBox (au moyen d'un plugin d'administration de Moodle\footnote{\url{https://github.com/martignoni/moodlebox-plugin}.}).
 \item Plateforme Moodle 3.3.x accessible via Wi-Fi (\url{http://moodlebox.home/}), dans sa configuration de base vierge de toute personnalisation. L'unique compte utilisateur du Moodle est un compte administrateur, nom d'utilisateur : \emph{admin}, mot de passe : \emph{Moodlebox4\$}. La plateforme est configurée pour accepter les clients de l'app mobile officielle\footnote{\url{https://download.moodle.org/mobile/}.} de Moodle. La taille maximale des dépôts de fichiers est fixée à 50~Mo. Le cron est lancé toutes les 3 minutes.
 \item Lorsqu'une clef USB est insérée dans la MoodleBox, les fichiers qu'elle contient sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
 \item Possibilité de déposer des fichiers par SFTP directement sur la MoodleBox (nom d'utilisateur : \emph{moodlebox}, mot de passe : \emph{Moodlebox4\$}); ces fichiers sont accessibles pour les administrateurs et enseignants de la plateforme via le dépôt \emph{Système de fichiers} du Moodle.
@@ -546,16 +546,15 @@ $ sudo apt-get install git
 
 \begin{lstlisting}[language=bash]
 $ cd /var/www/
-$ sudo rm -r html
-$ sudo git clone --depth=1 -b MOODLE_33_STABLE git://git.moodle.org/moodle.git html
+$ sudo git clone --depth=1 -b MOODLE_33_STABLE git://git.moodle.org/moodle.git moodle
 \end{lstlisting}
 La dernière commande ci-dessus spécifie la branche installée par Git. Dans ce cas, il s'agit de la version 3.3.x stable actuelle\footnote{Les changements des réglages du thème par défaut Boost sont très lents (plus d'une minute). Cependant, une fois les modifications enregistrées, aucun ralentissement n'est perceptible.}.
 
 On crée le dossier de données de Moodle et règle adéquatement les permissions.
 \begin{lstlisting}[language=bash]
 $ sudo mkdir /var/www/moodledata
-$ sudo chown -R www-data:www-data /var/www/html /var/www/moodledata/
-$ sudo chmod -R ug+w,o-w /var/www/html /var/www/moodledata/
+$ sudo chown -R www-data:www-data /var/www/moodle /var/www/moodledata/
+$ sudo chmod -R ug+w,o-w /var/www/moodle /var/www/moodledata/
 \end{lstlisting}
 
 Pour terminer l'installation de Moodle, on lance dans un navigateur l'URL \url{http://moodlebox.home/} et l'on suit les indications données à l'écran. Cette phase dure plus de 10 minutes. Patience donc !
@@ -572,7 +571,7 @@ $ sudo crontab -e
 
 et ajouter à la table des crons la ligne
 \begin{lstlisting}[language=bash]
-*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/html/admin/cli/cron.php
+*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/moodle/admin/cli/cron.php
 \end{lstlisting}
 
 \begin{verification}
@@ -584,7 +583,7 @@ Dans Moodle, visiter l'administration sous \emph{Administration du site > Serveu
 Pour corriger le format des tables éventuellement encore en format Antelope, on lance la commande
 
 \begin{lstlisting}[language=bash]
-$ sudo php /var/www/html/admin/cli/mysql_compressed_rows.php -f
+$ sudo php /var/www/moodle/admin/cli/mysql_compressed_rows.php -f
 \end{lstlisting}
 
 \begin{verification}
@@ -662,7 +661,7 @@ Le plus simple est de l'installer au moyen de l'interface graphique de Moodle, e
 Il est aussi possible de l'installer via Git\footnote{Le code source du plugin MoodleBox est disponible à l'adresse \url{https://moodle.org/plugins/tool_moodlebox}.}.
 
 \begin{lstlisting}[language=bash]
-$ cd /var/www/html/admin/tool/
+$ cd /var/www/moodle/admin/tool/
 $ sudo git clone https://github.com/martignoni/moodlebox-plugin.git moodlebox
 \end{lstlisting}
 
@@ -670,10 +669,10 @@ On termine dans ce cas l'installation du plugin en visitant la page \url{http://
 
 Pour finaliser l'installation du plugin, il est nécessaire de créer quelques fichiers et d'en régler les autorisations.
 \begin{lstlisting}[language=bash]
-$ cd /var/www/html/admin/tool/moodlebox
-$ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifipassword
-$ sudo chown -R www-data:www-data /var/www/html/admin/tool/moodlebox
-$ sudo chmod -R ug+w,o-w /var/www/html/admin/tool/moodlebox
+$ cd /var/www/moodle/admin/tool/moodlebox
+$ sudo touch .reboot-server; touch .shutdown-server; touch .set-server-datetime; touch .newpassword; touch .wifisettings
+$ sudo chown -R www-data:www-data /var/www/moodle/admin/tool/moodlebox
+$ sudo chmod -R ug+w,o-w /var/www/moodle/admin/tool/moodlebox
 \end{lstlisting}
 
 On installe finalement le paquetage \emph{incron}.
@@ -691,11 +690,11 @@ $ sudo incrontab -e
 
 en y ajoutant les lignes
 \begin{lstlisting}[language=bash]
-/var/www/html/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
-/var/www/html/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
-/var/www/html/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/html/admin/tool/moodlebox/.set-server-datetime
-/var/www/html/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/changepassword.sh
-/var/www/html/admin/tool/moodlebox/.wifipassword IN_CLOSE_WRITE /bin/bash /var/www/html/admin/tool/moodlebox/bin/setwifipassword.sh
+/var/www/moodle/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now
+/var/www/moodle/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now
+/var/www/moodle/admin/tool/moodlebox/.set-server-datetime IN_MODIFY /bin/bash /var/www/moodle/admin/tool/moodlebox/.set-server-datetime
+/var/www/moodle/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/changepassword.sh
+/var/www/moodle/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/changewifisettings.sh
 \end{lstlisting}
 
 
@@ -703,7 +702,7 @@ en y ajoutant les lignes
 
 \begin{lstlisting}[language=bash]
 $ sudo apt-get install -y -t stretch phpmyadmin
-$ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+$ sudo ln -s /usr/share/phpmyadmin /var/www/moodle/phpmyadmin
 \end{lstlisting}
 Définir un mot de passe fort. Pour cette installation, le mot de passe choisi est \emph{Moodlebox4\$}. Pour accéder à la totalité des fonctionnalités de PhpMyAdmin, on accèdera à l'interface au moyen de l'utilisateur \emph{moodlebox} et du mot de passe \emph{Moodlebox4\$}.
 
@@ -808,13 +807,13 @@ $CFG->xsendfilealiases = array (
     '/dataroot/' => $CFG->dataroot
 );
 \end{lstlisting}
-après la ligne \lstinline{$CFG->admin = 'admin';} dans le fichier de configuration de Moodle \lstinline{/var/www/html/config.php}.
+après la ligne \lstinline{$CFG->admin = 'admin';} dans le fichier de configuration de Moodle \lstinline{/var/www/moodle/config.php}.
 
 %\begin{lstlisting}[language=bash]
-%$ sudo nano /var/www/html/config.php
+%$ sudo nano /var/www/moodle/config.php
 %\end{lstlisting}
 
-Le contenu du fichier \lstinline{/var/www/html/config.php} sera alors :
+Le contenu du fichier \lstinline{/var/www/moodle/config.php} sera alors :
 \lstinputlisting[language=bash]{files/config.php}
 
 Ajouter ensuite les lignes ci-dessous dans le fichier \lstinline{/etc/nginx/sites-available/default}
