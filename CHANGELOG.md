@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 <!-- ## Unreleased -->
 
+## Version 1.9.2, 2017-09-05
+
+### Added
+- Issue #28 implemented: GUI to change Wi-Fi SSID and channel
+
+### Added
+- Change script for compatibility with latest version of the MoodleBox plugin for Moodle (v1.6)
+
+### Fixed
+- Latest version of the MoodleBox plugin for Moodle (v1.6) compatible with commit 46e5099
+
 ## Version 1.9.1, 2017-08-23
 
 ### Fixed
