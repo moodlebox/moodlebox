@@ -3,7 +3,6 @@
 - [ ] Update documentation in doc/MoodleBox.tex
 - [ ] Commit the changes:
 ```
-git add CHANGELOG.md
 git commit -m "Documentation updated."
 ```
 
