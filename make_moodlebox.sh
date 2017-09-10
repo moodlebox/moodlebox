@@ -371,7 +371,7 @@ country_code=$COUNTRY
 interface=wlan0
 # Use the nl80211 driver
 driver=nl80211
-# Wi-Fi network name
+# Wi-Fi network name (SSID)
 ssid=MoodleBox
 # Use the 2.4GHz band
 hw_mode=g
