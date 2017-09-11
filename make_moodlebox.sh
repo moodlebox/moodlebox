@@ -188,10 +188,6 @@ EOF
     echo -e "\e[93mTurning off screen blanking...\e[97m"
     sed -i 's/\bconsole=tty1\b/& consoleblank=0/' /boot/cmdline.txt
 
-    # Disable predictable network interface name.
-    echo -e "\e[93mDisable predictable network interface name...\e[97m"
-    sed -i 's/\brootfstype=ext4\b/& net.ifnames=0/' /boot/cmdline.txt
-
     ## Some bash configurations for default account
     cat << "EOF" >> /home/moodlebox/.bashrc
 
