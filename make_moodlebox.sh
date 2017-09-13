@@ -408,7 +408,7 @@ bogus-priv                  # Don't forward addresses in the non-routed spaces
 domain=home                 # Set private domain name to 'home'
 local=/home/                # Don't forward queries for private domain 'home'
 expand-hosts                # Add private domain name to hostnames
-dhcp-range=wifi,10.0.0.100,10.0.0.199,255.255.255.0,12h # Assign IP addresses with 12h lease, subnet name 'wifi'
+dhcp-range=wifi,10.0.0.10,10.0.0.254,255.255.255.0,4h # Assign IP addresses with 4h lease, subnet name 'wifi'
 dhcp-option=wifi,6,10.0.0.1 # Set DNS server for subnet wifi
 # log-facility=/var/log/dnsmasq.log # Enable log
 EOF
