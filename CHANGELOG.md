@@ -3,11 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-<!-- ## Unreleased -->
+## Unreleased
+### Fixed
+- Set default locale to "en_GB" instead of "fr_FR" (issue #29).
 
 ## Version 1.9.3, 2017-09-11
 
-## Release notes
 ### Changed
 - Based on Raspbian Stretch Lite version of 2017-09-07.
 - Uses last released version of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle (new Wi-Fi settings options available).
