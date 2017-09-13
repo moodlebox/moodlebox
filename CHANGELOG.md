@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
 ## Unreleased
+### Changed
+- Extend DHCP range and reduce lease time to enable more IP addresses (issue #30).
+
 ### Fixed
 - Set default locale to "en_GB" instead of "fr_FR" (issue #29).
 
