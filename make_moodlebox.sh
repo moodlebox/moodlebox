@@ -20,7 +20,7 @@
 # A bash script to build automatically a MoodleBox on a Raspberry Pi 3.
 #
 # Instructions:
-# * Clone Rasbpian Jessie Lite on your microSD card
+# * Clone Rasbpian Stretch Lite on your microSD card
 # * Login to your RPi with the user root: `ssh root@raspberrypi.local`
 # * Launch the script
 #
@@ -32,8 +32,8 @@
 # Sets the password that will be set for ALL admin settings of the MoodleBox.
 GENERICPASSWORD="Moodlebox4$"
 #
-# Sets the language used to build the MoodleBox. Used to set the locale of the RPi and the default
-# language of the Moodle installation.
+# Sets the language used to build the MoodleBox. Used to install the locale needed on the RPi
+# and to set the default language of the Moodle installation.
 # Use valid locale codes (see /usr/share/i18n/SUPPORTED).
 LANGUAGE="fr_FR"
 #
@@ -134,15 +134,12 @@ EOF
     echo -e "Version: $VERSION, $DATE\n"
 
     # Configure important settings
-    echo -e "\e[93mConfiguring locale to $LANGUAGE...\e[97m"
-    ## Change locale
+    echo -e "\e[93mInstalling locale $LANGUAGE...\e[97m"
+    ## Install locale
     # This uses the $LANGUAGE variable defined at the top of the script
-    # Uncomment line containing $LANGUAGE.UTF-8 and configure locales
+    # Uncomment line containing $LANGUAGE.UTF-8 and generate locale
     sed -i "/^# $LANGUAGE.UTF-8/s/^# //" /etc/locale.gen
     dpkg-reconfigure -f noninteractive locales
-    # Export LANG environment variable and updates the locale
-    export LANG=$LANGUAGE.UTF-8
-    update-locale LANG=$LANGUAGE.UTF-8
 
     echo -e "\e[93mConfiguring timezone to $TIMEZONE...\e[97m"
     ## Change timezone
