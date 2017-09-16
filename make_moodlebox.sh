@@ -368,8 +368,8 @@ driver=nl80211
 ssid=MoodleBox
 # Use the 2.4GHz band
 hw_mode=g
-# Use channel 11
-channel=11
+# Set Wi-Fi channel
+channel=13
 # Enable 802.11n
 ieee80211n=1
 # Enable WMM
