@@ -217,71 +217,44 @@ after_reboot(){
     debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
     debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 
-    ## Configure automount
-    echo -e "\e[93mAutomount configuration...\e[97m"
-    cat >> /etc/fstab <<EOF
-# Rules for automounting both at boot and upon USB plugin. Rely on udev rules
-/dev/USBdrive  /media/USBdrive         auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive1 /media/USBdrive1        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive2 /media/USBdrive2        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive3 /media/USBdrive3        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive4 /media/USBdrive4        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive5 /media/USBdrive5        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive6 /media/USBdrive6        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive7 /media/USBdrive7        auto    defaults,noatime,auto,nofail    0       2
-/dev/USBdrive8 /media/USBdrive8        auto    defaults,noatime,auto,nofail    0       2
-EOF
+    ## Add custom udev systemd service file to enable USBmount
+    echo -e "\e[93mSystemd udev configuration...\e[97m"
+    cat >> /etc/systemd/system/systemd-udevd.service <<EOF
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
 
-    cat > /usr/local/etc/blknum <<'EOF'
-#!/bin/bash
+[Unit]
+Description=udev Kernel Device Manager
+Documentation=man:systemd-udevd.service(8) man:udev(7)
+DefaultDependencies=no
+Wants=systemd-udevd-control.socket systemd-udevd-kernel.socket
+After=systemd-udevd-control.socket systemd-udevd-kernel.socket systemd-sysusers.service
+Before=sysinit.target
+ConditionPathIsReadWrite=/sys
 
-# we perform a cleanup with the first one
-ls -d /dev/USBdrive* &>/dev/null || {
-  rmdir /media/USBdrive*
-  for f in `ls /media/`; do
-    test -L $f && rm $f
-  done
-  exit 0
-}
-
-for i in `seq 1 1 8`; do
-  test -e /media/USBdrive$i && continue
-  echo $i
-  exit 0
-done
-
-exit 1
-EOF
-
-    chmod +x /usr/local/etc/blknum
-
-    # Create udev automount rules.
-    cat > /etc/udev/rules.d/50-automount.rules <<'EOF'
-# Need to be a block device
-KERNEL!="sd[a-z][0-9]", GOTO="exit"
-
-# Import some useful filesystem info as variables
-IMPORT{program}="/sbin/blkid -o udev -p %N"
-
-# Need to be a filesystem
-ENV{ID_FS_TYPE}!="vfat|ntfs|ext4|iso9660", GOTO="exit"
-
-# Create symlink that will be understood by fstab, and a directory in /media
-ACTION!="remove", PROGRAM="/usr/local/etc/blknum", RUN+="/bin/mkdir -p /media/USBdrive%c", SYMLINK+="USBdrive%c"
-
-# Get a label if present, otherwise specify one
-ENV{ID_FS_LABEL}!="", ENV{dir_name}="%E{ID_FS_LABEL}"
-
-# Link with label name if exists
-ACTION=="add", ENV{ID_FS_LABEL}!="", ENV{ID_FS_LABEL}!="USBdrive*", RUN+="/bin/rm /media/%E{ID_FS_LABEL}", RUN+="/bin/ln -sT /media/USBdrive%c /media/%E{ID_FS_LABEL}"
-
-# Exit
-LABEL="exit"
+[Service]
+Type=notify
+OOMScoreAdjust=-1000
+Sockets=systemd-udevd-control.socket systemd-udevd-kernel.socket
+Restart=always
+RestartSec=0
+ExecStart=/lib/systemd/systemd-udevd
+KillMode=mixed
+WatchdogSec=3min
+TasksMax=infinity
+MountFlags=shared
+MemoryDenyWriteExecute=yes
+RestrictRealtime=yes
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
 EOF
 
     ## Install all packages needed for the whole process
     echo -e "\e[93mPackages installation...\e[97m"
-    apt-get install -y iptables-persistent hostapd dnsmasq git incron certbot
+    apt-get install -y iptables-persistent hostapd dnsmasq git usbmount incron
     echo root > /etc/incron.allow
     apt-get install -y mariadb-server
     # install nginx 1.10 and php 7.0
@@ -509,7 +482,7 @@ STOP
     chown -R moodlebox:www-data /home/moodlebox/files
     chmod g+s /home/moodlebox/files
     ln -s /home/moodlebox/files /var/www/moodledata/repository
-    ln -s /media/USBdrive /var/www/moodledata/repository/usb
+    ln -s /media/usb /var/www/moodledata/repository/usb
 
     ln -s /usr/share/phpmyadmin /var/www/moodle/phpmyadmin
 
