@@ -505,7 +505,7 @@ EOF
     <p><span lang='en' class='multilang'>Version $VERSION, $(LC_ALL=en_GB.utf8 date --date $DATE '+%d %B %Y').</span><span lang='fr' class='multilang'>Version $VERSION, $(LC_ALL=fr_FR.utf8 date --date $DATE '+%d %B %Y').</span></p>"
     # Start installation
     /usr/bin/php "/var/www/moodle/admin/cli/install.php" \
-      --lang=$(echo $LANGUAGE | cut -d"_" -f 1) \
+      --lang="en" \
       --wwwroot="http://moodlebox.home" \
       --dataroot="/var/www/moodledata" \
       --dbtype="mariadb" \
