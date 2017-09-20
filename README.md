@@ -34,10 +34,6 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
 1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash`
 
-### Building a MoodleBox manually
-
-If you prefer to build a MoodleBox manually, follow the [instructions given in the documentation](https://github.com/martignoni/make-moodlebox/blob/master/doc/Moodlebox.pdf) included in the `doc` folder of this project, as a LaTeX document (in french; sorry, no english version as of now, pull request highly desirable).
-
 ## Availability
 
 The code is available at [https://github.com/martignoni/make-moodlebox](https://github.com/martignoni/make-moodlebox).
