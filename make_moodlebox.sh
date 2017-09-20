@@ -32,10 +32,9 @@
 # Sets the password that will be set for ALL admin settings of the MoodleBox.
 GENERICPASSWORD="Moodlebox4$"
 #
-# Sets the language used to build the MoodleBox. Used to install the locale needed on the RPi
-# and to set the default language of the Moodle installation.
+# Sets the languages used in the MoodleBox. Used to install the locales needed on the RPi
 # Use valid locale codes (see /usr/share/i18n/SUPPORTED).
-LANGUAGE="fr_FR"
+LANGUAGES="fr_FR de_DE es_ES it_IT"
 #
 # Sets the country where you'll use your MoodleBox. Used to set the Wi-Fi access point settings.
 # Use ISO 3166-1 alpha-2 two letter codes (see /usr/share/zoneinfo/iso3166.tab).
@@ -134,11 +133,14 @@ EOF
     echo -e "Version: $VERSION, $DATE\n"
 
     # Configure important settings
-    echo -e "\e[93mInstalling locale $LANGUAGE...\e[97m"
-    ## Install locale
-    # This uses the $LANGUAGE variable defined at the top of the script
-    # Uncomment line containing $LANGUAGE.UTF-8 and generate locale
-    sed -i "/^# $LANGUAGE.UTF-8/s/^# //" /etc/locale.gen
+    echo -e "\e[93mInstalling locale $LANGUAGES...\e[97m"
+    ## Install locales
+    # This uses the $LANGUAGES variable defined at the top of the script
+    for LANG in $LANGUAGES; do
+        # Uncomment lines containing $LANG.UTF-8
+        sed -i "/^# $LANG.UTF-8/s/^# //" /etc/locale.gen
+    done
+    # Generate locales.
     dpkg-reconfigure -f noninteractive locales
 
     echo -e "\e[93mConfiguring timezone to $TIMEZONE...\e[97m"
