@@ -78,7 +78,7 @@ frametitlebackgroundcolor=yellow!50!white
 \begin{document}
 
 \title{Moodle sur Raspberry Pi 3\\ ou la construction d'une MoodleBox\footnote{Le présent document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.}}
-\date{11 septembre 2017\footnote{Version 1.9.3}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
+\date{\emph{nn} septembre 2017\footnote{Version 1.9.4}} %% \footnote{Version \gitAbbrevHash, \gitAuthorDate}
 \author{Nicolas Martignoni}
 \maketitle
 
@@ -622,7 +622,7 @@ Dans la ligne \emph{Système de fichiers}, on sélectionne dans le menu déroula
 \end{minipage}
 \end{figure}
 
-On clique ensuite sur \emph{Enregistrer}, puis sur \emph{Paramètres} (même ligne), puis sur le bouton \emph{Créer une instance de dépôt}. Enfin, on sélectionne \emph{usb} dans le menu déroulant, et on indique \emph{Clef USB} dans le champ obligatoire \emph{Nom}.
+On clique ensuite sur \emph{Enregistrer}, puis sur \emph{Paramètres} (même ligne), puis sur le bouton \emph{Créer une instance de dépôt}. Enfin, on sélectionne \emph{usb} dans le menu déroulant, et on indique \emph{USB Drive} dans le champ obligatoire \emph{Nom}.
 
 \begin{figure}[!ht]
 \begin{minipage}[b]{\linewidth}
@@ -642,7 +642,7 @@ $ sudo chmod g+s files/
 $ sudo ln -s /home/moodlebox/files /var/www/moodledata/repository
 \end{lstlisting}
 
-On effectue la configuration d'un dépôt \emph{Système de fichiers}, de façon similaire au dépôt « Clef USB » ci-dessus, en indiquant le dossier \emph{files} et en indiquant \emph{Fichiers SFTP} comme nom de dépôt.
+On effectue la configuration d'un dépôt \emph{Système de fichiers}, de façon similaire au dépôt « USB Drive » ci-dessus, en indiquant le dossier \emph{files} et en indiquant \emph{SFTP Documents} comme nom de dépôt.
 
 Pour déposer des fichiers, on se connecte au moyen d'un logiciel SFTP\footnote{Par exemple : \href{https://filezilla-project.org/}{FileZilla}, \href{https://cyberduck.io/}{Cyberduck}, \href{http://winscp.net/}{WinSCP}.} sur la MoodleBox, avec le nom d'utilisateur \emph{moodlebox} et le mot de passe \emph{Moodlebox4\$}. Les fichiers seront déposés dans le dossier \lstinline{files}.
 
