@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ## Unreleased
 ### Changed
 - Extend DHCP range and reduce lease time to enable more IP addresses (issue #30).
+- Revert previous fix for USBmount failure and fix it definitely (issue #21).
+- Install Moodle in English, as default language (issue #35).
+- Repository names changed (issue #33).
+
+### Added
+- Install more common languages locales (issue #36).
 
 ### Fixed
 - Set default locale to "en_GB" instead of "fr_FR" (issue #29).
