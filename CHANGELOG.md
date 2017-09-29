@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Unreleased
+## Version 1.9.4, 2017-09-29
 ### Changed
 - Extend DHCP range and reduce lease time to enable more IP addresses (issue #30).
 - Revert previous fix for USBmount failure and fix it definitely (issue #21).
 - Install Moodle in English, as default language (issue #35).
 - Repository names changed (issue #33).
-- Documentation file `moodlebox.tex` removed from repo (issue #34).
+- Documentation file `MoodleBox.tex` removed from repo (issue #34).
 
 ### Added
 - Install more common languages locales (issue #36).
