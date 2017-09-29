@@ -1,11 +1,5 @@
 # MoodleBox – Release Checklist
 
-- [ ] Update documentation in doc/MoodleBox.tex
-- [ ] Commit the changes:
-```
-git commit -m "Documentation updated."
-```
-
 - [ ] Update CHANGELOG.md
 - [ ] Commit the changes: 
 ```
@@ -13,7 +7,6 @@ git add CHANGELOG.md
 git commit -m "Changelog for upcoming release x.y.z."
 ```
 
-- [ ] Update version date in doc/MoodleBox.tex
 - [ ] Update version date in make_moodlebox.sh
 - [ ] Compile doc/MoodleBox.tex
 

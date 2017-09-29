@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 - Revert previous fix for USBmount failure and fix it definitely (issue #21).
 - Install Moodle in English, as default language (issue #35).
 - Repository names changed (issue #33).
+- Documentation file `moodlebox.tex` removed from repo (issue #34).
 
 ### Added
 - Install more common languages locales (issue #36).

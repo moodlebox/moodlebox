@@ -1,6 +1,0 @@
-# Defaults for hostapd initscript
-#
-# See /usr/share/doc/hostapd/README.Debian for information about alternative
-# methods of managing hostapd.
-#
-DAEMON_CONF="/etc/hostapd/hostapd.conf"
