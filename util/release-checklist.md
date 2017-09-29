@@ -8,9 +8,7 @@ git commit -m "Changelog for upcoming release x.y.z."
 ```
 
 - [ ] Update version date in make_moodlebox.sh
-- [ ] Compile doc/MoodleBox.tex
-
-- [ ] Update version number (can also be minor or major)
+- [ ] Update version number (can also be 'minor' or 'major' instead of 'patch')
 ```
 bumpversion patch
 ```
