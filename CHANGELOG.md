@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Unreleased
+## Release notes
+### Changed
+- nothing
+
+### Added
+- File created on the MoodleBox to allow easy finding of version (issue #38).
+
+### Fixed
+- nothing
+
 ## Version 1.9.4, 2017-09-29
 ### Changed
 - Extend DHCP range and reduce lease time to enable more IP addresses (issue #30).
