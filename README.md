@@ -26,9 +26,8 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 
 1. Clone Rasbpian Stretch Lite on your microSD card
 1. Create a `ssh` file on the `boot` partition, e.g. `touch ssh`
-1. Login to your RPi with the default user pi: `ssh pi@raspberrypi.local`
+1. Start your RPi and log into it with the default user pi: `ssh pi@raspberrypi.local` (password: `raspberry`)
 1. Upgrade your Raspbian installation: `sudo apt-get update && sudo apt-get dist-upgrade -y`
-1. Install `rsync`: `sudo apt-get install rsync`, then logout
 1. Prepare a file `authorized_keys` containing your public keys
 1. Launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
