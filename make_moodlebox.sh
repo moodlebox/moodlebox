@@ -555,6 +555,10 @@ EOF
     (crontab -l -u root 2>/dev/null; echo "*/20 * * * * rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/") | crontab -
     (crontab -l -u root 2>/dev/null; echo "@reboot cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/") | crontab -
 
+    ## Add file containing MoodleBox version and date
+    echo -e "MoodleBox image version ${VERSION}, ${DATE}\nMoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net\nGenerated using make-moodlebox, https://github.com/martignoni/make-moodlebox" > "/etc/moodlebox-info"
+    chmod 644 "/etc/moodlebox-info"
+
     ## Cleanup tasks
     echo -e "\e[93mCleaning up...\e[97m"
     rm -rf /var/www/moodledata/cache/*
