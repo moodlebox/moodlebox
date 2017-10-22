@@ -299,39 +299,11 @@ STOP
     # 1. /etc/dhcpcd.conf
     cat << "EOF" >> /etc/dhcpcd.conf
 
-denyinterfaces wlan0
+interface wlan0
+static ip_address=10.0.0.1/24
 EOF
 
-    # 2. /etc/network/interfaces
-    cat << "EOF" > /etc/network/interfaces
-# interfaces(5) file used by ifup(8) and ifdown(8)
-
-# Please note that this file is written to be used with dhcpcd
-# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'
-
-# Include files from /etc/network/interfaces.d:
-source-directory /etc/network/interfaces.d
-
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0 inet dhcp
-iface eth0 inet6 auto
-
-allow-hotplug wlan0
-iface wlan0 inet static
-    address 10.0.0.1
-    netmask 255.255.255.0
-    network 10.0.0.0
-    broadcast 10.0.0.255
-
-allow-hotplug wlan1
-iface wlan1 inet manual
-    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-EOF
-
-    # 3. /etc/hostapd/hostapd.conf
+    # 2. /etc/hostapd/hostapd.conf
     cat << EOF > /etc/hostapd/hostapd.conf
 # Set country code
 country_code=$COUNTRY
@@ -343,7 +315,7 @@ driver=nl80211
 ssid=MoodleBox
 # Use the 2.4GHz band
 hw_mode=g
-# Set Wi-Fi channel
+# The Wi-Fi channel
 channel=13
 # Enable 802.11n
 ieee80211n=1
@@ -370,7 +342,7 @@ EOF
 
     sed -i '/#DAEMON_CONF/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
 
-    # 4. /etc/dnsmasq.conf
+    # 3. /etc/dnsmasq.conf
     cat << "EOF" > /etc/dnsmasq.conf
 interface=wlan0             # Use interface wlan0
 listen-address=127.0.0.1    # Explicitly specify the address to listen on
@@ -389,15 +361,15 @@ txt-record=moodlebox.home,"MoodleBox by Nicolas Martignoni"
 # log-facility=/var/log/dnsmasq.log # Enable log
 EOF
 
-    # 5. /etc/sysctl.conf
+    # 4. /etc/sysctl.conf
     sed -i '/#net.ipv4.ip_forward/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
 
-    # 6. /etc/iptables.ipv4.nat
+    # 5. /etc/iptables.ipv4.nat
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
     iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 
-    # 7. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
+    # 6. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
     cat << "EOF" > /etc/avahi/services/moodlebox.service
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
