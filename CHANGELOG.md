@@ -6,13 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ## Unreleased
 ## Release notes
 ### Changed
-- nothing
+- Network configuration updated, for better maintainability (issue #39).
 
 ### Added
 - File created on the MoodleBox to allow easy finding of version (issue #38).
 
 ### Fixed
-- nothing
+- Nothing
 
 ## Version 1.9.4, 2017-09-29
 ### Changed
