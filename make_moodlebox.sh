@@ -343,7 +343,7 @@ EOF
     sed -i '/#DAEMON_CONF/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
 
     # 3. /etc/dnsmasq.conf
-    cat << "EOF" > /etc/dnsmasq.conf
+    cat << EOF > /etc/dnsmasq.conf
 interface=wlan0             # Use interface wlan0
 listen-address=127.0.0.1    # Explicitly specify the address to listen on
 listen-address=10.0.0.1     # Explicitly specify the address to listen on
@@ -357,7 +357,7 @@ local=/home/                # Don't forward queries for private domain 'home'
 expand-hosts                # Add private domain name to hostnames
 dhcp-range=wifi,10.0.0.10,10.0.0.254,255.255.255.0,4h # Assign IP addresses with 4h lease, subnet name 'wifi'
 dhcp-option=wifi,6,10.0.0.1 # Set DNS server for subnet wifi
-txt-record=moodlebox.home,"MoodleBox by Nicolas Martignoni"
+txt-record=moodlebox.home,"MoodleBox version ${VERSION}, by Nicolas Martignoni"
 log-facility=/var/log/dnsmasq.log # Enable log
 EOF
 
