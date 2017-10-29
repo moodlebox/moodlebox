@@ -298,7 +298,6 @@ STOP
     echo -e "\e[93mAccess point and network configuration...\e[97m"
     # 1. /etc/dhcpcd.conf
     cat << "EOF" >> /etc/dhcpcd.conf
-
 interface wlan0
 static ip_address=10.0.0.1/24
 EOF
@@ -361,15 +360,19 @@ txt-record=moodlebox.home,"MoodleBox version ${VERSION}, by Nicolas Martignoni"
 log-facility=/var/log/dnsmasq.log # Enable log
 EOF
 
-    # 4. /etc/sysctl.conf
+    # 4. /lib/systemd/system/dnsmasq.service
+    sed -i 's/^\[Install\]\s*$/RestartSec=5\n\n&/' /lib/systemd/system/dnsmasq.service
+    sed -i '/RestartSec=5/a \Restart=on-failure' /lib/systemd/system/dnsmasq.service
+
+    # 5. /etc/sysctl.conf
     sed -i '/#net.ipv4.ip_forward/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
 
-    # 5. /etc/iptables.ipv4.nat
+    # 6. /etc/iptables.ipv4.nat
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
     iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 
-    # 6. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
+    # 7. /etc/avahi/services/moodlebox.service (Advertise mDNS services)
     cat << "EOF" > /etc/avahi/services/moodlebox.service
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
