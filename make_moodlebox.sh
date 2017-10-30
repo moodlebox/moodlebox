@@ -42,7 +42,7 @@ COUNTRY="CH"
 #
 # The timezone of the place where you'll use your MoodleBox.
 # Use standard IANA time zone database identifiers (see output of timedatectl list-timezones).
-TIMEZONE="Europe/Paris"
+TIMEZONE=Europe/Paris
 #
 # #############################################################################
 # Do NOT change anything under this line.
@@ -146,7 +146,7 @@ EOF
     echo -e "\e[93mConfiguring timezone to $TIMEZONE...\e[97m"
     ## Change timezone
     # This uses the $TIMEZONE variable defined at the top of the script
-    echo $TIMEZONE > /etc/timezone
+    ln -fs /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
     dpkg-reconfigure -f noninteractive tzdata
 
     echo -e "\e[93mConfiguring Wi-Fi country to $COUNTRY...\e[97m"
