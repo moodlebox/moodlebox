@@ -452,6 +452,8 @@ STOP
     rm -r html
     git clone --depth=1 -b MOODLE_33_STABLE git://git.moodle.org/moodle.git moodle
     mkdir -p /var/www/moodledata/repository
+    mkdir -p /var/www/moodledata/backup
+    mkdir -p /var/www/moodledata/temp
     chown -R www-data:www-data /var/www/moodle /var/www/moodledata/
     chmod -R ug+w,o-w /var/www/moodle /var/www/moodledata/
 
@@ -460,6 +462,7 @@ STOP
     chmod g+s /home/moodlebox/files
     ln -s /home/moodlebox/files /var/www/moodledata/repository
     ln -s /media/usb /var/www/moodledata/repository/usb
+    ln -s /var/www/moodledata/backup /var/www/moodledata/temp/backup
 
     ln -s /usr/share/phpmyadmin /var/www/moodle/phpmyadmin
 
@@ -470,7 +473,7 @@ STOP
 
     cat << "EOF" >> /etc/fstab
 tmpfs /var/cache/moodle tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
-tmpfs /var/www/moodledata/temp tmpfs size=128M,mode=775,uid=www-data,gid=www-data 0 0
+tmpfs /var/www/moodledata/temp tmpfs size=64M,mode=775,uid=www-data,gid=www-data 0 0
 tmpfs /var/www/moodledata/sessions tmpfs size=16M,mode=775,uid=www-data,gid=www-data 0 0
 EOF
 
@@ -529,6 +532,7 @@ EOF
     (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/moodle/admin/cli/cron.php") | crontab -
     (crontab -l -u root 2>/dev/null; echo "*/20 * * * * rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/") | crontab -
     (crontab -l -u root 2>/dev/null; echo "@reboot cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/") | crontab -
+    (crontab -l -u root 2>/dev/null; echo "@reboot ln -s /var/www/moodledata/backup /var/www/moodledata/temp/backup") | crontab -
 
     ## Add file containing MoodleBox version and date
     echo -e "MoodleBox image version ${VERSION}, ${DATE}\nMoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net\nGenerated using make-moodlebox, https://github.com/martignoni/make-moodlebox" > "/etc/moodlebox-info"
