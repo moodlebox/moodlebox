@@ -136,9 +136,9 @@ EOF
     echo -e "\e[93mInstalling locale $LANGUAGES...\e[97m"
     ## Install locales
     # This uses the $LANGUAGES variable defined at the top of the script
-    for LANG in $LANGUAGES; do
-        # Uncomment lines containing $LANG.UTF-8
-        sed -i "/^# $LANG.UTF-8/s/^# //" /etc/locale.gen
+    for THELANG in $LANGUAGES; do
+        # Uncomment lines containing $THELANG.UTF-8
+        sed -i "/^# $THELANG.UTF-8/s/^# //" /etc/locale.gen
     done
     # Generate locales.
     dpkg-reconfigure -f noninteractive locales
