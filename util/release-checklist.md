@@ -1,10 +1,10 @@
 # MoodleBox – Release Checklist
 
 - [ ] Update CHANGELOG.md
-- [ ] Commit the changes: 
+- [ ] Commit the changes:
 ```
 git add CHANGELOG.md
-git commit -m "Changelog for upcoming release x.y.z."
+git commit -m "Release notes updated for upcoming release x.y.z."
 ```
 
 - [ ] Update version date in make_moodlebox.sh
