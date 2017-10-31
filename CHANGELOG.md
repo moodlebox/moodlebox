@@ -10,9 +10,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ### Added
 - File created on the MoodleBox to allow easy finding of version (issue #38).
+- German version of summary texts added (see issue #36).
 
 ### Fixed
 - Course backup size is no more limited by size of RAM temp partition (issue #18).
+- Miscellaneous small fixes.
 
 ## Version 1.9.4, 2017-09-29
 ### Changed
