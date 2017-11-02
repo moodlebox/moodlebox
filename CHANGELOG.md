@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Version 1.9.5, 2017-10-01
+## Version 1.9.5, 2017-11-01
 ## Release notes
 ### Changed
 - Network configuration updated, for better maintainability (issue #39).
