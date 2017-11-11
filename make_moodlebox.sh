@@ -519,6 +519,11 @@ EOF
 
     /usr/bin/php "/var/www/moodle/admin/cli/upgrade.php" --non-interactive
 
+    ## Download MathJax library from git repository, with adequate permissions
+    echo -e "\e[93mMathJax library installation via Git...\e[97m"
+    git clone --depth=1 git://github.com/mathjax/MathJax.git /var/www/moodle/lib/MathJax
+    chmod -R ug+w,o-w /var/www/moodle/lib/MathJax
+
     # Cron and incron jobs configuration
     echo -e "\e[93mCron and incron jobs configuration...\e[97m"
     ## Configure incron jobs (for restart/shutdown from web interface)
