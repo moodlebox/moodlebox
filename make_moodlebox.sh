@@ -299,7 +299,7 @@ STOP
     # 1. /etc/dhcpcd.conf
     cat << "EOF" >> /etc/dhcpcd.conf
 interface wlan0
-static ip_address=10.0.0.1/24
+static ip_address=10.0.0.1/32
 EOF
 
     # 2. /etc/hostapd/hostapd.conf
