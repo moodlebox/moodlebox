@@ -347,8 +347,8 @@ interface=wlan0             # Use interface wlan0
 listen-address=127.0.0.1    # Explicitly specify the address to listen on
 listen-address=10.0.0.1     # Explicitly specify the address to listen on
 bind-interfaces             # Make sure we aren't sending things elsewhere
-server=209.244.0.3          # Forward DNS requests to Level3 DNS
-server=209.244.0.4          # Forward DNS requests to Level3 DNS
+server=84.200.69.80         # Forward DNS requests to external public DNS
+server=84.200.70.40         # Forward DNS requests to external public DNS
 domain-needed               # Don't forward short names
 bogus-priv                  # Don't forward addresses in the non-routed spaces
 domain=home                 # Set private domain name to 'home'
