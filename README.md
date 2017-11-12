@@ -31,17 +31,17 @@ See [Release notes](https://github.com/martignoni/make-moodlebox/blob/master/CHA
 
 ## Thanks
 
-* To Daniel Méthot, for the [idea of a MoodleBox](https://moodle.org/mod/forum/discuss.php?d=278493)
-* To Christian Westphal, for the [first POC](https://moodle.org/mod/forum/discuss.php?d=331170) of a MoodleBox
-* To the [Raspberry Pi Foundation](https://www.raspberrypi.org/), for a splendid small computer
-* To [Martin Dougiamas](https://en.wikipedia.org/wiki/Martin_Dougiamas), for giving us Moodle, and to the [Moodle community](https://moodle.org/)
+- To Daniel Méthot, for the [idea of a MoodleBox](https://moodle.org/mod/forum/discuss.php?d=278493)
+- To Christian Westphal, for the [first POC](https://moodle.org/mod/forum/discuss.php?d=331170) of a MoodleBox
+- To the [Raspberry Pi Foundation](https://www.raspberrypi.org/), for a splendid small computer
+- To [Martin Dougiamas](https://en.wikipedia.org/wiki/Martin_Dougiamas), for giving us Moodle, and to the [Moodle community](https://moodle.org/)
 
 ## License
 
 Copyright © 2016 onwards, Nicolas Martignoni <nicolas@martignoni.net>
 
-* All the source code is licensed under GPL 3 or any later version
-* The documentation is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+- All the source code is licensed under GPL 3 or any later version.
+- The documentation is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
