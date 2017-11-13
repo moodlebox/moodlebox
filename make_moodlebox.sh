@@ -447,10 +447,10 @@ FLUSH PRIVILEGES;
 STOP
 
     ## Download Moodle via git and create all needed directories, with adequate permissions
-    echo -e "\e[93mDownloading Moodle 3.3.x via Git and directories configuration...\e[97m"
+    echo -e "\e[93mDownloading Moodle 3.4.x via Git and directories configuration...\e[97m"
     cd /var/www/
     rm -r html
-    git clone --depth=1 -b MOODLE_33_STABLE git://git.moodle.org/moodle.git moodle
+    git clone --depth=1 -b MOODLE_34_STABLE git://git.moodle.org/moodle.git moodle
     mkdir -p /var/www/moodledata/repository
     mkdir -p /var/www/moodledata/backup
     mkdir -p /var/www/moodledata/temp
