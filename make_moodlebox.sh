@@ -454,8 +454,9 @@ STOP
     mkdir -p /var/www/moodledata/repository
     mkdir -p /var/www/moodledata/backup
     mkdir -p /var/www/moodledata/temp
-    chown -R www-data:www-data /var/www/moodle /var/www/moodledata/
-    chmod -R ug+w,o-w /var/www/moodle /var/www/moodledata/
+    chown -R www-data:www-data /var/www/moodle /var/www/moodledata
+    chmod -R ug+w,o-w /var/www/moodle /var/www/moodledata
+    chmod -R g+s /var/www/moodledata
 
     mkdir -p /home/moodlebox/files
     chown -R moodlebox:www-data /home/moodlebox/files
