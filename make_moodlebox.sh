@@ -538,6 +538,7 @@ EOF
     (crontab -l -u root 2>/dev/null; echo "*/3 * * * * nice -n 10 ionice -c2 /usr/bin/php /var/www/moodle/admin/cli/cron.php") | crontab -
     (crontab -l -u root 2>/dev/null; echo "*/20 * * * * rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/") | crontab -
     (crontab -l -u root 2>/dev/null; echo "@reboot cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/") | crontab -
+    (crontab -l -u root 2>/dev/null; echo "*/15 * * * * touch /var/www/moodledata/backup/moodlebox.mbz") | crontab -
     (crontab -l -u root 2>/dev/null; echo "@reboot ln -s /var/www/moodledata/backup /var/www/moodledata/temp/backup") | crontab -
 
     ## Add file containing MoodleBox version and date
