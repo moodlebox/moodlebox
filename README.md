@@ -15,19 +15,19 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 1. Start your RPi and log into it with the default user pi: `ssh pi@raspberrypi.local` (password: `raspberry`)
 1. Upgrade your Raspbian installation: `sudo apt-get update && sudo apt-get dist-upgrade -y` and exit: `exit`
 1. Prepare a file `authorized_keys` on your computer, containing your public keys
-1. Download [script `copy-sshkeys-to-rpi.sh`](https://raw.githubusercontent.com/martignoni/make-moodlebox/master/copy-sshkeys-to-rpi.sh), launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
+1. Download [script `copy-sshkeys-to-rpi.sh`](https://raw.githubusercontent.com/martignoni/moodlebox/master/copy-sshkeys-to-rpi.sh), launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
 1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
-1. Launch `curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash`
+1. Launch `curl -L https://raw.githubusercontent.com/martignoni/moodlebox/master/make_moodlebox.sh | bash`
 
 ## Availability
 
-The code is available at [https://github.com/martignoni/make-moodlebox](https://github.com/martignoni/make-moodlebox).
+The code is available at [https://github.com/martignoni/moodlebox](https://github.com/martignoni/moodlebox).
 
 A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](https://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
-See [Release notes](https://github.com/martignoni/make-moodlebox/blob/master/CHANGELOG.md).
+See [Release notes](https://github.com/martignoni/moodlebox/blob/master/CHANGELOG.md).
 
 ## Thanks
 

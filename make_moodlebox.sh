@@ -24,7 +24,7 @@
 # * Login to your RPi with the user root: `ssh root@raspberrypi.local`
 # * Launch the script
 #
-# Source: https://github.com/martignoni/make-moodlebox
+# Source: https://github.com/martignoni/moodlebox
 
 # #############################################################################
 # Change these variables to customize your build
@@ -54,7 +54,7 @@ TIMEZONE=Europe/Paris
 # This script MUST be run as root
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
 # e.g. it can be launched from the root account like this
-# curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
+# curl -L https://raw.githubusercontent.com/martignoni/moodlebox/master/make_moodlebox.sh | bash
 
 # Version related variables
 VERSION="2.0.1"
@@ -86,7 +86,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 case "$1" in
     start)
-        curl -L https://raw.githubusercontent.com/martignoni/make-moodlebox/master/make_moodlebox.sh | bash
+        curl -L https://raw.githubusercontent.com/martignoni/moodlebox/master/make_moodlebox.sh | bash
         ;;
     *)
         echo "Usage: $0 start" >&2
@@ -542,7 +542,7 @@ EOF
     (crontab -l -u root 2>/dev/null; echo "@reboot ln -s /var/www/moodledata/backup /var/www/moodledata/temp/backup") | crontab -
 
     ## Add file containing MoodleBox version and date
-    echo -e "MoodleBox image version ${VERSION}, ${DATE}\nMoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net\nGenerated using make-moodlebox, https://github.com/martignoni/make-moodlebox" > "/etc/moodlebox-info"
+    echo -e "MoodleBox image version ${VERSION}, ${DATE}\nMoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net\nGenerated using moodlebox, https://github.com/martignoni/moodlebox" > "/etc/moodlebox-info"
     chmod 644 "/etc/moodlebox-info"
 
     ## Cleanup tasks
