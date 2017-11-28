@@ -542,7 +542,7 @@ EOF
     (crontab -l -u root 2>/dev/null; echo "@reboot ln -s /var/www/moodledata/backup /var/www/moodledata/temp/backup") | crontab -
 
     ## Add file containing MoodleBox version and date
-    echo -e "MoodleBox image version ${VERSION}, ${DATE}\nMoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net\nGenerated using moodlebox, https://github.com/martignoni/moodlebox" > "/etc/moodlebox-info"
+    echo -e "MoodleBox image version ${VERSION}, ${DATE}\nMoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net\nGenerated using https://github.com/martignoni/moodlebox" > "/etc/moodlebox-info"
     chmod 644 "/etc/moodlebox-info"
 
     ## Cleanup tasks
