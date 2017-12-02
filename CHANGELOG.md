@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.1, unreleased
+### Changed
+- Based on Raspbian Stretch Lite version of 2017-11-29.
+- Building is now done using Ansible (issue #48).
+
+### Added
+- .
+
+### Fixed
+- .
+
 ## Version 2.0.1, 2017-11-27
 ### Fixed
 - Bug when trying to restore courses now really fixed (issue #45).
