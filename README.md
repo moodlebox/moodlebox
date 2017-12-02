@@ -12,18 +12,28 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 
 1. Clone Rasbpian Stretch Lite on your microSD card
 1. Create a `ssh` file on the `boot` partition, e.g. `touch ssh`
-1. Start your RPi and log into it with the default user pi: `ssh pi@raspberrypi.local` (password: `raspberry`)
-1. Upgrade your Raspbian installation: `sudo apt-get update && sudo apt-get dist-upgrade -y` and exit: `exit`
-1. Prepare a file `authorized_keys` on your computer, containing your public keys
-1. Download [script `copy-sshkeys-to-rpi.sh`](https://raw.githubusercontent.com/martignoni/moodlebox/master/copy-sshkeys-to-rpi.sh), launch `bash copy-sshkeys-to-rpi.sh` and enter the pi user default password (`raspberry`)
-1. Login to your RPi with the user root (no password required): `ssh root@raspberrypi.local`
-1. Launch `curl -L https://raw.githubusercontent.com/martignoni/moodlebox/master/make_moodlebox.sh | bash`
+1. [Install Ansible](http://docs.ansible.com/intro_installation.html).
+2. Clone this repository to your local drive.
+3. Create a `keys` directory and copy your public key into it, under the name `id_rsa.pub`.
+4. Get the IP address of your RaspberryPi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
+5. Run `ansible-playbook moodlebox.yml` inside this directory.
+6. Wait 30–50 minutes, depending on your SD card and Internet bandwidth. You're done.
+
+## Overriding defaults
+
+You can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file. For example, you can change the MoodleBox main credentials and the timezone with something like:
+
+    moodlebox_username: 'myusername'
+    moodlebox_password: 'secret'
+    moodlebox_timezone: 'Australia/Perth'
+
+Any variable can be overridden in `config.yml`; see the file `default.config.yml` for a list of available variables.
 
 ## Availability
 
 The code is available at [https://github.com/martignoni/moodlebox](https://github.com/martignoni/moodlebox).
 
-A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](https://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](htts://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
@@ -44,5 +54,3 @@ Copyright © 2016 onwards, Nicolas Martignoni <nicolas@martignoni.net>
 - The documentation is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-
