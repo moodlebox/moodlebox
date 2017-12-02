@@ -1,0 +1,8 @@
+---
+
+- name: update apt cache and upgrade
+  apt:
+    update_cache: 'yes'
+    upgrade: 'dist'
+    autoclean: 'yes'
+    autoremove: 'yes'

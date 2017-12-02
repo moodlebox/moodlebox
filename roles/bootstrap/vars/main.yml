@@ -1,0 +1,8 @@
+---
+
+moodlebox_username_files:
+  - /etc/passwd
+  - /etc/group
+  - /etc/shadow
+  - /etc/gshadow
+  - /etc/systemd/system/autologin@.service

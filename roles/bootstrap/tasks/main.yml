@@ -1,0 +1,31 @@
+---
+
+- name: change miscellaneous settings
+  import_tasks: misc.yml
+
+- name: configure apt
+  import_tasks: apt.yml
+
+- name: update RPi firmware
+  import_tasks: firmware.yml
+  when: moodlebox_update_firmware
+
+- name: set hostname
+  import_tasks: hostname.yml
+  when: moodlebox_set_hostname
+
+- name: manage main user account
+  import_tasks: user.yml
+
+- name: set timezone
+  import_tasks: timezone.yml
+  when: moodlebox_set_timezone
+
+- name: set locales
+  import_tasks: locale.yml
+  when: moodlebox_set_locale
+
+- name: set wifi client country
+  import_tasks: wifi.yml
+
+- meta: flush_handlers

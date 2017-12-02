@@ -1,0 +1,7 @@
+---
+
+- name: create database for Moodle
+  mysql_db:
+    name: '{{ moodlebox_moodle_db }}'
+    state: 'present'
+  register: moodle_db_created

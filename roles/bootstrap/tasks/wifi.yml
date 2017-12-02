@@ -1,0 +1,8 @@
+---
+
+- name: set wifi country
+  lineinfile:
+    path: '/etc/wpa_supplicant/wpa_supplicant.conf'
+    regexp: '^country='
+    line: 'country={{ moodlebox_wifi_country }}'
+  notify: restart networking

@@ -1,0 +1,28 @@
+---
+
+- name: install rpi-update
+  apt:
+    pkg: 'rpi-update'
+    state: 'present'
+
+- name: update firmware
+  shell: 'SKIP_BACKUP=1 PRUNE_MODULES=1 rpi-update'
+  register: fw_result
+  changed_when: 'fw_result.rc == 0 and "Your firmware is already up to date" not in fw_result.stdout'
+
+- name: reboot machine
+  shell: 'sleep 2 && shutdown -r now'
+  async: 1
+  poll: 0
+  ignore_errors: true
+  when: fw_result|changed
+
+- name: wait for machine to come back
+  become: false
+  local_action: wait_for
+  args:
+    host: '{{ ansible_host | default(inventory_hostname) }}'
+    port: 22
+    state: 'started'
+    delay: 10
+    timeout: 60

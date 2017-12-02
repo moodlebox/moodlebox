@@ -1,0 +1,16 @@
+---
+
+- name: get MathJax library from git repository
+  git:
+    repo: 'git://github.com/mathjax/MathJax.git'
+    dest: '/var/www/moodle/lib/MathJax'
+    depth: 1
+
+- name: change MathJax library file permissions
+  file:
+    path: '/var/www/moodle/lib/MathJax'
+    state: 'directory'
+    owner: 'www-data'
+    group: 'www-data'
+    mode: 'ug+w,o-w'
+    recurse: 'yes'

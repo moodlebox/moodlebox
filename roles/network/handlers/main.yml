@@ -1,0 +1,14 @@
+---
+
+- name: restart networking
+  service:
+    name: 'networking'
+    state: 'restarted'
+
+- name: restart web services
+  service:
+    name: '{{ item }}'
+    state: 'restarted'
+  with_items:
+    - 'nginx'
+    - 'php7.0-fpm'

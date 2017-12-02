@@ -1,0 +1,62 @@
+---
+
+- name: change username in several files
+  replace:
+    path: '{{ item }}'
+    regexp: '\b{{ moodlebox_rpi_username }}\b'
+    replace: '{{ moodlebox_username }}'
+  with_items: '{{ moodlebox_username_files }}'
+
+- name: create sudoers file
+  template:
+    src: 'etc/sudoers.d/ansible.j2'
+    dest: '/etc/sudoers.d/010_{{ moodlebox_username }}-nopasswd'
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
+- name: delete old sudoers file
+  file:
+    path: '/etc/sudoers.d/010_{{ moodlebox_rpi_username }}-nopasswd'
+    state: 'absent'
+
+- name: check presence of '/home/{{ moodlebox_rpi_username }}' directory
+  stat:
+    path: '/home/{{ moodlebox_rpi_username }}'
+  register: pi_home_dir
+
+- name: move user home directory
+  command: 'mv /home/{{ moodlebox_rpi_username }} /home/{{ moodlebox_username }}'
+  when: pi_home_dir.stat.exists and pi_home_dir.stat.islnk == False
+  register: pi_home_dir_moved
+
+- name: simlink to old directory
+  file:
+    src: '/home/{{ moodlebox_username }}'
+    path: '/home/{{ moodlebox_rpi_username }}'
+    state: 'link'
+  when: pi_home_dir_moved
+
+- name: change user password
+  user:
+    name: '{{ moodlebox_username }}'
+    password: '{{ moodlebox_password | password_hash("md5") }}'
+
+- name: update .bashrc file (1)
+  lineinfile:
+    path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
+    regexp: '^    PS1=.*01;32m.*01;34m.*$'
+    line: '    PS1="${debian_chroot:+($debian_chroot)}\[\e[0;93m\]\u\[\e[0m\]@\[\e[38;5;208m\]\h\[\e[0m\]:\[\e[0;96m\]\w \[\e[0m\]\$ "'
+    insertafter: '^if \[ "\$color_prompt" = yes \]; then'
+    backrefs: 'yes'
+
+- name: update .bashrc file (2)
+  blockinfile:
+    path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
+    block: |
+      alias ll='ls -la'
+
+      # Assign arrow keys to history search in bash
+      bind '"\e[A":history-search-backward'
+      bind '"\e[B":history-search-forward'
+      # TAB cycles through the list of partial matches
+      bind 'TAB:menu-complete'

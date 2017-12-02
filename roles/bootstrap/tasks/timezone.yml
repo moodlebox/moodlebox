@@ -1,0 +1,12 @@
+---
+
+- name: set timezone
+  file:
+    src: '/usr/share/zoneinfo/{{ moodlebox_timezone }}'
+    path: '/etc/localtime'
+    state: 'link'
+  register: timezone_status
+
+- name: update tzdata
+  command: 'dpkg-reconfigure -f noninteractive tzdata'
+  when: timezone_status|changed

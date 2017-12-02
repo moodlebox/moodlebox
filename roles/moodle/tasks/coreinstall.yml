@@ -1,0 +1,102 @@
+---
+
+- name: get Moodle from git repository
+  git:
+    repo: 'git://git.moodle.org/moodle.git'
+    version: '{{ moodlebox_moodle_branch }}'
+    dest: '/var/www/moodle'
+    depth: 1
+
+- name: create Moodle data and cache directories with adequate permissions
+  file:
+    path: '{{ item }}'
+    state: 'directory'
+    owner: 'www-data'
+    group: 'www-data'
+    mode: 'ug+w,o-w'
+    recurse: 'yes'
+  with_items:
+    - '/var/www/moodle'
+    - '/var/www/moodledata/repository'
+    - '/var/www/moodledata/temp'
+    - '/var/www/moodledata/backup'
+    - '/var/cache/moodle'
+    - '/var/cache/moodle-cache-backup'
+
+- name: set sticky bit for moodledata directory
+  file:
+    path: '/var/www/moodledata'
+    state: 'directory'
+    mode: 'g+s'
+    recurse: 'yes'
+
+- name: create file repository directory
+  file:
+    path: '/home/{{ moodlebox_username }}/files'
+    state: 'directory'
+    owner: '{{ moodlebox_username }}'
+    group: 'www-data'
+    mode: 'g+s'
+
+- name: link directories
+  file:
+    src: '{{ item.src }}'
+    path: '{{ item.path }}'
+    state: 'link'
+  with_items:
+    - { src: '/home/{{ moodlebox_username }}/files', path: '/var/www/moodledata/repository/files' }
+    - { src: '/media/usb', path: '/var/www/moodledata/repository/usb' }
+    - { src: '/usr/share/phpmyadmin', path: '/var/www/moodle/phpmyadmin' }
+    - { src: '/var/www/moodledata/backup', path: '/var/www/moodledata/temp/backup' }
+
+- name: configure RAM disks for Moodle cache
+  mount:
+    path: '{{ item.name }}'
+    src: 'tmpfs'
+    fstype: 'tmpfs'
+    opts: 'size={{ item.size }},mode=775,uid=www-data,gid=www-data'
+    dump: 0
+    passno: 0
+    state: 'mounted'
+  with_items:
+    - { name: '/var/cache/moodle', size: '64M' }
+    - { name: '/var/www/moodledata/temp', size: '64M' }
+    - { name: '/var/www/moodledata/sessions', size: '16M' }
+
+# https://github.com/HCPSS/ansible-role-moodle/blob/master/tasks/install.yml
+- name: install Moodle via CLI
+  command: '/usr/bin/php "/var/www/moodle/admin/cli/install.php"
+    --lang="{{ moodlebox_moodle_lang }}"
+    --wwwroot="http://{{ moodlebox_hostname }}.home"
+    --dataroot="/var/www/moodledata"
+    --dbtype="mariadb"
+    --dbname="{{ moodlebox_moodle_db }}"
+    --prefix="{{ moodlebox_moodle_db_prefix }}"
+    --dbuser="{{ moodlebox_db_username }}"
+    --dbpass="{{ moodlebox_db_password }}"
+    --fullname="{{ moodlebox_moodle_name }}"
+    --shortname="{{ moodlebox_moodle_name }}"
+    --summary="{{ moodlebox_moodle_summary }}"
+    --adminuser="{{ moodlebox_moodle_username }}"
+    --adminpass="{{ moodlebox_moodle_password }}"
+    --adminemail="{{ moodlebox_moodle_username }}@{{ moodlebox_hostname }}.invalid"
+    --non-interactive
+    --agree-license'
+  args:
+    chdir: '/var/www/moodle'
+    creates: '/var/www/moodle/config.php'
+
+- name: change Moodle config file owner and group
+  file:
+    path: '/var/www/moodle/config.php'
+    owner: 'www-data'
+    group: 'www-data'
+
+- name: write extra parameters to the Moodle config file
+  lineinfile:
+    path: '/var/www/moodle/config.php'
+    line: '$CFG->{{ item.name }} = {{ item.value }};'
+    insertbefore: '^\$CFG->directorypermissions'
+  with_items:
+    - { name: 'xsendfile', value: "'X-Accel-Redirect'" }
+    - { name: 'xsendfilealiases', value: "array ('/dataroot/' => $CFG->dataroot)" }

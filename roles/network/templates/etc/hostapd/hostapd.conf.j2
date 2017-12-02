@@ -1,0 +1,33 @@
+# Set country code
+country_code={{ moodlebox_wifi_country }}
+# Name of the Wi-Fi interface
+interface=wlan0
+# Use the nl80211 driver
+driver=nl80211
+# Wi-Fi network name (SSID)
+ssid={{ moodlebox_wifi_ssid }}
+# Use the 2.4GHz band
+hw_mode=g
+# The Wi-Fi channel
+channel={{ moodlebox_wifi_channel }}
+# Enable 802.11n
+ieee80211n=1
+# Enable WMM
+wmm_enabled=1
+# Enable 40 MHz channels with short guard interval for 20 Mhz
+ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
+# Accept all MAC addresses
+macaddr_acl=0
+# Use WPA authentication
+auth_algs=1
+# Use WPA2
+wpa=2
+# Use a pre-shared key
+wpa_key_mgmt=WPA-PSK
+# The network passphrase
+wpa_passphrase={{ moodlebox_wifi_password }}
+# Use AES, instead of TKIP
+rsn_pairwise=CCMP
+# Enable hostapd_cli
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0

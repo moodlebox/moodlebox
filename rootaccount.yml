@@ -1,0 +1,24 @@
+---
+- name: playbook to get SSH public key into root account
+  hosts: all
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - include_vars: '{{ item }}'
+      with_fileglob:
+        - config.yml
+
+  tasks:
+    - name: install SSH public key to root user
+      become: yes
+      authorized_key:
+        user: root
+        key: '{{ ssh_pubkey }}'
+      when:
+        ssh_pubkey is defined
+
+  vars:
+    ansible_user: '{{ moodlebox_rpi_username }}'
+    ssh_pubkey: "{{ lookup('file', 'keys/' + moodlebox_public_key_file) }}"

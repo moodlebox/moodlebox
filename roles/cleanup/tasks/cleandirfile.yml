@@ -1,0 +1,22 @@
+---
+
+# See https://stackoverflow.com/a/35128533
+# See https://wrightturn.wordpress.com/2017/05/10/ansible-warning-the-loop-variable-item-is-already-in-use/
+- set_fact:
+    outer_loop: '{{ item }}'
+
+- name: find files
+  find:
+    paths: '{{ outer_loop }}'
+    pattern: '*'
+    file_type: any
+  register: dir_content
+
+- name: remove temp directories and files
+  file:
+    path: '{{ file_item.path }}'
+    state: absent
+  with_items:
+    - '{{ dir_content.files }}'
+  loop_control:
+    loop_var: file_item

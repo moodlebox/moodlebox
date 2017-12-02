@@ -1,0 +1,23 @@
+---
+
+- name: set IP forwarding on in /proc and in the sysctl file and reload if necessary
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: add iptables nat rules
+  iptables_raw:
+    name: 'MoodleBox iptable nat rule'
+    rules: '-A POSTROUTING -o eth0 -j MASQUERADE'
+    table: 'nat'
+
+- name: add iptables filter rules
+  iptables_raw:
+    name: 'MoodleBox forwarding rules'
+    rules: |
+      -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+      -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+    table: 'filter'

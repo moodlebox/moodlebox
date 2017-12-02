@@ -1,0 +1,41 @@
+---
+
+- name: check if database for Moodle exists
+  shell: mysql -e 'SHOW DATABASES;' | grep '{{ moodlebox_moodle_db }}'
+  register: moodle_db_exists
+  failed_when: moodle_db_exists.rc > 1
+  changed_when: moodle_db_exists.rc == 0
+
+- name: drop database for Moodle
+  mysql_db:
+    name: '{{ moodlebox_moodle_db }}'
+    state: 'absent'
+  when: moodle_db_exists|changed
+
+- name: remove RAM disks
+  mount:
+    name: '{{ item.name }}'
+    state: 'unmounted'
+  with_items:
+    - { name: '/var/cache/moodle', size: '64M' }
+    - { name: '/var/www/moodledata/temp', size: '64M' }
+    - { name: '/var/www/moodledata/sessions', size: '16M' }
+
+- name: remove previous Moodle installation
+  file:
+    path: '{{ item }}'
+    state: 'absent'
+  with_items:
+    - '/var/www/moodledata'
+    - '/var/www/moodle'
+    - '/var/cache/moodle'
+    - '/var/cache/moodle-cache-backup'
+
+- name: check if any incron job exist
+  shell: 'incrontab -l | wc -c'
+  register: incronjob_exists
+  changed_when: incronjob_exists.stdout|int > 0
+
+- name: remove incron jobs
+  shell: 'incrontab -u root -r'
+  when: incronjob_exists|changed

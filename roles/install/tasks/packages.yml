@@ -1,0 +1,22 @@
+---
+
+- name: uninstall unneeded packages
+  apt:
+    pkg: '{{ item }}'
+    state: 'absent'
+    purge: 'yes'
+  with_flattened:
+    - '{{ moodlebox_uninstall_packages }}'
+  when: 'moodlebox_uninstall_packages is defined'
+
+- name: install packages needed
+  apt:
+    pkg: '{{ item }}'
+    state: 'present'
+  with_flattened:
+    - '{{ moodlebox_install_packages }}'
+
+- name: install phpMyAdmin package
+  apt:
+    pkg: 'phpmyadmin'
+    state: 'present'

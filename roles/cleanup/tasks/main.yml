@@ -1,0 +1,74 @@
+---
+
+- name: remove packages used only during the build
+  apt:
+    pkg: '{{ item }}'
+    state: 'absent'
+    purge: 'yes'
+  with_items:
+    - 'python-mysqldb'
+    - 'rpi-update'
+
+- name: clean Moodle database log tables
+  shell: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
+  with_items:
+    - 'mdl_logstore_standard_log'
+    - 'mdl_config_log'
+    - 'mdl_upgrade_log'
+
+- name: remove useless packages from cache and no longer required dependencies
+  apt:
+    autoremove: 'yes'
+    autoclean: 'yes'
+
+- name: stop DHCP server
+  service:
+    name: 'dnsmasq'
+    state: 'stopped'
+
+- name: cleanup DHCP leases
+  file:
+    path: '/var/lib/misc/dnsmasq.leases'
+    state: 'absent'
+
+- name: cleanup dirs and files
+  include_tasks: cleandirfile.yml
+  with_items:
+    - '/var/www/moodledata/cache/'
+    - '/var/www/moodledata/localcache/'
+    - '/var/www/moodledata/temp/'
+    - '/var/www/moodledata/trashdir/'
+    - '/var/www/moodledata/sessions/'
+    - '/var/cache/moodle/'
+    - '/var/cache/moodle-cache-backup/'
+    - '/var/lib/apt/lists/'
+    - '/var/cache/debconf/'
+    - '/tmp/'
+    - '/var/tmp/'
+    - '/root/.bash_history'
+    - '/root/.mysql_history'
+    - '/root/.nano_history'
+
+- name: empty log files
+  shell: 'for logs in `find /var/log -type f`; do > $logs; done'
+
+- name: reboot machine
+  shell: 'sleep 2 && shutdown -r now'
+  async: 1
+  poll: 0
+  ignore_errors: true
+
+- name: wait for machine to come back
+  become: false
+  local_action: wait_for
+  args:
+    host: '{{ ansible_host | default(inventory_hostname) }}'
+    port: 22
+    state: 'started'
+    delay: 10
+    timeout: 60
+
+- name: remove ssh public keys
+  file:
+    path: '/root/.ssh'
+    state: 'absent'

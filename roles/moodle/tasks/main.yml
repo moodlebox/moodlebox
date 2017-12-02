@@ -1,0 +1,40 @@
+---
+
+- name: format release date using locales
+  shell:
+    _raw_params: LC_ALL={{ item }} date --date={{ moodlebox_release_date }} '+%-d %B %Y'
+  with_items: '{{ moodlebox_locales }}'
+  register: 'formatted_dates'
+
+- name: set vars with formatted dates
+  set_fact: '{{ item.0 | regex_replace("^(.*)_.*UTF-8$", "moodlebox_release_date_\1") }}={{ item.1.stdout }}'
+  with_together:
+    - '{{ moodlebox_locales }}'
+    - '{{ formatted_dates.results }}'
+
+- name: set summary string with formatted dates
+  set_fact:
+    moodlebox_moodle_summary: |
+      <p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='de' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, eine <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span></p>
+      <p><span lang='en' class='multilang'>MoodleBox is made by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='de' class='multilang'>MoodleBox ist von <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a> hergestellt.</span></p>
+      <p><span lang='en' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_en }}.</span><span lang='fr' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_fr }}.</span><span lang='de' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_de }}.</span></p>
+
+- name: clean previous installation
+  import_tasks: clean.yml
+
+- name: create database
+  import_tasks: db.yml
+
+- name: get Moodle and install it
+  import_tasks: coreinstall.yml
+
+- name: get MoodleBox plugin and install it
+  import_tasks: moodleboxplugin.yml
+
+- name: install MathJax library
+  import_tasks: mathjax.yml
+
+- name: configure crons
+  import_tasks: cron.yml
+
+- meta: flush_handlers

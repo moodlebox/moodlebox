@@ -1,0 +1,19 @@
+---
+
+- name: add script to resize partition on first boot
+  copy:
+    src: 'etc/init.d/resize2fs_once'
+    dest: '/etc/init.d/resize2fs_once'
+    mode: 0755
+
+- name: add udev systemd service to make USB automount work
+  copy:
+    src: 'etc/systemd/system/systemd-udevd.service'
+    dest: '/etc/systemd/system/systemd-udevd.service'
+    mode: 0644
+
+- name: add root to allowed incron users
+  lineinfile:
+    path: '/etc/incron.allow'
+    line: 'root'
+  notify: restart incron

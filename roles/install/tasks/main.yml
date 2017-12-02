@@ -1,0 +1,12 @@
+---
+
+- name: install and configure database server
+  import_tasks: db.yml
+
+- name: install/remove packages
+  import_tasks: packages.yml
+
+- name: misc system configuration
+  import_tasks: system.yml
+
+- meta: flush_handlers

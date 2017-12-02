@@ -1,0 +1,17 @@
+---
+
+- name: add locales
+  locale_gen:
+    name: '{{ item }}'
+    state: 'present'
+  with_items: '{{ moodlebox_locales }}'
+  register: locales_status
+
+- name: generate locales
+  command: 'locale-gen'
+  when: locales_status.changed
+
+- name: deploy default locale
+  template:
+    src: 'etc/default/locale.j2'
+    dest: '/etc/default/locale'

@@ -1,0 +1,45 @@
+---
+
+- name: clone MoodleBox plugin from git repository
+  git:
+    repo: 'https://github.com/martignoni/moodle-tool_moodlebox.git'
+    dest: '/var/www/moodle/admin/tool/moodlebox'
+
+- name: get latest MoodleBox plugin tag name
+  shell: 'git describe --abbrev=0 --tags'
+  args:
+    chdir: '/var/www/moodle/admin/tool/moodlebox'
+  check_mode: 'no'
+  register: latest_tag
+
+- name: pull latest released MoodleBox plugin version
+  git:
+    repo: 'https://github.com/martignoni/moodle-tool_moodlebox.git'
+    dest: '/var/www/moodle/admin/tool/moodlebox'
+    version: 'tags/{{ latest_tag.stdout }}'
+  when: moodlebox_moodlebox_plugin_stable
+
+- name: touch files for MoodleBox plugin functionality
+  file:
+    path: '/var/www/moodle/admin/tool/moodlebox/{{ item }}'
+    state: 'touch'
+  with_items:
+    - '.reboot-server'
+    - '.shutdown-server'
+    - '.set-server-datetime'
+    - '.newpassword'
+    - '.wifisettings'
+
+- name: change MoodleBox plugin file permissions
+  file:
+    path: '/var/www/moodle/admin/tool/moodlebox'
+    state: 'directory'
+    owner: 'www-data'
+    group: 'www-data'
+    mode: 'ug+w,o-w'
+    recurse: 'yes'
+
+- name: install MoodleBox plugin via CLI
+  command: '/usr/bin/php "/var/www/moodle/admin/cli/upgrade.php" --non-interactive'
+  args:
+    chdir: '/var/www/moodle'

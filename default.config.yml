@@ -1,0 +1,79 @@
+---
+# MoodleBox version and release date.
+moodlebox_version: '2.0.1'
+moodlebox_release_date: '2017-11-27'
+moodlebox_name: 'MoodleBox'
+
+# MoodleBox hostname (taken from inventory).
+moodlebox_hostname: '{{ inventory_hostname }}'
+
+# MoodleBox main credentials.
+moodlebox_username: 'moodlebox'
+moodlebox_password: 'Moodlebox4$'
+
+# MoodleBox Wi-Fi static IP address.
+moodlebox_ip_address: '10.0.0.1/24'
+
+# MoodleBox DHCP range.
+moodlebox_dhcp_range_begin: "{{ moodlebox_ip_address | ipaddr('10') | ipaddr('address') }}"
+moodlebox_dhcp_range_end: "{{ moodlebox_ip_address | ipaddr('254') | ipaddr('address') }}"
+
+# MoodleBox external public DNS servers IP addresses.
+moodlebox_external_dns_ip_address:
+  - '84.200.69.80' # DNS.WATCH
+  - '84.200.70.40' # DNS.WATCH
+#  - '64.6.64.6' # Verisign
+#  - '64.6.65.6' # Verisign
+
+# MoodleBox db credentials.
+moodlebox_db_username: '{{ moodlebox_username }}'
+moodlebox_db_password: '{{ moodlebox_password }}'
+
+# MoodleBox db root password.
+moodlebox_db_root_password: '{{ moodlebox_password }}'
+
+# MoodleBox Wi-Fi settings.
+moodlebox_wifi_password: '{{ moodlebox_hostname }}'
+moodlebox_wifi_ssid: '{{ moodlebox_name }}'
+moodlebox_wifi_channel: '13'
+moodlebox_wifi_country: 'CH'
+
+# MoodleBox localisation parameters.
+moodlebox_default_locale: 'en_GB.UTF-8'
+moodlebox_locales:
+  - 'en_GB.UTF-8'
+  - 'fr_FR.UTF-8'
+  - 'de_DE.UTF-8'
+  - 'es_ES.UTF-8'
+  - 'it_IT.UTF-8'
+moodlebox_timezone: 'Europe/Paris'
+
+# Public key filename.
+moodlebox_public_key_file: 'id_rsa.pub'
+
+# MoodleBox Moodle default build settings.
+moodlebox_moodle_branch: 'MOODLE_34_STABLE'
+moodlebox_moodle_username: 'admin'
+moodlebox_moodle_password: '{{ moodlebox_password }}'
+moodlebox_moodle_db: 'moodle'
+moodlebox_moodle_db_prefix: 'mdl_'
+moodlebox_moodle_lang: 'en'
+moodlebox_moodle_name: '{{ moodlebox_name }}'
+moodlebox_moodle_summary: |
+  <p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='de' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, eine <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span></p>
+  <p><span lang='en' class='multilang'>MoodleBox is made by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='de' class='multilang'>MoodleBox ist von <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a> hergestellt.</span></p>
+  <p><span lang='en' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date }}.</span><span lang='fr' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date }}.</span><span lang='de' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date }}.</span></p>
+
+# MoodleBox default build options.
+moodlebox_update_firmware: false
+moodlebox_set_hostname: true
+moodlebox_set_timezone: true
+moodlebox_set_locale: true
+moodlebox_moodlebox_plugin_stable: true
+
+# Raspberry default credentials.
+moodlebox_rpi_username: 'pi'
+moodlebox_rpi_password: 'raspberry'
+
+# Raspberry default hostname.
+moodlebox_rpi_hostname: 'raspberrypi'
