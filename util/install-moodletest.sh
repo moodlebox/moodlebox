@@ -23,6 +23,9 @@
 # Tomasz Muras that will allow you to perform most common Moodle tasks.
 #
 
+# This script MUST be run as root
+[[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
+
 ## set useful vars
 dummypassword="123456"
 moodleurl="http://moodlebox.local"
@@ -41,11 +44,11 @@ country="CH"
 # selfpath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 ## path of root and data directories of Moodle installation
-moodlerootpath="/var/www/html"
+moodlerootpath="/var/www/moodle"
 moodledatapath="/var/www/moodledata"
 
 ## path of moosh folder
-mooshpath="/home/pi/moosh/"
+mooshpath="/home/moodlebox/moosh"
 ## script and options
 mooshscript="$mooshpath/moosh.php -n -p $moodlerootpath"
 #
