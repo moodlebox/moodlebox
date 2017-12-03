@@ -1,6 +1,6 @@
 # Contributing to MoodleBox project
 
-First off, thank you for considering contributing to the MoodleBox project. There is plenty of work to do and no big commitment is required: if all you do is fixing a typo in the documentation, you are a hero.
+First off, thank you for considering contributing to the [MoodleBox project](https://github.com/martignoni/moodlebox). There is plenty of work to do and no big commitment is required: if all you do is fixing a typo in the documentation, you are a hero.
 
 Following these guidelines helps to communicate that you respect the time of the people working on this project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your contributions.
 
