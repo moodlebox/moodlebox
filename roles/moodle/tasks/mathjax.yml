@@ -3,12 +3,12 @@
 - name: get MathJax library from git repository
   git:
     repo: 'git://github.com/mathjax/MathJax.git'
-    dest: '/var/www/moodle/lib/MathJax'
+    dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     depth: 1
 
 - name: change MathJax library file permissions
   file:
-    path: '/var/www/moodle/lib/MathJax'
+    path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     state: 'directory'
     owner: 'www-data'
     group: 'www-data'

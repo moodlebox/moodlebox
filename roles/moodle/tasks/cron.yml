@@ -6,9 +6,9 @@
     minute: '{{ item.minute }}'
     job: '{{ item.job }}'
   with_items:
-    - { name: 'Launch Moodle tasks', minute: '*/3', job: 'nice -n 10 ionice -c2 /usr/bin/php /var/www/moodle/admin/cli/cron.php' }
+    - { name: 'Launch Moodle tasks', minute: '*/3', job: 'nice -n 10 ionice -c2 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
     - { name: 'Backup cache', minute: '*/20', job: 'rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/' }
-    - { name: 'Prevent backup dir deletion', minute: '*/15', job: 'touch /var/www/moodledata/backup/moodlebox.mbz' }
+    - { name: 'Prevent backup dir deletion', minute: '*/15', job: 'touch {{ moodlebox_moodle_data_dir }}/backup/moodlebox.mbz' }
 
 - name: configure special time cron
   cron:
@@ -17,12 +17,12 @@
     job: '{{ item.job }}'
   with_items:
     - { name: 'Restore cache', special_time: 'reboot', job: 'cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/' }
-    - { name: 'Restore temp directory link', special_time: 'reboot', job: 'ln -s /var/www/moodledata/backup /var/www/moodledata/temp/backup' }
+    - { name: 'Restore temp directory link', special_time: 'reboot', job: 'ln -s {{ moodlebox_moodle_data_dir }}/backup {{ moodlebox_moodle_data_dir }}/temp/backup' }
 
 - name: configure incron
   shell: |
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/.set-server-datetime") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "/var/www/moodle/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash /var/www/moodle/admin/tool/moodlebox/bin/changewifisettings.sh") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
+    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changewifisettings.sh") | incrontab -

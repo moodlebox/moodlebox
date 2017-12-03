@@ -18,16 +18,16 @@
     state: 'unmounted'
   with_items:
     - { name: '/var/cache/moodle', size: '64M' }
-    - { name: '/var/www/moodledata/temp', size: '64M' }
-    - { name: '/var/www/moodledata/sessions', size: '16M' }
+    - { name: '{{ moodlebox_moodle_data_dir }}/temp', size: '64M' }
+    - { name: '{{ moodlebox_moodle_data_dir }}/sessions', size: '16M' }
 
 - name: remove previous Moodle installation
   file:
     path: '{{ item }}'
     state: 'absent'
   with_items:
-    - '/var/www/moodledata'
-    - '/var/www/moodle'
+    - '{{ moodlebox_moodle_data_dir }}'
+    - '{{ moodlebox_moodle_source_dir }}'
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
 

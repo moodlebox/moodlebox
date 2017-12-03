@@ -34,11 +34,11 @@
 - name: cleanup dirs and files
   include_tasks: cleandirfile.yml
   with_items:
-    - '/var/www/moodledata/cache/'
-    - '/var/www/moodledata/localcache/'
-    - '/var/www/moodledata/temp/'
-    - '/var/www/moodledata/trashdir/'
-    - '/var/www/moodledata/sessions/'
+    - '{{ moodlebox_moodle_data_dir }}/cache/'
+    - '{{ moodlebox_moodle_data_dir }}/localcache/'
+    - '{{ moodlebox_moodle_data_dir }}/temp/'
+    - '{{ moodlebox_moodle_data_dir }}/trashdir/'
+    - '{{ moodlebox_moodle_data_dir }}/sessions/'
     - '/var/cache/moodle/'
     - '/var/cache/moodle-cache-backup/'
     - '/var/lib/apt/lists/'

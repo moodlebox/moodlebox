@@ -4,7 +4,7 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
-	root /var/www/moodle;
+	root {{ moodlebox_moodle_source_dir }};
 
 	index index.php index.html index.htm index.nginx-debian.html;
 
@@ -16,7 +16,7 @@ server {
 
 	location /dataroot/ {
 		internal;
-		alias /var/www/moodledata/;
+		alias {{ moodlebox_moodle_data_dir }}/;
 	}
 
 	location ~ [^/]\.php(/|$) {
