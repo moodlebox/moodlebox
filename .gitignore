@@ -1,9 +1,11 @@
 # Files and folders specific to this project
 id_rsa.pub
 config.yml
+moodlebox-postinstall.yml
 test.yml
+roles/postinstall
 roles/test
-private-util/*
+private-util
 
 # Mac finder files and hidden folders
 *.DS_Store
