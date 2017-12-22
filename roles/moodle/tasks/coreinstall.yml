@@ -67,7 +67,7 @@
 - name: install Moodle via CLI
   command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/install.php"
     --lang="{{ moodlebox_moodle_lang }}"
-    --wwwroot="http://{{ moodlebox_hostname }}.home"
+    --wwwroot="http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}"
     --dataroot="{{ moodlebox_moodle_data_dir }}"
     --dbtype="mariadb"
     --dbname="{{ moodlebox_moodle_db }}"

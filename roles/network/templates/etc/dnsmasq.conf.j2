@@ -7,10 +7,10 @@ server={{ ip_address }}         # Forward DNS requests to external public DNS
 {% endfor %}
 domain-needed               # Don't forward short names
 bogus-priv                  # Don't forward addresses in the non-routed spaces
-domain=home                 # Set private domain name to 'home'
-local=/home/                # Don't forward queries for private domain 'home'
+domain={{ moodlebox_tld }}                 # Set private domain name to '{{ moodlebox_tld }}'
+local=/{{ moodlebox_tld }}/                # Don't forward queries for private domain '{{ moodlebox_tld }}'
 expand-hosts                # Add private domain name to hostnames
 dhcp-range=wifi,{{ moodlebox_dhcp_range_begin }},{{ moodlebox_dhcp_range_end }},{{ moodlebox_ip_address | ipaddr('netmask') }},4h # Assign IP addresses with 4h lease, subnet name 'wifi'
 dhcp-option=wifi,6,{{ moodlebox_ip_address | ipaddr('address') }} # Set DNS server for subnet wifi
-txt-record=moodlebox.home,"MoodleBox version {{ moodlebox_version }}, by Nicolas Martignoni"
+txt-record={{ moodlebox_hostname }}.{{ moodlebox_tld }},"MoodleBox version {{ moodlebox_version }}, by Nicolas Martignoni"
 log-facility=/var/log/dnsmasq.log # Enable log

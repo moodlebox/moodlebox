@@ -7,6 +7,10 @@ moodlebox_name: 'MoodleBox'
 # MoodleBox hostname (taken from inventory).
 moodlebox_hostname: '{{ inventory_hostname }}'
 
+# MoodleBox top level domain name.
+# URL of MoodleBox is {{ moodlebox_hostname }}.{{ moodlebox_tld }}.
+moodlebox_tld: 'home'
+
 # MoodleBox main credentials.
 moodlebox_username: 'moodlebox'
 moodlebox_password: 'Moodlebox4$'
