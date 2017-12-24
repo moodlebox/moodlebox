@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/martignoni/moodlebox.svg)](https://github.com/martignoni/moodlebox/releases/latest)
 [![GitHub Release Date](https://img.shields.io/github/release-date/martignoni/moodlebox.svg)](https://github.com/martignoni/moodlebox/releases/latest)
-[![Github Release Downloads](https://img.shields.io/github/downloads/martignoni/moodlebox/latest/total.svg)](https://github.com/martignoni/moodlebox/releases/latest)
+[![Github Downloads](https://img.shields.io/github/downloads/martignoni/moodlebox/total.svg)](https://github.com/martignoni/moodlebox/releases/latest)
 [![GitHub last commit](https://img.shields.io/github/last-commit/martignoni/moodlebox.svg)](https://github.com/martignoni/moodlebox/commits/)
 
 A project to build a Moodle server and Wi-Fi router on a Raspberry Pi 3.
