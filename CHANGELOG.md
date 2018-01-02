@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Version 2.1, unreleased
+## Version 2.1, 2018-01-02
 ### Changed
 - Based on Raspbian Stretch Lite version of 2017-11-29.
 - Building is now done using Ansible (issue #48).
