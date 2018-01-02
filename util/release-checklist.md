@@ -7,7 +7,7 @@ git add CHANGELOG.md
 git commit -m "Release notes updated for upcoming release x.y.z."
 ```
 
-- [ ] Update version date in make_moodlebox.sh
+- [ ] Update version date in `default.config.yml`
 - [ ] Update version number (can also be 'minor' or 'major' instead of 'patch')
 ```
 bumpversion patch --allow-dirty
