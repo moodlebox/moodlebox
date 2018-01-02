@@ -9,10 +9,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 - Building is now done using Ansible (issue #48).
 
 ### Added
-- .
+- Display info at SSH login (issue #51).
 
 ### Fixed
-- .
+- Moodle installation directories no more hardcoded (issue #49).
+- Top level domain name no more hardcoded (issue #52).
 
 ## Version 2.0.1, 2017-11-27
 ### Fixed
