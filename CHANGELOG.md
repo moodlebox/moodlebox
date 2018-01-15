@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Unreleased
+### Changed
+- Nothing.
+
+### Added
+- Enabled startup/shutdown with hardware button, if present (issue #53).
+
+### Fixed
+- Nothing.
+
 ## Version 2.1, 2018-01-02
 ### Changed
 - Based on Raspbian Stretch Lite version of 2017-11-29.
