@@ -8,6 +8,15 @@
     - reboot machine
     - wait for machine to come back
 
+- name: enable shutdown/startup hardware button
+  lineinfile:
+    path: '/boot/config.txt'
+    line: 'dtoverlay=gpio-shutdown'
+    insertafter: '^# Additional overlays and parameters'
+  notify:
+    - reboot machine
+    - wait for machine to come back
+
 - name: turn off screen blanking
   replace:
     path: '/boot/cmdline.txt'
