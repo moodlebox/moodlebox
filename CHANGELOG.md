@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ## Unreleased
 ### Changed
-- Nothing.
+- Updated to Moodle 3.4.1 (issue #54).
 
 ### Added
 - Enabled startup/shutdown with hardware button, if present (issue #53).
