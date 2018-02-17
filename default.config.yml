@@ -75,7 +75,7 @@ moodlebox_update_firmware: false
 moodlebox_set_hostname: true
 moodlebox_set_timezone: true
 moodlebox_set_locale: true
-moodlebox_moodlebox_plugin_stable: true
+moodlebox_moodlebox_plugin_unstable: false
 
 # Raspberry default credentials.
 moodlebox_rpi_username: 'pi'
