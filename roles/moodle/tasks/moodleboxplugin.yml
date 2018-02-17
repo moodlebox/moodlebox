@@ -17,7 +17,7 @@
     repo: 'https://github.com/martignoni/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     version: 'tags/{{ latest_tag.stdout }}'
-  when: moodlebox_moodlebox_plugin_unstable
+  when: not moodlebox_moodlebox_plugin_unstable
 
 - name: touch files for MoodleBox plugin functionality
   file:
