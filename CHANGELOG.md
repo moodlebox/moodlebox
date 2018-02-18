@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ## Unreleased
 ### Changed
 - Updated to Moodle 3.4.1 (issue #54).
+- Changed frequency of Moodle cron to 1 minute (issue #58).
 
 ### Added
 - Enabled startup/shutdown with hardware button, if present (issue #53).
