@@ -12,6 +12,12 @@
     dest: '/etc/systemd/system/systemd-udevd.service'
     mode: 0644
 
+- name: enable ntfs format mounting by usbmount
+  replace:
+    path: '/etc/usbmount/usbmount.conf'
+    regexp: '^FILESYSTEMS=.*$'
+    replace: 'FILESYSTEMS="vfat ntfs fuseblk ext2 ext3 ext4 hfsplus"'
+
 - name: add root to allowed incron users
   lineinfile:
     path: '/etc/incron.allow'
