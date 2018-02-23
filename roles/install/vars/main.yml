@@ -4,6 +4,7 @@ moodlebox_install_packages:
   - dnsmasq
   - git
   - usbmount
+  - ntfs-3g
   - incron
   - nginx
   - php7.0-fpm

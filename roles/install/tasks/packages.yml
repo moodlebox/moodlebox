@@ -1,6 +1,6 @@
 ---
 
-- name: uninstall unneeded packages
+- name: uninstall useless packages
   apt:
     pkg: '{{ item }}'
     state: 'absent'
@@ -9,7 +9,7 @@
     - '{{ moodlebox_uninstall_packages }}'
   when: 'moodlebox_uninstall_packages is defined'
 
-- name: install packages needed
+- name: install packages
   apt:
     pkg: '{{ item }}'
     state: 'present'
