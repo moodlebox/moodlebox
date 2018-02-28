@@ -10,9 +10,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ### Added
 - Enabled startup/shutdown with hardware button, if present (issue #53).
+- Now supports NTFS and exFAT formatted drives (issue #59 and #61).
 
 ### Fixed
-- Nothing.
+- Cron spamming the logs (issue #60).
 
 ## Version 2.1, 2018-01-02
 ### Changed
