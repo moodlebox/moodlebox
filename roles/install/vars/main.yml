@@ -3,8 +3,9 @@ moodlebox_install_packages:
   - hostapd
   - dnsmasq
   - git
-  - usbmount
   - ntfs-3g
+  - exfat-fuse
+  - lockfile-progs
   - incron
   - nginx
   - php7.0-fpm
