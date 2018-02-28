@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ### Added
 - Enabled startup/shutdown with hardware button, if present (issue #53).
 - Now supports NTFS and exFAT formatted drives (issue #59 and #61).
+- Moodle themes SCSS are now compiled after installation (issue #55).
 
 ### Fixed
 - Cron spamming the logs (issue #60).
