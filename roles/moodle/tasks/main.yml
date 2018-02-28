@@ -34,6 +34,9 @@
 - name: install MathJax library
   import_tasks: mathjax.yml
 
+- name: compile themes scss
+  import_tasks: themes.yml
+
 - name: configure crons
   import_tasks: cron.yml
 
