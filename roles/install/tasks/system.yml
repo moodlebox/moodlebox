@@ -6,17 +6,11 @@
     dest: '/etc/init.d/resize2fs_once'
     mode: 0755
 
-- name: add udev systemd service to make USB automount work
-  copy:
-    src: 'etc/systemd/system/systemd-udevd.service'
-    dest: '/etc/systemd/system/systemd-udevd.service'
-    mode: 0644
-
 - name: enable ntfs format mounting by usbmount
   replace:
     path: '/etc/usbmount/usbmount.conf'
     regexp: '^FILESYSTEMS=.*$'
-    replace: 'FILESYSTEMS="vfat ntfs fuseblk ext2 ext3 ext4 hfsplus"'
+    replace: 'FILESYSTEMS="vfat exfat ntfs fuseblk ext2 ext3 ext4 hfsplus"'
 
 - name: add root to allowed incron users
   lineinfile:
