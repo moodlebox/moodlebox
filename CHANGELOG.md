@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Unreleased
+## Version 2.2.0, 2018-03-02
 ### Changed
 - Updated to Moodle 3.4.1 (issue #54).
 - Changed frequency of Moodle cron to 1 minute (issue #58).
@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ### Fixed
 - Cron spamming the logs (issue #60).
 
-## Version 2.1, 2018-01-02
+## Version 2.1.0, 2018-01-02
 ### Changed
 - Based on Raspbian Stretch Lite version of 2017-11-29.
 - Building is now done using Ansible (issue #48).
