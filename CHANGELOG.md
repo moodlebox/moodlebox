@@ -74,7 +74,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ### Changed
 - Based on Raspbian Stretch Lite version of 2017-09-07.
-- Uses last released version of the [MoodleBox plugin](https://github.com/martignoni/moodlebox-plugin) for Moodle (new Wi-Fi settings options available).
+- Uses last released version of the [MoodleBox plugin](https://github.com/moodlebox/moodle-tool_moodlebox) for Moodle (new Wi-Fi settings options available).
 - Re-enable predictable network interface name, which is now disabled in Stretch image.
 
 ## Version 1.9.2, 2017-09-05

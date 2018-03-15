@@ -2,7 +2,7 @@
 
 - name: clone MoodleBox plugin from git repository
   git:
-    repo: 'https://github.com/martignoni/moodle-tool_moodlebox.git'
+    repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
 
 - name: get latest MoodleBox plugin tag name
@@ -14,7 +14,7 @@
 
 - name: pull latest released MoodleBox plugin version
   git:
-    repo: 'https://github.com/martignoni/moodle-tool_moodlebox.git'
+    repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     version: 'tags/{{ latest_tag.stdout }}'
   when: not moodlebox_moodlebox_plugin_unstable
