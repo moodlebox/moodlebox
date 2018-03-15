@@ -15,6 +15,6 @@ bumpversion minor --allow-dirty
 - [ ] Push: `git push`
 - [ ] Push tags: `git push --tags`
 - [ ] Prepare and finalize the image
-- [ ] Edit the release on GitHub (e.g. https://github.com/martignoni/moodlebox/releases); paste the release notes into the release's release page
+- [ ] Edit the release on GitHub (e.g. https://github.com/moodlebox/moodlebox/releases); paste the release notes into the release's release page
 - [ ] Upload disk image into the release's release page
 - [ ] Publish news on website and other media (Twitter, Moodle website, etc.)

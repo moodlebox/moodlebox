@@ -1,9 +1,9 @@
 # MoodleBox
 
-[![GitHub release](https://img.shields.io/github/release/martignoni/moodlebox.svg)](https://github.com/martignoni/moodlebox/releases/latest)
-[![GitHub Release Date](https://img.shields.io/github/release-date/martignoni/moodlebox.svg)](https://github.com/martignoni/moodlebox/releases/latest)
-[![Github Downloads](https://img.shields.io/github/downloads/martignoni/moodlebox/total.svg)](https://github.com/martignoni/moodlebox/releases/latest)
-[![GitHub last commit](https://img.shields.io/github/last-commit/martignoni/moodlebox.svg)](https://github.com/martignoni/moodlebox/commits/)
+[![GitHub release](https://img.shields.io/github/release/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/releases/latest)
+[![GitHub Release Date](https://img.shields.io/github/release-date/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/releases/latest)
+[![Github Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/total.svg)](https://github.com/moodlebox/moodlebox/releases/latest)
+[![GitHub last commit](https://img.shields.io/github/last-commit/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/commits/)
 
 A project to build a Moodle server and Wi-Fi router on a Raspberry Pi 3.
 
@@ -20,7 +20,7 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 1. Insert the microSD card into your Raspberry
 1. Connect your Raspberry to your Ethernet network and boot it.
 1. [Install Ansible](http://docs.ansible.com/intro_installation.html) on your computer.
-1. [Clone this repository](https://github.com/martignoni/moodlebox.git) to your local drive.
+1. [Clone this repository](https://github.com/moodlebox/moodlebox.git) to your local drive.
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
 1. Get the IP address of your RaspberryPi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
 1. Run `ansible-playbook moodlebox.yml` from the repository folder.
@@ -38,13 +38,13 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 ## Availability
 
-The code is available at [https://github.com/martignoni/moodlebox](https://github.com/martignoni/moodlebox).
+The code is available at [https://github.com/moodlebox/moodlebox](https://github.com/moodlebox/moodlebox).
 
 A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](htts://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
-See [Release notes](https://github.com/martignoni/moodlebox/blob/master/CHANGELOG.md).
+See [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG.md).
 
 ## Thanks
 
