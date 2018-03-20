@@ -6,3 +6,7 @@
     regexp: '^country='
     line: 'country={{ moodlebox_wifi_country }}'
   notify: restart networking
+
+- name: unblock wlan0
+  command: 'rfkill unblock wifi'
+  notify: restart networking
