@@ -7,6 +7,6 @@
     line: 'country={{ moodlebox_wifi_country }}'
   notify: restart networking
 
-- name: unblock wlan0
+- name: unblock wifi
   command: 'rfkill unblock wifi'
   notify: restart networking
