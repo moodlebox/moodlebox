@@ -3,16 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Unreleased (upcoming verson 2.3.0, no date)
+## Verson 2.3.0, 2018-03-31
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-03-13 (issue #63).
 - Updated to Moodle 3.4.2 (issue #64).
+- Arbitrary chars in SSIDs now supported (issues https://github.com/moodlebox/moodle-tool_moodlebox/issues/31 and https://github.com/moodlebox/moodle-tool_moodlebox/issues/38).
 
 ### Added
 - Support Raspberry Pi 3 B+ (issue #65).
 
 ### Fixed
-- Nothing yet.
+- Nothing.
 
 ## Version 2.2.0, 2018-03-02
 ### Changed
