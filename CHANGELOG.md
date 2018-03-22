@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Verson 2.3.0, 2018-03-31
+## Verson 2.3.0, 2018-03-21
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-03-13 (issue #63).
 - Updated to Moodle 3.4.2 (issue #64).
