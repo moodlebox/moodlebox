@@ -24,8 +24,10 @@ moodlebox_dhcp_range_end: "{{ moodlebox_ip_address | ipaddr('254') | ipaddr('add
 
 # MoodleBox external public DNS servers IP addresses.
 moodlebox_external_dns_ip_address:
-  - '84.200.69.80' # DNS.WATCH
-  - '84.200.70.40' # DNS.WATCH
+  - '1.1.1.1' # Cloudflare privacy-first DNS
+  - '1.0.0.1' # Cloudflare privacy-first DNS
+#  - '84.200.69.80' # DNS.WATCH
+#  - '84.200.70.40' # DNS.WATCH
 #  - '64.6.64.6' # Verisign
 #  - '64.6.65.6' # Verisign
 
