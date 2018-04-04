@@ -4,6 +4,7 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/releases/latest)
 [![Github Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/total.svg)](https://github.com/moodlebox/moodlebox/releases/latest)
 [![GitHub last commit](https://img.shields.io/github/last-commit/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/commits/)
+[![Donate PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://www.paypal.me/moodlebox/25)
 
 A project to build a Moodle server and Wi-Fi router on a Raspberry Pi 3.
 
