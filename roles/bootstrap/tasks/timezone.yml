@@ -9,4 +9,4 @@
 
 - name: update tzdata
   command: 'dpkg-reconfigure -f noninteractive tzdata'
-  when: timezone_status|changed
+  when: timezone_status is changed

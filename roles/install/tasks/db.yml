@@ -36,11 +36,11 @@
     value: 'true'
     vtype: 'boolean'
 
-- name: install MariaDB with custom configuration
+- name: install MariaDB
   apt:
     pkg: 'mariadb-server'
     state: 'present'
-  when: configure_mariadb_install | success
+  when: configure_mariadb_install is success
   register: install_mariadb
 
 - name: install python-mysqldb

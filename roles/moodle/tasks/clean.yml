@@ -10,7 +10,7 @@
   mysql_db:
     name: '{{ moodlebox_moodle_db }}'
     state: 'absent'
-  when: moodle_db_exists|changed
+  when: moodle_db_exists is changed
 
 - name: remove RAM disks
   mount:
@@ -38,4 +38,4 @@
 
 - name: remove incron jobs
   shell: 'incrontab -u root -r'
-  when: incronjob_exists|changed
+  when: incronjob_exists is changed

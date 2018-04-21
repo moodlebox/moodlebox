@@ -9,4 +9,4 @@
   template:
     src: 'etc/hosts.j2'
     dest: '/etc/hosts'
-  when: hostname_status|changed
+  when: hostname_status is changed
