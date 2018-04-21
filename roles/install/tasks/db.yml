@@ -40,7 +40,7 @@
   apt:
     pkg: 'mariadb-server'
     state: 'present'
-  when: configure_mariadb_install is success
+  when: configure_mariadb_install is successful
   register: install_mariadb
 
 - name: install python-mysqldb
