@@ -6,7 +6,7 @@
     dest: '/etc/init.d/resize2fs_once'
     mode: 0755
 
-- name: enable ntfs format mounting by usbmount
+- name: enable ntfs and exfat formats mounting by usbmount
   replace:
     path: '/etc/usbmount/usbmount.conf'
     regexp: '^FILESYSTEMS=.*$'
