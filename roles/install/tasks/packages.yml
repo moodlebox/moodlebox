@@ -21,16 +21,16 @@
     pkg: 'phpmyadmin'
     state: 'present'
 
-- name: copy usbmount deb package
+- name: copy usbmount deb package file
   copy:
     src: 'usbmount_0.0.24_all.deb'
     dest: '/tmp/usbmount_0.0.24_all.deb'
 
-- name: install usbmount deb package
+- name: install usbmount package
   apt:
     deb: '/tmp/usbmount_0.0.24_all.deb'
 
-- name: remove usbmount deb package
+- name: delete usbmount deb package file
   file:
     path: '/tmp/usbmount_0.0.24_all.deb'
     state: 'absent'
