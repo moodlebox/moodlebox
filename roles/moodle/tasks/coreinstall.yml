@@ -98,5 +98,6 @@
     line: '$CFG->{{ item.name }} = {{ item.value }};'
     insertbefore: '^\$CFG->directorypermissions'
   with_items:
+    - { name: 'backuptempdir', value: "'{{ moodlebox_moodle_data_dir }}/backup'" }
     - { name: 'xsendfile', value: "'X-Accel-Redirect'" }
     - { name: 'xsendfilealiases', value: "array ('/dataroot/' => $CFG->dataroot)" }
