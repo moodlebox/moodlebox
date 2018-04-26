@@ -40,6 +40,8 @@
     recurse: 'yes'
 
 - name: install MoodleBox plugin via CLI
-  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php" --non-interactive'
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
+    --allow-unstable
+    --non-interactive'
   args:
     chdir: '{{ moodlebox_moodle_source_dir }}'
