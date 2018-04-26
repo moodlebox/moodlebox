@@ -81,6 +81,7 @@
     --adminpass="{{ moodlebox_moodle_password }}"
     --adminemail="{{ moodlebox_moodle_username }}@{{ moodlebox_hostname }}.invalid"
     --non-interactive
+    --allow-unstable
     --agree-license'
   args:
     chdir: '{{ moodlebox_moodle_source_dir }}'
