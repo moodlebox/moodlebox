@@ -58,7 +58,7 @@ moodlebox_timezone: 'Europe/Paris'
 moodlebox_public_key_file: 'id_rsa.pub'
 
 # MoodleBox Moodle default build settings.
-moodlebox_moodle_branch: 'MOODLE_34_STABLE'
+moodlebox_moodle_branch: 'MOODLE_35_STABLE'
 moodlebox_moodle_username: 'admin'
 moodlebox_moodle_password: '{{ moodlebox_password }}'
 moodlebox_moodle_db: 'moodle'
@@ -66,7 +66,7 @@ moodlebox_moodle_db_prefix: 'mdl_'
 moodlebox_moodle_lang: 'en'
 moodlebox_moodle_name: '{{ moodlebox_name }}'
 moodlebox_moodle_summary: |
-  <p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='de' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, eine <a href='https://moodle.org/' target='_blank'>Moodle 3.4.x</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span></p>
+  <p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.5.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.5.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span><span lang='de' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, eine <a href='https://moodle.org/' target='_blank'>Moodle 3.5.x</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi 3</a>.</span></p>
   <p><span lang='en' class='multilang'>MoodleBox is made by <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a>.</span><span lang='de' class='multilang'>MoodleBox ist von <a href='mailto:nicolas@martignoni.net'>Nicolas Martignoni</a> hergestellt.</span></p>
   <p><span lang='en' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date }}.</span><span lang='fr' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date }}.</span><span lang='de' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date }}.</span></p>
 moodlebox_moodle_source_dir: '/var/www/moodle'
