@@ -3,7 +3,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Verson 2.3.0, 2018-03-21
+## Version 2.4.0, unreleased
+### Changed
+- Change DNS to new Cloudflare ones, for privacy (issue #67).
+- Custom Moodle course backup directory officially supported (issue #68).
+- Updated to Moodle 3.5 (issue #69).
+- Based on Raspbian Stretch Lite version of 2018-04-18 (issue #70).
+- Module iptables_raw for Ansible updated (issue #72).
+
+### Added
+- Allow installation of unstable Moodle version (issue #73).
+
+### Fixed
+- Deprecated usage of tests as filters in Ansible 2.5.0 (issue #71).
+
+## Version 2.3.0, 2018-03-21
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-03-13 (issue #63).
 - Updated to Moodle 3.4.2 (issue #64).
