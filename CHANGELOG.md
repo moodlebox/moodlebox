@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Version 2.4.0, unreleased
+## Version 2.4.0, 2018-05-17
 ### Changed
 - Change DNS to new Cloudflare ones, for privacy (issue #67).
 - Custom Moodle course backup directory officially supported (issue #68).
