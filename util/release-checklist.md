@@ -3,7 +3,7 @@
 ## From 2 weeks to shortly before release
 
 - [ ] Create and edit the draft of the release on GitHub
-- [ ] Update CHANGELOG.md (same changes)
+- [ ] Update `CHANGELOG.md` (same changes)
 - [ ] Commit the changes:
 ```
 git add CHANGELOG.md
@@ -13,7 +13,8 @@ git commit -m "Release notes updated for upcoming release x.y.z."
 ## Just before preparing the disk image
 
 - [ ] Update version date in `default.config.yml`
-- [ ] Update version number (can also be 'patch' or 'major' instead of 'minor')
+- [ ] Update version date in `CHANGELOG.md`, if needed
+- [ ] Update version number (can also be 'patch' or 'major' instead of 'minor'):
 ```
 bumpversion minor --allow-dirty
 ```
