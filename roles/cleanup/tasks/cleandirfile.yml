@@ -2,7 +2,8 @@
 
 # See https://stackoverflow.com/a/35128533
 # See https://wrightturn.wordpress.com/2017/05/10/ansible-warning-the-loop-variable-item-is-already-in-use/
-- set_fact:
+- name: define outer loop
+  set_fact:
     outer_loop: '{{ item }}'
 
 - name: find files
