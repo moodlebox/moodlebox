@@ -6,9 +6,19 @@
     state: 'present'
 
 - name: update firmware
-  shell: 'SKIP_BACKUP=1 PRUNE_MODULES=1 rpi-update'
+  command: 'rpi-update'
+  environment:
+    - SKIP_BACKUP: 1
+    - PRUNE_MODULES: 1
   register: fw_result
   changed_when: 'fw_result.rc == 0 and "Your firmware is already up to date" not in fw_result.stdout'
+
+- name: uninstall rpi-update
+  apt:
+    pkg: 'rpi-update'
+    state: 'absent'
+    autoclean: 'yes'
+    autoremove: 'yes'
 
 - name: reboot machine
   shell: 'sleep 2 && shutdown -r now'
