@@ -344,9 +344,18 @@ class Iptables:
     def _is_debian(self):
         return os.path.isfile('/etc/debian_version')
 
+    # If /etc/arch-release exist, this means this is an ArchLinux OS
+    def _is_arch_linux(self):
+        return os.path.isfile('/etc/arch-release')
+
+    # If /etc/gentoo-release exist, this means this is Gentoo
+    def _is_gentoo(self):
+        return os.path.isfile('/etc/gentoo-release')
+
     # Get the iptables system save path.
     # Supports RHEL/CentOS '/etc/sysconfig/' location.
     # Supports Debian/Ubuntu/Mint,  '/etc/iptables/' location.
+    # Supports Gentoo, '/var/lib/iptables/' location.
     def _get_system_save_path(self, ipversion):
         # distro detection, path setting should be added
         if self._is_debian():
@@ -357,6 +366,16 @@ class Iptables:
                 return '/etc/iptables/rules.v4'
             else:
                 return '/etc/iptables/rules.v6'
+        elif self._is_arch_linux():
+            if ipversion == '4':
+                return '/etc/iptables/iptables.rules'
+            else:
+                return '/etc/iptables/ip6tables.rules'
+        elif self._is_gentoo():
+            if ipversion == '4':
+                return '/var/lib/iptables/rules-save'
+            else:
+                return '/var/lib/ip6tables/rules-save'
         else:
             if ipversion == '4':
                 return '/etc/sysconfig/iptables'
