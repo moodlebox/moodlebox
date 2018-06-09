@@ -1,22 +1,9 @@
 ---
 
+- name: generate locales
+  command: 'locale-gen'
+
 - name: restart networking
   service:
     name: 'networking'
     state: 'restarted'
-
-- name: reboot machine
-  shell: 'sleep 2 && shutdown -r now'
-  async: 1
-  poll: 0
-  ignore_errors: true
-
-- name: wait for machine to come back
-  become: false
-  local_action: wait_for
-  args:
-    host: '{{ ansible_host | default(inventory_hostname) }}'
-    port: 22
-    state: 'started'
-    delay: 10
-    timeout: 60
