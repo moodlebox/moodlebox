@@ -41,7 +41,7 @@ moodlebox_db_root_password: '{{ moodlebox_password }}'
 # MoodleBox Wi-Fi settings.
 moodlebox_wifi_password: '{{ moodlebox_hostname }}'
 moodlebox_wifi_ssid: '{{ moodlebox_name }}'
-moodlebox_wifi_channel: '13'
+moodlebox_wifi_channel: '11'
 moodlebox_wifi_country: 'CH'
 
 # MoodleBox localisation parameters.
