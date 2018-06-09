@@ -1,10 +1,12 @@
 ---
 
 - name: format release date using locales
-  shell:
-    _raw_params: LC_ALL={{ item }} date --date={{ moodlebox_release_date }} '+%-d %B %Y'
-  with_items: '{{ moodlebox_locales }}'
+  command: "date --date={{ moodlebox_release_date }} '+%-d %B %Y'"
+  environment:
+    - LC_ALL: '{{ item.1 }}'
+  with_indexed_items: '{{ moodlebox_locales }}'
   register: 'formatted_dates'
+  when: 'formatted_dates is not defined or item.0 < moodlebox_locales|length'
 
 - name: set vars with formatted dates
   set_fact: '{{ item.0 | regex_replace("^(.*)_.*UTF-8$", "moodlebox_release_date_\1") }}={{ item.1.stdout }}'
