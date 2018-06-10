@@ -6,7 +6,7 @@
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
 
 - name: get latest MoodleBox plugin tag name
-  shell: 'git describe --abbrev=0 --tags'
+  command: 'git describe --abbrev=0 --tags'
   args:
     chdir: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
   check_mode: 'no'
