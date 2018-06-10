@@ -24,8 +24,6 @@ install:
 script:
   # Continuous integration: syntax check
   - ansible-playbook moodlebox.yml --syntax-check -vvv
-  - ansible-playbook rootaccount.yml --syntax-check -vvv
-  - ansible-playbook buildmoodlebox.yml --syntax-check -vvv
 
   # Continous integration: ansible-list
   - ansible-lint -p moodlebox.yml
