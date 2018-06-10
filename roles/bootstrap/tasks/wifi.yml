@@ -7,6 +7,10 @@
     line: 'country={{ moodlebox_wifi_country }}'
   notify: restart networking
 
-- name: unblock wifi
-  command: 'rfkill unblock wifi'
-  notify: restart networking
+- name: get wifi blocked status
+  command: 'rfkill list wifi'
+  register: wifi_blocked_status
+  changed_when: '"Soft blocked: yes" in wifi_blocked_status.stdout'
+  notify:
+    - unblock wifi
+    - restart networking
