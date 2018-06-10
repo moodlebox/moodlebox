@@ -34,8 +34,10 @@
 - name: check if any incron job exist
   shell: 'incrontab -l | wc -c'
   register: incronjob_exists
+  args:
+    warn: false
   changed_when: incronjob_exists.stdout|int > 0
 
 - name: remove incron jobs
-  shell: 'incrontab -u root -r'
+  command: 'incrontab -u root -r'
   when: incronjob_exists is changed
