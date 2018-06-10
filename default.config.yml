@@ -78,6 +78,7 @@ moodlebox_set_hostname: true
 moodlebox_set_timezone: true
 moodlebox_set_locale: true
 moodlebox_moodlebox_plugin_unstable: false
+moodlebox_mathjax_version: '2.7.4'
 
 # Raspberry default credentials.
 moodlebox_rpi_username: 'pi'
