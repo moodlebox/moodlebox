@@ -4,20 +4,7 @@
   git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
-
-- name: get latest MoodleBox plugin tag name
-  command: 'git describe --abbrev=0 --tags'
-  args:
-    chdir: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
-  check_mode: 'no'
-  register: latest_tag
-
-- name: pull latest released MoodleBox plugin version
-  git:
-    repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
-    dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
-    version: 'tags/{{ latest_tag.stdout }}'
-  when: not moodlebox_moodlebox_plugin_unstable
+    version: '{{ moodlebox_moodlebox_plugin_version }}'
 
 - name: touch files for MoodleBox plugin functionality
   file:
