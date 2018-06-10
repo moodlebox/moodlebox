@@ -68,6 +68,7 @@
   async: 1
   poll: 0
   ignore_errors: true
+  when: log_files_emptied
 
 - name: wait for machine to come back
   become: false
