@@ -10,11 +10,12 @@
     - 'rpi-update'
 
 - name: clean Moodle database log tables
-  shell: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
+  command: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
   with_items:
     - 'mdl_logstore_standard_log'
     - 'mdl_config_log'
     - 'mdl_upgrade_log'
+  when: moodle_db_created
 
 - name: remove useless packages from cache and no longer required dependencies
   apt:
@@ -49,8 +50,18 @@
     - '/root/.mysql_history'
     - '/root/.nano_history'
 
+- name: find log files to truncate
+  find:
+    paths: '/var/log'
+    recurse: 'yes'
+  register: log_files
+
 - name: empty log files
-  shell: 'for logs in `find /var/log -type f`; do > $logs; done'
+  command: 'truncate --size 0 {{ item.path }}'
+  with_items:
+    - '{{ log_files.files }}'
+  register: log_files_emptied
+  changed_when: log_files_emptied.rc == 0
 
 - name: reboot machine
   shell: 'sleep 2 && shutdown -r now'
