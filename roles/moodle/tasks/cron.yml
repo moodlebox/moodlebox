@@ -24,6 +24,10 @@
     (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
     (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changewifisettings.sh") | incrontab -
+  args:
+    warn: false
+  register: incron_configured
+  changed_when: incron_configured.rc == 0
 
 - name: configure cron mailto variable to suppress warnings in log
   cronvar:
