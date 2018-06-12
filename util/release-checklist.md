@@ -13,6 +13,7 @@ git commit -m "Release notes updated for upcoming release x.y.z."
 ## Just before preparing the disk image
 
 - [ ] Update version date in `default.config.yml`
+- [ ] Update version of MoodleBox plugin in `default.config.yml`, if needed
 - [ ] Update version date in `CHANGELOG.md`, if needed
 - [ ] Update version number (can also be 'patch' or 'major' instead of 'minor'):
 ```
