@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.4.1, 2018-06-12
+### Changed
+- Module iptables_raw for Ansible updated (issue #75).
+- Updated to version v1.10.4 of MoodleBox plugin (issue #76).
+
+### Added
+- Continuous integration with Travis CI added (first step).
+
+### Fixed
+- Default Wi-Fi AP channel changed to 11 (issue #74).
+- Ansible Lint errors and warning fixed.
+
 ## Version 2.4.0, 2018-05-17
 ### Changed
 - Change DNS to new Cloudflare ones, for privacy (issue #67).
