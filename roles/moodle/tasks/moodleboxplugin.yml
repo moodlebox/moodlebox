@@ -16,6 +16,7 @@
     - '.set-server-datetime'
     - '.newpassword'
     - '.wifisettings'
+    - '.resize-partition'
 
 - name: change MoodleBox plugin file permissions
   file:
