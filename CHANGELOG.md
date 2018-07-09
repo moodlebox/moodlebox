@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.4.2, unreleased
+### Changed
+- Based on Raspbian Stretch Lite version of 2018-06-27 (issue #79).
+- Updated to version v1.11.0 of MoodleBox plugin (issue #81).
+
+### Added
+- Incron job added to support SD card partition resizing (issue #80).
+
+### Fixed
+- Nothing.
+
 ## Version 2.4.1, 2018-06-12
 ### Changed
 - Module iptables_raw for Ansible updated (issue #75).
