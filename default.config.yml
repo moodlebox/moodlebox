@@ -1,7 +1,7 @@
 ---
 # MoodleBox version and release date.
-moodlebox_version: '2.4.1'
-moodlebox_release_date: '2018-06-12'
+moodlebox_version: '2.4.2'
+moodlebox_release_date: '2018-07-10'
 moodlebox_name: 'MoodleBox'
 
 # MoodleBox hostname (taken from inventory).
@@ -77,7 +77,7 @@ moodlebox_update_firmware: false
 moodlebox_set_hostname: true
 moodlebox_set_timezone: true
 moodlebox_set_locale: true
-moodlebox_moodlebox_plugin_version: 'v1.10.4'
+moodlebox_moodlebox_plugin_version: 'v1.11.0'
 moodlebox_mathjax_version: '2.7.4'
 
 # Raspberry default credentials.
