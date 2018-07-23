@@ -27,6 +27,13 @@
     mode: 'ug+w,o-w'
     recurse: 'yes'
 
+- name: create sudoers file
+  copy:
+    src: 'etc/sudoers.d/020_www-data-nopasswd'
+    dest: '/etc/sudoers.d/020_www-data-nopasswd'
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
 - name: install MoodleBox plugin via CLI
   command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
     --allow-unstable
