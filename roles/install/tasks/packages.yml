@@ -21,6 +21,12 @@
     pkg: 'phpmyadmin'
     state: 'present'
 
+- name: install custom phpMyAdmin configuration file
+  copy:
+    src: 'etc/phpmyadmin/conf.d/moodlebox.inc.php'
+    dest: '/etc/phpmyadmin/conf.d/moodlebox.inc.php'
+    mode: 0644
+
 - name: copy usbmount deb package file
   copy:
     src: 'usbmount_0.0.24_all.deb'
