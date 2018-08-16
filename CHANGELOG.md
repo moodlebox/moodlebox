@@ -3,10 +3,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.5.0, 2018-08-16
+### Changed
+- Updated to [version v1.12.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.12.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #84).
+- Prevent wrong change of database password from within phpMyAdmin (issue #85).
+- Tasks re-ordered and reboot added (issue #82).
+
+### Added
+- Add sudoers file to allow new feature of MoodleBox plugin (issue #83).
+
 ## Version 2.4.2, 2018-07-10
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-06-27 (issue #79).
-- Updated to version v1.11.0 of MoodleBox plugin (issue #81).
+- Updated to [version v1.11.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.11.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #81).
 
 ### Added
 - Incron job added to support SD card partition resizing (issue #80).
@@ -14,7 +25,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ## Version 2.4.1, 2018-06-12
 ### Changed
 - Module iptables_raw for Ansible updated (issue #75).
-- Updated to version v1.10.4 of MoodleBox plugin (issue #76).
+- Updated to [version v1.10.4](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.10.4) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #76).
 
 ### Added
 - Continuous integration with Travis CI added (first step).
@@ -30,6 +42,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 - Updated to Moodle 3.5 (issue #69).
 - Based on Raspbian Stretch Lite version of 2018-04-18 (issue #70).
 - Module iptables_raw for Ansible updated (issue #72).
+- Updated to [version v1.10.2](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.10.2) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox).
 
 ### Added
 - Allow installation of unstable Moodle version (issue #73).
@@ -41,18 +55,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-03-13 (issue #63).
 - Updated to Moodle 3.4.2 (issue #64).
-- Arbitrary chars in SSIDs now supported (issues https://github.com/moodlebox/moodle-tool_moodlebox/issues/31 and https://github.com/moodlebox/moodle-tool_moodlebox/issues/38).
+- Updated to [version v1.10](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.10) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox), enabling support of arbitrary chars in SSIDs.
 
 ### Added
 - Support Raspberry Pi 3 B+ (issue #65).
-
-### Fixed
-- Nothing.
 
 ## Version 2.2.0, 2018-03-02
 ### Changed
 - Updated to Moodle 3.4.1 (issue #54).
 - Changed frequency of Moodle cron to 1 minute (issue #58).
+- Updated to [version v1.9](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.9) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox).
 
 ### Added
 - Enabled startup/shutdown with hardware button, if present (issue #53).
@@ -93,6 +107,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ### Changed
 - Network configuration updated, for better maintainability (issue #39).
 - Enable separate log file for dnsmasq.
+- Updated to [version v1.8](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.8) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox).
 
 ### Added
 - File created on the MoodleBox to allow easy finding of version (issue #38).
@@ -109,6 +125,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 - Install Moodle in English, as default language (issue #35).
 - Repository names changed (issue #33).
 - Documentation file `MoodleBox.tex` removed from repo (issue #34).
+- Updated to [version v1.7.1](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.7.1) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox).
 
 ### Added
 - Install more common languages locales (issue #36).
@@ -120,161 +138,161 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ### Changed
 - Based on Raspbian Stretch Lite version of 2017-09-07.
-- Uses last released version of the [MoodleBox plugin](https://github.com/moodlebox/moodle-tool_moodlebox) for Moodle (new Wi-Fi settings options available).
+- Updated to [version v1.7.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.7) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle (new Wi-Fi settings options available).
 - Re-enable predictable network interface name, which is now disabled in Stretch image.
 
 ## Version 1.9.2, 2017-09-05
-
-### Added
+### Changed
 - Issue #28 implemented: GUI to change Wi-Fi SSID and channel
+- Updated to [version v1.6.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.6) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox), compatible with commit 46e5099.
 
 ### Added
-- Change script for compatibility with latest version of the MoodleBox plugin for Moodle (v1.6)
+- Change script for compatibility with [version v1.6.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.6) of the MoodleBox plugin for Moodle.
 
 ### Fixed
-- Latest version of the MoodleBox plugin for Moodle (v1.6) compatible with commit 46e5099
 
 ## Version 1.9.1, 2017-08-23
-
 ### Fixed
-- Fix issue #25 (non-persistent setting of IP forwarding rules) using `iptables-persistent` package
+- Fix issue #25 (non-persistent setting of IP forwarding rules) using `iptables-persistent` package.
 
 ### Changed
-- Moodle source is now installed in a new folder, preserving original nginx installation
+- Moodle source is now installed in a new folder, preserving original nginx installation.
 
 ## Version 1.9, 2017-08-18
-
 ### Changed
 - Debian Stretch!
-- Based on Raspbian Stretch Lite version of 2017-08-16
-- Updated to Moodle 3.3.1+
-- Prompt color of moodlebox shell user changed to orange
+- Based on Raspbian Stretch Lite version of 2017-08-16.
+- Updated to Moodle 3.3.1+.
+- Prompt color of moodlebox shell user changed to orange.
 
 ### Fixed
-- Fixed automount of USB drives, replacing USBmount
-- Screen blanking is now turned off
+- Fixed automount of USB drives, replacing USBmount.
+- Screen blanking is now turned off.
 
 ## Version 1.8.1, 2017-07-08
 ### Changed
-- Based on Raspbian Jessie Lite version of 2017-07-05
-- Uses now new MariaDB root mecanism (with sudo, instead of DB password)
-- Prompt of default shell user changed for better readability
+- Based on Raspbian Jessie Lite version of 2017-07-05.
+- Uses now new MariaDB root mecanism (with sudo, instead of DB password).
+- Prompt of default shell user changed for better readability.
 
 ### Fixed
-- Size of RAM partitions tweaked, as partial workaround for issue #18
-- Fixed value for `innodb_log_file_size`, which was set much too low (issue #19)
+- Size of RAM partitions tweaked, as partial workaround for issue #18.
+- Fixed value for `innodb_log_file_size`, which was set much too low (issue #19).
 
 ## Version 1.8, 2017-06-23
 ### Changed
-- Based on Raspbian Jessie Lite version of 2017-06-21
-- Small documentation improvement
+- Based on Raspbian Jessie Lite version of 2017-06-21.
+- Small documentation improvement.
 
 ## Version 1.7, 2017-06-08
 ### Changed
-- Updated to Moodle 3.3+
-- New database user `moodlebox` for Moodle and phpMyAdmin database access
-- Cleanup enhanced at end of build
-- Documentation updated
+- Updated to Moodle 3.3+.
+- New database user `moodlebox` for Moodle and phpMyAdmin database access.
+- Cleanup enhanced at end of build.
+- Documentation updated.
 
 ## Version 1.6.5, 2017-04-29
 ### Changed
-- Release notes have now their own file
-- Some documentation improvements
+- Release notes have now their own file.
+- Some documentation improvements.
 
 ### Fixed
-- Permissions changes to fix issue #16
-- Cosmetic fix in incron command
+- Permissions changes to fix issue #16.
+- Cosmetic fix in incron command.
 
 ## Version 1.6.4, 2017-04-11
 ### Changed
-- Based on Raspbian Jessie Lite version of 2017-04-10
-- Uses now last released version of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle
+- Based on Raspbian Jessie Lite version of 2017-04-10.
+- Updated to [version 1.4.4](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.4.4) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 
 ## Version 1.6.3, 2017-03-25
 ### Changed
-- Updated to Moodle 3.2.2
-- Description on front page now uses localisation
-- Better memory usage
-- InnoDB parameters tweaks for small performance improvements
+- Updated to Moodle 3.2.2.
+- Description on front page now uses localisation.
+- Better memory usage.
+- InnoDB parameters tweaks for small performance improvements.
 
 ## Version 1.6.2, 2017-03-10
 ### Changed
-- Uses now MariaDB 10.1.21
-- Better cleanup, for a smaller disk image
+- Uses now MariaDB 10.1.21.
+- Better cleanup, for a smaller disk image.
 
 ### Fixed
-- Other minor fixes
+- Other minor fixes.
 
 ## Version 1.6.1, 2017-03-04
 ### Changed
-- Based on Raspbian Jessie Lite version of 2017-03-02
+- Based on Raspbian Jessie Lite version of 2017-03-02.
 
 ### Fixed
-- MariaDB default character encoding and collation updated (see issue [MDL-48228](https://tracker.moodle.org/browse/MDL-48228))
+- MariaDB default character encoding and collation updated (see issue [MDL-48228](https://tracker.moodle.org/browse/MDL-48228)).
 
 ## Version 1.6, 2017-02-27
 ### Changed
-- Based on Raspbian Jessie Lite version of 2017-02-16
-- Uses now PHP7, for a 30% performance improvement :-)
+- Based on Raspbian Jessie Lite version of 2017-02-16.
+- Uses now PHP7, for a 30% performance improvement :-).
 
 ## Version 1.5.1, 2017-02-11
 ### Fixed
-- Prevent side effects after renaming the default user (symbolic link added)
-- Updated package installation ordering
+- Prevent side effects after renaming the default user (symbolic link added).
+- Updated package installation ordering.
 
 ## Version 1.5, 2017-01-31
 ### Changed
-- Updated to Moodle 3.2.1
+- Updated to Moodle 3.2.1.
 
 ### Added
-- APCu cache module for PHP installed
+- APCu cache module for PHP installed.
 
 ## Version 1.4.1, 2017-01-11
 ### Changed
-- Based on Raspbian Jessie Lite version of 2017-01-11
-- Updated to Moodle 3.1.4
+- Based on Raspbian Jessie Lite version of 2017-01-11.
+- Updated to Moodle 3.1.4.
 
 ## Version 1.4, 2016-12-21
 ### Added
-- Added automatic filesystem resizing at first boot
+- Added automatic filesystem resizing at first boot.
 
 ## Version 1.3.6, 2016-12-07
 ### Changed
-- Uses version 1.4.3 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
+- Updated to [version 1.4.3](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.4.3) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 
 ### Fixed
-- Augmentation of maximum script execution time
-- Minor fixes
+- Maximum script execution time increased.
+- Other minor fixes.
 
 ## Version 1.3.5, 2016-12-01
 ### Changed
-- Based on Raspbian Jessie Lite version of 2016-11-25
-- Update of documentation
+- Based on Raspbian Jessie Lite version of 2016-11-25.
+- Update of documentation.
 
 ### Fixed
-- Minor fixes
+- Other minor fixes.
 
 ## Version 1.3.4, 2016-11-04
 ### Changed
-- Download Moodle with a shallow git clone, reducing dramatically the image size
-- Minor cleanup enhancements
+- Download Moodle with a shallow git clone, reducing dramatically the image size.
+- Minor cleanup enhancements.
 
 ## Version 1.3.3, 2016-10-27
 ### Changed
-- Based now on Raspbian Jessie Lite version of 2016-09-23
+- Based now on Raspbian Jessie Lite version of 2016-09-23.
 
 ### Fixed
-- Fix to Wi-Fi configuration, enabling channel 12 and 13 if needed
-- Wi-Fi access point channel changed
-- Minor fixes to potential installation hiccups
+- Fix to Wi-Fi configuration, enabling channel 12 and 13 if needed.
+- Wi-Fi access point channel changed.
+- Minor fixes to potential installation hiccups.
 
 ## Version 1.3.2, 2016-09-18
 ### Changed
-- Updated to version 1.4 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
+- Updated to [version 1.4](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.4) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 
 ## Version 1.3.1, 2016-09-10
 ### Changed
-- Updated to version 1.3 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
+- Updated to [version 1.3](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.3) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle, fixing issue #4.
 
 ## Version 1.3, 2016-08-21
 ### Fixed
@@ -289,7 +307,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ## Version 1.2, 2016-08-11
 ### Changed
-- Updated to version 1.2 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
+- Updated to [version 1.2](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.2) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle.
 
 ## Version 1.1.1, 2016-08-09
 ### Changed
@@ -301,7 +319,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 - Added advertising of mDNS services (Avahi service file created).
 
 ### Changed
-- Updated to version 1.1 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This version adds display of free space on SD card of the MoodleBox.
+- Updated to [version 1.1](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.1) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This version adds display of free space on SD card of the MoodleBox.
 
 ## Version 1.0, 2016-07-11
 ### Added
@@ -309,7 +327,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 
 ### Changed
 - Updated to Moodle 3.1.1.
-- Updated to version 1.0 of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This version adds a time setting feature for the MoodleBox.
+- Updated to [version 1.0](https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.0) of the [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) for Moodle. This version adds a time setting feature for the MoodleBox.
 
 ## Version 1.0b (beta), 2016-06-26
 ### Added
