@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ### Changed
 - Updated to [version v1.12.0](
 https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.12.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #84).
+- MathJax library updated to [version v2.7.5](https://github.com/mathjax/MathJax/releases/tag/2.7.5) (issue #87).
 - Prevent wrong change of database password from within phpMyAdmin (issue #85).
 - Tasks re-ordered and reboot added (issue #82).
 
