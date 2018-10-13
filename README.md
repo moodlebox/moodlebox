@@ -8,13 +8,19 @@
 
 A project to build a Moodle server and Wi-Fi router on a Raspberry Pi 3.
 
-## How to use a MoodleBox
+## The MoodleBox Documentation
 
 Visit the [MoodleBox web site](https://moodlebox.net) for more information about the MoodleBox features or any question about the usage of a MoodleBox.
 
-## Building the MoodleBox
+### Asking Support Questions
 
-To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (Wi-Fi!) and follow these instructions.
+We have an active [discussion forum](https://discuss.moodlebox.net/) where users and developers can ask questions. Please don't use the GitHub issue tracker to ask questions.
+
+## Building the MoodleBox disk image from scratch
+
+> If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image](https://moodlebox.net/download) and follow the instructions on the [MoodleBox web site](https://moodlebox.net).
+
+To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 or 3B+ (Wi-Fi!).
 
 1. Clone Rasbpian Stretch Lite on your microSD card.
 1. Create a `ssh` file on the `boot` partition, e.g. using `touch ssh`.
@@ -27,7 +33,7 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 (W
 1. Run `ansible-playbook moodlebox.yml` from the repository folder.
 1. Wait 30–50 minutes, depending on your SD card and Internet bandwidth. You're done.
 
-## Overriding defaults
+### Overriding defaults
 
 You can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file. For example, you can change the MoodleBox main credentials and the timezone with something like:
 
@@ -41,7 +47,7 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 The code is available at [https://github.com/moodlebox/moodlebox](https://github.com/moodlebox/moodlebox).
 
-A [prepared disk image](https://moodlebox.net/en/dl) of the latest released version is [available for downloading](htts://moodlebox.net/en/dl), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+A [prepared disk image](https://moodlebox.net/download) of the latest released version is [available for downloading](https://moodlebox.net/download), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
