@@ -1,6 +1,6 @@
 ---
 
-- name: clone MoodleBox plugin from git repository
+- name: get MoodleBox plugin from git repository
   git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
@@ -22,7 +22,7 @@
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     state: 'directory'
-    owner: 'www-data'
+    owner: '{{ moodlebox_username }}'
     group: 'www-data'
     mode: 'ug+w,o-w'
     recurse: 'yes'

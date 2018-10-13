@@ -11,7 +11,7 @@
   file:
     path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     state: 'directory'
-    owner: 'www-data'
+    owner: '{{ moodlebox_username }}'
     group: 'www-data'
     mode: 'ug+w,o-w'
     recurse: 'yes'
