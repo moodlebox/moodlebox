@@ -7,7 +7,7 @@
 - [ ] Commit the changes:
 ```
 git add CHANGELOG.md
-git commit -m "Release notes updated for upcoming release x.y.z."
+git commit -m "Update release notes for upcoming release x.y.z."
 ```
 
 ## Just before preparing the disk image
