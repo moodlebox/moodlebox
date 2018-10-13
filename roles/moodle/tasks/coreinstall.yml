@@ -48,7 +48,7 @@
     - { src: '/media/usb', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
     - { src: '/usr/share/phpmyadmin', path: '{{ moodlebox_moodle_source_dir }}/phpmyadmin' }
 
-- name: configure RAM disks for Moodle cache
+- name: configure temporary storage for Moodle cache
   mount:
     path: '{{ item.name }}'
     src: 'tmpfs'

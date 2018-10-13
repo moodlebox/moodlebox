@@ -12,14 +12,14 @@
     state: 'absent'
   when: moodle_db_exists is changed
 
-- name: remove RAM disks
+- name: remove temporary storage for Moodle cache
   mount:
     name: '{{ item.name }}'
     state: 'unmounted'
   with_items:
-    - { name: '/var/cache/moodle', size: '64M' }
-    - { name: '{{ moodlebox_moodle_data_dir }}/temp', size: '64M' }
-    - { name: '{{ moodlebox_moodle_data_dir }}/sessions', size: '16M' }
+    - { name: '/var/cache/moodle' }
+    - { name: '{{ moodlebox_moodle_data_dir }}/temp' }
+    - { name: '{{ moodlebox_moodle_data_dir }}/sessions' }
 
 - name: remove previous Moodle installation
   file:
