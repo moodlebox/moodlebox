@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.5.1, 2018-10-13
+### Changed
+- Based on Raspbian Stretch Lite version of 2018-10-09 (issue #91).
+- Updated to [version v1.12.1](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.12.1) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #93).
+- Directory permissions of Moodle source directory updated, to enable direct update of the Moodle installation without Git (issue #92).
+- Temporary storage settings cleaned up.
+
+### Fixed
+- MathJax library URL is now relative. No more change needed if the domain name of the MoodleBox is changed (issue #89).
+- Some image file sizes reduced.
+
+
 ## Version 2.5.0, 2018-08-16
 ### Changed
 - Updated to [version v1.12.0](
