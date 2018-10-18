@@ -8,12 +8,12 @@ moodlebox_install_packages:
   - lockfile-progs
   - incron
   - nginx
-  - php7.2-fpm
-  - php7.2-cli
-  - php7.2-xmlrpc
-  - php7.2-curl
-  - php7.2-gd
-  - php7.2-intl
-  - php7.2-soap
-  - php7.2-mysql
+  - php7.0-fpm
+  - php7.0-cli
+  - php7.0-xmlrpc
+  - php7.0-curl
+  - php7.0-gd
+  - php7.0-intl
+  - php7.0-soap
+  - php7.0-mysql
   - php-apcu
