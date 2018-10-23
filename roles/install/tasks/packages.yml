@@ -1,5 +1,16 @@
 ---
 
+- name: add apt-key for PHP7.1 apt repository
+  apt_key:
+    url: 'https://packages.sury.org/php/apt.gpg'
+    state: 'present'
+
+- name: add PHP7.1 apt repository
+  apt_repository:
+    repo: 'deb https://packages.sury.org/php/ stretch main'
+    filename: 'php.list'
+    state: 'present'
+
 - name: uninstall useless packages
   apt:
     pkg: '{{ item }}'
@@ -20,6 +31,7 @@
   apt:
     pkg: 'phpmyadmin'
     state: 'present'
+    install_recommends: 'false'
 
 - name: install custom phpMyAdmin configuration file
   copy:
