@@ -343,6 +343,9 @@ class Iptables:
     # If /etc/debian_version exist, this means this is a debian based OS (Ubuntu, Mint, etc...)
     def _is_debian(self):
         return os.path.isfile('/etc/debian_version')
+    # If /etc/alpine-release exist, this means this is AlpineLinux OS
+    def _is_alpine(self):
+        return os.path.isfile('/etc/alpine-release')
 
     # If /etc/arch-release exist, this means this is an ArchLinux OS
     def _is_arch_linux(self):
@@ -376,6 +379,12 @@ class Iptables:
                 return '/var/lib/iptables/rules-save'
             else:
                 return '/var/lib/ip6tables/rules-save'
+
+        elif self._is_alpine():
+            if ipversion == '4':
+                return '/etc/iptables/rules-save'
+            else:
+                return '/etc/iptables/rules6-save'
         else:
             if ipversion == '4':
                 return '/etc/sysconfig/iptables'
