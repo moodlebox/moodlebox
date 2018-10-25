@@ -5,6 +5,7 @@
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     version: '{{ moodlebox_moodlebox_plugin_version }}'
+    depth: 1
 
 - name: touch files for MoodleBox plugin functionality
   file:
