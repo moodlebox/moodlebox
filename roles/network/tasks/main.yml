@@ -1,6 +1,6 @@
 ---
 
-- name: configure dhcpcd
+- name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ipaddr('host') }}
   blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |

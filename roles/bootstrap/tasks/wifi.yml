@@ -1,6 +1,6 @@
 ---
 
-- name: set wifi country
+- name: set wifi country to '{{ moodlebox_wifi_country }}'
   lineinfile:
     path: '/etc/wpa_supplicant/wpa_supplicant.conf'
     regexp: '^country='

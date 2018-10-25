@@ -1,6 +1,6 @@
 ---
 
-- name: change hostname
+- name: change hostname to '{{ moodlebox_hostname }}'
   hostname:
     name: '{{ moodlebox_hostname }}'
   register: hostname_status

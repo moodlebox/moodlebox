@@ -1,6 +1,6 @@
 ---
 
-- name: get MathJax library from git repository
+- name: get MathJax library version '{{ moodlebox_mathjax_version }}' from git repository
   git:
     repo: 'git://github.com/mathjax/MathJax.git'
     dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'

@@ -1,6 +1,6 @@
 ---
 
-- name: change username in several files
+- name: change username to '{{ moodlebox_username }}' in several files
   replace:
     path: '{{ item }}'
     regexp: '\b{{ moodlebox_rpi_username }}\b'

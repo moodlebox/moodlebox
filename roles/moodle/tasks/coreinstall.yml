@@ -1,6 +1,6 @@
 ---
 
-- name: get Moodle from git repository
+- name: get Moodle version '{{ moodlebox_moodle_branch }}' from git repository
   git:
     repo: 'git://git.moodle.org/moodle.git'
     version: '{{ moodlebox_moodle_branch }}'

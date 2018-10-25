@@ -1,6 +1,6 @@
 ---
 
-- name: configure MariaDB root password before installing
+- name: configure MariaDB root password
   debconf:
     name: 'mariadb-server'
     question: '{{ item }}'
@@ -11,7 +11,7 @@
     - 'mysql-server/root_password_again'
   register: configure_mariadb_install
 
-- name: configure phpMyAdmin password before installing
+- name: configure phpMyAdmin password
   debconf:
     name: 'phpmyadmin'
     question: '{{ item }}'
@@ -22,14 +22,14 @@
     - 'phpmyadmin/mysql/app-pass'
     - 'phpmyadmin/app-password-confirm'
 
-- name: configure phpMyAdmin reconfigure before installing
+- name: configure phpMyAdmin reconfigure
   debconf:
     name: 'phpmyadmin'
     question: 'phpmyadmin/reconfigure-webserver'
     value: 'none'
     vtype: 'multiselect'
 
-- name: configure phpMyAdmin dbconfig before installing
+- name: configure phpMyAdmin dbconfig
   debconf:
     name: 'phpmyadmin'
     question: 'phpmyadmin/dbconfig-install'
