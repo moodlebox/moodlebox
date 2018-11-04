@@ -47,7 +47,7 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 The code is available at [https://github.com/moodlebox/moodlebox](https://github.com/moodlebox/moodlebox).
 
-A [prepared disk image](https://moodlebox.net/download) of the latest released version is [available for downloading](https://moodlebox.net/download), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+If you just want to use a MoodleBox, a [prepared disk image](https://moodlebox.net/download) of the latest released version is [available for downloading](https://moodlebox.net/download), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
 
 ### Release notes
 
