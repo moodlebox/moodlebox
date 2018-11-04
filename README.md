@@ -62,9 +62,11 @@ See [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG
 
 ## License
 
-Copyright © 2016 onwards, Nicolas Martignoni <nicolas@martignoni.net>
+All contributions to this repository are licensed under AGPLv3 or any later version.
 
-- All the source code is licensed under GPL 3 or any later version.
-- The documentation is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+MoodleBox doesn't require a CLA (Contributor License Agreement). The copyright belongs to all the individual contributors. Therefore we recommend that every contributor adds following line to the header of a file, if they
+changed it substantially:
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+```
+@copyright Copyright (c) <year>, <your name> (<your email address>)
+```
