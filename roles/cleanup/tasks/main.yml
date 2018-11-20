@@ -2,12 +2,13 @@
 
 - name: remove packages used only during the build
   apt:
-    pkg: '{{ item }}'
+    pkg: '{{ packages }}'
     state: 'absent'
     purge: 'yes'
-  with_items:
-    - 'python-mysqldb'
-    - 'rpi-update'
+  vars:
+    packages:
+      - 'python-mysqldb'
+      - 'rpi-update'
 
 - name: clean Moodle database log tables
   command: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'

@@ -13,19 +13,15 @@
 
 - name: uninstall useless packages
   apt:
-    pkg: '{{ item }}'
+    pkg: '{{ moodlebox_uninstall_packages }}'
     state: 'absent'
     purge: 'yes'
-  with_flattened:
-    - '{{ moodlebox_uninstall_packages }}'
   when: 'moodlebox_uninstall_packages is defined'
 
 - name: install packages
   apt:
-    pkg: '{{ item }}'
+    pkg: '{{ moodlebox_install_packages }}'
     state: 'present'
-  with_flattened:
-    - '{{ moodlebox_install_packages }}'
 
 - name: install phpMyAdmin package
   apt:
