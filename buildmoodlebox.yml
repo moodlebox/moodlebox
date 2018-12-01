@@ -1,6 +1,9 @@
 ---
 - name: playbook to provision most of the MoodleBox
   hosts: all
+  vars:
+    ansible_user: 'root'
+    upgrade_moodlebox: false
   become: yes
 
   vars_files:
@@ -18,6 +21,3 @@
     - network
     - moodle
     - cleanup
-
-  vars:
-    ansible_user: 'root'

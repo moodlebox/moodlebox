@@ -1,0 +1,22 @@
+---
+
+- name: update Moodle to version '{{ moodlebox_moodle_branch }}' from git repository
+  git:
+    repo: 'git://git.moodle.org/moodle.git'
+    version: '{{ moodlebox_moodle_branch }}'
+    dest: '{{ moodlebox_moodle_source_dir }}'
+    force: 'yes'
+    depth: 1
+
+- name: put Moodle into the maintenance mode
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/maintenance.php" --enable'
+
+- name: update Moodle via CLI
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
+    --non-interactive
+    --allow-unstable'
+  args:
+    chdir: '{{ moodlebox_moodle_source_dir }}'
+
+- name: put Moodle off maintenance mode
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/maintenance.php" --disable'
