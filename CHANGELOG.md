@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.6.0, 2018-12-03
+### Changed
+- Based on Raspbian Stretch Lite version of 2018-11-13 (issue #109).
+- Uses now PHP7.1, with a slight performance gain (issue #100).
+- Updated to Moodle 3.6 (issue #101).
+- Updated to [version v1.12.2](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v1.12.2) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox), enabling SSID hiding (issue #112).
+- Username of default admin account changed to _moodlebox_ (issue #96).
+- Updated to last version of `iptables_row` ansible module (issue #103).
+- License change to AGPLv3 (issue #105).
+
+### Added
+- Ghostscript is installed by default, enabling PDF annotations (issue #108).
+
+### Fixed
+- Save some space by cloning a shallow clone of MoodleBox plugin (issue #104).
+- Fix Ansible deprecation warning displayed when installing packages (issue #110).
+
 ## Version 2.5.1, 2018-10-13
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-10-09 (issue #91).
