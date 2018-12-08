@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.6.1, 2018-12-09
+### Changed
+- Updated to Moodle 3.6.1 (issue #113).
+- Revert to PHP7.0 (issue #114).
+
 ## Version 2.6.0, 2018-12-03
 ### Changed
 - Based on Raspbian Stretch Lite version of 2018-11-13 (issue #109).
