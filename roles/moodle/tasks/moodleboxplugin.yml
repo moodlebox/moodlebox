@@ -28,7 +28,7 @@
     mode: 'ug+w,o-w'
     recurse: 'yes'
 
-- name: create sudoers file
+- name: create sudoers file for MoodleBox plugin usage
   copy:
     src: 'etc/sudoers.d/020_www-data-nopasswd'
     dest: '/etc/sudoers.d/020_www-data-nopasswd'
