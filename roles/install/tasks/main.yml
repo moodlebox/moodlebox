@@ -4,7 +4,7 @@
   import_tasks: db.yml
   when: not upgrade_moodlebox
 
-- name: install/update standard packages and remove useless ones
+- name: install/upgrade standard packages and remove useless ones
   import_tasks: packages.yml
 
 - name: install packages needing special care

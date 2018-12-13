@@ -1,0 +1,22 @@
+---
+- name: playbook to upgrade the MoodleBox to the last version
+  hosts: all
+  vars:
+    ansible_user: '{{ moodlebox_username }}'
+    ansible_password: '{{ moodlebox_password }}'
+    upgrade_moodlebox: true
+  become: yes
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: include customised variables
+      include_vars: '{{ item }}'
+      with_fileglob:
+        - config.yml
+
+  roles:
+    - bootstrap
+    - install
+    - moodle
