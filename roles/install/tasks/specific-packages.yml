@@ -1,0 +1,27 @@
+---
+
+- name: install phpMyAdmin package
+  apt:
+    pkg: 'phpmyadmin'
+    state: 'present'
+    install_recommends: 'false'
+
+- name: install custom phpMyAdmin configuration file
+  copy:
+    src: 'etc/phpmyadmin/conf.d/moodlebox.inc.php'
+    dest: '/etc/phpmyadmin/conf.d/moodlebox.inc.php'
+    mode: 0644
+
+- name: copy usbmount deb package file
+  copy:
+    src: 'usbmount_0.0.24_all.deb'
+    dest: '/tmp/usbmount_0.0.24_all.deb'
+
+- name: install usbmount package
+  apt:
+    deb: '/tmp/usbmount_0.0.24_all.deb'
+
+- name: delete usbmount deb package file
+  file:
+    path: '/tmp/usbmount_0.0.24_all.deb'
+    state: 'absent'

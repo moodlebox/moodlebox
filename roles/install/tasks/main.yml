@@ -2,11 +2,17 @@
 
 - name: install and configure database server
   import_tasks: db.yml
+  when: not upgrade_moodlebox
 
-- name: install/remove packages
+- name: install/update standard packages and remove useless ones
   import_tasks: packages.yml
+
+- name: install packages needing special care
+  import_tasks: specific-packages.yml
+  when: not upgrade_moodlebox
 
 - name: misc system configuration
   import_tasks: system.yml
+  when: not upgrade_moodlebox
 
 - meta: flush_handlers
