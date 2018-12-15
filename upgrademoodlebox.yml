@@ -16,6 +16,34 @@
       with_fileglob:
         - config.yml
 
+    - name: get MoodleBox current version info
+      slurp:
+        src: "/etc/moodlebox-info"
+      register: moodleboxinfo
+
+    - name: set vars with MoodleBox current version number and date
+      set_fact:
+        current_version_number: "{{ (moodleboxinfo['content'] | b64decode).split('\n')[0] | regex_replace('^.*version (\\d+\\.\\d+\\.\\d+),.*$', '\\1') }}"
+        current_version_date: "{{ (moodleboxinfo['content'] | b64decode).split('\n')[0] | regex_replace('^.*, (\\d{4}-\\d{2}-\\d{2}).*$', '\\1') }}"
+
+    - name: inform that upgrade can proceed
+      debug:
+        msg: "Your MoodleBox version {{ current_version_number }} will be now upgraded automatically."
+      when:
+        current_version_number.split('.')[0] >= '2' and current_version_number != '2.6.0'
+
+    - name: alert that upgrade cannot proceed
+      debug:
+        msg: "Your MoodleBox version {{ current_version_number }} cannot be upgraded automatically."
+      when:
+        current_version_number.split('.')[0] < '2' or current_version_number == '2.6.0'
+
+    - name: aborts upgrade if version does not meet criteria
+      meta:
+        end_play
+      when:
+        current_version_number.split('.')[0] < '2' or current_version_number == '2.6.0'
+
   roles:
     - bootstrap
     - install
