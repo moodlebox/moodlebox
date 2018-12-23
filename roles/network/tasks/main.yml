@@ -57,14 +57,14 @@
   when: network_configured is successful
 
 - name: wait for machine to come back
-  become: false
-  local_action: wait_for
-  args:
+  wait_for:
     host: '{{ ansible_host | default(inventory_hostname) }}'
     port: 22
     state: 'started'
     delay: 10
     timeout: 60
+  delegate_to: localhost
+  become: false
 
 - name: configure IP forwarding
   import_tasks: iproute.yml
