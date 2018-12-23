@@ -26,7 +26,7 @@
 
 - name: move user home directory
   command: 'mv /home/{{ moodlebox_rpi_username }} /home/{{ moodlebox_username }}'
-  when: pi_home_dir.stat.exists and pi_home_dir.stat.islnk == False
+  when: pi_home_dir.stat.exists and not pi_home_dir.stat.islnk
   register: pi_home_dir_moved
 
 - name: simlink to old directory
