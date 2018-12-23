@@ -13,3 +13,5 @@
     state: 'present'
     update_cache: 'yes'
     autoremove: 'yes'
+  register: packages_installed
+  until: packages_installed is succeeded

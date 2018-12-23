@@ -4,6 +4,8 @@
   apt:
     pkg: 'rpi-update'
     state: 'present'
+  register: rpi_update_installed
+  until: rpi_update_installed is succeeded
 
 - name: update firmware
   command: 'rpi-update'

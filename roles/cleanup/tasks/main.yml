@@ -22,6 +22,8 @@
   apt:
     autoremove: 'yes'
     autoclean: 'yes'
+  register: useless_packages_removed
+  until: useless_packages_removed is succeeded
 
 - name: stop DHCP server
   service:

@@ -5,6 +5,8 @@
     pkg: 'phpmyadmin'
     state: 'present'
     install_recommends: 'false'
+  register: phpmyadmin_installed
+  until: phpmyadmin_installed is succeeded
 
 - name: install custom phpMyAdmin configuration file
   copy:

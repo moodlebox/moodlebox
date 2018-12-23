@@ -42,11 +42,14 @@
     state: 'present'
   when: configure_mariadb_install is successful
   register: install_mariadb
+  until: install_mariadb is succeeded
 
 - name: install python-mysqldb
   apt:
     pkg: 'python-mysqldb'
     state: 'present'
+  register: py_mysql_installed
+  until: py_mysql_installed is succeeded
 
 - name: add '{{ moodlebox_db_username }}' MariaDB user with all privileges
   mysql_user:
