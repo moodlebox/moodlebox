@@ -25,7 +25,7 @@ script:
   # Continuous integration: syntax check
   - ansible-playbook moodlebox.yml --syntax-check -vvv
 
-  # Continous integration: ansible-list
+  # Continous integration: ansible-lint
   - ansible-lint -p moodlebox.yml
 
   #  Continous integration: ansible code review
