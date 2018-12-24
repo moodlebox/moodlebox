@@ -32,7 +32,7 @@
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
     state: 'touch'
-    mode: '754'
+    mode: 0754
     recurse: 'yes'
 
 - name: create sudoers file for MoodleBox plugin usage
