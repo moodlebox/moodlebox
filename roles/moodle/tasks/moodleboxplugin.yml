@@ -19,13 +19,20 @@
     - '.wifisettings'
     - '.resize-partition'
 
-- name: change MoodleBox plugin file permissions
+- name: change MoodleBox plugin file permissions (1)
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
-    state: 'directory'
+    state: 'touch'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
     mode: 'ug+w,o-w'
+    recurse: 'yes'
+
+- name: change MoodleBox plugin file permissions (2)
+  file:
+    path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
+    state: 'touch'
+    mode: '754'
     recurse: 'yes'
 
 - name: create sudoers file for MoodleBox plugin usage
