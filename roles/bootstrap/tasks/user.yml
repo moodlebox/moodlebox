@@ -53,6 +53,7 @@
   blockinfile:
     path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
     block: |
+      alias l='ls -l'
       alias ll='ls -la'
 
       # Assign arrow keys to history search in bash
