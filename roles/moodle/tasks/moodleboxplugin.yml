@@ -22,7 +22,7 @@
 - name: change MoodleBox plugin file permissions (1)
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
-    state: 'touch'
+    state: 'directory'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
     mode: 'ug+w,o-w'
@@ -31,7 +31,7 @@
 - name: change MoodleBox plugin file permissions (2)
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
-    state: 'touch'
+    state: 'directory'
     mode: 0754
     recurse: 'yes'
 
