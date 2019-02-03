@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.6.2, 2019-02-03
+### Changed
+- Updated to Moodle 3.6.2 (issue #118).
+
+### Added
+- Preliminary version of upgrade script, undocumented (issue #111).
+
+### Fixed
+- Bug preventing correct completion of script fixed (issue #117). Thanks to @GXiangCo for the report.
+- Several potential idempotence problems fixed (no issue number).
+
 ## Version 2.6.1, 2018-12-09
 ### Changed
 - Updated to Moodle 3.6.1 (issue #113).
