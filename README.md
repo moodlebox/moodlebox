@@ -62,11 +62,13 @@ See [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG
 
 ## License
 
+Copyright © 2016 onwards, Nicolas Martignoni nicolas@martignoni.net.
+
 All contributions to this repository are licensed under AGPLv3 or any later version.
 
 MoodleBox doesn't require a CLA (Contributor License Agreement). The copyright belongs to all the individual contributors. Therefore we recommend that every contributor adds following line to the header of a file, if they
 changed it substantially:
 
 ```
-@copyright Copyright (c) <year>, <your name> (<your email address>)
+@copyright Copyright © <year>, <your name> (<your email address>)
 ```
