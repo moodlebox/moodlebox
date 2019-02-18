@@ -1,7 +1,7 @@
 ---
 
 - name: check if database for Moodle exists
-  shell: mysql -e 'SHOW DATABASES;' | grep '{{ moodlebox_moodle_db }}'
+  command: mysql -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
   register: moodle_db_exists
   failed_when: moodle_db_exists.rc > 1
   changed_when: moodle_db_exists.rc == 0
@@ -32,10 +32,8 @@
     - '/var/cache/moodle-cache-backup'
 
 - name: check if any incron job exist
-  shell: 'incrontab -l | wc -c'
+  shell: 'set -euo pipefail && incrontab -l | wc -c'
   register: incronjob_exists
-  args:
-    warn: false
   changed_when: incronjob_exists.stdout|int > 0
 
 - name: remove incron jobs

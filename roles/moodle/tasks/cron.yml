@@ -19,14 +19,12 @@
 
 - name: configure incron
   shell: |
-    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changewifisettings.sh") | incrontab -
-    (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.resize-partition IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/resizepartition.sh") | incrontab -
-  args:
-    warn: false
+    set -euo pipefail && (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.reboot-server IN_CLOSE_WRITE /sbin/shutdown -r now") | incrontab -
+    set -euo pipefail && (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.shutdown-server IN_CLOSE_WRITE /sbin/shutdown -h now") | incrontab -
+    set -euo pipefail && (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime") | incrontab -
+    set -euo pipefail && (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.newpassword IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changepassword.sh") | incrontab -
+    set -euo pipefail && (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.wifisettings IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changewifisettings.sh") | incrontab -
+    set -euo pipefail && (incrontab -l -u root 2>/dev/null; echo "{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.resize-partition IN_CLOSE_WRITE /bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/resizepartition.sh") | incrontab -
   register: incron_configured
   changed_when: incron_configured.rc == 0
 
