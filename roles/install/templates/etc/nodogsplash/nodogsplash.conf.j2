@@ -1,7 +1,9 @@
 # Nodogsplash Configuration File
 GatewayInterface wlan0
-FirewallRuleSet authenticated-users {}
-FirewallRuleSet preauthenticated-users {}
+FirewallRuleSet authenticated-users {
+}
+FirewallRuleSet preauthenticated-users {
+}
 FirewallRuleSet users-to-router {
     FirewallRule allow udp port 53
     FirewallRule allow tcp port 53
