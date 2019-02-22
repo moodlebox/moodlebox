@@ -16,5 +16,6 @@ FirewallRuleSet users-to-router {
 GatewayName MoodleBox
 GatewayAddress {{ moodlebox_ip_address | ipaddr('address') }}
 RedirectURL http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}/
+GatewayPort 2050
 MaxClients 50
 SessionTimeout 360
