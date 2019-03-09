@@ -27,3 +27,22 @@
   file:
     path: '/tmp/usbmount_0.0.24_all.deb'
     state: 'absent'
+
+- name: copy nodogsplash deb package file
+  copy:
+    src: 'nodogsplash_3.2.1-1_armhf.deb'
+    dest: '/tmp/nodogsplash_3.2.1-1_armhf.deb'
+
+- name: install nodogsplash package
+  apt:
+    deb: '/tmp/nodogsplash_3.2.1-1_armhf.deb'
+
+- name: delete nodogsplash deb package file
+  file:
+    path: '/tmp/nodogsplash_3.2.1-1_armhf.deb'
+    state: 'absent'
+
+- name: configure nodogsplash captive portal
+  template:
+    src: 'etc/nodogsplash/nodogsplash.conf.j2'
+    dest: '/etc/nodogsplash/nodogsplash.conf'
