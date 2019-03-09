@@ -46,3 +46,11 @@
   template:
     src: 'etc/nodogsplash/nodogsplash.conf.j2'
     dest: '/etc/nodogsplash/nodogsplash.conf'
+
+- name: disable nodogsplash service at startup
+  systemd:
+    name: 'nodogsplash'
+    state: stopped
+    enabled: no
+    masked: no
+
