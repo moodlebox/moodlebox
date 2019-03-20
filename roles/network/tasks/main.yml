@@ -21,6 +21,13 @@
     line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
   notify: restart networking
 
+- name: unmask, enable and start hostapd
+  systemd:
+    name: 'hostapd'
+    state: 'started'
+    enabled: 'yes'
+    masked: 'no'
+
 - name: update dnsmasq configuration
   template:
     src: 'etc/dnsmasq.conf.j2'
