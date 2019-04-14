@@ -24,9 +24,10 @@ To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 or
 
 1. Clone Rasbpian Stretch Lite on your microSD card.
 1. Create a `ssh` file on the `boot` partition, e.g. using `touch ssh`.
-1. Insert the microSD card into your Raspberry
+1. Insert the microSD card into your Raspberry.
 1. Connect your Raspberry to your Ethernet network and boot it.
-1. [Install Ansible](http://docs.ansible.com/intro_installation.html) on your computer.
+1. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
+1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the $raspberry. On macOS, use e.g. `brew install https://git.io/sshpass.rb`.
 1. [Clone this repository](https://github.com/moodlebox/moodlebox.git) to your local drive.
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
 1. Get the IP address of your RaspberryPi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.

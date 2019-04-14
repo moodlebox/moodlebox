@@ -1,0 +1,21 @@
+# Nodogsplash Configuration File
+GatewayInterface wlan0
+FirewallRuleSet authenticated-users {
+    FirewallRule allow all
+}
+FirewallRuleSet preauthenticated-users {
+}
+FirewallRuleSet users-to-router {
+    FirewallRule allow udp port 53
+    FirewallRule allow tcp port 53
+    FirewallRule allow udp port 67
+    FirewallRule allow tcp port 22
+    FirewallRule allow tcp port 80
+    FirewallRule allow tcp port 443
+}
+GatewayName MoodleBox
+GatewayAddress {{ moodlebox_ip_address | ipaddr('address') }}
+RedirectURL http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}/
+GatewayPort 2050
+MaxClients 50
+SessionTimeout 360
