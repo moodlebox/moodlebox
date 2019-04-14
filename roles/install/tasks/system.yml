@@ -17,3 +17,14 @@
     path: '/etc/incron.allow'
     line: 'root'
   notify: restart incron
+
+- name: remove default nodogsplash files
+  file:
+    path: '/etc/nodogsplash/htdocs'
+    state: 'absent'
+
+- name: update nodogsplash files
+  copy:
+    src: 'etc/nodogsplash/htdocs'
+    dest: '/etc/nodogsplash'
+    mode: 0644
