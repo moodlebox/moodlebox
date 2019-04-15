@@ -20,17 +20,17 @@ We have an active [discussion forum](https://discuss.moodlebox.net/) where users
 
 > If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image](https://moodlebox.net/download) and follow the instructions on the [MoodleBox web site](https://moodlebox.net).
 
-To build a MoodleBox from scratch with this script, you need a Raspberri Pi 3 or 3B+ (Wi-Fi!).
+To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3 or 3B+ (Wi-Fi!).
 
 1. Clone Rasbpian Stretch Lite on your microSD card.
 1. Create a `ssh` file on the `boot` partition, e.g. using `touch ssh`.
-1. Insert the microSD card into your Raspberry.
-1. Connect your Raspberry to your Ethernet network and boot it.
+1. Insert the microSD card into your Raspberry Pi.
+1. Connect your Raspberry Pi to your Ethernet network and boot it.
 1. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
-1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the $raspberry. On macOS, use e.g. `brew install https://git.io/sshpass.rb`.
+1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew install https://git.io/sshpass.rb`.
 1. [Clone this repository](https://github.com/moodlebox/moodlebox.git) to your local drive.
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
-1. Get the IP address of your RaspberryPi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
+1. Get the IP address of your Raspberry Pi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
 1. Run `ansible-playbook moodlebox.yml` from the repository folder.
 1. Wait 30–50 minutes, depending on your SD card and Internet bandwidth. You're done.
 
