@@ -48,6 +48,7 @@ moodlebox_wifi_country: 'CH'
 moodlebox_default_locale: 'en_GB.UTF-8'
 moodlebox_locales:
   - 'en_GB.UTF-8'
+  - 'en_AU.UTF-8'
   - 'fr_FR.UTF-8'
   - 'de_DE.UTF-8'
   - 'es_ES.UTF-8'
