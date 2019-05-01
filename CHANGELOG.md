@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 2.7.0, unreleased
+<!-- ![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v2.7.0/total.svg) -->
+### Changed
+- Updated to [version v2.0.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.0.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #127).
+- Updated to Moodle 3.6.3 (issue #124).
+- Based on Raspbian Stretch Lite version of 2019-04-08 (issue #122).
+- License is now AGPL (no issue number).
+
+### Added
+- Captive portal using [Nodogsplash](https://github.com/nodogsplash/nodogsplash) added (issue #120, PR #123). Inactive by default, needs to be started manually.
+- Install default english Moodle locale: en_AU.UTF-8 to prevent false alerts with Moodle 3.7.0 and later (no issue number).
+
+### Fixed
+- Fix a bug introduced by an update to `hostapd` (issue #121).
+- Fix plugin permissions on executable files (issue #126).
+- Fix some warnings to Ansible playbooks (issue #119).
+- Some fixes to preliminary version of upgrade script, still undocumented (issue #111). Use at your own risk.
+
 ## Version 2.6.2, 2019-02-03
 ### Changed
 - Updated to Moodle 3.6.2 (issue #118).
