@@ -30,16 +30,16 @@
 
 - name: copy nodogsplash deb package file
   copy:
-    src: 'nodogsplash_3.3.1-1_armhf.deb'
-    dest: '/tmp/nodogsplash_3.3.1-1_armhf.deb'
+    src: 'nodogsplash_3.3.2-1_armhf.deb'
+    dest: '/tmp/nodogsplash.deb'
 
 - name: install nodogsplash package
   apt:
-    deb: '/tmp/nodogsplash_3.3.1-1_armhf.deb'
+    deb: '/tmp/nodogsplash.deb'
 
 - name: delete nodogsplash deb package file
   file:
-    path: '/tmp/nodogsplash_3.3.1-1_armhf.deb'
+    path: '/tmp/nodogsplash.deb'
     state: 'absent'
 
 - name: configure nodogsplash captive portal
