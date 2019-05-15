@@ -28,6 +28,9 @@
 
 ## set useful vars
 dummypassword="123456"
+adminusername="admin"
+adminpassword="ThisIsABad1stPasswordChangeIt!"
+
 moodleurl="http://moodlebox.local"
 moodlename="MoodleBox"
 moodleshortname="MoodleBox"
@@ -81,6 +84,7 @@ mooshscript="$mooshpath/moosh.php -n -p $moodlerootpath"
 # ## Fix ownership of Moodle files
 # chown -R www-data:www-data "$moodlerootpath"
 
+##
 ## Configure Moodle site
 
 # change admin's user email address
@@ -100,19 +104,23 @@ $mooshscript config-set calendar_startwday 1
 $mooshscript config-set enableavailability 1
 # enable completion of activities
 $mooshscript config-set enablecompletion 1
+# enable theme change in URL
+$mooshscript config-set allowthemechangeonurl 1
 
 ## Create users and courses
 
-# create 3 users to use as (edititng) teachers
-$mooshscript user-create --password "$dummypassword" --email teacher1@"$emaildomain" --city "$city" --country "$country" --firstname "Tina" --lastname "Teacher" teacher1
-$mooshscript user-create --password "$dummypassword" --email teacher2@"$emaildomain" --city "$city" --country "$country" --firstname "Terry" --lastname "Teacher" teacher2
-$mooshscript user-create --password "$dummypassword" --email teacher3@"$emaildomain" --city "$city" --country "$country" --firstname "Teresa" --lastname "Teacher" teacher3
+# create 1 user to use as manager
+$mooshscript user-create --password "$dummypassword" --email manager@"$emaildomain" --city "$city" --country "$country" --firstname "Maggie" --lastname "Manager" manager
+# create 3 users to use as (editing) teachers
+$mooshscript user-create --password "$dummypassword" --email teacher1@"$emaildomain" --city "$city" --country "$country" --firstname "Teresa" --lastname "Teacher" teacher1
+$mooshscript user-create --password "$dummypassword" --email teacher2@"$emaildomain" --city "$city" --country "$country" --firstname "Tim" --lastname "Teacher" teacher2
+$mooshscript user-create --password "$dummypassword" --email teacher3@"$emaildomain" --city "$city" --country "$country" --firstname "Tina" --lastname "Teacher" teacher3
 # create 5 users to use as students
-$mooshscript user-create --password "$dummypassword" --email student1@"$emaildomain" --city "$city" --country "$country" --firstname "Suzy" --lastname "Student" student1
-$mooshscript user-create --password "$dummypassword" --email student2@"$emaildomain" --city "$city" --country "$country" --firstname "Steve" --lastname "Student" student2
-$mooshscript user-create --password "$dummypassword" --email student3@"$emaildomain" --city "$city" --country "$country" --firstname "Sammy" --lastname "Student" student3
-$mooshscript user-create --password "$dummypassword" --email student4@"$emaildomain" --city "$city" --country "$country" --firstname "Sofia" --lastname "Student" student4
-$mooshscript user-create --password "$dummypassword" --email student5@"$emaildomain" --city "$city" --country "$country" --firstname "Sean" --lastname "Student" student5
+$mooshscript user-create --password "$dummypassword" --email student1@"$emaildomain" --city "$city" --country "$country" --firstname "Sabrina" --lastname "Student" student1
+$mooshscript user-create --password "$dummypassword" --email student2@"$emaildomain" --city "$city" --country "$country" --firstname "Sean" --lastname "Student" student2
+$mooshscript user-create --password "$dummypassword" --email student3@"$emaildomain" --city "$city" --country "$country" --firstname "Sofia" --lastname "Student" student3
+$mooshscript user-create --password "$dummypassword" --email student4@"$emaildomain" --city "$city" --country "$country" --firstname "Steve" --lastname "Student" student4
+$mooshscript user-create --password "$dummypassword" --email student5@"$emaildomain" --city "$city" --country "$country" --firstname "Suzy" --lastname "Student" student5
 # create 3 courses
 $mooshscript course-create --fullname "Course 3" --description "Cours de test 3" --idnumber "13" course3
 $mooshscript course-create --fullname "Course 2" --description "Cours de test 2" --idnumber "12" course2
