@@ -17,15 +17,15 @@
 - name: copy usbmount deb package file
   copy:
     src: 'usbmount_0.0.24_all.deb'
-    dest: '/tmp/usbmount_0.0.24_all.deb'
+    dest: '/tmp/usbmount.deb'
 
 - name: install usbmount package
   apt:
-    deb: '/tmp/usbmount_0.0.24_all.deb'
+    deb: '/tmp/usbmount.deb'
 
 - name: delete usbmount deb package file
   file:
-    path: '/tmp/usbmount_0.0.24_all.deb'
+    path: '/tmp/usbmount.deb'
     state: 'absent'
 
 - name: copy nodogsplash deb package file
