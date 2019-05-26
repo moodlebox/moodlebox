@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follow pri
 ### Changed
 - Updated to [version v2.0.0](
 https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.0.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #127).
-- Updated to Moodle 3.6.3 (issue #124).
+- Updated to Moodle 3.6.4 (issue #128).
 - Based on Raspbian Stretch Lite version of 2019-04-08 (issue #122).
 - License is now AGPL (no issue number).
 
