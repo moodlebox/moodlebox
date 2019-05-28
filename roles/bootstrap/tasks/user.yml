@@ -27,14 +27,18 @@
 - name: move user home directory
   command: 'mv /home/{{ moodlebox_rpi_username }} /home/{{ moodlebox_username }}'
   when: pi_home_dir.stat.exists and not pi_home_dir.stat.islnk
-  register: pi_home_dir_moved
+
+- name: check presence of '/home/{{ moodlebox_username }}' directory
+  stat:
+    path: '/home/{{ moodlebox_username }}'
+  register: new_home_dir
 
 - name: simlink to old directory
   file:
     src: '/home/{{ moodlebox_username }}'
     path: '/home/{{ moodlebox_rpi_username }}'
     state: 'link'
-  when: pi_home_dir_moved
+  when: new_home_dir.stat.exists
 
 - name: change user password
   user:
