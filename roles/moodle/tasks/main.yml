@@ -35,7 +35,7 @@
 
 - name: upgrade Moodle
   import_tasks: upgrade.yml
-  when: upgrade_moodlebox
+  when: upgrade_moodlebox | bool
 
 - name: get MoodleBox plugin and install it
   import_tasks: moodleboxplugin.yml
