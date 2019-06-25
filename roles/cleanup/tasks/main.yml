@@ -16,7 +16,7 @@
     - 'mdl_logstore_standard_log'
     - 'mdl_config_log'
     - 'mdl_upgrade_log'
-  when: moodle_db_created
+  when: moodle_db_created is succeeded
 
 - name: remove useless packages from cache and no longer required dependencies
   apt:
@@ -71,7 +71,7 @@
   async: 1
   poll: 0
   ignore_errors: true
-  when: log_files_emptied
+  when: log_files_emptied is changed
 
 - name: wait for machine to come back
   wait_for:

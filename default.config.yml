@@ -19,8 +19,8 @@ moodlebox_password: 'Moodlebox4$'
 moodlebox_ip_address: '10.0.0.1/24'
 
 # MoodleBox DHCP range.
-moodlebox_dhcp_range_begin: "{{ moodlebox_ip_address | ipaddr('10') | ipaddr('address') }}"
-moodlebox_dhcp_range_end: "{{ moodlebox_ip_address | ipaddr('254') | ipaddr('address') }}"
+moodlebox_dhcp_range_begin: "{{ moodlebox_ip_address | ipaddr('address') | ipmath(9) }}"
+moodlebox_dhcp_range_end: "{{ moodlebox_ip_address | ipaddr('address') | ipmath(253) }}"
 
 # MoodleBox external public DNS servers IP addresses.
 moodlebox_external_dns_ip_address:

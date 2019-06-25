@@ -54,8 +54,8 @@
     src: 'tmpfs'
     fstype: 'tmpfs'
     opts: 'size={{ item.size }},mode=775,uid=www-data,gid=www-data'
-    dump: 0
-    passno: 0
+    dump: '0'
+    passno: '0'
     state: 'mounted'
   with_items:
     - { name: '/var/cache/moodle', size: '64M' }
