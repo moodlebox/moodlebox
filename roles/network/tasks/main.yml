@@ -76,3 +76,5 @@
 - name: configure IP forwarding
   import_tasks: iproute.yml
   notify: restart networking
+
+- meta: flush_handlers
