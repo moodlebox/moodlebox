@@ -1,5 +1,9 @@
 ---
 
+- name: workaround repo status change
+  command: 'apt-get update --allow-releaseinfo-change'
+  warn: false
+
 - name: update apt cache and upgrade
   apt:
     update_cache: 'yes'
