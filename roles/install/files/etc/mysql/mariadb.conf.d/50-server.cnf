@@ -2,8 +2,7 @@
 # These groups are read by MariaDB server.
 # Use it for options that only the server (but not clients) should see
 #
-# See the examples of server my.cnf files in /usr/share/mysql/
-#
+# See the examples of server my.cnf files in /usr/share/mysql
 
 # this is read by the standalone daemon and embedded servers
 [server]
@@ -15,14 +14,14 @@
 # * Basic Settings
 #
 user		= mysql
-pid-file	= /var/run/mysqld/mysqld.pid
-socket		= /var/run/mysqld/mysqld.sock
-port		= 3306
+pid-file	= /run/mysqld/mysqld.pid
+socket		= /run/mysqld/mysqld.sock
+#port		= 3306
 basedir		= /usr
 datadir		= /var/lib/mysql
 tmpdir		= /tmp
 lc-messages-dir	= /usr/share/mysql
-skip-external-locking
+#skip-external-locking
 
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
@@ -34,10 +33,10 @@ bind-address		= 127.0.0.1
 key_buffer_size		= 16M
 max_allowed_packet	= 16M
 thread_stack		= 192K
-thread_cache_size       = 8
+thread_cache_size	= 8
 # This replaces the startup script and checks MyISAM tables if needed
 # the first time they are touched
-myisam_recover_options  = BACKUP
+#myisam_recover_options = BACKUP
 max_connections         = 100
 table_cache             = 512
 table_definition_cache  = 512
@@ -47,8 +46,9 @@ table_definition_cache  = 512
 # * Query Cache Configuration
 #
 query_cache_limit	= 1M
-query_cache_size    = 16M
-query_cache_type    = 0
+query_cache_size	= 32M
+query_cache_type	= 1
+query_cache_min_res_unit = 2K
 
 #
 # * Logging and Replication
@@ -56,8 +56,8 @@ query_cache_type    = 0
 # Both location gets rotated by the cronjob.
 # Be aware that this log type is a performance killer.
 # As of 5.1 you can enable the log at runtime!
-#general_log_file        = /var/log/mysql/mysql.log
-#general_log             = 1
+#general_log_file       = /var/log/mysql/mysql.log
+#general_log            = 1
 #
 # Error log - should be very few entries.
 #
@@ -76,9 +76,37 @@ log_error = /var/log/mysql/error.log
 #server-id		= 1
 #log_bin			= /var/log/mysql/mysql-bin.log
 expire_logs_days	= 10
-max_binlog_size   = 100M
+max_binlog_size	= 100M
 #binlog_do_db		= include_database_name
 #binlog_ignore_db	= exclude_database_name
+
+#
+# * Security Features
+#
+# Read the manual, too, if you want chroot!
+#chroot = /var/lib/mysql/
+#
+# For generating SSL certificates you can use for example the GUI tool "tinyca".
+#
+#ssl-ca = /etc/mysql/cacert.pem
+#ssl-cert = /etc/mysql/server-cert.pem
+#ssl-key = /etc/mysql/server-key.pem
+#
+# Accept only connections using the latest and most secure TLS protocol version.
+# ..when MariaDB is compiled with OpenSSL:
+#ssl-cipher = TLSv1.2
+# ..when MariaDB is compiled with YaSSL (default in Debian):
+#ssl = on
+
+#
+# * Character sets
+#
+# MySQL/MariaDB default is Latin1, but in Debian we rather default to the full
+# utf8 4-byte character set. See also client.cnf
+#
+character-set-server  = utf8mb4
+collation-server      = utf8mb4_general_ci
+character-set-client-handshake = FALSE
 
 #
 # * InnoDB
@@ -91,34 +119,6 @@ innodb_large_prefix = 1
 innodb_log_file_size = 64M
 innodb_buffer_pool_instances = 1
 innodb_buffer_pool_size = 128M
-
-#
-# * Security Features
-#
-# Read the manual, too, if you want chroot!
-# chroot = /var/lib/mysql/
-#
-# For generating SSL certificates you can use for example the GUI tool "tinyca".
-#
-# ssl-ca=/etc/mysql/cacert.pem
-# ssl-cert=/etc/mysql/server-cert.pem
-# ssl-key=/etc/mysql/server-key.pem
-#
-# Accept only connections using the latest and most secure TLS protocol version.
-# ..when MariaDB is compiled with OpenSSL:
-# ssl-cipher=TLSv1.2
-# ..when MariaDB is compiled with YaSSL (default in Debian):
-# ssl=on
-
-#
-# * Character sets
-#
-# MySQL/MariaDB default is Latin1, but in Debian we rather default to the full
-# utf8 4-byte character set. See also client.cnf
-#
-character-set-server  = utf8mb4
-collation-server      = utf8mb4_general_ci
-character-set-client-handshake = FALSE
 
 #
 # * Unix socket authentication plugin is built-in since 10.0.22-6
@@ -137,7 +137,7 @@ character-set-client-handshake = FALSE
 # you can put MariaDB-only options here
 [mariadb]
 
-# This group is only read by MariaDB-10.1 servers.
+# This group is only read by MariaDB-10.3 servers.
 # If you use the same .cnf file for MariaDB of different versions,
 # use this group for options that older servers don't understand
-[mariadb-10.1]
+[mariadb-10.3]
