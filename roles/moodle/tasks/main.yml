@@ -48,6 +48,14 @@
   import_tasks: themes.yml
   when: not upgrade_moodlebox
 
+- name: install adminer latest release
+  get_url:
+    url: 'https://www.adminer.org/latest.php'
+    dest: '{{ moodlebox_moodle_source_dir }}/adminer.php'
+    owner: '{{ moodlebox_username }}'
+    group: 'www-data'
+    mode: '0664'
+
 - name: configure crons
   import_tasks: cron.yml
   when: not upgrade_moodlebox

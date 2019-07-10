@@ -11,31 +11,6 @@
     - 'mysql-server/root_password_again'
   register: configure_mariadb_install
 
-- name: configure phpMyAdmin password
-  debconf:
-    name: 'phpmyadmin'
-    question: '{{ item }}'
-    vtype: 'password'
-    value: '{{ moodlebox_db_root_password }}'
-  with_items:
-    - 'phpmyadmin/mysql/admin-pass'
-    - 'phpmyadmin/mysql/app-pass'
-    - 'phpmyadmin/app-password-confirm'
-
-- name: configure phpMyAdmin reconfigure
-  debconf:
-    name: 'phpmyadmin'
-    question: 'phpmyadmin/reconfigure-webserver'
-    value: 'none'
-    vtype: 'multiselect'
-
-- name: configure phpMyAdmin dbconfig
-  debconf:
-    name: 'phpmyadmin'
-    question: 'phpmyadmin/dbconfig-install'
-    value: 'true'
-    vtype: 'boolean'
-
 - name: install MariaDB
   apt:
     pkg: 'mariadb-server'

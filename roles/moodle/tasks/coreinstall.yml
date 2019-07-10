@@ -46,7 +46,6 @@
   with_items:
     - { src: '/home/{{ moodlebox_username }}/files', path: '{{ moodlebox_moodle_data_dir }}/repository/files' }
     - { src: '/media/usb', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
-    - { src: '/usr/share/phpmyadmin', path: '{{ moodlebox_moodle_source_dir }}/phpmyadmin' }
 
 - name: configure temporary storage for Moodle cache
   mount:
