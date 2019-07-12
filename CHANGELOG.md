@@ -3,8 +3,30 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Version 2.7.0, unreleased
-<!-- ![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v2.7.0/total.svg) -->
+## Version 3.0.0, 2019-07-13
+![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.0.0/total.svg)
+### Changed
+- Updated to [version v2.2.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.2.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #136).
+- Updated to Moodle 3.7.1 (issues #125 and #135).
+- Updated to PHP7.3 (issue #94).
+- Based on Raspbian Buster Lite version of 2019-07-10 (issue #139).
+- Updated MoodleBox CSS preset (no issue number).
+- Replace phpMyAdmin by Adminer (issue #132).
+
+### Added
+- Raspbian Buster support (issue #129).
+- Raspberry Pi 4B (all RAM models) support (issue #136).
+
+### Fixed
+- IP forwarding on Buster (issue #129).
+- Cleanup a database table (issue #138).
+- Renaming home directory logic updated (no issue number).
+- Broken image links in Nodogsplash (no issue number).
+- IP filter syntax fixed to work with Ansible 2.8 and later (no issue number).
+- Several warnings with Ansible 2.8 fixed (no issue number).
+
+## Version 2.7.0, 2019-05-20
 ### Changed
 - Updated to [version v2.0.0](
 https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.0.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #127).
