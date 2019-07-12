@@ -13,8 +13,9 @@
 - name: clean Moodle database log tables
   command: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
   with_items:
-    - 'mdl_logstore_standard_log'
     - 'mdl_config_log'
+    - 'mdl_logstore_standard_log'
+    - 'mdl_task_log'
     - 'mdl_upgrade_log'
   when: moodle_db_created is succeeded
 
