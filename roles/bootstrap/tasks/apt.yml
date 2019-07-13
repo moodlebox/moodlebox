@@ -1,10 +1,5 @@
 ---
 
-- name: workaround repo status change
-  command: 'apt-get update --allow-releaseinfo-change' # noqa 301 303
-  args:
-    warn: false
-
 - name: update apt cache and upgrade
   apt:
     update_cache: 'yes'
