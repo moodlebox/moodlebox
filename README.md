@@ -20,9 +20,9 @@ We have an active [discussion forum](https://discuss.moodlebox.net/) where users
 
 > If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image](https://moodlebox.net/download) and follow the instructions on the [MoodleBox web site](https://moodlebox.net).
 
-To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3 or 3B+ (Wi-Fi!).
+To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3, 3B+ or 4B (Wi-Fi!).
 
-1. Clone Rasbpian Stretch Lite on your microSD card.
+1. Clone Rasbpian Buster Lite on your microSD card.
 1. Create a `ssh` file on the `boot` partition, e.g. using `touch ssh`.
 1. Insert the microSD card into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
@@ -48,7 +48,7 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 The code is available at [https://github.com/moodlebox/moodlebox](https://github.com/moodlebox/moodlebox).
 
-If you just want to use a MoodleBox, a [prepared disk image](https://moodlebox.net/download) of the latest released version is [available for downloading](https://moodlebox.net/download), cloning on your microSD card and using out of the box on your Raspberry Pi 3.
+If you just want to use a MoodleBox, a [prepared disk image](https://moodlebox.net/download) of the latest released version is [available for downloading](https://moodlebox.net/download), cloning on your microSD card and using out of the box on your Raspberry Pi 3B, 3B+ or 4B.
 
 ### Release notes
 
