@@ -16,7 +16,7 @@
 
 - name: copy nodogsplash deb package file
   copy:
-    src: 'nodogsplash_3.3.2-1_armhf.deb'
+    src: 'nodogsplash_4.0.0-1_armhf.deb'
     dest: '/tmp/nodogsplash.deb'
 
 - name: install nodogsplash package
