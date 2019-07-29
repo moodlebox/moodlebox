@@ -1,3 +1,5 @@
+---
+
 moodlebox_install_packages:
   - iptables-persistent
   - hostapd

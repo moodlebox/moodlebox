@@ -36,7 +36,6 @@
 - name: disable nodogsplash service at startup
   systemd:
     name: 'nodogsplash'
-    state: stopped
-    enabled: no
-    masked: no
-
+    state: 'stopped'
+    enabled: 'false'
+    masked: 'false'

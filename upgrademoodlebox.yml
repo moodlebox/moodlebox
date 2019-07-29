@@ -4,8 +4,8 @@
   vars:
     ansible_user: '{{ moodlebox_username }}'
     ansible_password: '{{ moodlebox_password }}'
-    upgrade_moodlebox: true
-  become: yes
+    upgrade_moodlebox: 'true'
+  become: 'true'
 
   vars_files:
     - default.config.yml

@@ -9,7 +9,7 @@ sudo: false
 addons:
   apt:
     packages:
-    - python-pip
+      - python-pip
 
 install:
   # Install ansible, ansible-lint and ansible-review
@@ -28,12 +28,11 @@ script:
   # Continuous integration: ansible-lint
   - ansible-lint -p moodlebox.yml
 
-  # Continuous integration: ansible code review
-  #- git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
+  # Continuous integration: code review
+  # - git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
 
-  # Continuous integration: ansible code review of changes between master and current branch
-  #- git diff master | ansible-review
+  # Continuous integration: code review diff between master and current branch
+  # - git diff master | ansible-review
 
-
-#notifications:
-#  webhooks:
+# notifications:
+#   webhooks:
