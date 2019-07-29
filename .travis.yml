@@ -31,6 +31,9 @@ script:
   # Continuous integration: ansible-lint
   - ansible-lint -p moodlebox.yml
 
+  # Continuous integration: yamllint
+  - git ls-files '*.yaml' '*.yml' | xargs yamllint
+
   # Continuous integration: code review
   # - git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
 
