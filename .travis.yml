@@ -13,7 +13,7 @@ addons:
 
 install:
   # Install ansible, ansible-lint and ansible-review
-  - pip install ansible
+  - pip install ansible ansible-lint
   # - pip install ansible-review
   # Install yamllint
   - pip install yamllint
