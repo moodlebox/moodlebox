@@ -14,12 +14,15 @@ addons:
 install:
   # Install ansible, ansible-lint and ansible-review
   - pip install ansible
-  - pip install ansible-review
+  # - pip install ansible-review
+  # Install yamllint
+  - pip install yamllint
 
-  # Check ansible,  version
+  # Check versions
   - ansible --version
   - ansible-lint --version
-  - ansible-review --version
+  - yamllint --version
+  # - ansible-review --version
 
 script:
   # Continuous integration: syntax check
