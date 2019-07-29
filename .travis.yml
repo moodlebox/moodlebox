@@ -25,13 +25,13 @@ script:
   # Continuous integration: syntax check
   - ansible-playbook moodlebox.yml --syntax-check -vvv
 
-  # Continous integration: ansible-lint
+  # Continuous integration: ansible-lint
   - ansible-lint -p moodlebox.yml
 
-  #  Continous integration: ansible code review
+  # Continuous integration: ansible code review
   #- git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
 
-  # Continouse integration: ansible code review of changes between master and current branch
+  # Continuous integration: ansible code review of changes between master and current branch
   #- git diff master | ansible-review
 
 
