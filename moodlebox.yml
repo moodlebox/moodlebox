@@ -1,7 +1,6 @@
 # invoke with: ansible-playbook moodlebox.yml
 # on macOS with ansible 2.3.1 and later, you have to install sshpass:
-# brew create https://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz --force
-# brew install sshpass
+# brew install https://git.io/sshpass.rb
 ---
 
 - import_playbook: rootaccount.yml
