@@ -12,22 +12,22 @@
 
 - name: set hostname
   import_tasks: hostname.yml
-  when: moodlebox_set_hostname and not upgrade_moodlebox
+  when: moodlebox_set_hostname | bool and not upgrade_moodlebox | bool
 
 - name: manage main user account
   import_tasks: user.yml
-  when: not upgrade_moodlebox
+  when: not upgrade_moodlebox | bool
 
 - name: set timezone
   import_tasks: timezone.yml
-  when: moodlebox_set_timezone and not upgrade_moodlebox
+  when: moodlebox_set_timezone | bool and not upgrade_moodlebox | bool
 
 - name: set locales
   import_tasks: locale.yml
-  when: moodlebox_set_locale and not upgrade_moodlebox
+  when: moodlebox_set_locale | bool and not upgrade_moodlebox | bool
 
 - name: set wifi client country
   import_tasks: wifi.yml
-  when: not upgrade_moodlebox
+  when: not upgrade_moodlebox | bool
 
 - meta: flush_handlers
