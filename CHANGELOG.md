@@ -3,12 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Version 3.1.0, 2019-08-22
+## Version 3.1.0, 2019-08-23
 ![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.1.0/total.svg)
 ### Changed
 - Updated to [version v2.4.0](
 https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.4.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #146).
-- Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to v4.0.1 (issue #143)
+- Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to v4.0.2 (issue #144), with temporary workaround for issue https://github.com/nodogsplash/nodogsplash/issues/419.
 
 ### Added
 - Add `yamllint` to CI (no issue number)
