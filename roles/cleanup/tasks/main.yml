@@ -8,7 +8,6 @@
   vars:
     packages:
       - 'python-mysqldb'
-      - 'python-cryptography'
       - 'rpi-update'
 
 - name: clean Moodle database log tables

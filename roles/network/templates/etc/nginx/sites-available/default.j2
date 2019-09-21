@@ -4,6 +4,11 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	ssl_certificate /etc/nginx/ssl/moodlebox.pem;
+	ssl_certificate_key /etc/nginx/ssl/moodlebox.key;
+
 	root {{ moodlebox_moodle_source_dir }};
 
 	index index.php index.html index.htm index.nginx-debian.html;
