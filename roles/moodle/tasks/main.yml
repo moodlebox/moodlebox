@@ -56,6 +56,11 @@
     group: 'www-data'
     mode: '0664'
 
+- name: copy root CA certificate
+  copy:
+    src: 'home/files/moodleboxCA.pem'
+    dest: '/home/{{ moodlebox_username }}/files/moodleboxCA.pem'
+
 - name: configure crons
   import_tasks: cron.yml
   when: not upgrade_moodlebox | bool
