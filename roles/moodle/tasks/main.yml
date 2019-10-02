@@ -63,14 +63,6 @@
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
 
-- name: compress root CA certificate
-  archive:
-    path: '/home/{{ moodlebox_username }}/files/moodleboxCA.pem'
-    format: 'zip'
-    remove: 'yes'
-    owner: '{{ moodlebox_username }}'
-    group: 'www-data'
-
 - name: configure crons
   import_tasks: cron.yml
   when: not upgrade_moodlebox | bool
