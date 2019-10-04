@@ -58,8 +58,8 @@
 
 - name: copy root CA certificate
   copy:
-    src: 'home/files/moodleboxCA.pem'
-    dest: '/home/{{ moodlebox_username }}/files/moodleboxCA.pem'
+    src: 'home/files/moodleboxCA.crt'
+    dest: '/home/{{ moodlebox_username }}/files/moodleboxCA.crt'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
 
