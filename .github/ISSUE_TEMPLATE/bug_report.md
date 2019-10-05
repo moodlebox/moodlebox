@@ -4,13 +4,14 @@ about: Help us improving by reporting a bug
 title: ''
 labels: 'Type: bug'
 assignees: ''
-
 ---
 
 <!--
 Thanks for reporting issues back to MoodleBox!
 
 Note: This is the **issue tracker of MoodleBox**, please do NOT use this to get answers to your questions or get help for fixing your installation. This is a place to report bugs to developers.
+
+If you have any support question please check out https://moodlebox.net/help
 
 To make it possible for us to deal with the bug please fill out below information carefully.
 -->
