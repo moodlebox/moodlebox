@@ -59,7 +59,7 @@ moodlebox_timezone: 'Europe/Paris'
 moodlebox_public_key_file: 'id_rsa.pub'
 
 # MoodleBox Moodle default build settings.
-moodlebox_moodle_branch: 'MOODLE_37_STABLE'
+moodlebox_moodle_branch: 'MOODLE_38_STABLE'
 moodlebox_moodle_username: 'moodlebox'
 moodlebox_moodle_password: '{{ moodlebox_password }}'
 moodlebox_moodle_db: 'moodle'
