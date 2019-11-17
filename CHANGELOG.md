@@ -3,8 +3,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 3.5.0, unreleased
+![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.5.0/total.svg)
+### Changed
+- Update Moodle to version 3.8.0 (issue #156).
+- Update to Raspbian version 2019-09-26 (issue #149).
+- Update [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) to [version v2.4.2](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.4.2) of (issue #152).
+- Update [MathJax](http://mathjax.org) to version 2.7.6 (issue #154).
+- Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to version 4.3.2 (issue #153).
+
+### Added
+- Add support for HTTPS connexion (issue #27). This feature is not enabled by default; it must be manually enabled by a technically savvy administrator. See MoodleBox documentation.
+
+### Fixed
+- Fix author link (no issue number, commit b336068).
+
 ## Version 3.1.0, 2019-08-23
-![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.1.0/total.svg)
 ### Changed
 - Updated to [version v2.4.0](
 https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.4.0) of [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) (issue #146).
