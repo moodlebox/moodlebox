@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
-## Version 3.5.0, unreleased
+## Version 3.5.0, 2019-11-18
 ![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.5.0/total.svg)
 ### Changed
 - Update Moodle to version 3.8.0 (issue #156).
