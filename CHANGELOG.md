@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
 
+## Version 3.6.0, 2020-02-12
+![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.6.0/total.svg)
+
+### Changed
+- Update Moodle to version 3.8.1+ (issue #161).
+- Update to Raspbian version 2020-02-05 (issue #163).
+- Update [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) to [version v2.5.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.50) of (issue #160).
+- Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to version 4.4.0 (issue #159).
+- Update [MathJax](https://mathjax.org) to version 2.7.7 (issue #164).
+
+### Added
+- Add support for multiple subdomains (issue #158).
+
 ## Version 3.5.1, 2019-11-30
-![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.5.1/total.svg)
 ### Fixed
 - Fix partition auto-resize (issue #157).
 
