@@ -8,6 +8,8 @@
   with_items:
     - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n 10 ionice -c2 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
     - { name: 'Backup cache', minute: '*/20', job: 'rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/' }
+    # cron temporary workaround for php7.3-fpm signal 11 outages
+    - { name: 'Workaround php7.3-fpm signal 11 outages', minute: '*/5', job: 'systemctl restart php7.3-fpm.service'}
 
 - name: configure special time cron
   cron:
