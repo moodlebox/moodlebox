@@ -11,8 +11,8 @@
   file:
     path: '{{ item }}'
     state: 'directory'
-    owner: '{{ moodlebox_username }}'
-    group: 'www-data'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
     mode: 'ug+w,o-w'
     recurse: 'yes'
   with_items:
@@ -85,11 +85,12 @@
     chdir: '{{ moodlebox_moodle_source_dir }}'
     creates: '{{ moodlebox_moodle_source_dir }}/config.php'
 
-- name: change Moodle config file owner and group
+- name: set Moodle config file owner, group and permissions
   file:
     path: '{{ moodlebox_moodle_source_dir }}/config.php'
-    owner: '{{ moodlebox_username }}'
-    group: 'www-data'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: 'ug+w,o-w'
 
 - name: write extra parameters to the Moodle config file
   lineinfile:

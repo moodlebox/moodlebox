@@ -28,3 +28,20 @@
     src: 'etc/nodogsplash/htdocs'
     dest: '/etc/nodogsplash'
     mode: 0644
+
+- name: set umask for nginx and php-fpm services
+  lineinfile:
+    path: '{{ item }}'
+    line: 'UMask=0002'
+    insertafter: '^\[Service\].*'
+  with_items:
+    - '/lib/systemd/system/nginx.service'
+    - '/lib/systemd/system/php7.3-fpm.service'
+  notify: restart web services
+
+- name: set group for php-fpm process
+  lineinfile:
+    path: '/etc/php/7.3/fpm/pool.d/www.conf'
+    regexp: '^group\s*=\s*www-data.*'
+    line: 'group = {{ moodlebox_username }}'
+  notify: restart web services
