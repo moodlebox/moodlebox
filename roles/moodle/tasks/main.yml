@@ -52,8 +52,8 @@
   get_url:
     url: 'https://www.adminer.org/latest.php'
     dest: '{{ moodlebox_moodle_source_dir }}/adminer.php'
-    owner: '{{ moodlebox_username }}'
-    group: 'www-data'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
     mode: '0664'
 
 - name: copy root CA certificate
