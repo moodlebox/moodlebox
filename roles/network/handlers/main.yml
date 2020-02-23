@@ -1,12 +1,12 @@
 ---
 
 - name: restart networking
-  service:
+  systemd:
     name: 'networking'
     state: 'restarted'
 
 - name: restart web services
-  service:
+  systemd:
     name: '{{ item }}'
     state: 'restarted'
   with_items:

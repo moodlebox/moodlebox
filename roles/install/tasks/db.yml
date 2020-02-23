@@ -40,6 +40,6 @@
     dest: '/etc/mysql/mariadb.conf.d/50-server.cnf'
 
 - name: restart MariaDB database
-  service:
+  systemd:
     name: 'mariadb'
     state: 'restarted'

@@ -7,7 +7,7 @@
   command: 'rfkill unblock wifi'
 
 - name: restart networking
-  service:
+  systemd:
     name: 'networking'
     state: 'restarted'
 

@@ -1,16 +1,16 @@
 ---
 - name: restart cron
-  service:
+  systemd:
     name: 'cron'
     state: 'restarted'
 
 - name: restart rsyslog
-  service:
+  systemd:
     name: 'rsyslog'
     state: 'restarted'
 
 - name: restart incron
-  service:
+  systemd:
     name: 'incron'
     state: 'restarted'
 
