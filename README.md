@@ -55,6 +55,10 @@ If you just want to use a MoodleBox, a [prepared disk image](https://moodlebox.n
 
 See [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG.md).
 
+## Sponsor
+
+MoodleBox is sponsored by [E-learning Touch'](https://www.elearningtouch.com/).
+
 ## Thanks
 
 - To Daniel Méthot, for the [idea of a MoodleBox](https://moodle.org/mod/forum/discuss.php?d=278493)
