@@ -59,6 +59,8 @@ See [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG
 
 MoodleBox is sponsored by [E-learning Touch'](https://www.elearningtouch.com/).
 
+![E-learning Touch'](https://www.elearningtouch.com/wp-content/uploads/2018/09/logo_elt_2018.jpg)
+
 ## Thanks
 
 - To Daniel Méthot, for the [idea of a MoodleBox](https://moodle.org/mod/forum/discuss.php?d=278493)
