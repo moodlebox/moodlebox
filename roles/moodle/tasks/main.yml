@@ -16,10 +16,7 @@
 
 - name: set summary string with formatted dates
   set_fact:
-    moodlebox_moodle_summary: |
-      <p><span lang='en' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, a <a href='https://moodle.org/' target='_blank'>Moodle 3.8.x</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a>.</span><span lang='fr' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 3.8.x</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a>.</span><span lang='de' class='multilang'><a href='https://moodlebox.net/' target='_blank'>MoodleBox</a>, eine <a href='https://moodle.org/' target='_blank'>Moodle 3.8.x</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a>.</span></p>
-      <p><span lang='en' class='multilang'>MoodleBox is made by <a href='https://blog.martignoni.net/a-propos/'>Nicolas Martignoni</a>.</span><span lang='fr' class='multilang'>MoodleBox est réalisée par <a href='https://blog.martignoni.net/a-propos/'>Nicolas Martignoni</a>.</span><span lang='de' class='multilang'>MoodleBox ist von <a href='https://blog.martignoni.net/a-propos/'>Nicolas Martignoni</a> hergestellt.</span></p>
-      <p><span lang='en' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_en }}.</span><span lang='fr' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_fr }}.</span><span lang='de' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_de }}.</span></p>
+    moodlebox_moodle_summary: '{{ moodlebox_moodle_summary }}'
 
 - name: clean previous installation
   import_tasks: clean.yml
