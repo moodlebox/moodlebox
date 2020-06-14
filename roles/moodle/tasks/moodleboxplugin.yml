@@ -23,8 +23,8 @@
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     state: 'directory'
-    owner: '{{ moodlebox_username }}'
-    group: 'www-data'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
     mode: 'ug+w,o-w'
     recurse: 'yes'
 
