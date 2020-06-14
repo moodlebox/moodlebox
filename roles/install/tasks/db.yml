@@ -33,6 +33,7 @@
     password: '{{ moodlebox_db_password }}'
     priv: '*.*:ALL,GRANT'
     state: 'present'
+    no_log: 'true'
 
 - name: update MariaDB settings
   copy:
