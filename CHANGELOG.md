@@ -1,21 +1,39 @@
 # MoodleBox – Release notes
 
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/) and follow principles of [keep a changelog](http://keepachangelog.com).
+This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
+
+## Version 3.7.0, 2020-06-15
+![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.7.0/total.svg)
+### Changed
+- Update Moodle to version 3.9.0 (issue #173).
+- Update to Raspberry Pi OS version 2020-05-27 (issue #172).
+- Update [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) to [version v2.6.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.6.0) of (issue #174).
+- Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to version 4.5.1 (issues #169, #175).
+- Update [MathJax](https://mathjax.org) to version 2.7.8 (issue #170).
+
+### Added
+- Add temporary workaround for WiFi disabling problem when swapping device (issue #176).
+
+### Fixed
+- Fix file ownership and permissions to enable edition by default user (issue #166).
+- Update Ansible instructions (issue #167).
+- Remove useless PHP module (no issue number).
 
 ## Version 3.6.0, 2020-02-12
-![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.6.0/total.svg)
 
 ### Changed
 - Update Moodle to version 3.8.1+ (issue #161).
 - Update to Raspbian version 2020-02-05 (issue #163).
 - Update [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) to [version v2.5.0](
-https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.50) of (issue #160).
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.5.0) of (issue #160).
 - Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to version 4.4.0 (issue #159).
 - Update [MathJax](https://mathjax.org) to version 2.7.7 (issue #164).
 
 ### Added
 - Add support for multiple subdomains (issue #158).
+- Add temporary workaround for php7.3-fpm outages (issue #142).
 
 ## Version 3.5.1, 2019-11-30
 ### Fixed
@@ -27,7 +45,7 @@ https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.50) of (issue
 - Update to Raspbian version 2019-09-26 (issue #149).
 - Update [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) to [version v2.4.2](
 https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.4.2) of (issue #152).
-- Update [MathJax](http://mathjax.org) to version 2.7.6 (issue #154).
+- Update [MathJax](https://mathjax.org) to version 2.7.6 (issue #154).
 - Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to version 4.3.2 (issue #153).
 
 ### Added
