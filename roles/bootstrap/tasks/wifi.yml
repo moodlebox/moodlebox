@@ -7,7 +7,7 @@
     line: 'country={{ moodlebox_wifi_country }}'
   notify: restart networking
 
-- name: unblock wifi
+- name: do not disable wifi, since wifi country is set
   replace:
     path: '{{ item }}'
     regexp: '1'
