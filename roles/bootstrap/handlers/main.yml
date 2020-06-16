@@ -3,9 +3,6 @@
 - name: generate locales
   command: 'locale-gen'
 
-- name: unblock wifi
-  command: 'rfkill unblock wifi'
-
 - name: restart networking
   systemd:
     name: 'networking'

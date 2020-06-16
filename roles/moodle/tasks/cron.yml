@@ -17,8 +17,6 @@
     special_time: '{{ item.special_time }}'
     job: '{{ item.job }}'
   with_items:
-    # cron temporary workaround for Wifi disabling
-    - { name: 'Workaround Wifi disabling', special_time: 'reboot', job: 'rfkill unblock wlan'}
     - { name: 'Restore cache', special_time: 'reboot', job: 'cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/' }
 
 - name: configure incron
