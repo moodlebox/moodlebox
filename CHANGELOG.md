@@ -1,10 +1,11 @@
 # MoodleBox – Release notes
 
+[![Github Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/total.svg)](https://github.com/moodlebox/moodlebox/releases/)
+
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
 ## Version 3.7.0, 2020-06-15
-![Github Release Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/v3.7.0/total.svg)
 ### Changed
 - Update Moodle to version 3.9.0 (issue #173).
 - Update to Raspberry Pi OS version 2020-05-27 (issue #172).
