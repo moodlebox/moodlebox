@@ -14,7 +14,8 @@ FirewallRuleSet users-to-router {
     FirewallRule allow tcp port 443
 }
 GatewayName MoodleBox
+GatewayAddress {{ moodlebox_ip_address | ipaddr('address') }}
+RedirectURL http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}/
 GatewayPort 2050
 MaxClients 50
 SessionTimeout 360
-use_outdated_mhd 1
