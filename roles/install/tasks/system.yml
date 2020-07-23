@@ -45,3 +45,24 @@
     regexp: '^group\s*=\s*www-data.*'
     line: 'group = {{ moodlebox_username }}'
   notify: restart web services
+
+- name: set emergency values for php-fpm to workaround php7.3-fpm SIGSEGV (1)
+  lineinfile:
+    path: '/etc/php/7.3/fpm/php-fpm.conf'
+    regexp: '^;?emergency_restart_threshold\s*=.*'
+    line: 'emergency_restart_threshold = 2'
+  notify: restart web services
+
+- name: set emergency values for php-fpm to workaround php7.3-fpm SIGSEGV (2)
+  lineinfile:
+    path: '/etc/php/7.3/fpm/php-fpm.conf'
+    regexp: '^;?emergency_restart_interval\s*=.*'
+    line: 'emergency_restart_interval = 1h'
+  notify: restart web services
+
+- name: set emergency values for php-fpm to workaround php7.3-fpm SIGSEGV (3)
+  lineinfile:
+    path: '/etc/php/7.3/fpm/php-fpm.conf'
+    regexp: '^;?process_control_timeout\s*=.*'
+    line: 'process_control_timeout = 5s'
+  notify: restart web services
