@@ -5,6 +5,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 3.8.0, 2020-07-25
+### Changed
+- Update Moodle to latest stable 3.9.x version (no issue number).
+- Update Moodle to latest stable Adminer version (no issue number).
+- Update [MoodleBox plugin](https://moodle.org/plugins/tool_moodlebox) to [version v2.7.0](
+https://github.com/moodlebox/moodle-tool_moodlebox/releases/tag/v2.7.0) of (issue #179).
+- Update [Nodogsplash](https://github.com/nodogsplash/nodogsplash) to version 5.0.0 (issues #177).
+
+### Added
+- Raspberry Pi 4B 8GB model is now fully supported (via issue #179).
+
+### Fixed
+- Fix definitely WiFi disabled issue on Raspberry Pi 3B (issue #176).
+- Fix for php7.3-fpm SIGSEGV problem (issue #142).
+- Fix Nodogsplash bad redirect (issue #162).
+
 ## Version 3.7.0, 2020-06-15
 ### Changed
 - Update Moodle to version 3.9.0 (issue #173).
