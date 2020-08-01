@@ -7,33 +7,35 @@
 [![Build status](https://travis-ci.org/moodlebox/moodlebox.svg?branch=master)](https://travis-ci.org/moodlebox/moodlebox)
 [![Donate PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://www.paypal.me/moodlebox/50)
 
-A project to build a Moodle server and Wi-Fi router on a Raspberry Pi 3.
+A project to build a Moodle server and Wi-Fi router on Raspberry Pi.
 
 ## The MoodleBox Documentation
 
-Visit the [MoodleBox web site](https://moodlebox.net) for more information about the MoodleBox features or any question about the usage of a MoodleBox.
+Visit the [MoodleBox web site][website] for more information about the MoodleBox features or any question about the usage of a MoodleBox.
+
+If you just want to use a MoodleBox, a [prepared disk image][download] of the latest released version is [available for downloading][download] and using out of the box on your Raspberry Pi 3A, 3B, 3B+ or 4B. Follow the instructions on the [MoodleBox web site][website].
 
 ### Asking Support Questions
 
-We have an active [discussion forum](https://discuss.moodlebox.net/) where users and developers can ask questions. Please don't use the GitHub issue tracker to ask questions.
+We have an active [discussion forum][forum] where users and developers can ask questions. Please don't use the GitHub issue tracker to ask questions.
 
 ## Building the MoodleBox disk image from scratch
 
-> If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image](https://moodlebox.net/download) and follow the instructions on the [MoodleBox web site](https://moodlebox.net).
+> If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image][download] and follow the instructions on the [MoodleBox web site][website].
 
-To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3, 3B+ or 4B (Wi-Fi!).
+To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 3B+ or 4B.
 
-1. Clone Rasbpian Buster Lite on your microSD card.
-1. Create a `ssh` file on the `boot` partition, e.g. using `touch ssh`.
+1. Clone Raspbian Buster Lite on your microSD card.
+1. Create a `ssh.txt` file on the `boot` partition, e.g. using `touch ssh.txt`.
 1. Insert the microSD card into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
 1. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
-1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew install https://git.io/sshpass.rb`.
-1. [Clone this repository](https://github.com/moodlebox/moodlebox.git) to your local drive.
+1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
+1. [Clone this repository][git] to your local drive.
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
 1. Get the IP address of your Raspberry Pi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
 1. Run `ansible-playbook moodlebox.yml` from the repository folder.
-1. Wait 30–50 minutes, depending on your SD card and Internet bandwidth. You're done.
+1. Wait 20–50 minutes, depending on your Raspberry Pi model, SD card speed and Internet bandwidth. You're done.
 
 ### Overriding defaults
 
@@ -47,9 +49,7 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 ## Availability
 
-The code is available at [https://github.com/moodlebox/moodlebox](https://github.com/moodlebox/moodlebox).
-
-If you just want to use a MoodleBox, a [prepared disk image](https://moodlebox.net/download) of the latest released version is [available for downloading](https://moodlebox.net/download), cloning on your microSD card and using out of the box on your Raspberry Pi 3B, 3B+ or 4B.
+The code is available at [https://github.com/moodlebox/moodlebox][git].
 
 ### Release notes
 
@@ -57,7 +57,7 @@ See [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG
 
 ## Sponsor
 
-MoodleBox is sponsored by [E-learning Touch'](https://www.elearningtouch.com/).
+MoodleBox is sponsored by [E-learning Touch'](https://www.elearningtouch.com/) Moodle Partner.
 
 ![E-learning Touch'](https://www.elearningtouch.com/wp-content/uploads/2018/09/logo_elt_2018.jpg)
 
@@ -80,3 +80,8 @@ changed it substantially:
 ```
 @copyright Copyright © <year>, <your name> (<your email address>)
 ```
+
+  [website]: https://moodlebox.net
+  [download]: https://moodlebox.net/download
+  [forum]: https://discuss.moodlebox.net/
+  [git]: https://github.com/moodlebox/moodlebox
