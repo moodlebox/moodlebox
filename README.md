@@ -25,7 +25,7 @@ We have an active [discussion forum][forum] where users and developers can ask q
 
 To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 3B+ or 4B.
 
-1. Clone Raspbian Buster Lite on your microSD card.
+1. Clone [Raspberry Pi OS (32-bit) Lite image](https://www.raspberrypi.org/downloads/raspberry-pi-os/) on your microSD card.
 1. Create a `ssh.txt` file on the `boot` partition, e.g. using `touch ssh.txt`.
 1. Insert the microSD card into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
