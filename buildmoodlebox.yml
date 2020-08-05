@@ -3,7 +3,6 @@
   hosts: all
   vars:
     ansible_user: 'root'
-    upgrade_moodlebox: 'false'
   become: 'true'
 
   vars_files:
