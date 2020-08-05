@@ -1,0 +1,9 @@
+---
+
+- name: handle MoodleBox upgrade
+  hosts: localhost
+  connection: local
+  become: 'true'
+
+  roles:
+    - { role: upgrade, when: upgrade_supported }

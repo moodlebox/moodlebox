@@ -20,21 +20,30 @@
 
 - name: clean previous installation
   import_tasks: clean.yml
+  when: not upgrade_moodlebox | bool
 
 - name: create database
   import_tasks: db.yml
+  when: not upgrade_moodlebox | bool
 
 - name: get Moodle and install it
   import_tasks: coreinstall.yml
+  when: not upgrade_moodlebox | bool
+
+- name: upgrade Moodle
+  import_tasks: upgrade.yml
+  when: upgrade_moodlebox | bool
 
 - name: get MoodleBox plugin and install it
   import_tasks: moodleboxplugin.yml
+  when: not upgrade_moodlebox | bool
 
 - name: install MathJax library
   import_tasks: mathjax.yml
 
 - name: compile themes scss
   import_tasks: themes.yml
+  when: not upgrade_moodlebox | bool
 
 - name: install adminer latest release
   get_url:
@@ -53,5 +62,6 @@
 
 - name: configure crons
   import_tasks: cron.yml
+  when: not upgrade_moodlebox | bool
 
 - meta: flush_handlers

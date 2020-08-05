@@ -1,0 +1,4 @@
+---
+
+- import_playbook: pre-upgrade.yml
+- import_playbook: do-upgrade.yml

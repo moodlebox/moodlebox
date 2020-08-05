@@ -1,0 +1,74 @@
+---
+
+- name: upgrade Moodle to version '{{ moodlebox_moodle_branch }}' from git repository
+  git:
+    repo: 'git://git.moodle.org/moodle.git'
+    version: '{{ moodlebox_moodle_branch }}'
+    dest: '{{ moodlebox_moodle_source_dir }}'
+    force: 'yes'
+    depth: 1
+
+- name: upgrade MoodleBox plugin to version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
+  git:
+    repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
+    version: '{{ moodlebox_moodlebox_plugin_version }}'
+    dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
+    force: 'yes'
+    depth: 1
+
+- name: create sudoers file for MoodleBox plugin usage
+  copy:
+    src: 'etc/sudoers.d/020_www-data-nopasswd'
+    dest: '/etc/sudoers.d/020_www-data-nopasswd'
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
+- name: set Moodle source, data and cache directories permissions
+  file:
+    path: '{{ item }}'
+    state: 'directory'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: 'ug+w,o-w'
+    recurse: 'yes'
+  with_items:
+    - '{{ moodlebox_moodle_source_dir }}'
+    - '{{ moodlebox_moodle_data_dir }}/repository'
+    - '{{ moodlebox_moodle_data_dir }}/temp'
+    - '{{ moodlebox_moodle_data_dir }}/backup'
+    - '/var/cache/moodle'
+    - '/var/cache/moodle-cache-backup'
+
+- name: set sticky bit for moodledata directory
+  file:
+    path: '{{ moodlebox_moodle_data_dir }}'
+    state: 'directory'
+    mode: 'g+s'
+    recurse: 'yes'
+
+- name: set file repository directory permissions
+  file:
+    path: '/home/{{ moodlebox_username }}/files'
+    state: 'directory'
+    owner: '{{ moodlebox_username }}'
+    group: 'www-data'
+    mode: 'g+s'
+
+- name: put Moodle into the maintenance mode
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/maintenance.php" --enable'
+  args:
+    creates: '{{ moodlebox_moodle_data_dir }}/climaintenance.html'
+
+- name: upgrade Moodle via CLI
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
+    --non-interactive
+    --allow-unstable'
+  args:
+    chdir: '{{ moodlebox_moodle_source_dir }}'
+  register: moodle_upgrade
+  changed_when: moodle_upgrade.rc == 0
+
+- name: put Moodle off maintenance mode
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/maintenance.php" --disable'
+  args:
+    removes: '{{ moodlebox_moodle_data_dir }}/climaintenance.html'
