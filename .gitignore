@@ -5,7 +5,6 @@ moodlebox-postinstall.yml
 test.yml
 roles/postinstall
 roles/test
-private-util
 
 # Mac finder files and hidden folders
 *.DS_Store
