@@ -1,6 +1,0 @@
----
-
-- name: copy SSL certificate and key
-  copy:
-    src: 'etc/nginx/ssl'
-    dest: '/etc/nginx/'

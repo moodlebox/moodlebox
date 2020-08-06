@@ -1,14 +1,4 @@
 ---
-- name: configure nginx
-  template:
-    src: 'etc/nginx/sites-available/default.j2'
-    dest: '/etc/nginx/sites-available/default'
-  notify: restart web services
-
-- name: install SSL certificates
-  import_tasks: certs.yml
-  notify: restart web services
-
 - name: reboot machine
   shell: 'sleep 2 && shutdown -r now'
   async: 1

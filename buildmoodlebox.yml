@@ -29,6 +29,7 @@
     - partition-resize
     - access-point
     - zeroconf
+    - webserver
     - network
     - moodle
     - branding
