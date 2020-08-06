@@ -23,6 +23,7 @@
     - { role: timezone, when: moodlebox_set_timezone }
     - { role: locales, when: moodlebox_set_locale }
     - wifi
+    - database
     - install
     - network
     - moodle

@@ -1,8 +1,5 @@
 ---
 
-- name: install and configure database server
-  import_tasks: db.yml
-
 - name: install/upgrade standard packages and remove useless ones
   import_tasks: packages.yml
 
