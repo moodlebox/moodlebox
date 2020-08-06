@@ -17,11 +17,11 @@
   roles:
     - rpi-settings
     - apt
-    - { role: firmware, when: moodlebox_update_firmware }
-    - { role: hostname, when: moodlebox_set_hostname }
+    - { role: firmware, when: moodlebox_update_firmware | bool }
+    - { role: hostname, when: moodlebox_set_hostname | bool }
     - useraccount
-    - { role: timezone, when: moodlebox_set_timezone }
-    - { role: locales, when: moodlebox_set_locale }
+    - { role: timezone, when: moodlebox_set_timezone | bool }
+    - { role: locales, when: moodlebox_set_locale | bool }
     - wifi
     - database
     - packages
