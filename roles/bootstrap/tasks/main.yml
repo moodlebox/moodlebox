@@ -1,9 +1,5 @@
 ---
 
-- name: set hostname
-  import_tasks: hostname.yml
-  when: moodlebox_set_hostname | bool
-
 - name: manage main user account
   import_tasks: user.yml
 

@@ -9,3 +9,5 @@
     src: 'etc/hosts.j2'
     dest: '/etc/hosts'
   when: ansible_hostname == moodlebox_hostname
+
+- meta: flush_handlers
