@@ -27,7 +27,6 @@
     - packages
     - package-config
     - partition-resize
-    - install
     - network
     - moodle
     - branding
