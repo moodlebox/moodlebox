@@ -9,7 +9,7 @@
 
 - name: create sudoers file
   template:
-    src: 'etc/sudoers.d/ansible.j2'
+    src: 'etc/sudoers.d/user.j2'
     dest: '/etc/sudoers.d/010_{{ moodlebox_username }}-nopasswd'
     mode: '0440'
     validate: 'visudo -cf %s'
