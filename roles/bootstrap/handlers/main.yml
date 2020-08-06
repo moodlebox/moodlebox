@@ -1,8 +1,5 @@
 ---
 
-- name: generate locales
-  command: 'locale-gen'
-
 - name: restart networking
   systemd:
     name: 'networking'

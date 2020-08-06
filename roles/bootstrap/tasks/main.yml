@@ -1,9 +1,5 @@
 ---
 
-- name: set locales
-  import_tasks: locale.yml
-  when: moodlebox_set_locale | bool
-
 - name: set wifi client country
   import_tasks: wifi.yml
 

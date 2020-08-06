@@ -10,4 +10,6 @@
     name: '{{ item }}'
     state: 'present'
   with_items: '{{ moodlebox_locales }}'
-  notify: generate locales
+
+- name: generate locales
+  command: 'locale-gen'

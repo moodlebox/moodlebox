@@ -21,6 +21,7 @@
     - { role: hostname, when: moodlebox_set_hostname }
     - useraccount
     - { role: timezone, when: moodlebox_set_timezone }
+    - { role: locales, when: moodlebox_set_locale }
     - bootstrap
     - install
     - network
