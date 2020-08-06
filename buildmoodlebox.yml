@@ -31,7 +31,6 @@
     - zeroconf
     - webserver
     - ipforwarding
-    - network
     - moodle
     - branding
     - cleanup
