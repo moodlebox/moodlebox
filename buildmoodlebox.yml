@@ -20,6 +20,7 @@
     - { role: firmware, when: moodlebox_update_firmware }
     - { role: hostname, when: moodlebox_set_hostname }
     - useraccount
+    - { role: timezone, when: moodlebox_set_timezone }
     - bootstrap
     - install
     - network

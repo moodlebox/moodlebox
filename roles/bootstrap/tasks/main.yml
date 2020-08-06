@@ -1,9 +1,5 @@
 ---
 
-- name: set timezone
-  import_tasks: timezone.yml
-  when: moodlebox_set_timezone | bool
-
 - name: set locales
   import_tasks: locale.yml
   when: moodlebox_set_locale | bool
