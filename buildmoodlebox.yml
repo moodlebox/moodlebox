@@ -30,6 +30,7 @@
     - access-point
     - zeroconf
     - webserver
+    - ipforwarding
     - network
     - moodle
     - branding

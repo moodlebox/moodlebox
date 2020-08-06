@@ -1,6 +1,8 @@
 ---
-
-- name: restart networking
+- name: restart web services
   systemd:
-    name: 'networking'
+    name: '{{ item }}'
     state: 'restarted'
+  with_items:
+    - 'nginx'
+    - 'php7.3-fpm'
