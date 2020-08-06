@@ -1,0 +1,14 @@
+---
+- name: restart incron
+  systemd:
+    name: 'incron'
+    state: 'restarted'
+
+- name: restart web services
+  systemd:
+    name: '{{ item }}'
+    state: 'restarted'
+    daemon_reload: 'yes'
+  with_items:
+    - 'nginx'
+    - 'php7.3-fpm'

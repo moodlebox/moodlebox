@@ -25,7 +25,8 @@
     - wifi
     - database
     - packages
-    - special-packages
+    - package-config
+    - partition-resize
     - install
     - network
     - moodle
