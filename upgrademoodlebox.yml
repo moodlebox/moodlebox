@@ -21,6 +21,18 @@
         src: "/etc/moodlebox-info"
       register: moodleboxinfo
 
+    - name: alert that upgrade cannot proceed
+      debug:
+        msg: "This is not a MoodleBox and cannot be upgraded by this script. Aborting."
+      when:
+        moodleboxinfo.failed
+
+    - name: aborts upgrade if not a MoodleBox
+      meta:
+        end_play
+      when:
+        moodleboxinfo.failed
+
     - name: set vars with MoodleBox current version number and date
       set_fact:
         current_version_number: "{{ (moodleboxinfo['content'] | b64decode).split('\n')[0] | regex_replace('^.*version (\\d+\\.\\d+\\.\\d+),.*$', '\\1') }}"
@@ -28,13 +40,13 @@
 
     - name: inform that upgrade can proceed
       debug:
-        msg: "Your MoodleBox version {{ current_version_number }} will be now upgraded automatically."
+        msg: "Your MoodleBox version {{ current_version_number }} will be upgraded now."
       when:
         current_version_number.split('.')[0] >= '2' and current_version_number != '2.6.0'
 
     - name: alert that upgrade cannot proceed
       debug:
-        msg: "Your MoodleBox version {{ current_version_number }} cannot be upgraded automatically."
+        msg: "Your MoodleBox version {{ current_version_number }} cannot be upgraded by this script. Aborting."
       when:
         current_version_number.split('.')[0] < '2' or current_version_number == '2.6.0'
 
