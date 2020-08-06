@@ -6,6 +6,8 @@
     state: 'absent'
     purge: 'yes'
   when: 'moodlebox_uninstall_packages is defined'
+  register: packages_uninstalled
+  until: packages_uninstalled is succeeded
 
 - name: install packages
   apt:
@@ -13,5 +15,6 @@
     state: 'present'
     update_cache: 'yes'
     autoremove: 'yes'
+  when: 'moodlebox_install_packages is defined'
   register: packages_installed
   until: packages_installed is succeeded

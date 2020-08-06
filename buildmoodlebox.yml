@@ -24,6 +24,7 @@
     - { role: locales, when: moodlebox_set_locale }
     - wifi
     - database
+    - packages
     - install
     - network
     - moodle
