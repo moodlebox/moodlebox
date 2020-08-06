@@ -15,6 +15,7 @@
         - config.yml
 
   roles:
+    - rpi-settings
     - { role: firmware, when: moodlebox_update_firmware }
     - bootstrap
     - install

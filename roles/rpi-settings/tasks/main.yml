@@ -1,0 +1,27 @@
+---
+
+- name: reduce memory split down to 16Mb, as we are on a headless system
+  lineinfile:
+    path: '/boot/config.txt'
+    line: 'gpu_mem=16'
+  notify:
+    - reboot machine
+    - wait for machine to come back
+
+- name: enable shutdown/startup hardware button
+  lineinfile:
+    path: '/boot/config.txt'
+    line: 'dtoverlay=gpio-shutdown'
+    insertafter: '^# Additional overlays and parameters'
+  notify:
+    - reboot machine
+    - wait for machine to come back
+
+- name: turn off screen blanking
+  replace:
+    path: '/boot/cmdline.txt'
+    regexp: '\bconsole=tty1\s+root=PARTUUID\b'
+    replace: 'console=tty1 consoleblank=0 root=PARTUUID'
+  notify:
+    - reboot machine
+    - wait for machine to come back
