@@ -6,10 +6,6 @@
 - name: configure apt
   import_tasks: apt.yml
 
-- name: update RPi firmware
-  import_tasks: firmware.yml
-  when: moodlebox_update_firmware | bool
-
 - name: set hostname
   import_tasks: hostname.yml
   when: moodlebox_set_hostname | bool
