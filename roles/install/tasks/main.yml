@@ -1,8 +1,5 @@
 ---
 
-- name: install packages needing special care
-  import_tasks: specific-packages.yml
-
 - name: misc system configuration
   import_tasks: system.yml
 

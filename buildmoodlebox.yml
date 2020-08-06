@@ -25,6 +25,7 @@
     - wifi
     - database
     - packages
+    - special-packages
     - install
     - network
     - moodle
