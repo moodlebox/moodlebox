@@ -16,6 +16,7 @@
 
   roles:
     - rpi-settings
+    - apt
     - { role: firmware, when: moodlebox_update_firmware }
     - bootstrap
     - install
