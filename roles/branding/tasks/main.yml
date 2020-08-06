@@ -21,5 +21,3 @@
     src: 'etc/update-motd.d/20-logo'
     dest: '/etc/update-motd.d/20-logo'
     mode: 0755
-
-- meta: flush_handlers

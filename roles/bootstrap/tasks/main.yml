@@ -1,8 +1,5 @@
 ---
 
-- name: change miscellaneous settings
-  import_tasks: misc.yml
-
 - name: configure apt
   import_tasks: apt.yml
 
