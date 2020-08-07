@@ -1,0 +1,20 @@
+---
+
+- name: uninstall useless packages
+  apt:
+    pkg: '{{ moodlebox_uninstall_packages }}'
+    state: 'absent'
+    purge: 'yes'
+  when: 'moodlebox_uninstall_packages is defined'
+  register: packages_uninstalled
+  until: packages_uninstalled is succeeded
+
+- name: install packages
+  apt:
+    pkg: '{{ moodlebox_install_packages }}'
+    state: 'present'
+    update_cache: 'yes'
+    autoremove: 'yes'
+  when: 'moodlebox_install_packages is defined'
+  register: packages_installed
+  until: packages_installed is succeeded

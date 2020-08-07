@@ -1,0 +1,12 @@
+---
+- name: configure nginx
+  template:
+    src: 'etc/nginx/sites-available/default.j2'
+    dest: '/etc/nginx/sites-available/default'
+  notify: restart web services
+
+- name: copy SSL certificate and key
+  copy:
+    src: 'etc/nginx/ssl'
+    dest: '/etc/nginx/'
+  notify: restart web services

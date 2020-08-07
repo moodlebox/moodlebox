@@ -1,0 +1,17 @@
+---
+
+- name: reboot machine
+  shell: 'sleep 2 && shutdown -r now'
+  async: 1
+  poll: 0
+  ignore_errors: true
+
+- name: wait for machine to come back
+  wait_for:
+    host: '{{ ansible_host | default(inventory_hostname) }}'
+    port: 22
+    state: 'started'
+    delay: 10
+    timeout: 60
+  delegate_to: localhost
+  become: false

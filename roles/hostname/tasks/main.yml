@@ -1,0 +1,13 @@
+---
+
+- name: change hostname to '{{ moodlebox_hostname }}'
+  hostname:
+    name: '{{ moodlebox_hostname }}'
+  notify: restart networking
+
+- name: change /etc/hosts
+  template:
+    src: 'etc/hosts.j2'
+    dest: '/etc/hosts'
+  when: ansible_hostname == moodlebox_hostname
+  notify: restart networking
