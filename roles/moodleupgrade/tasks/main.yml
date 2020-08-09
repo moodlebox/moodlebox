@@ -2,8 +2,9 @@
 - name: download latest stable Moodle and MoodleBox plugin
   import_tasks: download.yml
 
-- name: get latest stable Moodle version and upgrade
+- name: upgrade Moodle and MoodleBox plugin
   import_tasks: upgrade.yml
+  when: moodle_updated.changed or moodlebox_plugin_updated.changed
 
 - name: install MathJax library
   import_tasks: mathjax.yml

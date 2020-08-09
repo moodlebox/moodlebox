@@ -6,6 +6,7 @@
     dest: '{{ moodlebox_moodle_source_dir }}'
     force: 'yes'
     depth: 1
+  register: moodle_updated
 
 - name: get MoodleBox plugin version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
   git:
@@ -14,6 +15,7 @@
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     force: 'yes'
     depth: 1
+  register: moodlebox_plugin_updated
 
 - name: create sudoers file for MoodleBox plugin usage
   copy:

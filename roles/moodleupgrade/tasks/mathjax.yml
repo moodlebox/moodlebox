@@ -5,13 +5,6 @@
     repo: 'git://github.com/mathjax/MathJax.git'
     dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     version: '{{ moodlebox_mathjax_version }}'
+    force: 'yes'
     depth: 1
-
-- name: change MathJax library file permissions
-  file:
-    path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
-    state: 'directory'
-    owner: 'www-data'
-    group: '{{ moodlebox_username }}'
-    mode: 'ug+w,o-w'
-    recurse: 'yes'
+  notify: set MathJax library file permissions

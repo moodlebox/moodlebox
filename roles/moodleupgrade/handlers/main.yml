@@ -1,0 +1,9 @@
+---
+- name: set MathJax library file permissions
+  file:
+    path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
+    state: 'directory'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: 'ug+w,o-w'
+    recurse: 'yes'

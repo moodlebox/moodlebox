@@ -1,5 +1,5 @@
 ---
-- name: put Moodle into the maintenance mode
+- name: put Moodle into maintenance mode
   command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/maintenance.php" --enable'
   args:
     creates: '{{ moodlebox_moodle_data_dir }}/climaintenance.html'
