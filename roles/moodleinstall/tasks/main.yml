@@ -1,0 +1,15 @@
+---
+- name: configure Moodle site summary
+  import_tasks: summary.yml
+
+- name: get Moodle and install it
+  import_tasks: coreinstall.yml
+
+- name: get MoodleBox plugin and install it
+  import_tasks: moodleboxplugin.yml
+
+- name: install MathJax library
+  import_tasks: mathjax.yml
+
+- name: compile themes scss
+  import_tasks: themes.yml

@@ -1,5 +1,4 @@
 ---
-
 - name: create database '{{ moodlebox_moodle_db }}' for Moodle
   mysql_db:
     name: '{{ moodlebox_moodle_db }}'
