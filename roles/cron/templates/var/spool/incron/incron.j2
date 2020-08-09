@@ -1,0 +1,6 @@
+{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.reboot-server	IN_CLOSE_WRITE	/sbin/shutdown -r now
+{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.shutdown-server	IN_CLOSE_WRITE	/sbin/shutdown -h now
+{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime	IN_CLOSE_WRITE	/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime
+{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.newpassword	IN_CLOSE_WRITE	/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changepassword.sh
+{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.wifisettings	IN_CLOSE_WRITE	/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changewifisettings.sh
+{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.resize-partition	IN_CLOSE_WRITE	/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/resizepartition.sh
