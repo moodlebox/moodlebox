@@ -1,0 +1,25 @@
+---
+- name: playbook with roles useful for upgrading MoodleBox
+  hosts: all
+  vars:
+    ansible_user: 'root'
+  become: 'true'
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: include customised variables
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - config.yml
+
+  roles:
+    - rpi-settings
+    - apt
+    - wifi
+    - packages
+    - package-config
+    - moodle
+    - branding
+    - cleanup
