@@ -1,5 +1,4 @@
 ---
-
 - name: configure timely cron
   cron:
     name: '{{ item.name }}'
