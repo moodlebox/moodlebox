@@ -46,7 +46,7 @@
     enabled: 'false'
     masked: 'false'
 
-- name: remove default nodogsplash files
+- name: remove installed nodogsplash files
   file:
     path: '/etc/nodogsplash/htdocs'
     state: 'absent'

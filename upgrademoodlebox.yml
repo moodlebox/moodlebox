@@ -1,8 +1,9 @@
 ---
-- name: playbook with roles useful for upgrading MoodleBox
+- name: playbook to upgrade the MoodleBox to the last version
   hosts: all
   vars:
-    ansible_user: 'root'
+    ansible_user: '{{ moodlebox_username }}'
+    ansible_password: '{{ moodlebox_password }}'
   become: 'true'
 
   vars_files:

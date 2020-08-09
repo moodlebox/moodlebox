@@ -1,0 +1,23 @@
+---
+- name: get Moodle version '{{ moodlebox_moodle_branch }}' from git repository
+  git:
+    repo: 'git://git.moodle.org/moodle.git'
+    version: '{{ moodlebox_moodle_branch }}'
+    dest: '{{ moodlebox_moodle_source_dir }}'
+    force: 'yes'
+    depth: 1
+
+- name: get MoodleBox plugin version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
+  git:
+    repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
+    version: '{{ moodlebox_moodlebox_plugin_version }}'
+    dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
+    force: 'yes'
+    depth: 1
+
+- name: create sudoers file for MoodleBox plugin usage
+  copy:
+    src: 'etc/sudoers.d/020_www-data-nopasswd'
+    dest: '/etc/sudoers.d/020_www-data-nopasswd'
+    mode: '0440'
+    validate: 'visudo -cf %s'
