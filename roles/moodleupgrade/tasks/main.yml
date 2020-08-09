@@ -1,0 +1,12 @@
+---
+- name: get latest stable Moodle version and upgrade
+  import_tasks: upgrade.yml
+
+- name: get latest stable MoodleBox plugin version and install it
+  import_tasks: moodleboxplugin.yml
+
+- name: install MathJax library
+  import_tasks: mathjax.yml
+
+- name: compile themes scss
+  import_tasks: themes.yml

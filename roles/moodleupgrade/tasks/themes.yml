@@ -1,0 +1,8 @@
+---
+
+- name: compile scss for all Moodle themes
+  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/build_theme_css.php"'
+  args:
+    chdir: '{{ moodlebox_moodle_source_dir }}'
+  register: themes_compiled
+  changed_when: themes_compiled.rc == 0
