@@ -20,6 +20,9 @@
     - wifi
     - packages
     - package-config
-    - moodle
+    - moodleupgrade
+    - cron
+    - adminer
+    - cert
     - branding
     - cleanup
