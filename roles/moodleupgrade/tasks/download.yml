@@ -17,6 +17,18 @@
     depth: 1
   register: moodlebox_plugin_updated
 
+- name: set owner, group and permissions for moodle and moodledata directories
+  file:
+    path: '{{ item }}'
+    state: 'directory'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: 'ug+w,o-w'
+    recurse: 'yes'
+  with_items:
+    - '{{ moodlebox_moodle_source_dir }}'
+    - '{{ moodlebox_moodle_data_dir }}'
+
 - name: create sudoers file for MoodleBox plugin usage
   copy:
     src: 'etc/sudoers.d/020_www-data-nopasswd'
