@@ -9,10 +9,17 @@
     - default.config.yml
 
   pre_tasks:
+    - debug:
+        msg: 'Beginning of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
+
     - name: include customised variables
-      include_vars: "{{ item }}"
+      include_vars: '{{ item }}'
       with_fileglob:
         - config.yml
+
+  post_tasks:
+    - debug:
+        msg: 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
 
   roles:
     - rpi-settings
