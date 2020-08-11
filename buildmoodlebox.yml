@@ -9,18 +9,21 @@
     - default.config.yml
 
   pre_tasks:
+    - debug:
+        msg: 'Beginning of build: {{ ansible_date_time.iso8601 }}'
+      delegate_to: localhost
+      become: false
+
     - name: include customised variables
       include_vars: '{{ item }}'
       with_fileglob:
         - config.yml
-    - name: print time stamp at beginning of build
-      debug:
-        msg: '{{ ansible_date_time.iso8601 }}'
 
   post_tasks:
-    - name: print time stamp at end of build
-      debug:
-        msg: '{{ ansible_date_time.iso8601 }}'
+    - debug:
+        msg: 'End of build: {{ ansible_date_time.iso8601 }}'
+      delegate_to: localhost
+      become: false
 
   roles:
     - rpi-settings
