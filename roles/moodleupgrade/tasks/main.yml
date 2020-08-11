@@ -11,3 +11,5 @@
 
 - name: compile themes scss
   import_tasks: themes.yml
+
+- meta: flush_handlers
