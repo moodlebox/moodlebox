@@ -15,3 +15,5 @@
     - '/var/lib/systemd/rfkill/platform-3f300000.mmcnr:wlan'
     - '/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan'
   notify: restart networking
+
+- meta: flush_handlers

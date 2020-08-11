@@ -11,3 +11,5 @@
     dest: '/etc/hosts'
   when: ansible_hostname == moodlebox_hostname
   notify: restart networking
+
+- meta: flush_handlers

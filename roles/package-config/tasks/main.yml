@@ -107,3 +107,5 @@
     regexp: '^;?process_control_timeout\s*=.*'
     line: 'process_control_timeout = 5s'
   notify: restart web services
+
+- meta: flush_handlers
