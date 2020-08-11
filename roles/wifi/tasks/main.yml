@@ -8,10 +8,9 @@
   notify: restart networking
 
 - name: do not disable wifi, since wifi country is set
-  replace:
-    path: '{{ item }}'
-    regexp: '1'
-    replace: '0'
+  copy:
+    dest: '{{ item }}'
+    content: '0'
   with_items:
     - '/var/lib/systemd/rfkill/platform-3f300000.mmcnr:wlan'
     - '/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan'
