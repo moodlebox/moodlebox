@@ -10,3 +10,5 @@
     src: 'etc/nginx/ssl'
     dest: '/etc/nginx/'
   notify: restart web services
+
+- meta: flush_handlers

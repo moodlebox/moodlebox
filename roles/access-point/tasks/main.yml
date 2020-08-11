@@ -42,3 +42,5 @@
       RestartSec=5
       Restart=on-failure
   notify: restart networking
+
+- meta: flush_handlers

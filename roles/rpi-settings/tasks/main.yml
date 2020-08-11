@@ -15,3 +15,5 @@
   notify:
     - reboot machine
     - wait for machine to come back
+
+- meta: flush_handlers

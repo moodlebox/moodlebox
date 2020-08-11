@@ -5,3 +5,5 @@
     dest: '/etc/avahi/services/{{ moodlebox_hostname }}.service'
   register: network_configured
   notify: restart networking
+
+- meta: flush_handlers
