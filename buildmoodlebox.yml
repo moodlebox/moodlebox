@@ -10,9 +10,7 @@
 
   pre_tasks:
     - debug:
-        msg: 'Beginning of build: {{ ansible_date_time.iso8601 }}'
-      delegate_to: localhost
-      become: false
+        msg: 'Beginning of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
 
     - name: include customised variables
       include_vars: '{{ item }}'
@@ -21,9 +19,7 @@
 
   post_tasks:
     - debug:
-        msg: 'End of build: {{ ansible_date_time.iso8601 }}'
-      delegate_to: localhost
-      become: false
+        msg: 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
 
   roles:
     - rpi-settings
