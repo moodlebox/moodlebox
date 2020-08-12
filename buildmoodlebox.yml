@@ -3,6 +3,7 @@
   hosts: all
   vars:
     ansible_user: 'root'
+    build_start: '{{ lookup("pipe", "date +%s") }}'
   become: 'true'
 
   vars_files:
@@ -19,7 +20,9 @@
 
   post_tasks:
     - debug:
-        msg: 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
+        msg:
+          - 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
+          - 'Build duration: {{ lookup("pipe", "date +%s")|int - build_start|int }} s'
 
   roles:
     - rpi-settings
