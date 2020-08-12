@@ -3,7 +3,6 @@
   hosts: all
   vars:
     ansible_user: 'root'
-    build_start: '{{ lookup("pipe", "date +%s") }}'
   become: 'true'
 
   vars_files:
@@ -12,6 +11,9 @@
   pre_tasks:
     - debug:
         msg: 'Beginning of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
+
+    - set_fact:
+        build_start: '{{ lookup("pipe", "date +%s") }}'
 
     - name: include customised variables
       include_vars: '{{ item }}'
