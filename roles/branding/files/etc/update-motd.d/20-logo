@@ -1,3 +1,0 @@
-#!/bin/sh
-echo
-cat /etc/moodlebox-logo.txt

@@ -53,10 +53,16 @@ moodlebox_locales:
   - 'de_DE.UTF-8'
   - 'es_ES.UTF-8'
   - 'it_IT.UTF-8'
-moodlebox_timezone: 'Europe/Paris'
+moodlebox_timezone: 'Europe/Zurich'
 
 # Public key filename.
 moodlebox_public_key_file: 'id_rsa.pub'
+
+# MoodleBox release info filename.
+moodlebox_info_file: 'moodlebox-info'
+
+# MoodleBox logo filename.
+moodlebox_logo_file: 'moodlebox-logo.txt'
 
 # MoodleBox Moodle default build settings.
 moodlebox_moodle_branch: 'MOODLE_39_STABLE'

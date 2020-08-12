@@ -3,7 +3,7 @@
 - name: write version file
   template:
     src: 'etc/moodlebox-info.j2'
-    dest: '/etc/moodlebox-info'
+    dest: '/etc/{{ moodlebox_info_file }}'
 
 - name: update motd
   template:
@@ -13,11 +13,11 @@
 - name: copy ascii logo file
   copy:
     src: 'etc/moodlebox-logo.txt'
-    dest: '/etc/moodlebox-logo.txt'
+    dest: '/etc/{{ moodlebox_logo_file }}'
     mode: 0644
 
 - name: copy script to display ascii logo
-  copy:
-    src: 'etc/update-motd.d/20-logo'
+  template:
+    src: 'etc/update-motd.d/20-logo.j2'
     dest: '/etc/update-motd.d/20-logo'
     mode: 0755
