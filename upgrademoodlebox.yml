@@ -15,6 +15,24 @@
       with_fileglob:
         - config.yml
 
+    - name: get MoodleBox current version info
+      slurp:
+        src: "/etc/moodlebox-info"
+      ignore_errors: 'yes'
+      register: moodleboxinfo
+
+    - name: alert if upgrade cannot proceed
+      debug:
+        msg: "This is not a MoodleBox and cannot be upgraded by this script. Aborting."
+      when:
+        moodleboxinfo.failed
+
+    - name: aborts upgrade if not a MoodleBox
+      meta:
+        end_play
+      when:
+        moodleboxinfo.failed
+
   roles:
     - rpi-settings
     - apt
