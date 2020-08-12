@@ -15,23 +15,53 @@
       with_fileglob:
         - config.yml
 
-    - name: get MoodleBox current version info
-      slurp:
-        src: "/etc/moodlebox-info"
-      ignore_errors: 'yes'
-      register: moodleboxinfo
+    - name: check if MoodleBox info file present
+      block:
+        - name: get MoodleBox current version info
+          slurp:
+            src: "/etc/moodlebox-info"
+          register: moodleboxinfo
+      rescue:
+        - debug:
+            msg: "This is not a MoodleBox and cannot be upgraded by this script. Aborting."
+        - name: aborts upgrade as this is not a MoodleBox
+          meta:
+            end_play
 
-    - name: alert if upgrade cannot proceed
+    - name: check if upgrade can proceed
+      block:
+        - name: set vars with currently installed version number and date of MoodleBox
+          set_fact:
+            installed_version_number: "{{ (moodleboxinfo['content'] | b64decode).split('\n')[0] | regex_replace('^.*version (\\d+\\.\\d+\\.\\d+)(-[^,]+)*,.*$', '\\1') }}"
+            installed_version_date: "{{ (moodleboxinfo['content'] | b64decode).split('\n')[0] | regex_replace('^.*, (\\d{4}-\\d{2}-\\d{2}).*$', '\\1') }}"
+        - name: get latest release version info of MoodleBox
+          uri:
+            url: https://api.github.com/repos/moodlebox/moodlebox/releases/latest
+          register: moodlebox_latest_release
+        - name: set vars with latest version number and date of MoodleBox
+          set_fact:
+            latest_version_number: "{{ moodlebox_latest_release.json.name | regex_replace('^v') }}"
+            latest_version_date: '{{ moodlebox_latest_release.json.published_at }}'
+        - name: set boolean upgrade is supported
+          set_fact:
+            upgrade_supported: "{{ installed_version_number is version('2.0.0', '>=') }} and {{ installed_version_number is version('2.6.0', '!=') }} and {{ installed_version_number is version(latest_version_number, '<') }}"
+        - debug:
+            msg: 'Upgrade is not supported for this MoodleBox.'
+          failed_when: not upgrade_supported | bool
+      rescue:
+        - debug:
+            msg: "Your MoodleBox version {{ installed_version_number }} cannot be upgraded automatically."
+        - name: aborts upgrade since version does not meet criteria
+          meta:
+            end_play
+          when:
+            not upgrade_supported | bool
+
+    - name: inform when upgrade can proceed
       debug:
-        msg: "This is not a MoodleBox and cannot be upgraded by this script. Aborting."
+        msg: "Your MoodleBox version {{ installed_version_number }} will be now upgraded."
       when:
-        moodleboxinfo.failed
-
-    - name: aborts upgrade if not a MoodleBox
-      meta:
-        end_play
-      when:
-        moodleboxinfo.failed
+        upgrade_supported | bool
 
   roles:
     - rpi-settings
