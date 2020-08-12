@@ -87,6 +87,8 @@ moodlebox_set_locale: 'true'
 moodlebox_moodlebox_plugin_version: 'v2.7.0'
 moodlebox_mathjax_version: '2.7.8'
 
+moodlebox_build_type: 'release'
+
 # Raspberry default credentials.
 moodlebox_rpi_username: 'pi'
 moodlebox_rpi_password: 'raspberry'
