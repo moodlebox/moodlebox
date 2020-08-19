@@ -28,7 +28,7 @@
           - 'Build duration: {{ lookup("pipe", "date +%s")|int - build_start|int }} s'
 
   roles:
-    - rpi-settings
+    - rpisettings
     - apt
     - { role: firmware, when: moodlebox_update_firmware | bool }
     - { role: hostname, when: moodlebox_set_hostname | bool }
@@ -38,9 +38,9 @@
     - wifi
     - database
     - packages
-    - package-config
-    - partition-resize
-    - access-point
+    - packageconfig
+    - partitionresize
+    - accesspoint
     - zeroconf
     - webserver
     - ipforwarding
