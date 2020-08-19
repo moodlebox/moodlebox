@@ -64,11 +64,11 @@
         upgrade_supported | bool
 
   roles:
-    - rpi-settings
+    - rpisettings
     - apt
     - wifi
     - packages
-    - package-config
+    - packageconfig
     - moodleupgrade
     - cron
     - adminer
