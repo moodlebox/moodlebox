@@ -1,5 +1,4 @@
 ---
-
 - name: check if database for Moodle exists
   command: mysql -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
   register: moodle_db_exists
@@ -21,13 +20,13 @@
     - { name: '{{ moodlebox_moodle_data_dir }}/temp' }
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions' }
 
-- name: remove previous Moodle installation
+- name: remove previous Moodle installation data
   file:
     path: '{{ item }}'
     state: 'absent'
   with_items:
     - '{{ moodlebox_moodle_data_dir }}'
-    - '{{ moodlebox_moodle_source_dir }}'
+    - '{{ moodlebox_moodle_source_dir }}/config.php'
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
 

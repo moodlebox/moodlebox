@@ -10,6 +10,3 @@
 
 - name: install MathJax library
   import_tasks: mathjax.yml
-
-- name: compile themes scss
-  import_tasks: themes.yml
