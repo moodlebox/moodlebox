@@ -35,7 +35,7 @@ To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
 1. Get the IP address of your Raspberry Pi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
 1. Run `ansible-playbook moodlebox.yml` from the repository folder.
-1. Wait 20–50 minutes, depending on your Raspberry Pi model, SD card speed and Internet bandwidth. You're done.
+1. Wait 15–50 minutes, depending on your Raspberry Pi model, SD card speed and Internet bandwidth. You're done.
 
 ### Overriding defaults
 
