@@ -39,6 +39,7 @@
   copy:
     src: 'etc/mysql/mariadb.conf.d/50-server.cnf'
     dest: '/etc/mysql/mariadb.conf.d/50-server.cnf'
+    mode: '0644'
 
 - name: restart MariaDB database
   systemd:

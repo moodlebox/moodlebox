@@ -12,6 +12,7 @@
   template:
     src: 'etc/iptables/rules.v4.j2'
     dest: '/etc/iptables/rules.v4'
+    mode: '0644'
   notify: restart networking
 
 - meta: flush_handlers

@@ -4,6 +4,7 @@
   copy:
     src: 'usbmount_0.0.24_all.deb'
     dest: '/tmp/usbmount.deb'
+    mode: '0644'
 
 - name: install usbmount package
   apt:
@@ -24,6 +25,7 @@
   copy:
     src: 'nodogsplash_5.0.0-1_armhf.deb'
     dest: '/tmp/nodogsplash.deb'
+    mode: '0644'
 
 - name: install nodogsplash package
   apt:
@@ -38,6 +40,7 @@
   template:
     src: 'etc/nodogsplash/nodogsplash.conf.j2'
     dest: '/etc/nodogsplash/nodogsplash.conf'
+    mode: '0644'
 
 - name: disable nodogsplash service at startup
   systemd:
@@ -55,7 +58,7 @@
   copy:
     src: 'etc/nodogsplash/htdocs'
     dest: '/etc/nodogsplash'
-    mode: 0644
+    mode: '0644'
 
 - name: add root to allowed incron users
   lineinfile:

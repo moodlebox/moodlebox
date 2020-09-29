@@ -4,4 +4,4 @@
   copy:
     src: 'etc/init.d/resize2fs_once'
     dest: '/etc/init.d/resize2fs_once'
-    mode: 0755
+    mode: '0755'

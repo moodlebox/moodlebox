@@ -4,20 +4,22 @@
   template:
     src: 'etc/moodlebox-info.j2'
     dest: '/etc/{{ moodlebox_info_file }}'
+    mode: '0644'
 
 - name: update motd
   template:
     src: 'etc/motd.j2'
     dest: '/etc/motd'
+    mode: '0644'
 
 - name: copy ascii logo file
   copy:
     src: 'etc/moodlebox-logo.txt'
     dest: '/etc/{{ moodlebox_logo_file }}'
-    mode: 0644
+    mode: '0644'
 
 - name: copy script to display ascii logo
   template:
     src: 'etc/update-motd.d/20-logo.j2'
     dest: '/etc/update-motd.d/20-logo'
-    mode: 0755
+    mode: '0755'

@@ -20,6 +20,7 @@
   template:
     src: 'var/spool/incron/incron.j2'
     dest: '/var/spool/incron/root'
+    mode: '0644'
   register: incron_configured
 
 - name: configure cron mailto variable to suppress warnings in log

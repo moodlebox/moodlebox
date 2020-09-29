@@ -3,12 +3,14 @@
   template:
     src: 'etc/nginx/sites-available/default.j2'
     dest: '/etc/nginx/sites-available/default'
+    mode: '0644'
   notify: restart web services
 
 - name: copy SSL certificate and key
   copy:
     src: 'etc/nginx/ssl'
     dest: '/etc/nginx/'
+    mode: '0644'
   notify: restart web services
 
 - meta: flush_handlers

@@ -5,3 +5,4 @@
     dest: '/home/{{ moodlebox_username }}/files/moodleboxCA.crt'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
+    mode: '0644'

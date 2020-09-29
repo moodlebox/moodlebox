@@ -4,6 +4,7 @@
   template:
     src: 'etc/default/locale.j2'
     dest: '/etc/default/locale'
+    mode: '0644'
 
 - name: add locales
   locale_gen:

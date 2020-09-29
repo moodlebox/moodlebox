@@ -10,6 +10,7 @@
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/{{ item }}'
     state: 'touch'
+    mode: '0664'
   with_items:
     - '.reboot-server'
     - '.shutdown-server'
@@ -31,7 +32,7 @@
   file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
     state: 'directory'
-    mode: 0774
+    mode: '0774'
     recurse: 'yes'
 
 - name: create sudoers file for MoodleBox plugin usage

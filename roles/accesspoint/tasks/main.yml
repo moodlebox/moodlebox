@@ -12,6 +12,7 @@
   template:
     src: 'etc/hostapd/hostapd.conf.j2'
     dest: '/etc/hostapd/hostapd.conf'
+    mode: '0664'
   notify: restart networking
 
 - name: update access point settings
@@ -32,6 +33,7 @@
   template:
     src: 'etc/dnsmasq.conf.j2'
     dest: '/etc/dnsmasq.conf'
+    mode: '0664'
   notify: restart networking
 
 - name: update dnsmasq service file
