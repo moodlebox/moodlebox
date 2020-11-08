@@ -5,10 +5,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 3.9.0, 2020-11-09
+## Version 3.9.0, 2020-11-08
 ### Changed
 - Update to Moodle 3.10 (issue #185).
 - Update to Raspberry Pi OS version 2020-08-20 (issue #183).
+- Update Mathjax library to version 2.7.9 (issue #188).
 - Move upgrade tasks and files to specific branch (no issue number; commit 6ffe5f8; see issue #111).
 - Remove build assets from repository (no issue number; commit d2b2916).
 - Refactor roles (#181, commits 9ea8ac3, 2d92721, e3b564f).
