@@ -5,6 +5,29 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 3.9.0, 2020-11-09
+### Changed
+- Update to Moodle 3.10 (issue #185).
+- Update to Raspberry Pi OS version 2020-08-20 (issue #183).
+- Move upgrade tasks and files to specific branch (no issue number; commit 6ffe5f8; see issue #111).
+- Remove build assets from repository (no issue number; commit d2b2916).
+- Refactor roles (#181, commits 9ea8ac3, 2d92721, e3b564f).
+- Remove useless screen blanking setting (no issue number; commit a84a802).
+- Remove useless theme SCSS compilation task (no issue number; commit 51d7119).
+- Do not remove whole Moodle source when uninstalling (no issue number; commit 6f29254).
+
+### Added
+- Add debug messages (no issue number; commits e804d6e, 04008c4, 1ead61a, b6865ae, 4338aa0).
+- Add custom 'crt' file type in `config.php` for certificate (no issue number; commit bc67beb).
+
+### Fixed
+- Fix incron role idempotency (no issue number; commit 4fc16cd).
+- Fix role for inexistent file (no issue number; commit a02af69).
+- Fix timezone to correctly reflect MoodleBox origin country (no issue number; commit c8cbc2e).
+- Silence a warning (no issue number; commit 8215a74).
+- Increase timeout after cleanup (no issue number; commit b99b04c).
+- Add two more files where to change pi name account (no issue number; commit c163f52).
+
 ## Version 3.8.0, 2020-07-25
 ### Changed
 - Update Moodle to latest stable 3.9.x version (no issue number).
