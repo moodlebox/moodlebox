@@ -1,3 +1,4 @@
+---
 name: CI
 'on':
   pull_request:
@@ -22,18 +23,14 @@ jobs:
         with:
           path: 'moodlebox'
 
-      - name: Set up Python 3.
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint
-
-      - name: Lint code.
+      - name: Check code syntax.
         run: |
           ansible-playbook moodlebox.yml --syntax-check -vvv
-          ansible-lint -p moodlebox.yml
           git ls-files '*.yaml' '*.yml' | xargs yamllint
 #         git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
 #         git diff master | ansible-review
+
+      - name: Lint code
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: 'moodlebox.yml'
