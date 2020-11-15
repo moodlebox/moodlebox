@@ -6,11 +6,7 @@ name: CI
     branches:
       - master
   schedule:
-    - cron: "0 4 * * 0"
-
-defaults:
-  run:
-    working-directory: 'moodlebox'
+    - cron: '0 4 * * 0'
 
 jobs:
 
@@ -20,8 +16,6 @@ jobs:
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
-        with:
-          path: 'moodlebox'
 
       - name: Check code syntax.
         run: |
