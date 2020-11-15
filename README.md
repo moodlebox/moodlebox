@@ -4,7 +4,7 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/releases/latest)
 [![Github Downloads](https://img.shields.io/github/downloads/moodlebox/moodlebox/total.svg)](https://github.com/moodlebox/moodlebox/releases/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/commits/)
-[![Build status](https://travis-ci.org/moodlebox/moodlebox.svg?branch=master)](https://travis-ci.org/moodlebox/moodlebox)
+[![CI](https://github.com/moodlebox/moodlebox/workflows/CI/badge.svg)](https://github.com/moodlebox/moodlebox/actions?query=workflow%3ACI)
 [![Donate PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://www.paypal.me/moodlebox/50)
 
 A project to build a Moodle server and Wi-Fi router on Raspberry Pi.
