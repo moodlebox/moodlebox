@@ -3,12 +3,12 @@ listen-address=127.0.0.1          # Explicitly specify the address to listen on
 listen-address={{ moodlebox_ip_address | ipaddr('address') }}           # Explicitly specify the address to listen on
 bind-interfaces                   # Make sure we aren't sending things elsewhere
 {% for ip_address in moodlebox_external_dns_ip_address %}
-server={{ ip_address }}                   # Forward DNS requests to external public DNS
+server={{ ip_address }}                    # Forward DNS requests to external public DNS
 {% endfor %}
 domain-needed                     # Don't forward short names
 bogus-priv                        # Don't forward addresses in the non-routed spaces
-domain={{ moodlebox_tld }}                      # Set private domain name to '{{ moodlebox_tld }}'
-local=/{{ moodlebox_tld }}/                     # Don't forward queries for private domain '{{ moodlebox_tld }}'
+domain={{ moodlebox_tld }}                       # Set private domain name to '{{ moodlebox_tld }}'
+local=/{{ moodlebox_tld }}/                      # Don't forward queries for private domain '{{ moodlebox_tld }}'
 address=/{{ moodlebox_tld }}/{{ moodlebox_ip_address | ipaddr('address') }}  # Resolve subdomains '*.{{ moodlebox_tld }}'
 expand-hosts                      # Add private domain name to hostnames
 dhcp-range=wifi,{{ moodlebox_dhcp_range_begin }},{{ moodlebox_dhcp_range_end }},{{ moodlebox_ip_address | ipaddr('netmask') }},4h # Assign IP addresses with 4h lease, subnet name 'wifi'
