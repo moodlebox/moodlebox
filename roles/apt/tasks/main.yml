@@ -17,3 +17,5 @@
   with_items:
     - '/etc/apt/sources.list.d/vscode.list'
     - '/etc/apt/trusted.gpg.d/microsoft.gpg'
+  register: file_removed
+  changed_when: "'i' not in file_removed.diff.before.attributes"
