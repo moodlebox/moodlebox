@@ -10,9 +10,10 @@
   until: apt_upgrade is succeeded
 
 - name: remove Microsoft repository and GPG key
-  file:
-    state: absent
-    path: '{{ item }}'
+  copy:
+    content: ''
+    dest: '{{ item }}'
+    attributes: '+i'
   with_items:
     - '/etc/apt/sources.list.d/vscode.list'
     - '/etc/apt/trusted.gpg.d/microsoft.gpg'
