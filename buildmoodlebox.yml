@@ -51,4 +51,5 @@
     - adminer
     - cert
     - branding
+    - { role: sshkey, when: moodlebox_build_type == 'development' }
     - cleanup
