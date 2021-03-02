@@ -32,6 +32,7 @@
     - apt
     - { role: firmware, when: moodlebox_update_firmware | bool }
     - { role: hostname, when: moodlebox_set_hostname | bool }
+    - { role: restorewificapacity, when: moodlebox_fix_wifi_capacity | bool }
     - useraccount
     - { role: timezone, when: moodlebox_set_timezone | bool }
     - { role: locales, when: moodlebox_set_locale | bool }

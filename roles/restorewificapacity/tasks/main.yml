@@ -1,0 +1,42 @@
+---
+
+- name: backup provided wifi firmware
+  copy:
+    src: '/lib/firmware/brcm/{{ item }}'
+    dest: '/lib/firmware/brcm/{{ item }}.{{ ansible_date_time.date }}'
+    mode: 'preserve'
+    remote_src: 'yes'
+    force: 'no'
+  with_items:
+    - brcmfmac43430-sdio.bin
+    - brcmfmac43455-sdio.bin
+    - brcmfmac43455-sdio.clm_blob
+
+- name: replace firmware with older but better ones
+  copy:
+    src: 'lib/firmware/brcm/{{ item.src }}'
+    dest: '/lib/firmware/brcm/{{ item.dest }}'
+    mode: 0644
+  with_items:
+    - { src: 'brcmfmac43430-sdio.clm_blob_2018-09-11_7.45.98.65', dest: 'brcmfmac43430-sdio.clm_blob' }
+    - { src: 'brcmfmac43430-sdio.bin_2018-09-11_7.45.98.65', dest: 'brcmfmac43430-sdio.bin' }
+    - { src: 'brcmfmac43455-sdio.bin_2015-03-01_7.45.18.0_ub19.10.1', dest: 'brcmfmac43455-sdio.bin' }
+    - { src: 'brcmfmac43455-sdio.clm_blob_2018-02-26_rpi', dest: 'brcmfmac43455-sdio.clm_blob' }
+  register: new_wifi_firmware
+
+- name: reboot machine
+  shell: 'sleep 2 && shutdown -r now'
+  async: 1
+  poll: 0
+  ignore_errors: true
+  when: new_wifi_firmware is changed
+
+- name: wait for machine to come back
+  wait_for:
+    host: '{{ ansible_host | default(inventory_hostname) }}'
+    port: 22
+    state: 'started'
+    delay: 10
+    timeout: 60
+  delegate_to: localhost
+  become: false
