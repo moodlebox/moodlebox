@@ -81,6 +81,7 @@ moodlebox_moodle_data_dir: '/var/www/moodledata'
 
 # MoodleBox default build options.
 moodlebox_update_firmware: 'false'
+moodlebox_fix_wifi_capacity: 'true'
 moodlebox_set_hostname: 'true'
 moodlebox_set_timezone: 'true'
 moodlebox_set_locale: 'true'
