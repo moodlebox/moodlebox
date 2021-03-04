@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Help us improving by reporting a bug
+name: MoodleBox Bug Report
+about: Help us improving by reporting a MoodleBox bug
 title: ''
 labels: 'Type: bug'
 assignees: ''
@@ -11,7 +11,7 @@ Thanks for reporting issues back to MoodleBox!
 
 Note: This is the **issue tracker of MoodleBox**, please do NOT use this to get answers to your questions or get help for fixing your installation. This is a place to report bugs to developers.
 
-If you have any support question please check out https://moodlebox.net/help
+If you have any support question please check out https://moodlebox.net/help and https://discuss.moodlebox.net/.
 
 To make it possible for us to deal with the bug please fill out below information carefully.
 -->
@@ -37,7 +37,7 @@ Complete and precise steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 ## Additional context
-Please provide any relevant information about your setup. This is important in case the issue is not reproducible except for under certain conditions.
+Please provide any relevant information about your setup. This is important in case the issue is not reproducible, except under certain conditions.
 - Raspberry Pi model [e.g. RPi 3B+]
 - MoodleBox version
 - MoodleBox plugin version
