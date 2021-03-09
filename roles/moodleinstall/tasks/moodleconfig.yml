@@ -10,3 +10,8 @@
     - { name: 'pathtosassc', value: '' }
   register: system_paths_result
   changed_when: 'system_paths_result.rc == 0'
+
+- name: disable Moodle debug messages display
+  command: '{{ moodle_config_cmd }} --name=debugdisplay --set=0'
+  register: debugdisplay_result
+  changed_when: 'debugdisplay_result.rc == 0'
