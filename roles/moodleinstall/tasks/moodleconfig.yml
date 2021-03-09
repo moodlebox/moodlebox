@@ -1,0 +1,10 @@
+---
+
+- name: set valid Moodle system paths
+  command: '{{ moodle_config_cmd }} --name={{ item.name }} --set={{ item.value }}'
+  with_items:
+    - { name: 'pathtophp', value: '/usr/bin/php' }
+    - { name: 'pathtodu', value: '/usr/bin/du' }
+    - { name: 'pathtopython', value: '/usr/bin/python3' }
+    - { name: 'pathtounoconv', value: '' }
+    - { name: 'pathtosassc', value: '' }
