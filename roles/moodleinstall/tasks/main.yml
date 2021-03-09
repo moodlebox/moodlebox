@@ -1,5 +1,5 @@
 ---
-- name: set `moodle_config_cmd` variable
+- name: set moodle_config_cmd variable
   set_fact:
     moodle_config_cmd: '/usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cfg.php'
 

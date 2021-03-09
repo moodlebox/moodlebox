@@ -8,3 +8,5 @@
     - { name: 'pathtopython', value: '/usr/bin/python3' }
     - { name: 'pathtounoconv', value: '' }
     - { name: 'pathtosassc', value: '' }
+  register: system_paths_result
+  changed_when: 'system_paths_result.rc == 0'
