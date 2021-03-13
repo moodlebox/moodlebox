@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: MoodleBox Community Support
+    url: https://discuss.moodlebox.net/
+    about: Ask and answer questions about MoodleBox
+  - name: MoodleBox Documentation
+    url: https://moodlebox.net/help/
+    about: Have a look at MoodleBox documentation
