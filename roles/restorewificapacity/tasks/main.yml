@@ -16,6 +16,7 @@
   copy:
     src: 'lib/firmware/brcm/{{ item.src }}'
     dest: '/lib/firmware/brcm/{{ item.dest }}'
+    attributes: '+i'
     mode: 0644
   with_items:
     - { src: 'brcmfmac43430-sdio.clm_blob_2018-09-11_7.45.98.65', dest: 'brcmfmac43430-sdio.clm_blob' }
