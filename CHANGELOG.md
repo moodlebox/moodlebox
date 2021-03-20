@@ -5,6 +5,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 3.10.0, 2021-03-20
+### Changed
+- Update to Raspberry Pi OS version 2021-01-11 (issue #192).
+- Move continuous integration to Github actions (issue #190).
+- Update to v2.9.0 of MoodleBox plugin (issue #194).
+- Provide image in Bzip2 compression, saving about 50 MB (no issue number).
+
+### Added
+- Support of Raspberry Pi 400 via version 2.9.0 of MoodleBox plugin (issue https://github.com/moodlebox/moodle-tool_moodlebox/issues/93).
+- Set Moodle system paths to appropriate values (issue #197).
+- Configure some Moodle settings (issue #198).
+- SSH key added in developement builds (no issue number, commits 0aa322d690fefbf7419b8c4d040bf73afabc3ed1 and e6b77acb2c8bb8b043caeea64f858322add5526f).
+
+### Fixed
+- Restore WiFi AP capacity to about 30 clients via downgrading WiFi firmware (issue #196, PR #196, #200).
+- Enhance issue templates (no issue number, commits 91f670077e38a39ca16c30981228dfe3c7d992f9, 506216571f2c07ec840d3c2783cdc88798b4cb3b and 99e9588596d38943d60df5a68f59cb965277c232).
+
 ## Version 3.9.0, 2020-11-08
 ### Changed
 - Update to Moodle 3.10 (issue #185).
