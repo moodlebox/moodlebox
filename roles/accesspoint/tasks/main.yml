@@ -6,6 +6,7 @@
     block: |
       interface wlan0
       static ip_address={{ moodlebox_ip_address | ipaddr('host') }}
+      nohook wpa_supplicant
   notify: restart networking
 
 - name: update access point configuration file
