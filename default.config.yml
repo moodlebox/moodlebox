@@ -1,7 +1,7 @@
 ---
 # MoodleBox version and release date.
-moodlebox_version: '3.10.0'
-moodlebox_release_date: '2021-03-20'
+moodlebox_version: '3.11.0'
+moodlebox_release_date: '2021-05-17'
 moodlebox_name: 'MoodleBox'
 
 # MoodleBox hostname (taken from inventory).
