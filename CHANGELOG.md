@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 3.11.0, 2021-05-17
+### Changed
+- Update to Raspberry Pi OS version 2021-03-04 (issue #203).
+- Update to Moodle 3.11 (issue #206).
+
+### Added
+- Set PHP setting `max_input_vars` to 5000, needed for PHP8 support (issue #205).
+
+### Fixed
+- Prevent `wpa_supplicant` to be started by dhcpcd (issue #204).
+
 ## Version 3.10.0, 2021-03-20
 ### Changed
 - Update to Raspberry Pi OS version 2021-01-11 (issue #192).
