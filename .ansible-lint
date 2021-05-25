@@ -1,3 +1,2 @@
 warn_list:
-  - '204' # Lines should be no longer than 160 chars.
   - '401' # Git checkouts must contain explicit version.
