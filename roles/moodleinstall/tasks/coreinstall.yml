@@ -103,5 +103,5 @@
     - { name: 'xsendfilealiases', value: "array('/dataroot/' => $CFG->dataroot)" }
     # noqa 204
     # this long line is OK
-    - { name: 'customfiletypes', value: "array(\n  (object)array(\n    'extension' => 'crt',\n    'icon' => 'sourcecode',\n    'type' => 'application/x-x509-ca-cert',\n    'customdescription' => 'X.509 CA certificate'\n  )\n)"}
+    - { name: 'customfiletypes', value: "array(\n  (object)array(\n    'extension' => 'crt',\n    'icon' => 'sourcecode',\n    'type' => 'application/x-x509-ca-cert',\n    'customdescription' => 'X.509 CA certificate'\n  )\n)"} # noqa 204
     - { name: 'showcampaigncontent', value: 'false' }
