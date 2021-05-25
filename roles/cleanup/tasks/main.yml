@@ -67,22 +67,8 @@
   register: log_files_emptied
   changed_when: log_files_emptied.rc == 0
 
-- name: reboot machine
-  shell: 'sleep 2 && shutdown -r now'
-  async: 1
-  poll: 0
-  ignore_errors: true
-  when: log_files_emptied is changed
-
-- name: wait for machine to come back
-  wait_for:
-    host: '{{ ansible_host | default(inventory_hostname) }}'
-    port: 22
-    state: 'started'
-    delay: 10
-    timeout: 120
-  delegate_to: localhost
-  become: false
+- name: reboot box and wait for it to come back up
+  reboot:
 
 - name: remove ssh public keys
   file:

@@ -25,19 +25,5 @@
     - { src: 'brcmfmac43455-sdio.clm_blob_2018-02-26_rpi', dest: 'brcmfmac43455-sdio.clm_blob' }
   register: new_wifi_firmware
 
-- name: reboot machine
-  shell: 'sleep 2 && shutdown -r now'
-  async: 1
-  poll: 0
-  ignore_errors: true
-  when: new_wifi_firmware is changed
-
-- name: wait for machine to come back
-  wait_for:
-    host: '{{ ansible_host | default(inventory_hostname) }}'
-    port: 22
-    state: 'started'
-    delay: 10
-    timeout: 60
-  delegate_to: localhost
-  become: false
+- name: reboot box and wait for it to come back up
+  reboot:
