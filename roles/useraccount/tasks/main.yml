@@ -44,6 +44,8 @@
   user:
     name: '{{ moodlebox_username }}'
     password: '{{ moodlebox_password | password_hash("md5") }}'
+    # noqa no-log-password
+    # MoodleBox password is well known by design
 
 - name: update .bashrc file (1)
   lineinfile:
