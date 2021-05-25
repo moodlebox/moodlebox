@@ -16,4 +16,5 @@
     - reboot machine
     - wait for machine to come back
 
-- meta: flush_handlers
+- name: flush handlers
+  meta: flush_handlers

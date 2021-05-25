@@ -9,7 +9,8 @@
     - default.config.yml
 
   pre_tasks:
-    - debug:
+    - name: print out begin of build date and time
+      debug:
         msg: 'Beginning of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
 
     - name: set fact with build start timestamp
@@ -22,7 +23,8 @@
         - config.yml
 
   post_tasks:
-    - debug:
+    - name: print out end of build date and time and build duration
+      debug:
         msg:
           - 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
           - 'Build duration: {{ lookup("pipe", "date +%s")|int - build_start|int }} s'

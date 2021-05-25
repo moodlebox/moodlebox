@@ -46,4 +46,5 @@
       Restart=on-failure
   notify: restart networking
 
-- meta: flush_handlers
+- name: flush handlers
+  meta: flush_handlers

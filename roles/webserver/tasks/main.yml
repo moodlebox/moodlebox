@@ -13,4 +13,5 @@
     mode: '0644'
   notify: restart web services
 
-- meta: flush_handlers
+- name: flush handlers
+  meta: flush_handlers

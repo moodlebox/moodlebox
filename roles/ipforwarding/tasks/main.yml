@@ -15,4 +15,5 @@
     mode: '0644'
   notify: restart networking
 
-- meta: flush_handlers
+- name: flush handlers
+  meta: flush_handlers

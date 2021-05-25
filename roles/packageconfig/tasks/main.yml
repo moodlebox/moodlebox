@@ -111,4 +111,5 @@
     line: 'process_control_timeout = 5s'
   notify: restart web services
 
-- meta: flush_handlers
+- name: flush handlers
+  meta: flush_handlers
