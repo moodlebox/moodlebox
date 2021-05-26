@@ -67,7 +67,7 @@
   register: log_files_emptied
   changed_when: log_files_emptied.rc == 0
 
-- name: reboot box and wait for it to come back up
+- name: reboot box
   reboot:
 
 - name: remove ssh public keys

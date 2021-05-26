@@ -4,7 +4,7 @@
     path: '/boot/config.txt'
     line: 'gpu_mem=16'
   notify:
-    - reboot machine
+    - reboot box
     - wait for machine to come back
 
 - name: enable shutdown/startup hardware button
@@ -13,7 +13,7 @@
     line: 'dtoverlay=gpio-shutdown'
     insertafter: '^# Additional overlays and parameters'
   notify:
-    - reboot machine
+    - reboot box
     - wait for machine to come back
 
 - name: flush handlers

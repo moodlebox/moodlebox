@@ -25,5 +25,5 @@
     - { src: 'brcmfmac43455-sdio.clm_blob_2018-02-26_rpi', dest: 'brcmfmac43455-sdio.clm_blob' }
   register: new_wifi_firmware
 
-- name: reboot box and wait for it to come back up
+- name: reboot box
   reboot:

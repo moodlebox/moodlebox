@@ -22,5 +22,5 @@
     autoclean: 'yes'
     autoremove: 'yes'
 
-- name: reboot box and wait for it to come back up
+- name: reboot box
   reboot:
