@@ -6,6 +6,7 @@
     - { name: 'pathtophp', value: '/usr/bin/php' }
     - { name: 'pathtodu', value: '/usr/bin/du' }
     - { name: 'pathtopython', value: '/usr/bin/python3' }
+    - { name: 'pathtopdftoppm', value: '/usr/bin/pdftoppm' }
     - { name: 'pathtounoconv', value: '' }
     - { name: 'pathtosassc', value: '' }
   register: system_paths_result

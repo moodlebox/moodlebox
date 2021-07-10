@@ -28,3 +28,4 @@ moodlebox_install_packages:
   - php7.3-zip
   - php7.3
   - php-apcu
+  - poppler-utils
