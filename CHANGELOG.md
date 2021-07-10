@@ -5,6 +5,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 3.12.0, 2021-07-11
+
+__This is the 5th anniversary release of MoodleBox__, which [version v1.0](https://github.com/moodlebox/moodlebox/releases/tag/v1.0) was released exactly five years ago (but only a few weeks later on Github).
+
+### Changed
+- Update to Raspberry Pi OS version 2021-05-07 (issue #203).
+- Update to Moodle 3.11+ (no issue number).
+
+### Added
+- Install Poppler and set its path in Moodle (issue #208).
+
+### Fixed
+- Nothing.
+
 ## Version 3.11.0, 2021-05-17
 ### Changed
 - Update to Raspberry Pi OS version 2021-03-04 (issue #203).
