@@ -17,9 +17,6 @@ __This is the 5th anniversary release of MoodleBox__, which [version v1.0](https
 ### Added
 - Install Poppler and set its path in Moodle (issue #208).
 
-### Fixed
-- Nothing.
-
 ## Version 3.11.0, 2021-05-17
 ### Changed
 - Update to Raspberry Pi OS version 2021-03-04 (issue #203).
