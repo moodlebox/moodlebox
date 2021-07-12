@@ -11,7 +11,7 @@ __This is the 5th anniversary release of MoodleBox__, which [version v1.0](https
 
 ### Changed
 - Update to Raspberry Pi OS version 2021-05-07 (issue #203).
-- Update to Moodle 3.11+ (no issue number).
+- Update to Moodle 3.11.1 (no issue number).
 - Don't rebuild apt cache when installing packages to gain some building time (issue #211).
 
 ### Added
