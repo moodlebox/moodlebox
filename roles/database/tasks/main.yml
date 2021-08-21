@@ -19,20 +19,19 @@
   register: install_mariadb
   until: install_mariadb is succeeded
 
-- name: install python-mysqldb
+- name: install python3-pymysql
   apt:
-    pkg: 'python-mysqldb'
+    pkg: 'python3-pymysql'
     state: 'present'
-  register: py_mysql_installed
-  until: py_mysql_installed is succeeded
+  register: pymysql_installed
+  until: pymysql_installed is succeeded
 
 - name: add '{{ moodlebox_db_username }}' MariaDB user with all privileges
   mysql_user:
     name: '{{ moodlebox_db_username }}'
-    host: 'localhost'
     password: '{{ moodlebox_db_password }}'
+    login_unix_socket: '/var/run/mysqld/mysqld.sock'
     priv: '*.*:ALL,GRANT'
-    state: 'present'
   no_log: 'true'
 
 - name: update MariaDB settings
