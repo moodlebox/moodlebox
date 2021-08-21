@@ -7,7 +7,7 @@
     purge: 'yes'
   vars:
     packages:
-      - 'python-mysqldb'
+      - 'python3-pymysql'
       - 'rpi-update'
 
 - name: clean Moodle database log tables
