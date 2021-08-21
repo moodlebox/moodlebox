@@ -5,4 +5,4 @@
     state: 'restarted'
   with_items:
     - 'nginx'
-    - 'php7.3-fpm'
+    - 'php7.4-fpm'
