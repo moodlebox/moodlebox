@@ -73,40 +73,40 @@
     insertafter: '^\[Service\].*'
   with_items:
     - '/lib/systemd/system/nginx.service'
-    - '/lib/systemd/system/php7.3-fpm.service'
+    - '/lib/systemd/system/php7.4-fpm.service'
   notify: restart web services
 
 - name: set 'group' of php-fpm process
   lineinfile:
-    path: '/etc/php/7.3/fpm/pool.d/www.conf'
+    path: '/etc/php/7.4/fpm/pool.d/www.conf'
     regexp: '^group\s*=\s*www-data.*'
     line: 'group = {{ moodlebox_username }}'
   notify: restart web services
 
 - name: set 'pm.max_requests' of php-fpm process
   lineinfile:
-    path: '/etc/php/7.3/fpm/pool.d/www.conf'
+    path: '/etc/php/7.4/fpm/pool.d/www.conf'
     regexp: '^;?pm.max_requests\s*=.*'
     line: 'pm.max_requests = 50'
   notify: restart web services
 
 - name: set 'emergency_restart_threshold' for php-fpm to fix SIGSEGV
   lineinfile:
-    path: '/etc/php/7.3/fpm/php-fpm.conf'
+    path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_threshold\s*=.*'
     line: 'emergency_restart_threshold = 2'
   notify: restart web services
 
 - name: set 'emergency_restart_interval' for php-fpm to fix SIGSEGV
   lineinfile:
-    path: '/etc/php/7.3/fpm/php-fpm.conf'
+    path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_interval\s*=.*'
     line: 'emergency_restart_interval = 1h'
   notify: restart web services
 
 - name: set 'process_control_timeout' for php-fpm to fix SIGSEGV
   lineinfile:
-    path: '/etc/php/7.3/fpm/php-fpm.conf'
+    path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?process_control_timeout\s*=.*'
     line: 'process_control_timeout = 5s'
   notify: restart web services
