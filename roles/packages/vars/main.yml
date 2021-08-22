@@ -7,8 +7,7 @@ moodlebox_install_packages:
   - git
   - ntfs-3g
   - exfat-fuse
-#   - lockfile-progs
-  - incron
+  - direvent
   - nginx
   - ghostscript
   - php7.4-fpm

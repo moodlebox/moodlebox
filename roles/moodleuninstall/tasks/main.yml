@@ -31,15 +31,12 @@
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
 
-- name: check if any incron job exist
-  shell: |
-    set -o pipefail
-    incrontab -l | wc -c
-  args:
-    executable: /bin/bash
-  register: incronjob_exists
-  changed_when: incronjob_exists.stdout|int > 0
-
-- name: remove incron jobs
-  command: 'incrontab -u root -r'
-  when: incronjob_exists is changed
+- name: set default direvent configuration
+  copy:
+    dest: '/etc/direvent.conf'
+    content: |
+      # This is the configuration file for direvent. Read
+      # direvent.conf(5) for more information about how to
+      # fill this file.
+      #
+    mode: '0644'

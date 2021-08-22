@@ -60,12 +60,6 @@
     dest: '/etc/nodogsplash'
     mode: '0644'
 
-- name: add root to allowed incron users
-  lineinfile:
-    path: '/etc/incron.allow'
-    line: 'root'
-  notify: restart incron
-
 - name: set umask for nginx and php-fpm services
   lineinfile:
     path: '{{ item }}'

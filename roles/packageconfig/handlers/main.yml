@@ -1,7 +1,7 @@
 ---
-- name: restart incron
+- name: restart direvent
   systemd:
-    name: 'incron'
+    name: 'direvent'
     state: 'restarted'
 
 - name: restart web services

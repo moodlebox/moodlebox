@@ -16,12 +16,12 @@
   with_items:
     - { name: 'Restore cache', special_time: 'reboot', job: 'cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/' }
 
-- name: configure incron
+- name: configure direvent
   template:
-    src: 'var/spool/incron/incron.j2'
-    dest: '/var/spool/incron/root'
+    src: 'etc/direvent.conf.j2'
+    dest: '/etc/direvent.conf'
     mode: '0644'
-  register: incron_configured
+  register: direvent_configured
 
 - name: configure cron mailto variable to suppress warnings in log
   cronvar:
