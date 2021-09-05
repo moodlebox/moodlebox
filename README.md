@@ -29,7 +29,7 @@ To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 
 1. Create a `ssh.txt` file on the `boot` partition, e.g. using `touch ssh.txt`.
 1. Insert the microSD card into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
-1. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
+1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) on your computer. On macOS, use e.g. `brew install ansible`.
 1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
 1. [Clone this repository][git] to your local drive.
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
