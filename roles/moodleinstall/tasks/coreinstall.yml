@@ -23,7 +23,7 @@
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
 
-- name: set sticky bit for moodledata directory
+- name: set SGID permission on Moodle data '{{ moodlebox_moodle_data_dir }}' directory
   file:
     path: '{{ moodlebox_moodle_data_dir }}'
     state: 'directory'
@@ -38,7 +38,7 @@
     group: 'www-data'
     mode: 'g+s'
 
-- name: link directories
+- name: link file repository directories
   file:
     src: '{{ item.src }}'
     path: '{{ item.path }}'
