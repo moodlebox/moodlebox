@@ -84,21 +84,21 @@
     line: 'pm.max_requests = 50'
   notify: restart web services
 
-- name: set 'emergency_restart_threshold' for php-fpm to fix SIGSEGV
+- name: set 'emergency_restart_threshold' for php-fpm to fix potential SIGSEGV
   lineinfile:
     path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_threshold\s*=.*'
     line: 'emergency_restart_threshold = 2'
   notify: restart web services
 
-- name: set 'emergency_restart_interval' for php-fpm to fix SIGSEGV
+- name: set 'emergency_restart_interval' for php-fpm to fix potential SIGSEGV
   lineinfile:
     path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_interval\s*=.*'
     line: 'emergency_restart_interval = 1h'
   notify: restart web services
 
-- name: set 'process_control_timeout' for php-fpm to fix SIGSEGV
+- name: set 'process_control_timeout' for php-fpm to fix potential SIGSEGV
   lineinfile:
     path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?process_control_timeout\s*=.*'
