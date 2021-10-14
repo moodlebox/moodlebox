@@ -4,3 +4,6 @@
   systemd:
     name: 'networking'
     state: 'restarted'
+
+- name: reboot box
+  reboot:
