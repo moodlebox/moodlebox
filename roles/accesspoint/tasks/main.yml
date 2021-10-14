@@ -6,6 +6,14 @@
     dest: '/etc/udev/rules.d/90-wireless.rules'
     mode: '0644'
 
+- name: reload and trigger udev rules
+  command: 'udevadm {{ item }}'
+  with_items:
+    - 'control --reload-rules'
+    - 'trigger'
+  register: udev_rules_triggered
+  changed_when: udev_rules_triggered.rc == 0
+
 - name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ipaddr('host') }}
   blockinfile:
     path: '/etc/dhcpcd.conf'
