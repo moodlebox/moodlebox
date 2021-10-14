@@ -1,10 +1,16 @@
 ---
 
+- name: copy udev rule to add wireless interface for AP mode
+  template:
+    src: 'etc/udev/rules.d/90-wireless.rules.j2'
+    dest: '/etc/udev/rules.d/90-wireless.rules'
+    mode: '0644'
+
 - name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ipaddr('host') }}
   blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |
-      interface wlan0
+      interface {{ moodlebox_wifi_ap_interface }}
       static ip_address={{ moodlebox_ip_address | ipaddr('host') }}
       nohook wpa_supplicant
   notify: restart networking
@@ -13,7 +19,7 @@
   template:
     src: 'etc/hostapd/hostapd.conf.j2'
     dest: '/etc/hostapd/hostapd.conf'
-    mode: '0664'
+    mode: '0644'
   notify: restart networking
 
 - name: update access point settings
