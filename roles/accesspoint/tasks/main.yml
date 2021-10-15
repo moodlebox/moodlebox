@@ -1,18 +1,16 @@
 ---
 
-- name: copy udev rule to add wireless interface for AP mode
-  template:
-    src: 'etc/udev/rules.d/90-wireless.rules.j2'
-    dest: '/etc/udev/rules.d/90-wireless.rules'
-    mode: '0644'
-
-- name: reload and trigger udev rules
-  command: 'udevadm {{ item }}'
+- name: install packages for AP mode
+  apt:
+    pkg: '{{ item }}'
+    state: 'present'
+    autoremove: 'yes'
   with_items:
-    - 'control --reload-rules'
-    - 'trigger'
-  register: udev_rules_triggered
-  changed_when: udev_rules_triggered.rc == 0
+    - 'iptables-persistent'
+    - 'hostapd'
+    - 'dnsmasq'
+  register: access_point_mode_packages_installed
+  until: access_point_mode_packages_installed is succeeded
 
 - name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ipaddr('host') }}
   blockinfile:
