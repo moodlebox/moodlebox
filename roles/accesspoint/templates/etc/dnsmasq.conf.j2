@@ -1,4 +1,4 @@
-interface=wlan0                   # Use interface wlan0
+interface={{ moodlebox_wifi_ap_interface }}                   # Use interface {{ moodlebox_wifi_ap_interface }}
 listen-address=127.0.0.1          # Explicitly specify the address to listen on
 listen-address={{ moodlebox_ip_address | ipaddr('address') }}           # Explicitly specify the address to listen on
 bind-interfaces                   # Make sure we aren't sending things elsewhere

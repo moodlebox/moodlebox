@@ -39,11 +39,11 @@
     - { role: timezone, when: moodlebox_set_timezone | bool }
     - { role: locales, when: moodlebox_set_locale | bool }
     - wifi
+    - accesspoint
     - database
     - packages
     - packageconfig
     - partitionresize
-    - accesspoint
     - zeroconf
     - webserver
     - ipforwarding
