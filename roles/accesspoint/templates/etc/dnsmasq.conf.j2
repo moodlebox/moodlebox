@@ -1,4 +1,4 @@
-interface={{ moodlebox_wifi_ap_interface }}                   # Use interface {{ moodlebox_wifi_ap_interface }}
+interface={{ moodlebox_wifi_ap_interface }}                    # Use interface {{ moodlebox_wifi_ap_interface }}
 listen-address=127.0.0.1          # Explicitly specify the address to listen on
 listen-address={{ moodlebox_ip_address | ipaddr('address') }}           # Explicitly specify the address to listen on
 bind-interfaces                   # Make sure we aren't sending things elsewhere
@@ -11,7 +11,7 @@ domain={{ moodlebox_tld }}                       # Set private domain name to '{
 local=/{{ moodlebox_tld }}/                      # Don't forward queries for private domain '{{ moodlebox_tld }}'
 address=/{{ moodlebox_tld }}/{{ moodlebox_ip_address | ipaddr('address') }}            # Resolve subdomains '*.{{ moodlebox_tld }}'
 expand-hosts                      # Add private domain name to hostnames
-dhcp-range=wifi,{{ moodlebox_dhcp_range_begin }},{{ moodlebox_dhcp_range_end }},{{ moodlebox_ip_address | ipaddr('netmask') }},4h # Assign IP addresses with 4h lease, subnet name 'wifi'
+dhcp-range=wifi,{{ moodlebox_dhcp_range_begin }},{{ moodlebox_dhcp_range_end }},{{ moodlebox_ip_address | ipaddr('netmask') }},{{ moodlebox_wifi_dhcp_lease_duration }} # Assign IP addresses with {{ moodlebox_wifi_dhcp_lease_duration }} lease, subnet name 'wifi'
 dhcp-option=wifi,6,{{ moodlebox_ip_address | ipaddr('address') }}       # Set DNS server for subnet wifi
 txt-record={{ moodlebox_hostname }}.{{ moodlebox_tld }},"MoodleBox version {{ moodlebox_version }}, by Nicolas Martignoni"
 log-facility=/var/log/dnsmasq.log # Enable log
