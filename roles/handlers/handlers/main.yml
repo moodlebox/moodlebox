@@ -1,7 +1,11 @@
 ---
-- name: restart incron
+
+- name: reboot box
+  reboot:
+
+- name: restart networking
   systemd:
-    name: 'incron'
+    name: 'networking'
     state: 'restarted'
 
 - name: restart web services
@@ -12,3 +16,8 @@
   with_items:
     - 'nginx'
     - 'php7.3-fpm'
+
+- name: restart incron
+  systemd:
+    name: 'incron'
+    state: 'restarted'

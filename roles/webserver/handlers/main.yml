@@ -1,8 +1,0 @@
----
-- name: restart web services
-  systemd:
-    name: '{{ item }}'
-    state: 'restarted'
-  with_items:
-    - 'nginx'
-    - 'php7.3-fpm'
