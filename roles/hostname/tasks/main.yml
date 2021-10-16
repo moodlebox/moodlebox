@@ -12,6 +12,3 @@
     mode: '0644'
   when: ansible_hostname == moodlebox_hostname
   notify: restart networking
-
-- name: flush handlers
-  meta: flush_handlers

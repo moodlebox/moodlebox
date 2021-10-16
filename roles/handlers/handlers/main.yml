@@ -1,7 +1,11 @@
 ---
-- name: restart direvent
+
+- name: reboot box
+  reboot:
+
+- name: restart networking
   systemd:
-    name: 'direvent'
+    name: 'networking'
     state: 'restarted'
 
 - name: restart web services
@@ -12,3 +16,8 @@
   with_items:
     - 'nginx'
     - 'php7.4-fpm'
+
+- name: restart direvent
+  systemd:
+    name: 'direvent'
+    state: 'restarted'
