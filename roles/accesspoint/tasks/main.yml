@@ -16,6 +16,9 @@
   blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |
+      interface wlan0
+      nohook wpa_supplicant
+
       interface {{ moodlebox_wifi_ap_interface }}
       static ip_address={{ moodlebox_ip_address | ipaddr('host') }}
       nohook wpa_supplicant
