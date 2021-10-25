@@ -7,13 +7,6 @@
     mode: '0644'
   notify: restart networking
 
-# - name: set wifi country to '{{ moodlebox_wifi_sta_country }}'
-#   lineinfile:
-#     path: '/etc/wpa_supplicant/wpa_supplicant.conf'
-#     regexp: '^country='
-#     line: 'country={{ moodlebox_wifi_sta_country }}'
-#   notify: restart networking
-
 - name: unblock wifi, since wifi country is set
   copy:
     dest: '{{ item }}'
