@@ -4,12 +4,15 @@
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
 -A FORWARD -i eth0 -o {{ moodlebox_wifi_ap_interface }} -m state --state RELATED,ESTABLISHED -m comment --comment "MoodleBox forwarding eth0->{{ moodlebox_wifi_ap_interface }} rule" -j ACCEPT
+-A FORWARD -i {{ moodlebox_wifi_sta_interface }} -o {{ moodlebox_wifi_ap_interface }} -m state --state RELATED,ESTABLISHED -m comment --comment "MoodleBox forwarding {{ moodlebox_wifi_sta_interface }}->{{ moodlebox_wifi_ap_interface }} rule" -j ACCEPT
 -A FORWARD -i {{ moodlebox_wifi_ap_interface }} -o eth0 -m comment --comment "MoodleBox forwarding {{ moodlebox_wifi_ap_interface }}->eth0 rule" -j ACCEPT
+-A FORWARD -i {{ moodlebox_wifi_ap_interface }} -o {{ moodlebox_wifi_sta_interface }} -m comment --comment "MoodleBox forwarding {{ moodlebox_wifi_ap_interface }}->{{ moodlebox_wifi_sta_interface }} rule" -j ACCEPT
 COMMIT
 *nat
 :PREROUTING ACCEPT [0:0]
 :INPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
--A POSTROUTING -o eth0 -m comment --comment "MoodleBox iptable nat rule" -j MASQUERADE
+-A POSTROUTING -o eth0 -m comment --comment "MoodleBox iptable eth0 nat rule" -j MASQUERADE
+-A POSTROUTING -o {{ moodlebox_wifi_sta_interface }} -m comment --comment "MoodleBox iptable {{ moodlebox_wifi_sta_interface }} nat rule" -j MASQUERADE
 COMMIT

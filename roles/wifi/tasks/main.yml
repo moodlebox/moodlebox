@@ -1,13 +1,13 @@
 ---
 
-- name: set wifi country to '{{ moodlebox_wifi_country }}'
-  lineinfile:
-    path: '/etc/wpa_supplicant/wpa_supplicant.conf'
-    regexp: '^country='
-    line: 'country={{ moodlebox_wifi_country }}'
+- name: update wifi client configuration file 'wpa_supplicant.conf'
+  template:
+    src: 'etc/wpa_supplicant/wpa_supplicant.conf.j2'
+    dest: '/etc/wpa_supplicant/wpa_supplicant.conf'
+    mode: '0644'
   notify: restart networking
 
-- name: do not disable wifi, since wifi country is set
+- name: unblock wifi, since wifi country is set
   copy:
     dest: '{{ item }}'
     content: '0'
