@@ -1,6 +1,6 @@
 ---
 
-- name: backup provided wifi firmware
+- name: backup default wireless chip firmware
   copy:
     src: '/lib/firmware/brcm/{{ item }}'
     dest: '/lib/firmware/brcm/{{ item }}.{{ ansible_date_time.date }}'
@@ -8,22 +8,22 @@
     remote_src: 'yes'
     force: 'no'
   with_items:
-    - brcmfmac43430-sdio.bin
     - brcmfmac43455-sdio.bin
-    - brcmfmac43455-sdio.clm_blob
 
-- name: replace firmware with older but better ones
+- name: replace wireless chip firmware with minimal one
   copy:
     src: 'lib/firmware/brcm/{{ item.src }}'
     dest: '/lib/firmware/brcm/{{ item.dest }}'
     attributes: '+i'
     mode: 0644
   with_items:
-    - { src: 'brcmfmac43430-sdio.clm_blob_2018-09-11_7.45.98.65', dest: 'brcmfmac43430-sdio.clm_blob' }
-    - { src: 'brcmfmac43430-sdio.bin_2018-09-11_7.45.98.65', dest: 'brcmfmac43430-sdio.bin' }
-    - { src: 'brcmfmac43455-sdio.bin_2015-03-01_7.45.18.0_ub19.10.1', dest: 'brcmfmac43455-sdio.bin' }
-    - { src: 'brcmfmac43455-sdio.clm_blob_2018-02-26_rpi', dest: 'brcmfmac43455-sdio.clm_blob' }
+    - { src: '4th_trial_minimal_43455_fw.bin', dest: 'brcmfmac43455-sdio.bin' }
   register: new_wifi_firmware
+
+- name: prevent overwriting minimal firmware by apt update
+  dpkg_selections:
+    name: 'firmware-brcm80211'
+    selection: hold
 
 - name: reboot box
   reboot:
