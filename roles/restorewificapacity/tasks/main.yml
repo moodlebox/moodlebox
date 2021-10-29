@@ -18,12 +18,8 @@
   with_items:
     - { src: '4th_trial_minimal_43455_fw.bin', dest: 'brcmfmac43455-sdio.bin' }
   register: new_wifi_firmware
-  notify: reboot box
 
 - name: prevent overwriting minimal firmware by apt update
   dpkg_selections:
     name: 'firmware-brcm80211'
     selection: hold
-
-- name: flush handlers
-  meta: flush_handlers
