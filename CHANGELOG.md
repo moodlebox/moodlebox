@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 
 ### Changed
 - Update to Moodle 3.11.3+ (no issue number).
+- Use minimal firmware for more wireless clients (issue #231).
 - Update to MoodleBox plugin v2.10.0 (issue #215).
 - Move wireless access point to its own interface (issue #219).
 - Change DNS servers (issue #217).
