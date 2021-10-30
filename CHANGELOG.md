@@ -8,16 +8,16 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ## Unreleased
 
 ### Changed
-- Update to Moodle 3.11.3+ (no issue number).
 - Use minimal firmware for more wireless clients (issue #231).
-- Update to MoodleBox plugin v2.10.0 (issue #215).
+- Update to Moodle 3.11.3+ (no issue number).
+- Update to MoodleBox plugin v2.11.0 (issue #230).
 - Move wireless access point to its own interface (issue #219).
 - Change DNS servers (issue #217).
 - Change DHCP lease to 1h, instead of 4h (issue #223).
 
 ### Added
-- AP+STA mode: MoodleBox can connect to Internet without ethernet connection (issue #77).
-- Support for Raspberry Pi Zero W (issue ??).
+- AP+STA mode: MoodleBox can connect to Internet without ethernet connection (issue #77). This enables support of **all Raspberry Pi models with a wireless chip**.
+- Full support for Raspberry Pi Zero W and Raspberry Pi Zero 2 W (issue #230).
 
 ### Fixed
 - Refactor and cleanup wireless lan settings (issue #218).
