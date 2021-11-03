@@ -16,7 +16,7 @@
     dest: '/lib/firmware/brcm/{{ item.dest }}'
     mode: 0644
   with_items:
-    - { src: '4th_trial_minimal_43455_fw.bin', dest: 'brcmfmac43455-sdio.bin' }
+    - { src: 'release_minimal_43455_fw.bin', dest: 'brcmfmac43455-sdio.bin' }
   register: new_wifi_firmware
 
 - name: prevent overwriting minimal firmware by apt update
