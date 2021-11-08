@@ -7,9 +7,12 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 
 ## Unreleased
 
+__This is the first Debian Bullseye release of MoodleBox__.
+
 ### Changed
+- Update to Raspberry Pi OS version date 2021-10-30, Debian Bullseye 32bit (issue #232).
 - Use minimal firmware for more wireless clients (issue #231).
-- Update to Moodle 3.11.3+ (no issue number).
+- Update to Moodle 3.11.4 (no issue number).
 - Update to MoodleBox plugin v2.11.0 (issue #230).
 - Move wireless access point to its own interface (issue #219).
 - Change DNS servers (issue #217).
@@ -24,7 +27,6 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Refactor Ansible role for AP mode configuration (issue #221).
 - Refactor Ansible handlers (issue #220).
 - Fix some Ansible warnings and task names (no issue number, commits deea816, d9ad970, 2b7f807, 1a830b2).
-- Prevent a potential [Moodle issue](https://tracker.moodle.org/browse/MDL-72131) with MariaDB 10.6 (issue #214).
 
 ## Version 3.12.0, 2021-07-11
 
