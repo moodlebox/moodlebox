@@ -5,6 +5,27 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Unreleased
+
+### Changed
+- Use minimal firmware for more wireless clients (issue #231).
+- Update to Moodle 3.11.3+ (no issue number).
+- Update to MoodleBox plugin v2.11.0 (issue #230).
+- Move wireless access point to its own interface (issue #219).
+- Change DNS servers (issue #217).
+- Change DHCP lease to 1h, instead of 4h (issue #223).
+
+### Added
+- AP+STA mode: MoodleBox can connect to Internet without ethernet connection (issue #77). This enables support of **all Raspberry Pi models with a wireless chip**.
+- Full support for Raspberry Pi Zero W and Raspberry Pi Zero 2 W (issue #230).
+
+### Fixed
+- Refactor and cleanup wireless lan settings (issue #218).
+- Refactor Ansible role for AP mode configuration (issue #221).
+- Refactor Ansible handlers (issue #220).
+- Fix some Ansible warnings and task names (no issue number, commits deea816, d9ad970, 2b7f807, 1a830b2).
+- Prevent a potential [Moodle issue](https://tracker.moodle.org/browse/MDL-72131) with MariaDB 10.6 (issue #214).
+
 ## Version 3.12.0, 2021-07-11
 
 __This is the 5th anniversary release of MoodleBox__, which [version v1.0](https://github.com/moodlebox/moodlebox/releases/tag/v1.0) was released exactly five years ago (but only a few weeks later on Github).

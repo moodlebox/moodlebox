@@ -40,13 +40,19 @@ moodlebox_db_password: '{{ moodlebox_password }}'
 # MoodleBox db root password.
 moodlebox_db_root_password: '{{ moodlebox_password }}'
 
-# MoodleBox Wi-Fi settings.
-moodlebox_wifi_password: '{{ moodlebox_hostname }}'
-moodlebox_wifi_ssid: '{{ moodlebox_name }}'
-moodlebox_wifi_channel: '11'
-moodlebox_wifi_country: 'CH'
-moodlebox_wifi_dhcp_lease_duration: '1h'
+# MoodleBox Wi-Fi STA settings.
+moodlebox_wifi_sta_interface: 'wlan0'
+moodlebox_wifi_sta_ssid: '<Name of your wireless LAN>'
+moodlebox_wifi_sta_password: '<Password for your wireless LAN>'
+moodlebox_wifi_sta_country: 'CH'
+
+# MoodleBox Wi-Fi AP settings.
 moodlebox_wifi_ap_interface: 'uap0'
+moodlebox_wifi_ap_ssid: '{{ moodlebox_name }}'
+moodlebox_wifi_ap_password: '{{ moodlebox_hostname }}'
+moodlebox_wifi_ap_country: 'CH'
+moodlebox_wifi_ap_channel: '11'
+moodlebox_wifi_ap_dhcp_lease_duration: '1h'
 
 # MoodleBox localisation parameters.
 moodlebox_default_locale: 'en_GB.UTF-8'
@@ -85,7 +91,7 @@ moodlebox_moodle_data_dir: '/var/www/moodledata'
 
 # MoodleBox default build options.
 moodlebox_update_firmware: 'false'
-moodlebox_fix_wifi_capacity: 'true'
+moodlebox_fix_wifi_ap_capacity: 'true'
 moodlebox_set_hostname: 'true'
 moodlebox_set_timezone: 'true'
 moodlebox_set_locale: 'true'

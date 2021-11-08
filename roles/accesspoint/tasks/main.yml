@@ -16,8 +16,9 @@
   blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |
-      interface wlan0
-      nohook wpa_supplicant
+      interface {{ moodlebox_wifi_sta_interface }}
+      # Uncomment following line to disable AP+STA mode
+      # nohook wpa_supplicant
 
       interface {{ moodlebox_wifi_ap_interface }}
       static ip_address={{ moodlebox_ip_address | ipaddr('host') }}
