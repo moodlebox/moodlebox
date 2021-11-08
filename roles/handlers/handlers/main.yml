@@ -15,9 +15,9 @@
     daemon_reload: 'yes'
   with_items:
     - 'nginx'
-    - 'php7.3-fpm'
+    - 'php7.4-fpm'
 
-- name: restart incron
+- name: restart direvent
   systemd:
-    name: 'incron'
+    name: 'direvent'
     state: 'restarted'
