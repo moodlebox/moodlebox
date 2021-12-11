@@ -41,11 +41,11 @@
     - { role: locales, when: moodlebox_set_locale | bool }
     - wifi
     - accesspoint
+    - zeroconf
     - database
     - packages
     - packageconfig
     - partitionresize
-    - zeroconf
     - webserver
     - ipforwarding
     - moodleuninstall
