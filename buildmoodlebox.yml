@@ -42,12 +42,12 @@
     - wifi
     - accesspoint
     - zeroconf
+    - ipforwarding
     - database
     - packages
     - packageconfig
     - partitionresize
     - webserver
-    - ipforwarding
     - moodleuninstall
     - moodledatabase
     - moodleinstall
