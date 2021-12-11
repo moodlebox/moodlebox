@@ -74,3 +74,4 @@
   file:
     path: '/root/.ssh'
     state: 'absent'
+  when: moodlebox_build_type == 'release'
