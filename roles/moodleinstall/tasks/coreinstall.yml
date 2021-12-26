@@ -78,6 +78,7 @@
     --adminuser="{{ moodlebox_moodle_username }}"
     --adminpass="{{ moodlebox_moodle_password }}"
     --adminemail="{{ moodlebox_moodle_username }}@{{ moodlebox_hostname }}.invalid"
+    --supportemail="{{ moodlebox_moodle_username }}@{{ moodlebox_hostname }}.invalid"
     --non-interactive
     --allow-unstable
     --agree-license'
