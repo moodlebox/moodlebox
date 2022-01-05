@@ -5,19 +5,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.1.0, unreleased
+## Version 4.1.0, 2022-01-05
 
 ### Changed
-- New main color for MoodleBox (issue ??)
 - Replace installation routine for minimal wireless chip firmware (issue #235).
-- Update to MoodleBox plugin v2.11.1 (issue #236), fixing a nasty bug.
-
-### Added
-- Set support email address during Moodle install. Needed for Moodle 4.0 (issue #237).
-- MoodleBox comes with a logo for Moodle 4.0 (issue #238).
+- New main color for MoodleBox (issue #240).
+- Update brand logos (issue #241).
 
 ### Fixed
-- TODO
+- Update to MoodleBox plugin v2.11.1 (issue #236), fixing a nasty bug.
 
 ## Version 4.0.0, 2021-11-09
 
