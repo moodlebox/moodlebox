@@ -51,7 +51,7 @@
   lineinfile:
     path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
     regexp: '^    PS1=.*01;32m.*01;34m.*$'
-    line: '    PS1="${debian_chroot:+($debian_chroot)}\[\\e[0;93m\]\\u\[\\e[0m\]@\[\\e[38;5;208m\]\\h\[\\e[0m\]:\[\\e[0;96m\]\\w \[\\e[0m\]\$ "'
+    line: '    PS1="${debian_chroot:+($debian_chroot)}\[\\e[0;93m\]\\u\[\\e[0m\]@\[\\e[38;5;125m\]\\h\[\\e[0m\]:\[\\e[0;96m\]\\w \[\\e[0m\]\$ "'
     insertafter: '^if \[ "\$color_prompt" = yes \]; then'
     backrefs: 'yes'
 
