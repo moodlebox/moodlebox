@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.2.0, 2022-03-05
+
+### Changed
+- Update to Raspberry Pi OS version date 2022-01-28, Debian Bullseye 32bit (issue #243).
+- Update shell logo and prompt with new colors (issue #240).
+
+### Fixed
+- Ensure minimal wireless firmware is used, even after a system update (issue #244).
+- Fix Ansible Lint warnings and shell aliases (no issue number).
+
 ## Version 4.1.0, 2022-01-05
 
 ### Changed
