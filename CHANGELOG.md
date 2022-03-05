@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ### Changed
 - Update to Raspberry Pi OS version date 2022-01-28, Debian Bullseye 32bit (issue #243).
 - Update shell logo and prompt with new colors (issue #240).
+- Update to Moodle 3.11.5+ (no issue number).
 
 ### Fixed
 - Ensure minimal wireless firmware is used, even after a system update (issue #244).
