@@ -2,3 +2,4 @@ warn_list:
   - git-latest # Git checkouts must contain explicit version.
   - no-handler  # Tasks that run when changed should likely be handlers.
   - experimental # All rules tagged as experimental.
+  - fqcn-builtins # Use the fully qualified collection name
