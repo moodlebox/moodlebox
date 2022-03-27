@@ -25,4 +25,4 @@
     masked: 'no'
 
 - name: flush handlers
-  meta: ansible.builtin.flush_handlers:
+  meta: ansible.builtin.flush_handlers
