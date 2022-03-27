@@ -1,7 +1,7 @@
 ---
 
 - name: deploy default locale
-  template:
+  ansible.builtin.template:
     src: 'etc/default/locale.j2'
     dest: '/etc/default/locale'
     mode: '0644'

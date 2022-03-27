@@ -94,7 +94,7 @@
     mode: 'ug+w,o-w'
 
 - name: write extra parameters to the Moodle config file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '{{ moodlebox_moodle_source_dir }}/config.php'
     line: '$CFG->{{ item.name }} = {{ item.value }};'
     insertbefore: '^\$CFG->directorypermissions'

@@ -1,7 +1,7 @@
 ---
 
 - name: remove packages used only during the build
-  apt:
+  ansible.builtin.apt:
     pkg: '{{ packages }}'
     state: 'absent'
     purge: 'yes'
@@ -20,14 +20,14 @@
   when: moodle_db_created is succeeded
 
 - name: remove useless packages from cache and no longer required dependencies
-  apt:
+  ansible.builtin.apt:
     autoremove: 'yes'
     autoclean: 'yes'
   register: useless_packages_removed
   until: useless_packages_removed is succeeded
 
 - name: stop DHCP server
-  systemd:
+  ansible.builtin.systemd:
     name: 'dnsmasq'
     state: 'stopped'
 
@@ -68,7 +68,7 @@
   changed_when: log_files_emptied.rc == 0
 
 - name: reboot box
-  reboot:
+  ansible.builtin.reboot:
 
 - name: remove ssh public keys
   file:

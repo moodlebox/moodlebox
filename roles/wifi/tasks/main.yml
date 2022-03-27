@@ -1,7 +1,7 @@
 ---
 
 - name: update wifi client configuration file 'wpa_supplicant.conf'
-  template:
+  ansible.builtin.template:
     src: 'etc/wpa_supplicant/wpa_supplicant.conf.j2'
     dest: '/etc/wpa_supplicant/wpa_supplicant.conf'
     mode: '0644'
@@ -18,11 +18,11 @@
   notify: restart networking
 
 - name: disable unused wpa_supplicant service
-  systemd:
+  ansible.builtin.systemd:
     name: 'wpa_supplicant'
     state: 'stopped'
     enabled: 'no'
     masked: 'no'
 
 - name: flush handlers
-  meta: flush_handlers
+  meta: ansible.builtin.flush_handlers:

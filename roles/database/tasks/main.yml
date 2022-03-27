@@ -12,7 +12,7 @@
   register: configure_mariadb_install
 
 - name: install MariaDB
-  apt:
+  ansible.builtin.apt:
     pkg: 'mariadb-server'
     state: 'present'
   when: configure_mariadb_install is successful
@@ -20,7 +20,7 @@
   until: install_mariadb is succeeded
 
 - name: install python3-pymysql
-  apt:
+  ansible.builtin.apt:
     pkg: 'python3-pymysql'
     state: 'present'
   register: pymysql_installed
@@ -41,6 +41,6 @@
     mode: '0644'
 
 - name: restart MariaDB database
-  systemd:
+  ansible.builtin.systemd:
     name: 'mariadb'
     state: 'restarted'

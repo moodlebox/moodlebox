@@ -1,6 +1,6 @@
 ---
 - name: configure nginx
-  template:
+  ansible.builtin.template:
     src: 'etc/nginx/sites-available/default.j2'
     dest: '/etc/nginx/sites-available/default'
     mode: '0644'
@@ -14,4 +14,4 @@
   notify: restart web services
 
 - name: flush handlers
-  meta: flush_handlers
+  meta: ansible.builtin.flush_handlers:

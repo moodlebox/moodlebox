@@ -6,7 +6,7 @@
   notify: restart networking
 
 - name: change /etc/hosts
-  template:
+  ansible.builtin.template:
     src: 'etc/hosts.j2'
     dest: '/etc/hosts'
     mode: '0644'

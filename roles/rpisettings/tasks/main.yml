@@ -1,13 +1,13 @@
 ---
 - name: reduce memory split down to 16Mb, as we are on a headless system
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '/boot/config.txt'
     line: 'gpu_mem=16'
   notify:
     - reboot box
 
 - name: enable shutdown/startup hardware button
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '/boot/config.txt'
     line: 'dtoverlay=gpio-shutdown'
     insertafter: '^# Additional overlays and parameters'
@@ -15,7 +15,7 @@
     - reboot box
 
 - name: copy udev rule to add wireless interface for AP mode
-  template:
+  ansible.builtin.template:
     src: 'etc/udev/rules.d/90-wireless.rules.j2'
     dest: '/etc/udev/rules.d/90-wireless.rules'
     mode: '0644'
@@ -23,4 +23,4 @@
     - reboot box
 
 - name: flush handlers
-  meta: flush_handlers
+  meta: ansible.builtin.flush_handlers:

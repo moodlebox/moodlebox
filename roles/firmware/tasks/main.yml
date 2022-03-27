@@ -1,7 +1,7 @@
 ---
 
 - name: install rpi-update
-  apt:
+  ansible.builtin.apt:
     pkg: 'rpi-update'
     state: 'present'
   register: rpi_update_installed
@@ -16,11 +16,11 @@
   changed_when: 'fw_result.rc == 0 and "Your firmware is already up to date" not in fw_result.stdout'
 
 - name: uninstall rpi-update
-  apt:
+  ansible.builtin.apt:
     pkg: 'rpi-update'
     state: 'absent'
     autoclean: 'yes'
     autoremove: 'yes'
 
 - name: reboot box
-  reboot:
+  ansible.builtin.reboot:

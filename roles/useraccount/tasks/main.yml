@@ -8,7 +8,7 @@
   with_items: '{{ moodlebox_username_files }}'
 
 - name: create sudoers file
-  template:
+  ansible.builtin.template:
     src: 'etc/sudoers.d/user.j2'
     dest: '/etc/sudoers.d/010_{{ moodlebox_username }}-nopasswd'
     mode: '0440'
@@ -48,7 +48,7 @@
     # MoodleBox password is well known by design
 
 - name: update .bashrc file (1)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
     regexp: '^    PS1=.*01;32m.*01;34m.*$'
     line: '    PS1="${debian_chroot:+($debian_chroot)}\[\\e[0;93m\]\\u\[\\e[0m\]@\[\\e[38;5;125m\]\\h\[\\e[0m\]:\[\\e[0;96m\]\\w \[\\e[0m\]\$ "'
@@ -56,7 +56,7 @@
     backrefs: 'yes'
 
 - name: update .bashrc file (2)
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
     block: |
       alias l='ls -lh'

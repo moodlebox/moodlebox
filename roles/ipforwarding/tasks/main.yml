@@ -9,11 +9,11 @@
     reload: 'true'
 
 - name: set iptables persistent rules
-  template:
+  ansible.builtin.template:
     src: 'etc/iptables/rules.v4.j2'
     dest: '/etc/iptables/rules.v4'
     mode: '0644'
   notify: restart networking
 
 - name: flush handlers
-  meta: flush_handlers
+  meta: ansible.builtin.flush_handlers:

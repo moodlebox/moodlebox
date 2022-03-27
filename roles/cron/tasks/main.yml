@@ -20,7 +20,7 @@
     - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcm/brcmfmac43455-sdio.bin' }
 
 - name: configure direvent
-  template:
+  ansible.builtin.template:
     src: 'etc/direvent.conf.j2'
     dest: '/etc/direvent.conf'
     mode: '0644'

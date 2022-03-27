@@ -1,7 +1,7 @@
 ---
 
 - name: update apt cache and upgrade
-  apt:
+  ansible.builtin.apt:
     update_cache: 'yes'
     upgrade: 'dist'
     autoclean: 'yes'

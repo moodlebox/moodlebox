@@ -1,15 +1,15 @@
 ---
 
 - name: reboot box
-  reboot:
+  ansible.builtin.reboot:
 
 - name: restart networking
-  systemd:
+  ansible.builtin.systemd:
     name: 'networking'
     state: 'restarted'
 
 - name: restart web services
-  systemd:
+  ansible.builtin.systemd:
     name: '{{ item }}'
     state: 'restarted'
     daemon_reload: 'yes'
@@ -18,6 +18,6 @@
     - 'php7.4-fpm'
 
 - name: restart direvent
-  systemd:
+  ansible.builtin.systemd:
     name: 'direvent'
     state: 'restarted'
