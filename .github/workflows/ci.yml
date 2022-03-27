@@ -27,7 +27,7 @@ jobs:
 #         git diff master | ansible-review
 
       - name: Lint code
-        uses: ansible/ansible-lint-action@master
+        uses: ansible/ansible-lint-action@main
         with:
           targets: 'moodlebox.yml'
           override-deps: |
