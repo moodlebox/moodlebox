@@ -106,4 +106,4 @@
   notify: restart web services
 
 - name: flush handlers
-  meta: ansible.builtin.flush_handlers
+  ansible.builtin.meta: flush_handlers
