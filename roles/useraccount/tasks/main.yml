@@ -1,55 +1,8 @@
 ---
 
-- name: change username to '{{ moodlebox_username }}' in several files
-  replace:
-    path: '{{ item }}'
-    regexp: '\b{{ moodlebox_rpi_username }}\b'
-    replace: '{{ moodlebox_username }}'
-  with_items: '{{ moodlebox_username_files }}'
-
-- name: create sudoers file
-  ansible.builtin.template:
-    src: 'etc/sudoers.d/user.j2'
-    dest: '/etc/sudoers.d/010_{{ moodlebox_username }}-nopasswd'
-    mode: '0440'
-    validate: 'visudo -cf %s'
-
-- name: delete old sudoers file
-  file:
-    path: '/etc/sudoers.d/010_{{ moodlebox_rpi_username }}-nopasswd'
-    state: 'absent'
-
-- name: check presence of '/home/{{ moodlebox_rpi_username }}' directory
-  stat:
-    path: '/home/{{ moodlebox_rpi_username }}'
-  register: pi_home_dir
-
-- name: move user home directory
-  command: 'mv /home/{{ moodlebox_rpi_username }} /home/{{ moodlebox_username }}'
-  when: pi_home_dir.stat.exists and not pi_home_dir.stat.islnk
-
-- name: check presence of '/home/{{ moodlebox_username }}' directory
-  stat:
-    path: '/home/{{ moodlebox_username }}'
-  register: new_home_dir
-
-- name: simlink to old directory
-  file:
-    src: '/home/{{ moodlebox_username }}'
-    path: '/home/{{ moodlebox_rpi_username }}'
-    state: 'link'
-  when: new_home_dir.stat.exists
-
-- name: change user password
-  user:
-    name: '{{ moodlebox_username }}'
-    password: '{{ moodlebox_password | password_hash("md5") }}'
-    # noqa no-log-password
-    # MoodleBox password is well known by design
-
 - name: update .bashrc file (1)
   ansible.builtin.lineinfile:
-    path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
+    path: '/home/{{ moodlebox_username }}/.bashrc'
     regexp: '^    PS1=.*01;32m.*01;34m.*$'
     line: '    PS1="${debian_chroot:+($debian_chroot)}\[\\e[0;93m\]\\u\[\\e[0m\]@\[\\e[38;5;125m\]\\h\[\\e[0m\]:\[\\e[0;96m\]\\w \[\\e[0m\]\$ "'
     insertafter: '^if \[ "\$color_prompt" = yes \]; then'
@@ -57,7 +10,7 @@
 
 - name: update .bashrc file (2)
   ansible.builtin.blockinfile:
-    path: '/home/{{ moodlebox_rpi_username }}/.bashrc'
+    path: '/home/{{ moodlebox_username }}/.bashrc'
     block: |
       alias l='ls -lh'
       alias ll='ls -lAh'

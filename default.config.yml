@@ -100,9 +100,5 @@ moodlebox_mathjax_version: '2.7.9'
 
 moodlebox_build_type: 'release'
 
-# Raspberry default credentials.
-moodlebox_rpi_username: 'pi'
-moodlebox_rpi_password: 'raspberry'
-
 # Raspberry default hostname.
 moodlebox_rpi_hostname: 'raspberrypi'
