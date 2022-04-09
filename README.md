@@ -7,7 +7,7 @@
 [![CI](https://github.com/moodlebox/moodlebox/workflows/CI/badge.svg)](https://github.com/moodlebox/moodlebox/actions?query=workflow%3ACI)
 [![Donate PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://www.paypal.me/moodlebox/50)
 
-A project to build a Moodle server and Wi-Fi router on Raspberry Pi.
+A Moodle server and Wi-Fi router on Raspberry Pi.
 
 ## The MoodleBox Documentation
 
@@ -23,10 +23,12 @@ We have an active [discussion forum][forum] where users and developers can ask q
 
 > If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image][download] and follow the instructions on the [MoodleBox web site][website].
 
-To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 3B+ or 4B.
+To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3A, 3B, 3B+ or 4B.
 
-1. Clone [Raspberry Pi OS (32-bit) Lite image](https://www.raspberrypi.org/downloads/raspberry-pi-os/) on your microSD card.
-1. Create a `ssh.txt` file on the `boot` partition, e.g. using `touch ssh.txt`.
+1. Clone [Raspberry Pi OS (64-bit) Lite image](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit) on your microSD card.
+1. Create a `ssh.txt` file on the `boot` partition with any content.
+1. Create a `userconf.txt` file on the `boot` partition, and add the following line to it:
+   `moodlebox:$6$rmLgDblolU16oLmc$i7QzARV8o84tCDQA/Kq1xU3eYwPWlocqVmpFTcSWqAqiWJpFyTLd.g9W5ktDDh16rq5lwYG9wpHY224m5nHLk0`
 1. Insert the microSD card into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
 1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) on your computer. On macOS, use e.g. `brew install ansible`.
