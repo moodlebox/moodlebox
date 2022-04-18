@@ -5,6 +5,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.3.0, 2022-05-18
+
+### Changed
+- MoodleBox runs now on 64bit architecture (issue #171).
+- Update to Raspberry Pi OS version date 2022-04-04, Debian Bullseye 64bit (issue #246).
+- Update to Moodle 4.0 (issue #229).
+- Remove renaming `pi` user logic (issue #247).
+
+### Fixed
+- Fix multiple Ansible Lint warnings (no issue number).
+- Change MathJax GitHub repo URL to HTTPS (no issue number).
+
 ## Version 4.2.0, 2022-03-05
 
 ### Changed
