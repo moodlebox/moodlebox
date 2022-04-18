@@ -5,7 +5,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.3.0, 2022-05-18
+## Version 4.3.0, 2022-04-18
 
 ### Changed
 - MoodleBox runs now on 64bit architecture (issue #171).
