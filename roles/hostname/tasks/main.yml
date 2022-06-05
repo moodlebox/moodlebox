@@ -1,7 +1,7 @@
 ---
 
 - name: change hostname to '{{ moodlebox_hostname }}'
-  hostname:
+  ansible.builtin.hostname:
     name: '{{ moodlebox_hostname }}'
   notify: restart networking
 

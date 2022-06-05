@@ -1,7 +1,7 @@
 ---
 
 - name: set valid Moodle system paths
-  command: '{{ moodle_config_cmd }} --name={{ item.name }} --set={{ item.value }}'
+  ansible.builtin.command: '{{ moodle_config_cmd }} --name={{ item.name }} --set={{ item.value }}'
   with_items:
     - { name: 'pathtophp', value: '/usr/bin/php' }
     - { name: 'pathtodu', value: '/usr/bin/du' }
@@ -13,6 +13,6 @@
   changed_when: 'system_paths_result.rc == 0'
 
 - name: disable Moodle debug messages display
-  command: '{{ moodle_config_cmd }} --name=debugdisplay --set=0'
+  ansible.builtin.command: '{{ moodle_config_cmd }} --name=debugdisplay --set=0'
   register: debugdisplay_result
   changed_when: 'debugdisplay_result.rc == 0'

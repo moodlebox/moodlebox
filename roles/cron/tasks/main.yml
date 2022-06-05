@@ -1,6 +1,6 @@
 ---
 - name: configure timely cron
-  cron:
+  ansible.builtin.cron:
     name: '{{ item.name }}'
     minute: '{{ item.minute }}'
     job: '{{ item.job }}'
@@ -9,7 +9,7 @@
     - { name: 'Backup cache', minute: '*/20', job: 'rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/' }
 
 - name: configure special time cron
-  cron:
+  ansible.builtin.cron:
     name: '{{ item.name }}'
     special_time: '{{ item.special_time }}'
     job: '{{ item.job }}'

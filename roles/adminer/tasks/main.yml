@@ -1,6 +1,6 @@
 ---
 - name: install adminer latest release
-  get_url:
+  ansible.builtin.get_url:
     url: 'https://www.adminer.org/latest.php'
     dest: '{{ moodlebox_moodle_source_dir }}/adminer.php'
     owner: 'www-data'

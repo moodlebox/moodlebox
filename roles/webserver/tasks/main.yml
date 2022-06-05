@@ -7,7 +7,7 @@
   notify: restart web services
 
 - name: copy SSL certificate and key
-  copy:
+  ansible.builtin.copy:
     src: 'etc/nginx/ssl'
     dest: '/etc/nginx/'
     mode: '0644'

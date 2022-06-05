@@ -8,7 +8,7 @@
   until: rpi_update_installed is succeeded
 
 - name: update firmware
-  command: 'rpi-update'
+  ansible.builtin.command: 'rpi-update'
   environment:
     - SKIP_BACKUP: 1
     - PRUNE_MODULES: 1

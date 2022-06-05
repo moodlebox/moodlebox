@@ -1,14 +1,14 @@
 ---
 
 - name: get Moodle version '{{ moodlebox_moodle_branch }}' from git repository
-  git:
+  ansible.builtin.git:
     repo: 'git://git.moodle.org/moodle.git'
     version: '{{ moodlebox_moodle_branch }}'
     dest: '{{ moodlebox_moodle_source_dir }}'
     depth: 1
 
 - name: create Moodle data and cache directories and set adequate permissions
-  file:
+  ansible.builtin.file:
     path: '{{ item }}'
     state: 'directory'
     owner: 'www-data'
@@ -24,14 +24,14 @@
     - '/var/cache/moodle-cache-backup'
 
 - name: set SGID permission on Moodle data '{{ moodlebox_moodle_data_dir }}' directory
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_data_dir }}'
     state: 'directory'
     mode: 'g+s'
     recurse: 'yes'
 
 - name: create file repository directory
-  file:
+  ansible.builtin.file:
     path: '/home/{{ moodlebox_username }}/files'
     state: 'directory'
     owner: '{{ moodlebox_username }}'
@@ -39,7 +39,7 @@
     mode: 'g+s'
 
 - name: link file repository directories
-  file:
+  ansible.builtin.file:
     src: '{{ item.src }}'
     path: '{{ item.path }}'
     state: 'link'
@@ -63,7 +63,7 @@
 
 # https://github.com/HCPSS/ansible-role-moodle/blob/master/tasks/install.yml
 - name: install Moodle via CLI
-  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/install.php"
+  ansible.builtin.command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/install.php"
     --lang="{{ moodlebox_moodle_lang }}"
     --wwwroot="http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}"
     --dataroot="{{ moodlebox_moodle_data_dir }}"
@@ -86,7 +86,7 @@
     creates: '{{ moodlebox_moodle_source_dir }}/config.php'
 
 - name: set Moodle config file owner, group and permissions
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/config.php'
     owner: 'www-data'
     group: '{{ moodlebox_username }}'

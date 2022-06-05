@@ -13,7 +13,7 @@
     mode: '0644'
 
 - name: copy ascii logo file
-  copy:
+  ansible.builtin.copy:
     src: 'etc/moodlebox-logo.txt'
     dest: '/etc/{{ moodlebox_logo_file }}'
     mode: '0644'

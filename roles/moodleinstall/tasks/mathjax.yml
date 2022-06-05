@@ -1,14 +1,14 @@
 ---
 
 - name: get MathJax library version '{{ moodlebox_mathjax_version }}' from git repository
-  git:
+  ansible.builtin.git:
     repo: 'https://github.com/mathjax/MathJax.git'
     dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     version: '{{ moodlebox_mathjax_version }}'
     depth: 1
 
 - name: change MathJax library file permissions
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     state: 'directory'
     owner: 'www-data'
@@ -17,7 +17,7 @@
     recurse: 'yes'
 
 - name: change MathJax library URL
-  command: >
+  ansible.builtin.command: >
     {{ moodle_config_cmd }} --component=filter_mathjaxloader --name=httpsurl --set=/lib/MathJax/MathJax.js
   register: mathjax_url_result
   changed_when: 'mathjax_url_result.rc == 0'

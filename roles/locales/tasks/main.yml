@@ -13,7 +13,7 @@
   with_items: '{{ moodlebox_locales }}'
 
 - name: generate locales
-  command: 'locale-gen'
+  ansible.builtin.command: 'locale-gen'
   register: localegen_result
   failed_when: localegen_result.rc > 1
   changed_when: localegen_result.rc == 0

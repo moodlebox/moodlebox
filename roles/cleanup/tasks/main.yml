@@ -11,7 +11,7 @@
       - 'rpi-update'
 
 - name: clean Moodle database log tables
-  command: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
+  ansible.builtin.command: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
   with_items:
     - 'mdl_config_log'
     - 'mdl_logstore_standard_log'
@@ -32,7 +32,7 @@
     state: 'stopped'
 
 - name: cleanup DHCP leases
-  file:
+  ansible.builtin.file:
     path: '/var/lib/misc/dnsmasq.leases'
     state: 'absent'
 
@@ -56,13 +56,13 @@
     - '/root/.nano_history'
 
 - name: find log files to truncate
-  find:
+  ansible.builtin.find:
     paths: '/var/log'
     recurse: 'yes'
   register: log_files
 
 - name: empty log files
-  command: 'truncate --size 0 {{ item.path }}'
+  ansible.builtin.command: 'truncate --size 0 {{ item.path }}'
   with_items:
     - '{{ log_files.files }}'
   register: log_files_emptied
@@ -72,7 +72,7 @@
   ansible.builtin.reboot:
 
 - name: remove ssh public keys
-  file:
+  ansible.builtin.file:
     path: '/root/.ssh'
     state: 'absent'
   when: moodlebox_build_type == 'release'

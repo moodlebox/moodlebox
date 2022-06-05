@@ -8,7 +8,7 @@
   notify: restart networking
 
 - name: unblock wifi, since wifi country is set
-  copy:
+  ansible.builtin.copy:
     dest: '{{ item }}'
     content: '0'
     mode: '0644'

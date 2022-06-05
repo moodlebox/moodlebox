@@ -1,6 +1,6 @@
 ---
 - name: copy root CA certificate
-  copy:
+  ansible.builtin.copy:
     src: 'home/files/moodleboxCA.crt'
     dest: '/home/{{ moodlebox_username }}/files/moodleboxCA.crt'
     owner: '{{ moodlebox_username }}'

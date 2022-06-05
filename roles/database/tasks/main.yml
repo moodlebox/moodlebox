@@ -1,7 +1,7 @@
 ---
 
 - name: configure MariaDB root password
-  debconf:
+  ansible.builtin.debconf:
     name: 'mariadb-server'
     question: '{{ item }}'
     vtype: 'password'
@@ -35,7 +35,7 @@
   no_log: 'true'
 
 - name: update MariaDB settings
-  copy:
+  ansible.builtin.copy:
     src: 'etc/mysql/mariadb.conf.d/50-server.cnf'
     dest: '/etc/mysql/mariadb.conf.d/50-server.cnf'
     mode: '0644'

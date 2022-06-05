@@ -1,7 +1,7 @@
 ---
 
 - name: copy usbmount deb package file
-  copy:
+  ansible.builtin.copy:
     src: 'usbmount_0.0.24_all.deb'
     dest: '/tmp/usbmount.deb'
     mode: '0644'
@@ -11,18 +11,18 @@
     deb: '/tmp/usbmount.deb'
 
 - name: delete usbmount deb package file
-  file:
+  ansible.builtin.file:
     path: '/tmp/usbmount.deb'
     state: 'absent'
 
 - name: enable ntfs and exfat formats mounting by usbmount
-  replace:
+  ansible.builtin.replace:
     path: '/etc/usbmount/usbmount.conf'
     regexp: '^FILESYSTEMS=.*$'
     replace: 'FILESYSTEMS="vfat exfat ntfs fuseblk ext2 ext3 ext4 hfsplus"'
 
 - name: copy nodogsplash deb package file
-  copy:
+  ansible.builtin.copy:
     src: 'nodogsplash_5.0.0-1_armhf.deb'
     dest: '/tmp/nodogsplash.deb'
     mode: '0644'
@@ -32,7 +32,7 @@
     deb: '/tmp/nodogsplash.deb'
 
 - name: delete nodogsplash deb package file
-  file:
+  ansible.builtin.file:
     path: '/tmp/nodogsplash.deb'
     state: 'absent'
 
@@ -50,12 +50,12 @@
     masked: 'false'
 
 - name: remove default nodogsplash files
-  file:
+  ansible.builtin.file:
     path: '/etc/nodogsplash/htdocs'
     state: 'absent'
 
 - name: update nodogsplash files
-  copy:
+  ansible.builtin.copy:
     src: 'etc/nodogsplash/htdocs'
     dest: '/etc/nodogsplash'
     mode: '0644'

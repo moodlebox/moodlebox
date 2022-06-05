@@ -1,13 +1,13 @@
 ---
 - name: get MoodleBox plugin version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
-  git:
+  ansible.builtin.git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     version: '{{ moodlebox_moodlebox_plugin_version }}'
     depth: 1
 
 - name: touch files for MoodleBox plugin functionality
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/{{ item }}'
     state: 'touch'
     mode: '0664'
@@ -20,7 +20,7 @@
     - '.resize-partition'
 
 - name: change MoodleBox plugin file permissions (1)
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     state: 'directory'
     owner: 'www-data'
@@ -29,21 +29,21 @@
     recurse: 'yes'
 
 - name: change MoodleBox plugin file permissions (2)
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
     state: 'directory'
     mode: '0774'
     recurse: 'yes'
 
 - name: create sudoers file for MoodleBox plugin usage
-  copy:
+  ansible.builtin.copy:
     src: 'etc/sudoers.d/020_www-data-nopasswd'
     dest: '/etc/sudoers.d/020_www-data-nopasswd'
     mode: '0440'
     validate: 'visudo -cf %s'
 
 - name: install MoodleBox plugin via CLI
-  command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
+  ansible.builtin.command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
     --allow-unstable
     --non-interactive'
   args:
