@@ -10,8 +10,8 @@
 - name: update firmware
   ansible.builtin.command: 'rpi-update'
   environment:
-    - SKIP_BACKUP: 1
-    - PRUNE_MODULES: 1
+    SKIP_BACKUP: '1'
+    PRUNE_MODULES: '1'
   register: fw_result
   changed_when: 'fw_result.rc == 0 and "Your firmware is already up to date" not in fw_result.stdout'
 

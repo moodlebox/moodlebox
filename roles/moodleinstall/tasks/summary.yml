@@ -2,7 +2,7 @@
 - name: format release date using locales
   ansible.builtin.command: "date --date={{ moodlebox_release_date }} '+%-d %B %Y'"
   environment:
-    - LC_ALL: '{{ item.1 }}'
+    LC_ALL: '{{ item.1 }}'
   with_indexed_items: '{{ moodlebox_locales }}'
   register: 'formatted_dates'
   when: 'formatted_dates is not defined or item.0 < moodlebox_locales|length'
