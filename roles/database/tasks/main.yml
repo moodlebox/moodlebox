@@ -32,7 +32,7 @@
     password: '{{ moodlebox_db_password }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'
     priv: '*.*:ALL,GRANT'
-  no_log: 'true'
+  no_log: true
 
 - name: update MariaDB settings
   ansible.builtin.copy:
