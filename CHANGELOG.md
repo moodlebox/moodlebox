@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.4.0, 2022-08-04
+
+### Changed
+- Update to Moodle 4.0.2+ (no issue number).
+
+### Fixed
+- Update to MoodleBox plugin v2.13.0 (#249), fixing bad display of UI buttons in footer.
+
 ## Version 4.3.0, 2022-04-18
 
 ### Changed
