@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Update to Moodle 4.0.2+ (no issue number).
 
 ### Fixed
-- Update to MoodleBox plugin v2.13.0 (#249), fixing bad display of UI buttons in footer.
+- Update to MoodleBox plugin v2.13.1 (#252 ), fixing bad display of UI buttons in footer.
 
 ## Version 4.3.0, 2022-04-18
 
