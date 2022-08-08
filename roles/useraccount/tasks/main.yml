@@ -20,3 +20,16 @@
       bind '"\e[B":history-search-forward'
       # TAB cycles through the list of partial matches
       bind 'TAB:menu-complete'
+
+# disable autologin, step 1
+- name: change default target to multi-user.target
+  ansible.builtin.file:
+    src: /usr/lib/systemd/system/multi-user.target
+    path: /etc/systemd/system/default.target
+    state: link
+
+# disable autologin, step 2
+- name: remove `autologin.conf` file
+  ansible.builtin.file:
+    path: '/etc/systemd/system/getty@tty1.service.d/autologin.conf'
+    state: absent
