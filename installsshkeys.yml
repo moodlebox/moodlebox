@@ -1,4 +1,5 @@
 ---
+
 - name: playbook to get SSH public key into root account
   hosts: all
 
@@ -7,13 +8,13 @@
 
   pre_tasks:
     - name: include customised variables
-      include_vars: '{{ item }}'
+      ansible.builtin.include_vars: '{{ item }}'
       with_fileglob:
         - config.yml
 
   tasks:
     - name: install SSH public key to root user
-      become: 'true'
+      become: true
       authorized_key:
         user: root
         key: '{{ ssh_pubkey }}'

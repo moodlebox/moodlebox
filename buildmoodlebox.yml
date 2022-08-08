@@ -1,16 +1,17 @@
 ---
+
 - name: playbook to provision most of the MoodleBox
   hosts: all
   vars:
     ansible_user: 'root'
-  become: 'true'
+  become: true
 
   vars_files:
     - default.config.yml
 
   pre_tasks:
     - name: print out begin of build date and time
-      debug:
+      ansible.builtin.debug:
         msg: 'Beginning of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
 
     - name: set fact with build start timestamp
@@ -18,16 +19,16 @@
         build_start: '{{ lookup("pipe", "date +%s") }}'
 
     - name: include customised variables
-      include_vars: '{{ item }}'
+      ansible.builtin.include_vars: '{{ item }}'
       with_fileglob:
         - config.yml
 
   post_tasks:
     - name: print out end of build date and time and build duration
-      debug:
+      ansible.builtin.debug:
         msg:
           - 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
-          - 'Build duration: {{ lookup("pipe", "date +%s")|int - build_start|int }} s'
+          - 'Build duration: {{ lookup("pipe", "date +%s") | int - build_start | int }} s'
 
   roles:
     - handlers # This special 'role' defines all handlers.
