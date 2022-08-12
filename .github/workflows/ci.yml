@@ -21,9 +21,7 @@ jobs:
           git ls-files '*.yaml' '*.yml' | xargs yamllint
 #         git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
 #         git diff master | ansible-review
-      - name: Lint code
+      - name: Lint code.
         uses: ansible-community/ansible-lint-action@main
         with:
           path: 'moodlebox.yml'
-          override-deps: |
-            ansible-lint==5.3.2
