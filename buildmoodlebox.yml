@@ -2,6 +2,8 @@
 
 - name: playbook to provision most of the MoodleBox
   hosts: all
+  collections:
+    - community.general
   vars:
     ansible_user: 'root'
   become: true
