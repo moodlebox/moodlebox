@@ -1,0 +1,8 @@
+---
+
+- name: drop database for Moodle
+  community.mysql.mysql_db:
+    name: '{{ moodlebox_moodle_db }}'
+    login_unix_socket: '/var/run/mysqld/mysqld.sock'
+    state: 'absent'
+  when: moodle_db_exists is changed

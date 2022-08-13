@@ -31,7 +31,7 @@
           - 'Build duration: {{ lookup("pipe", "date +%s") | int - build_start | int }} s'
 
   roles:
-    - handlers # This special 'role' defines all handlers.
+    - handlers # This special 'role' defines all generic handlers.
     - rpisettings
     - apt
     - { role: firmware, when: moodlebox_update_firmware | bool }

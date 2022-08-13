@@ -6,7 +6,4 @@
     path: '/etc/localtime'
     state: 'link'
   register: timezone_status
-
-- name: update tzdata
-  ansible.builtin.command: 'dpkg-reconfigure -f noninteractive tzdata'
-  when: timezone_status is changed
+  notify: update tzdata
