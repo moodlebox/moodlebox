@@ -4,7 +4,7 @@
   ansible.builtin.command: mysql -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
   register: moodle_db_exists
   failed_when: moodle_db_exists.rc > 1
-  changed_when: moodle_db_exists.rc == 0
+  changed_when: moodle_db_exists.stdout | length > 0
   notify: drop database for Moodle
 
 - name: remove temporary storage for Moodle cache
