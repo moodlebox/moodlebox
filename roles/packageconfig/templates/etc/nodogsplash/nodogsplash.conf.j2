@@ -14,7 +14,7 @@ FirewallRuleSet users-to-router {
     FirewallRule allow tcp port 443
 }
 GatewayName MoodleBox
-GatewayAddress {{ moodlebox_ip_address | ipaddr('address') }}
+GatewayAddress {{ moodlebox_ip_address | ansible.utils.ipaddr('address') }}
 RedirectURL http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}/
 GatewayPort 2050
 MaxClients 50

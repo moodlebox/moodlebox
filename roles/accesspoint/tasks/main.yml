@@ -12,7 +12,7 @@
   register: access_point_mode_packages_installed
   until: access_point_mode_packages_installed is succeeded
 
-- name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ipaddr('host') }}
+- name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ansible.utils.ipaddr('host') }}
   ansible.builtin.blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |
@@ -21,7 +21,7 @@
       # nohook wpa_supplicant
 
       interface {{ moodlebox_wifi_ap_interface }}
-      static ip_address={{ moodlebox_ip_address | ipaddr('host') }}
+      static ip_address={{ moodlebox_ip_address | ansible.utils.ipaddr('host') }}
       nohook wpa_supplicant
   notify: restart networking
 
