@@ -5,13 +5,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.4.0, 2022-08-13
+## Version 4.4.0, 2022-08-14
 
 ### Changed
 - Update to Moodle 4.0.2+ (no issue number).
+- Update Ansible IP address filters (issue #254).
 
 ### Fixed
-- Update to MoodleBox plugin v2.13.1 (#252 ), fixing bad display of UI buttons in footer.
+- Update to MoodleBox plugin v2.13.1, fixing bad display of UI buttons in footer (issue #252).
+- Workaround Raspberry OS bug autologin in console (issue #250).
+- Fix wrong conditionals in task (issue #253).
 - Fix multiple Ansible Lint warnings (no issue number).
 
 ## Version 4.3.0, 2022-04-18
