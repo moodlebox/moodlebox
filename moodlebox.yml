@@ -4,5 +4,9 @@
 #   brew install sshpass
 ---
 
+- hosts: all
+  collections:
+    - community.general
+
 - import_playbook: installsshkeys.yml
 - import_playbook: buildmoodlebox.yml
