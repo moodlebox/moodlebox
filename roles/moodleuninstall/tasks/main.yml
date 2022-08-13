@@ -35,3 +35,6 @@
       # fill this file.
       #
     mode: '0644'
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers

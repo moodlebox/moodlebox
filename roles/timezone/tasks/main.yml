@@ -7,3 +7,6 @@
     state: 'link'
   register: timezone_status
   notify: update tzdata
+
+- name: flush handlers
+  ansible.builtin.meta: flush_handlers
