@@ -1,4 +1,5 @@
 ---
+
 - name: format release date using locales
   ansible.builtin.command: "date --date={{ moodlebox_release_date }} '+%-d %B %Y'"
   environment:

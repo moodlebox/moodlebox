@@ -1,4 +1,5 @@
 ---
+
 - name: install adminer latest release
   ansible.builtin.get_url:
     url: 'https://www.adminer.org/latest.php'

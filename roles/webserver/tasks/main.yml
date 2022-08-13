@@ -1,4 +1,5 @@
 ---
+
 - name: configure nginx
   ansible.builtin.template:
     src: 'etc/nginx/sites-available/default.j2'

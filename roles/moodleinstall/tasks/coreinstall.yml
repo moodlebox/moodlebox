@@ -48,7 +48,7 @@
     - { src: '/media/usb', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
 
 - name: configure temporary storage for Moodle cache
-  mount:
+  ansible.posix.mount:
     path: '{{ item.name }}'
     src: 'tmpfs'
     fstype: 'tmpfs'

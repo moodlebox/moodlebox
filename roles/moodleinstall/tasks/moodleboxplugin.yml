@@ -1,4 +1,5 @@
 ---
+
 - name: get MoodleBox plugin version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
   ansible.builtin.git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'

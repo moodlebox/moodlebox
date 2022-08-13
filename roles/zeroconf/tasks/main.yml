@@ -1,4 +1,5 @@
 ---
+
 - name: configure zeroconf service
   ansible.builtin.template:
     src: 'etc/avahi/services/moodlebox.service.j2'

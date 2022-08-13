@@ -37,7 +37,7 @@
     state: 'absent'
 
 - name: cleanup dirs and files
-  include_tasks: cleandirfile.yml
+  ansible.builtin.include_tasks: cleandirfile.yml
   with_items:
     - '{{ moodlebox_moodle_data_dir }}/cache/cachestore_file'
     - '{{ moodlebox_moodle_data_dir }}/cache/'

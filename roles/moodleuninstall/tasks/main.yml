@@ -1,4 +1,5 @@
 ---
+
 - name: check if database for Moodle exists
   ansible.builtin.command: mysql -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
   register: moodle_db_exists
@@ -6,14 +7,14 @@
   changed_when: moodle_db_exists.rc == 0
 
 - name: drop database for Moodle
-  mysql_db:
+  community.mysql.mysql_db:
     name: '{{ moodlebox_moodle_db }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'
     state: 'absent'
   when: moodle_db_exists is changed
 
 - name: remove temporary storage for Moodle cache
-  mount:
+  ansible.posix.mount:
     name: '{{ item.name }}'
     state: 'unmounted'
   with_items:

@@ -27,7 +27,7 @@
   until: pymysql_installed is succeeded
 
 - name: add '{{ moodlebox_db_username }}' MariaDB user with all privileges
-  mysql_user:
+  community.mysql.mysql_user:
     name: '{{ moodlebox_db_username }}'
     password: '{{ moodlebox_db_password }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'

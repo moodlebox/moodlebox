@@ -1,4 +1,5 @@
 ---
+
 - name: reduce memory split down to 16Mb, as we are on a headless system
   ansible.builtin.lineinfile:
     path: '/boot/config.txt'

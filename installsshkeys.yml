@@ -15,7 +15,7 @@
   tasks:
     - name: install SSH public key to root user
       become: true
-      authorized_key:
+      ansible.posix.authorized_key:
         user: root
         key: '{{ ssh_pubkey }}'
       when:
