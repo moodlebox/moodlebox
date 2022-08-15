@@ -15,6 +15,12 @@
     dest: '/etc/{{ moodlebox_info_file }}'
     mode: '0644'
 
+- name: copy version file to boot partition
+  ansible.builtin.copy:
+    src: '/etc/{{ moodlebox_info_file }}'
+    dest: '/boot/{{ moodlebox_info_file }}.txt'
+    remote_src: true
+
 - name: update motd
   ansible.builtin.template:
     src: 'etc/motd.j2'
