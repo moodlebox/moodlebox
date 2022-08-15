@@ -4,6 +4,8 @@
   ansible.builtin.lineinfile:
     path: '/boot/config.txt'
     line: 'gpu_mem=16'
+    insertafter: '^\[all\]'
+    firstmatch: true
   notify:
     - reboot box
 
