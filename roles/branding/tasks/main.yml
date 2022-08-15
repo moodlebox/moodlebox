@@ -1,5 +1,14 @@
 ---
 
+- name: read reference image version from '/boot/issue.txt'
+  ansible.builtin.slurp:
+    src: /boot/issue.txt
+  register: issuefile
+
+- name: set 'referenceimage' variable
+  ansible.builtin.set_fact:
+    referenceimage: "{{ issuefile['content'] | b64decode | regex_findall('^(.*)\\n') | first }}"
+
 - name: write version file
   ansible.builtin.template:
     src: 'etc/moodlebox-info.j2'
