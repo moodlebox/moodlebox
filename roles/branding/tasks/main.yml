@@ -19,6 +19,7 @@
   ansible.builtin.copy:
     src: '/etc/{{ moodlebox_info_file }}'
     dest: '/boot/{{ moodlebox_info_file }}.txt'
+    mode: '0644'
     remote_src: true
 
 - name: update motd
