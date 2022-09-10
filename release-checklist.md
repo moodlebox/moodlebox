@@ -14,7 +14,7 @@ git commit -m "Update release notes for upcoming release x.y.z"
 
 - [ ] Update version of Moodle (branch) in `default.config.yml`, if needed
 - [ ] Update version of Moodle in summary string, in `default.config.yml`
-- [ ] Update version of MoodleBox plugin in `default.config.yml`, if needed
+- [ ] Update version of [MoodleBox plugin](https://github.com/moodlebox/moodle-tool_moodlebox) in `default.config.yml`, if needed
 - [ ] Update version of [MathJax](https://www.mathjax.org/#docs) in `default.config.yml`, if needed
 - [ ] Update version date in `default.config.yml`
 - [ ] Update version date and other content in `CHANGELOG.md`, if needed
