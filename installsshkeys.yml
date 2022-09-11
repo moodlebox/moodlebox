@@ -1,19 +1,19 @@
 ---
 
-- name: playbook to get SSH public key into root account
+- name: Playbook to get SSH public key into root account
   hosts: all
 
   vars_files:
     - default.config.yml
 
   pre_tasks:
-    - name: include customised variables
+    - name: Include customised variables
       ansible.builtin.include_vars: '{{ item }}'
       with_fileglob:
         - config.yml
 
   tasks:
-    - name: install SSH public key to root user
+    - name: Install SSH public key to root user
       become: true
       ansible.posix.authorized_key:
         user: root

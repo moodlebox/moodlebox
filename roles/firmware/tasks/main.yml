@@ -1,13 +1,13 @@
 ---
 
-- name: install rpi-update
+- name: Install rpi-update
   ansible.builtin.apt:
     pkg: 'rpi-update'
     state: 'present'
   register: rpi_update_installed
   until: rpi_update_installed is succeeded
 
-- name: update firmware
+- name: Update firmware
   ansible.builtin.command: 'rpi-update'
   environment:
     SKIP_BACKUP: '1'
@@ -15,12 +15,12 @@
   register: fw_result
   changed_when: 'fw_result.rc == 0 and "Your firmware is already up to date" not in fw_result.stdout'
 
-- name: uninstall rpi-update
+- name: Uninstall rpi-update
   ansible.builtin.apt:
     pkg: 'rpi-update'
     state: 'absent'
     autoclean: 'yes'
     autoremove: 'yes'
 
-- name: reboot box
+- name: Reboot box
   ansible.builtin.reboot:

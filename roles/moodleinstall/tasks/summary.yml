@@ -1,6 +1,6 @@
 ---
 
-- name: format release date using locales
+- name: Format release date using locales
   ansible.builtin.command: "date --date={{ moodlebox_release_date }} '+%-d %B %Y'"
   environment:
     LC_ALL: '{{ item.1 }}'
@@ -8,7 +8,7 @@
   register: 'formatted_dates'
   when: 'formatted_dates is not defined or item.0 < moodlebox_locales|length'
 
-- name: set vars with formatted dates
+- name: Set vars with formatted dates
   ansible.builtin.set_fact: '{{ item.0 | regex_replace("^(.*)_.*UTF-8$", "moodlebox_release_date_\1") }}={{ item.1.stdout }}'
   # noqa var-naming
   # var name is valid after regex replacement
@@ -16,6 +16,6 @@
     - '{{ moodlebox_locales }}'
     - '{{ formatted_dates.results }}'
 
-- name: set summary string with formatted dates
+- name: Set summary string with formatted dates
   ansible.builtin.set_fact:
     moodlebox_moodle_summary: '{{ moodlebox_moodle_summary }}'

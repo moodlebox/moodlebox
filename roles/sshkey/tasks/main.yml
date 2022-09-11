@@ -1,6 +1,6 @@
 ---
 
-- name: copy authorized key
+- name: Copy authorized key
   ansible.posix.authorized_key:
     user: '{{ moodlebox_username }}'
     key: "{{ lookup('file', 'keys/' + moodlebox_public_key_file) }}"

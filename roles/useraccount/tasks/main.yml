@@ -1,6 +1,6 @@
 ---
 
-- name: update .bashrc file (1)
+- name: Update .bashrc file (1)
   ansible.builtin.lineinfile:
     path: '/home/{{ moodlebox_username }}/.bashrc'
     regexp: '^    PS1=.*01;32m.*01;34m.*$'
@@ -8,7 +8,7 @@
     insertafter: '^if \[ "\$color_prompt" = yes \]; then'
     backrefs: 'yes'
 
-- name: update .bashrc file (2)
+- name: Update .bashrc file (2)
   ansible.builtin.blockinfile:
     path: '/home/{{ moodlebox_username }}/.bashrc'
     block: |
@@ -22,14 +22,14 @@
       bind 'TAB:menu-complete'
 
 # disable autologin, step 1
-- name: change default target to multi-user.target
+- name: Change default target to multi-user.target
   ansible.builtin.file:
     src: '/usr/lib/systemd/system/multi-user.target'
     path: '/etc/systemd/system/default.target'
     state: link
 
 # disable autologin, step 2
-- name: remove `autologin.conf` file
+- name: Remove `autologin.conf` file
   ansible.builtin.file:
     path: '/etc/systemd/system/getty@tty1.service.d/autologin.conf'
     state: absent

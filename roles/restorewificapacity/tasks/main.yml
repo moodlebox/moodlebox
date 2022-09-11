@@ -1,6 +1,6 @@
 ---
 
-- name: replace wireless chip firmware with minimal one
+- name: Replace wireless chip firmware with minimal one
   ansible.builtin.file:
     path: '/lib/firmware/brcm/{{ item.dest }}'
     src: '../cypress/{{ item.src }}'

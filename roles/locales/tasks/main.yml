@@ -1,18 +1,18 @@
 ---
 
-- name: deploy default locale
+- name: Deploy default locale
   ansible.builtin.template:
     src: 'etc/default/locale.j2'
     dest: '/etc/default/locale'
     mode: '0644'
 
-- name: add locales
+- name: Add locales
   community.general.locale_gen:
     name: '{{ item }}'
     state: 'present'
   with_items: '{{ moodlebox_locales }}'
 
-- name: generate locales
+- name: Generate locales
   ansible.builtin.command: 'locale-gen'
   register: localegen_result
   failed_when: localegen_result.rc > 1

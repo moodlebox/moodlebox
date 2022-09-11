@@ -1,18 +1,18 @@
 ---
 
-- name: configure nginx
+- name: Configure nginx
   ansible.builtin.template:
     src: 'etc/nginx/sites-available/default.j2'
     dest: '/etc/nginx/sites-available/default'
     mode: '0644'
   notify: restart web services
 
-- name: copy SSL certificate and key
+- name: Copy SSL certificate and key
   ansible.builtin.copy:
     src: 'etc/nginx/ssl'
     dest: '/etc/nginx/'
     mode: '0644'
   notify: restart web services
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

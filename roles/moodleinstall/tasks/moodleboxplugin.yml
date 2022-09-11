@@ -1,13 +1,13 @@
 ---
 
-- name: get MoodleBox plugin version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
+- name: Get MoodleBox plugin version '{{ moodlebox_moodlebox_plugin_version }}' from git repository
   ansible.builtin.git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
     dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     version: '{{ moodlebox_moodlebox_plugin_version }}'
     depth: 1
 
-- name: touch files for MoodleBox plugin functionality
+- name: Touch files for MoodleBox plugin functionality
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/{{ item }}'
     state: 'touch'
@@ -20,7 +20,7 @@
     - '.wifisettings'
     - '.resize-partition'
 
-- name: change MoodleBox plugin file permissions (1)
+- name: Change MoodleBox plugin file permissions (1)
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
     state: 'directory'
@@ -29,21 +29,21 @@
     mode: 'ug+w,o-w'
     recurse: 'yes'
 
-- name: change MoodleBox plugin file permissions (2)
+- name: Change MoodleBox plugin file permissions (2)
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
     state: 'directory'
     mode: '0774'
     recurse: 'yes'
 
-- name: create sudoers file for MoodleBox plugin usage
+- name: Create sudoers file for MoodleBox plugin usage
   ansible.builtin.copy:
     src: 'etc/sudoers.d/020_www-data-nopasswd'
     dest: '/etc/sudoers.d/020_www-data-nopasswd'
     mode: '0440'
     validate: 'visudo -cf %s'
 
-- name: install MoodleBox plugin via CLI
+- name: Install MoodleBox plugin via CLI
   ansible.builtin.command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/upgrade.php"
     --allow-unstable
     --non-interactive'

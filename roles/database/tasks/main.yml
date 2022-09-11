@@ -1,6 +1,6 @@
 ---
 
-- name: configure MariaDB root password
+- name: Configure MariaDB root password
   ansible.builtin.debconf:
     name: 'mariadb-server'
     question: '{{ item }}'
@@ -11,7 +11,7 @@
     - 'mysql-server/root_password_again'
   register: configure_mariadb_install
 
-- name: install MariaDB
+- name: Install MariaDB
   ansible.builtin.apt:
     pkg: 'mariadb-server'
     state: 'present'
@@ -19,14 +19,14 @@
   register: install_mariadb
   until: install_mariadb is succeeded
 
-- name: install python3-pymysql
+- name: Install python3-pymysql
   ansible.builtin.apt:
     pkg: 'python3-pymysql'
     state: 'present'
   register: pymysql_installed
   until: pymysql_installed is succeeded
 
-- name: add '{{ moodlebox_db_username }}' MariaDB user with all privileges
+- name: Add '{{ moodlebox_db_username }}' MariaDB user with all privileges
   community.mysql.mysql_user:
     name: '{{ moodlebox_db_username }}'
     password: '{{ moodlebox_db_password }}'
@@ -34,13 +34,13 @@
     priv: '*.*:ALL,GRANT'
   no_log: true
 
-- name: update MariaDB settings
+- name: Update MariaDB settings
   ansible.builtin.copy:
     src: 'etc/mysql/mariadb.conf.d/50-server.cnf'
     dest: '/etc/mysql/mariadb.conf.d/50-server.cnf'
     mode: '0644'
 
-- name: restart MariaDB database
+- name: Restart MariaDB database
   ansible.builtin.systemd:
     name: 'mariadb'
     state: 'restarted'

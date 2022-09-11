@@ -1,6 +1,6 @@
 ---
 
-- name: create database '{{ moodlebox_moodle_db }}' for Moodle
+- name: Create database '{{ moodlebox_moodle_db }}' for Moodle
   community.mysql.mysql_db:
     name: '{{ moodlebox_moodle_db }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'

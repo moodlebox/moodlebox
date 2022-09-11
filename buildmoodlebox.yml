@@ -1,6 +1,6 @@
 ---
 
-- name: playbook to provision most of the MoodleBox
+- name: Playbook to provision most of the MoodleBox
   hosts: all
   vars:
     ansible_user: 'root'
@@ -10,21 +10,21 @@
     - default.config.yml
 
   pre_tasks:
-    - name: print out begin of build date and time
+    - name: Print out begin of build date and time
       ansible.builtin.debug:
         msg: 'Beginning of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'
 
-    - name: set fact with build start timestamp
+    - name: Set fact with build start timestamp
       ansible.builtin.set_fact:
         build_start: '{{ lookup("pipe", "date +%s") }}'
 
-    - name: include customised variables
+    - name: Include customised variables
       ansible.builtin.include_vars: '{{ item }}'
       with_fileglob:
         - config.yml
 
   post_tasks:
-    - name: print out end of build date and time and build duration
+    - name: Print out end of build date and time and build duration
       ansible.builtin.debug:
         msg:
           - 'End of build: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}'

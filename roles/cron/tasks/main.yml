@@ -1,6 +1,6 @@
 ---
 
-- name: configure timely cron
+- name: Configure timely cron
   ansible.builtin.cron:
     name: '{{ item.name }}'
     minute: '{{ item.minute }}'
@@ -9,7 +9,7 @@
     - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n10 ionice -c2 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
     - { name: 'Backup cache', minute: '*/20', job: 'rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/' }
 
-- name: configure special time cron
+- name: Configure special time cron
   ansible.builtin.cron:
     name: '{{ item.name }}'
     special_time: '{{ item.special_time }}'
@@ -20,14 +20,14 @@
     # this long line is OK
     - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcm/brcmfmac43455-sdio.bin' }
 
-- name: configure direvent
+- name: Configure direvent
   ansible.builtin.template:
     src: 'etc/direvent.conf.j2'
     dest: '/etc/direvent.conf'
     mode: '0644'
   register: direvent_configured
 
-- name: configure cron mailto variable to suppress warnings in log
+- name: Configure cron mailto variable to suppress warnings in log
   cronvar:
     name: MAILTO
     value: '""'

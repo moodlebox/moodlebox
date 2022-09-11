@@ -1,4 +1,4 @@
 ---
 
-- name: update tzdata
+- name: Update tzdata
   ansible.builtin.command: 'dpkg-reconfigure -f noninteractive tzdata'

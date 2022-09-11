@@ -1,13 +1,13 @@
 ---
 
-- name: get Moodle version '{{ moodlebox_moodle_branch }}' from git repository
+- name: Get Moodle version '{{ moodlebox_moodle_branch }}' from git repository
   ansible.builtin.git:
     repo: 'git://git.moodle.org/moodle.git'
     version: '{{ moodlebox_moodle_branch }}'
     dest: '{{ moodlebox_moodle_source_dir }}'
     depth: 1
 
-- name: create Moodle data and cache directories and set adequate permissions
+- name: Create Moodle data and cache directories and set adequate permissions
   ansible.builtin.file:
     path: '{{ item }}'
     state: 'directory'
@@ -23,14 +23,14 @@
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
 
-- name: set SGID permission on Moodle data '{{ moodlebox_moodle_data_dir }}' directory
+- name: Set SGID permission on Moodle data '{{ moodlebox_moodle_data_dir }}' directory
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_data_dir }}'
     state: 'directory'
     mode: 'g+s'
     recurse: 'yes'
 
-- name: create file repository directory
+- name: Create file repository directory
   ansible.builtin.file:
     path: '/home/{{ moodlebox_username }}/files'
     state: 'directory'
@@ -38,7 +38,7 @@
     group: 'www-data'
     mode: 'g+s'
 
-- name: link file repository directories
+- name: Link file repository directories
   ansible.builtin.file:
     src: '{{ item.src }}'
     path: '{{ item.path }}'
@@ -47,7 +47,7 @@
     - { src: '/home/{{ moodlebox_username }}/files', path: '{{ moodlebox_moodle_data_dir }}/repository/files' }
     - { src: '/media/usb', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
 
-- name: configure temporary storage for Moodle cache
+- name: Configure temporary storage for Moodle cache
   ansible.posix.mount:
     path: '{{ item.name }}'
     src: 'tmpfs'
@@ -62,7 +62,7 @@
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions', size: '16M' }
 
 # https://github.com/HCPSS/ansible-role-moodle/blob/master/tasks/install.yml
-- name: install Moodle via CLI
+- name: Install Moodle via CLI
   ansible.builtin.command: '/usr/bin/php "{{ moodlebox_moodle_source_dir }}/admin/cli/install.php"
     --lang="{{ moodlebox_moodle_lang }}"
     --wwwroot="http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}"
@@ -85,14 +85,14 @@
     chdir: '{{ moodlebox_moodle_source_dir }}'
     creates: '{{ moodlebox_moodle_source_dir }}/config.php'
 
-- name: set Moodle config file owner, group and permissions
+- name: Set Moodle config file owner, group and permissions
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/config.php'
     owner: 'www-data'
     group: '{{ moodlebox_username }}'
     mode: 'ug+w,o-w'
 
-- name: write extra parameters to the Moodle config file
+- name: Write extra parameters to the Moodle config file
   ansible.builtin.lineinfile:
     path: '{{ moodlebox_moodle_source_dir }}/config.php'
     line: '$CFG->{{ item.name }} = {{ item.value }};'

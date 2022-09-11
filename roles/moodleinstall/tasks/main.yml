@@ -1,20 +1,20 @@
 ---
 
-- name: set moodle_config_cmd variable
+- name: Set moodle_config_cmd variable
   ansible.builtin.set_fact:
     moodle_config_cmd: '/usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cfg.php'
 
-- name: configure Moodle site summary
+- name: Configure Moodle site summary
   ansible.builtin.import_tasks: summary.yml
 
-- name: get Moodle and install it
+- name: Get Moodle and install it
   ansible.builtin.import_tasks: coreinstall.yml
 
-- name: get MoodleBox plugin and install it
+- name: Get MoodleBox plugin and install it
   ansible.builtin.import_tasks: moodleboxplugin.yml
 
-- name: install MathJax library
+- name: Install MathJax library
   ansible.builtin.import_tasks: mathjax.yml
 
-- name: configure additional Moodle settings
+- name: Configure additional Moodle settings
   ansible.builtin.import_tasks: moodleconfig.yml

@@ -1,6 +1,6 @@
 ---
 
-- name: set IP forwarding on in /proc and in the sysctl file and reload if necessary
+- name: Set IP forwarding on in /proc and in the sysctl file and reload if necessary
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: '1'
@@ -8,12 +8,12 @@
     state: present
     reload: 'true'
 
-- name: set iptables persistent rules
+- name: Set iptables persistent rules
   ansible.builtin.template:
     src: 'etc/iptables/rules.v4.j2'
     dest: '/etc/iptables/rules.v4'
     mode: '0644'
   notify: restart networking
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

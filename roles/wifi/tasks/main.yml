@@ -1,13 +1,13 @@
 ---
 
-- name: update wifi client configuration file 'wpa_supplicant.conf'
+- name: Update wifi client configuration file 'wpa_supplicant.conf'
   ansible.builtin.template:
     src: 'etc/wpa_supplicant/wpa_supplicant.conf.j2'
     dest: '/etc/wpa_supplicant/wpa_supplicant.conf'
     mode: '0644'
   notify: restart networking
 
-- name: unblock wifi, since wifi country is set
+- name: Unblock wifi, since wifi country is set
   ansible.builtin.copy:
     dest: '{{ item }}'
     content: '0'
@@ -17,12 +17,12 @@
     - '/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan'
   notify: restart networking
 
-- name: disable unused wpa_supplicant service
+- name: Disable unused wpa_supplicant service
   ansible.builtin.systemd:
     name: 'wpa_supplicant'
     state: 'stopped'
     enabled: 'no'
     masked: 'no'
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

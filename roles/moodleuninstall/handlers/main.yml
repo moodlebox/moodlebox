@@ -1,6 +1,6 @@
 ---
 
-- name: drop database for Moodle
+- name: Drop database for Moodle
   community.mysql.mysql_db:
     name: '{{ moodlebox_moodle_db }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'

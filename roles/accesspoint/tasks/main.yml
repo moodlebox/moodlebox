@@ -1,6 +1,6 @@
 ---
 
-- name: install packages for AP mode
+- name: Install packages for AP mode
   ansible.builtin.apt:
     pkg: '{{ item }}'
     state: 'present'
@@ -12,7 +12,7 @@
   register: access_point_mode_packages_installed
   until: access_point_mode_packages_installed is succeeded
 
-- name: configure dhcpcd with static IP address {{ moodlebox_ip_address | ansible.utils.ipaddr('host') }}
+- name: Configure dhcpcd with static IP address {{ moodlebox_ip_address | ansible.utils.ipaddr('host') }}
   ansible.builtin.blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |
@@ -25,35 +25,35 @@
       nohook wpa_supplicant
   notify: restart networking
 
-- name: update access point configuration file
+- name: Update access point configuration file
   ansible.builtin.template:
     src: 'etc/hostapd/hostapd.conf.j2'
     dest: '/etc/hostapd/hostapd.conf'
     mode: '0644'
   notify: restart networking
 
-- name: update access point settings
+- name: Update access point settings
   ansible.builtin.lineinfile:
     path: '/etc/default/hostapd'
     regexp: '^#?DAEMON_CONF'
     line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
   notify: restart networking
 
-- name: unmask, enable and start hostapd
+- name: Unmask, enable and start hostapd
   ansible.builtin.systemd:
     name: 'hostapd'
     state: 'started'
     enabled: 'yes'
     masked: 'no'
 
-- name: update dnsmasq configuration
+- name: Update dnsmasq configuration
   ansible.builtin.template:
     src: 'etc/dnsmasq.conf.j2'
     dest: '/etc/dnsmasq.conf'
     mode: '0664'
   notify: restart networking
 
-- name: update dnsmasq service file
+- name: Update dnsmasq service file
   ansible.builtin.blockinfile:
     path: '/lib/systemd/system/dnsmasq.service'
     insertbefore: '^\[Install\]\s*$'
@@ -62,5 +62,5 @@
       Restart=on-failure
   notify: restart networking
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -1,6 +1,6 @@
 ---
 
-- name: configure zeroconf service
+- name: Configure zeroconf service
   ansible.builtin.template:
     src: 'etc/avahi/services/moodlebox.service.j2'
     dest: '/etc/avahi/services/{{ moodlebox_hostname }}.service'
@@ -8,5 +8,5 @@
   register: network_configured
   notify: restart networking
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

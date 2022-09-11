@@ -1,66 +1,66 @@
 ---
 
-- name: copy usbmount deb package file
+- name: Copy usbmount deb package file
   ansible.builtin.copy:
     src: 'usbmount_0.0.24_all.deb'
     dest: '/tmp/usbmount.deb'
     mode: '0644'
 
-- name: install usbmount package
+- name: Install usbmount package
   ansible.builtin.apt:
     deb: '/tmp/usbmount.deb'
 
-- name: delete usbmount deb package file
+- name: Delete usbmount deb package file
   ansible.builtin.file:
     path: '/tmp/usbmount.deb'
     state: 'absent'
 
-- name: enable ntfs and exfat formats mounting by usbmount
+- name: Enable ntfs and exfat formats mounting by usbmount
   ansible.builtin.replace:
     path: '/etc/usbmount/usbmount.conf'
     regexp: '^FILESYSTEMS=.*$'
     replace: 'FILESYSTEMS="vfat exfat ntfs fuseblk ext2 ext3 ext4 hfsplus"'
 
-- name: copy nodogsplash deb package file
+- name: Copy nodogsplash deb package file
   ansible.builtin.copy:
     src: 'nodogsplash_5.0.0-1_armhf.deb'
     dest: '/tmp/nodogsplash.deb'
     mode: '0644'
 
-- name: install nodogsplash package
+- name: Install nodogsplash package
   ansible.builtin.apt:
     deb: '/tmp/nodogsplash.deb'
 
-- name: delete nodogsplash deb package file
+- name: Delete nodogsplash deb package file
   ansible.builtin.file:
     path: '/tmp/nodogsplash.deb'
     state: 'absent'
 
-- name: configure nodogsplash captive portal
+- name: Configure nodogsplash captive portal
   ansible.builtin.template:
     src: 'etc/nodogsplash/nodogsplash.conf.j2'
     dest: '/etc/nodogsplash/nodogsplash.conf'
     mode: '0644'
 
-- name: disable nodogsplash service at startup
+- name: Disable nodogsplash service at startup
   ansible.builtin.systemd:
     name: 'nodogsplash'
     state: 'stopped'
     enabled: 'false'
     masked: 'false'
 
-- name: remove default nodogsplash files
+- name: Remove default nodogsplash files
   ansible.builtin.file:
     path: '/etc/nodogsplash/htdocs'
     state: 'absent'
 
-- name: update nodogsplash files
+- name: Update nodogsplash files
   ansible.builtin.copy:
     src: 'etc/nodogsplash/htdocs'
     dest: '/etc/nodogsplash'
     mode: '0644'
 
-- name: set umask for nginx and php-fpm services
+- name: Set umask for nginx and php-fpm services
   ansible.builtin.lineinfile:
     path: '{{ item }}'
     line: 'UMask=0002'
@@ -70,40 +70,40 @@
     - '/lib/systemd/system/php7.4-fpm.service'
   notify: restart web services
 
-- name: set 'group' of php-fpm process
+- name: Set 'group' of php-fpm process
   ansible.builtin.lineinfile:
     path: '/etc/php/7.4/fpm/pool.d/www.conf'
     regexp: '^group\s*=\s*www-data.*'
     line: 'group = {{ moodlebox_username }}'
   notify: restart web services
 
-- name: set 'pm.max_requests' of php-fpm process
+- name: Set 'pm.max_requests' of php-fpm process
   ansible.builtin.lineinfile:
     path: '/etc/php/7.4/fpm/pool.d/www.conf'
     regexp: '^;?pm.max_requests\s*=.*'
     line: 'pm.max_requests = 50'
   notify: restart web services
 
-- name: set 'emergency_restart_threshold' for php-fpm to fix potential SIGSEGV
+- name: Set 'emergency_restart_threshold' for php-fpm to fix potential SIGSEGV
   ansible.builtin.lineinfile:
     path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_threshold\s*=.*'
     line: 'emergency_restart_threshold = 2'
   notify: restart web services
 
-- name: set 'emergency_restart_interval' for php-fpm to fix potential SIGSEGV
+- name: Set 'emergency_restart_interval' for php-fpm to fix potential SIGSEGV
   ansible.builtin.lineinfile:
     path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_interval\s*=.*'
     line: 'emergency_restart_interval = 1h'
   notify: restart web services
 
-- name: set 'process_control_timeout' for php-fpm to fix potential SIGSEGV
+- name: Set 'process_control_timeout' for php-fpm to fix potential SIGSEGV
   ansible.builtin.lineinfile:
     path: '/etc/php/7.4/fpm/php-fpm.conf'
     regexp: '^;?process_control_timeout\s*=.*'
     line: 'process_control_timeout = 5s'
   notify: restart web services
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

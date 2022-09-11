@@ -1,11 +1,11 @@
 ---
 
-- name: change hostname to '{{ moodlebox_hostname }}'
+- name: Change hostname to '{{ moodlebox_hostname }}'
   ansible.builtin.hostname:
     name: '{{ moodlebox_hostname }}'
   notify: restart networking
 
-- name: change /etc/hosts
+- name: Change /etc/hosts
   ansible.builtin.template:
     src: 'etc/hosts.j2'
     dest: '/etc/hosts'

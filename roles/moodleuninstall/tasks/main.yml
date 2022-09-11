@@ -1,13 +1,13 @@
 ---
 
-- name: check if database for Moodle exists
+- name: Check if database for Moodle exists
   ansible.builtin.command: mysql -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
   register: moodle_db_exists
   failed_when: moodle_db_exists.rc > 0
   changed_when: moodle_db_exists.stdout | length > 0
   notify: drop database for Moodle
 
-- name: remove temporary storage for Moodle cache
+- name: Remove temporary storage for Moodle cache
   ansible.posix.mount:
     name: '{{ item.name }}'
     state: 'unmounted'
@@ -16,7 +16,7 @@
     - { name: '{{ moodlebox_moodle_data_dir }}/temp' }
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions' }
 
-- name: remove previous Moodle installation data
+- name: Remove previous Moodle installation data
   ansible.builtin.file:
     path: '{{ item }}'
     state: 'absent'
@@ -26,7 +26,7 @@
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
 
-- name: set default direvent configuration
+- name: Set default direvent configuration
   ansible.builtin.copy:
     dest: '/etc/direvent.conf'
     content: |
@@ -36,5 +36,5 @@
       #
     mode: '0644'
 
-- name: flush handlers
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -1,40 +1,40 @@
 ---
 
-- name: read reference image version from '/boot/issue.txt'
+- name: Read reference image version from '/boot/issue.txt'
   ansible.builtin.slurp:
     src: /boot/issue.txt
   register: issuefile
 
-- name: set 'referenceimage' variable
+- name: Set 'referenceimage' variable
   ansible.builtin.set_fact:
     referenceimage: "{{ issuefile['content'] | b64decode | regex_findall('^(.*)\\n') | first }}"
 
-- name: write version file
+- name: Write version file
   ansible.builtin.template:
     src: 'etc/moodlebox-info.j2'
     dest: '/etc/{{ moodlebox_info_file }}'
     mode: '0644'
 
-- name: copy version file to boot partition
+- name: Copy version file to boot partition
   ansible.builtin.copy:
     src: '/etc/{{ moodlebox_info_file }}'
     dest: '/boot/{{ moodlebox_info_file }}.txt'
     mode: '0644'
     remote_src: true
 
-- name: update motd
+- name: Update motd
   ansible.builtin.template:
     src: 'etc/motd.j2'
     dest: '/etc/motd'
     mode: '0644'
 
-- name: copy ascii logo file
+- name: Copy ascii logo file
   ansible.builtin.copy:
     src: 'etc/moodlebox-logo.txt'
     dest: '/etc/{{ moodlebox_logo_file }}'
     mode: '0644'
 
-- name: copy script to display ascii logo
+- name: Copy script to display ascii logo
   ansible.builtin.template:
     src: 'etc/update-motd.d/20-logo.j2'
     dest: '/etc/update-motd.d/20-logo'
