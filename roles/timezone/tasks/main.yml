@@ -6,7 +6,8 @@
     path: '/etc/localtime'
     state: 'link'
   register: timezone_status
-  notify: update tzdata
+  notify:
+    - Update tzdata
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -23,21 +23,24 @@
       interface {{ moodlebox_wifi_ap_interface }}
       static ip_address={{ moodlebox_ip_address | ansible.utils.ipaddr('host') }}
       nohook wpa_supplicant
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Update access point configuration file
   ansible.builtin.template:
     src: 'etc/hostapd/hostapd.conf.j2'
     dest: '/etc/hostapd/hostapd.conf'
     mode: '0644'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Update access point settings
   ansible.builtin.lineinfile:
     path: '/etc/default/hostapd'
     regexp: '^#?DAEMON_CONF'
     line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Unmask, enable and start hostapd
   ansible.builtin.systemd:
@@ -51,7 +54,8 @@
     src: 'etc/dnsmasq.conf.j2'
     dest: '/etc/dnsmasq.conf'
     mode: '0664'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Update dnsmasq service file
   ansible.builtin.blockinfile:
@@ -60,7 +64,8 @@
     block: |
       RestartSec=5
       Restart=on-failure
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

@@ -5,7 +5,8 @@
     src: 'etc/wpa_supplicant/wpa_supplicant.conf.j2'
     dest: '/etc/wpa_supplicant/wpa_supplicant.conf'
     mode: '0644'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Unblock wifi, since wifi country is set
   ansible.builtin.copy:
@@ -15,7 +16,8 @@
   with_items:
     - '/var/lib/systemd/rfkill/platform-3f300000.mmcnr:wlan'
     - '/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Disable unused wpa_supplicant service
   ansible.builtin.systemd:

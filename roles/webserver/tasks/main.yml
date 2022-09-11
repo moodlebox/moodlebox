@@ -5,14 +5,16 @@
     src: 'etc/nginx/sites-available/default.j2'
     dest: '/etc/nginx/sites-available/default'
     mode: '0644'
-  notify: restart web services
+  notify:
+    - Restart web services
 
 - name: Copy SSL certificate and key
   ansible.builtin.copy:
     src: 'etc/nginx/ssl'
     dest: '/etc/nginx/'
     mode: '0644'
-  notify: restart web services
+  notify:
+    - Restart web services
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

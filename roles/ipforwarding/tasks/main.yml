@@ -13,7 +13,8 @@
     src: 'etc/iptables/rules.v4.j2'
     dest: '/etc/iptables/rules.v4'
     mode: '0644'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

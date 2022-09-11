@@ -6,7 +6,8 @@
     dest: '/etc/avahi/services/{{ moodlebox_hostname }}.service'
     mode: '0644'
   register: network_configured
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

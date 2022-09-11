@@ -3,7 +3,8 @@
 - name: Change hostname to '{{ moodlebox_hostname }}'
   ansible.builtin.hostname:
     name: '{{ moodlebox_hostname }}'
-  notify: restart networking
+  notify:
+    - Restart networking
 
 - name: Change /etc/hosts
   ansible.builtin.template:
@@ -11,4 +12,5 @@
     dest: '/etc/hosts'
     mode: '0644'
   when: ansible_hostname == moodlebox_hostname
-  notify: restart networking
+  notify:
+    - Restart networking

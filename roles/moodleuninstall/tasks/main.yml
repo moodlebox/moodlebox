@@ -5,7 +5,8 @@
   register: moodle_db_exists
   failed_when: moodle_db_exists.rc > 0
   changed_when: moodle_db_exists.stdout | length > 0
-  notify: drop database for Moodle
+  notify:
+    - Drop database for Moodle
 
 - name: Remove temporary storage for Moodle cache
   ansible.posix.mount:
