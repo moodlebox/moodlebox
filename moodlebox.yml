@@ -4,5 +4,8 @@
 #   brew install sshpass
 ---
 
-- import_playbook: installsshkeys.yml
-- import_playbook: buildmoodlebox.yml
+- name: Include playbook to install SSH keys
+  ansible.builtin.import_playbook: installsshkeys.yml
+
+- name: Include playbook to build MoodleBox
+  ansible.builtin.import_playbook: buildmoodlebox.yml
