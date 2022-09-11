@@ -23,6 +23,12 @@
       with_fileglob:
         - config.yml
 
+    - name: Create temporary directory
+      ansible.builtin.file:
+        state: directory
+        path: '/tmp/ansible'
+        mode: '0775'
+
   post_tasks:
     - name: Print out end of build date and time and build duration
       ansible.builtin.debug:
