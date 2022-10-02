@@ -12,6 +12,9 @@ server {
 
 	root {{ moodlebox_moodle_source_dir }};
 
+	error_page 404 /error/index.php;
+	error_page 403 =404 /error/index.php;
+
 	index index.php index.html index.htm index.nginx-debian.html;
 
 	server_name {{ moodlebox_hostname }};
