@@ -26,7 +26,7 @@
   register: pymysql_installed
   until: pymysql_installed is succeeded
 
-- name: Add '{{ moodlebox_db_username }}' MariaDB user with all privileges
+- name: Add MariaDB user with all privileges
   community.mysql.mysql_user:
     name: '{{ moodlebox_db_username }}'
     password: '{{ moodlebox_db_password }}'

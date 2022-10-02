@@ -28,6 +28,6 @@
   register: direvent_configured
 
 - name: Configure cron mailto variable to suppress warnings in log
-  cronvar:
+  community.general.cronvar:
     name: MAILTO
     value: '""'

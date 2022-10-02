@@ -12,7 +12,7 @@
   register: access_point_mode_packages_installed
   until: access_point_mode_packages_installed is succeeded
 
-- name: Configure dhcpcd with static IP address {{ moodlebox_ip_address | ansible.utils.ipaddr('host') }}
+- name: Configure dhcpcd with static IP address
   ansible.builtin.blockinfile:
     path: '/etc/dhcpcd.conf'
     block: |

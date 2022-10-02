@@ -1,6 +1,6 @@
 ---
 
-- name: Change hostname to '{{ moodlebox_hostname }}'
+- name: Change hostname
   ansible.builtin.hostname:
     name: '{{ moodlebox_hostname }}'
   notify:
