@@ -1,4 +1,5 @@
-# Default server configuration
+# MoodleBox default server configuration
+# Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
 #
 server {
 	listen 80 default_server;
@@ -14,6 +15,11 @@ server {
 	index index.php index.html index.htm index.nginx-debian.html;
 
 	server_name {{ moodlebox_hostname }};
+
+	# Hide all dot files but allow "Well-Known URIs" as per RFC 5785
+	location ~ /\.(?!well-known).* {
+		return 404;
+	}
 
 	location / {
 		try_files $uri $uri/ =404;
@@ -36,4 +42,11 @@ server {
 		client_max_body_size	50M;
 	}
 
+	# Don't allow direct access to various internal files. See MDL-69333
+	location ~ (/vendor/|/node_modules/|composer\.json|/readme|/README|readme\.txt|/upgrade\.txt|db/install\.xml|/fixtures/|/behat/|phpunit\.xml|\.lock|environment\.xml) {
+		deny all;
+		return 404;
+	}
+
 }
+
