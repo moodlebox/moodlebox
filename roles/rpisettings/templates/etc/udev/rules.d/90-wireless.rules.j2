@@ -1,4 +1,5 @@
-# File /etc/udev/rules.d/90-wireless.rules
+# MoodleBox udev rules
+# Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
 # Add wireless interface for AP mode
 ACTION=="add", SUBSYSTEM=="ieee80211", KERNEL=="phy0", \
   RUN+="/sbin/iw phy %k interface add {{ moodlebox_wifi_ap_interface }} type __ap"
