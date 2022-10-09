@@ -6,7 +6,7 @@
     minute: '{{ item.minute }}'
     job: '{{ item.job }}'
   with_items:
-    - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n10 ionice -c2 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
+    - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n10 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
     - { name: 'Backup cache', minute: '*/20', job: 'rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/' }
 
 - name: Configure special time cron
