@@ -23,7 +23,7 @@ skip-external-locking
 
 # Broken reverse DNS slows down connections considerably and name resolve is
 # safe to skip if there are no "host by domain name" access grants
-#skip-name-resolve
+skip-name-resolve
 
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
