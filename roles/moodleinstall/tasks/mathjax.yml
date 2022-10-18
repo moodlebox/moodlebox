@@ -1,20 +1,28 @@
 ---
 
-- name: Get MathJax library from git repository
-  ansible.builtin.git:
-    repo: 'https://github.com/mathjax/MathJax.git'
-    dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
-    version: '{{ moodlebox_mathjax_version }}'
-    depth: 1
-
-- name: Change MathJax library file permissions
-  ansible.builtin.file:
+- name: Create directory for MathJax library
+  file:
     path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
-    state: 'directory'
+    state: directory
+
+- name: Download and unarchive MathJax library
+  ansible.builtin.unarchive:
+    src: 'https://github.com/mathjax/MathJax/archive/refs/tags/{{ moodlebox_mathjax_version }}.tar.gz'
+    dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
+    remote_src: yes
+    exclude:
+      - 'fonts/HTML-CSS/TeX/png'
+      - 'unpacked'
+      - 'test'
+      - 'docs'
+      - '*.json'
+      - '*.md'
+      - 'README'
+      - 'LICENSE'
+    extra_opts: [--strip-components=1]
     owner: 'www-data'
     group: '{{ moodlebox_username }}'
     mode: 'ug+w,o-w'
-    recurse: 'yes'
 
 - name: Change MathJax library URL
   ansible.builtin.command:
