@@ -1,15 +1,18 @@
 ---
 
 - name: Create directory for MathJax library
-  file:
+  ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     state: directory
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: '0775'
 
 - name: Download and unarchive MathJax library
   ansible.builtin.unarchive:
     src: 'https://github.com/mathjax/MathJax/archive/refs/tags/{{ moodlebox_mathjax_version }}.tar.gz'
     dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
-    remote_src: yes
+    remote_src: true
     exclude:
       - 'fonts/HTML-CSS/TeX/png'
       - 'unpacked'
