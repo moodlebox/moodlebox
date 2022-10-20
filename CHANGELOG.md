@@ -5,6 +5,29 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.5.0, unreleased
+
+### Added
+- Update to Moodle 4.1 (issue #268).
+- H5P libraries are now available out of the box (issue #262).
+- MathJax download size massively stripped down (issue #267).
+- Info about reference RPi OS image is available in `moodlebox-info`, that is also available in the `boot` partition (issues #256 and #257).
+- USBMount updated to version 0.0.25 (issue #269).
+
+### Changed
+- Update to Raspberry Pi OS version date 2022-09-22, Debian Bullseye 64bit (issue #263).
+- Skip DNS lookup in MariadDB, for better performance (issue #266).
+- Simplify cron command (no issue number, commit c63b8f39cd83d80957eeed1606572a83ac880ca5).
+- Update resize2fs_once script to last upstream version (no issue number, commit ab50f5f802d6e3f44a6e27a9db7998f9e34316a7).
+
+### Fixed
+- Fix not hidden Moodle private paths in Nginx (issue #264).
+- Fix missing Moodle error page configuration in Nginx (issue #265).
+- Fix an error in localized strings (no issue number, commit d977f9bee8423c9315ffe0aa601a6a811c237763)
+- Fix Ansible Lint errors for task and play names (no issue number, commits c9125d81ce670b4a7bb5a415ce2d5fdbc5085433, 112bcc05efca2dddf8098e001b14bc6b07dedf18, b51ec6040d90a74ff2c0341dde063479215dc0b9 and 112bcc05efca2dddf8098e001b14bc6b07dedf18).
+- Fix more Ansible Lint errors, notably in play names (no issue number, commits 74df8b70887a88a8304ff38910aeef7ea27ca3c0, 643137f8f74dde8a83c0966ade99af6f5dfb7de7).
+- Create temporary build directory to fix an Ansible warning (no issue number, commit bb1a63538001ffb51db75413de5c81cea95b53c2).
+
 ## Version 4.4.0, 2022-08-14
 
 ### Changed
