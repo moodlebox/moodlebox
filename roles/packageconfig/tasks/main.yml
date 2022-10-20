@@ -2,7 +2,7 @@
 
 - name: Copy usbmount deb package file
   ansible.builtin.copy:
-    src: 'usbmount_0.0.24_all.deb'
+    src: 'usbmount_0.0.25_all.deb'
     dest: '/tmp/usbmount.deb'
     mode: '0644'
 
