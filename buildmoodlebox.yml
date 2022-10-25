@@ -61,6 +61,7 @@
     - cron
     - adminer
     - cert
+    - rpiclone
     - branding
     - { role: sshkey, when: moodlebox_build_type == 'development' }
     - cleanup
