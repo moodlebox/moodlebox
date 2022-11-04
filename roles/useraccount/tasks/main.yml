@@ -1,6 +1,6 @@
 ---
 
-- name: Update .bashrc file (1)
+- name: Change default user prompt definition
   ansible.builtin.lineinfile:
     path: '/home/{{ moodlebox_username }}/.bashrc'
     regexp: '^    PS1=.*01;32m.*01;34m.*$'
@@ -8,7 +8,7 @@
     insertafter: '^if \[ "\$color_prompt" = yes \]; then'
     backrefs: 'yes'
 
-- name: Update .bashrc file (2)
+- name: Add a few shell shortcuts to default user
   ansible.builtin.blockinfile:
     path: '/home/{{ moodlebox_username }}/.bashrc'
     block: |
