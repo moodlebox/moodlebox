@@ -75,7 +75,7 @@
   ansible.builtin.lineinfile:
     path: '/etc/php/7.4/fpm/pool.d/www.conf'
     regexp: '^group\s*=\s*www-data.*'
-    line: 'group = {{ moodlebox_username }}'
+    line: 'group = 1000'
   notify:
     - Restart web services
 
