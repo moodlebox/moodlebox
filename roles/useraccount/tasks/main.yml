@@ -33,3 +33,14 @@
   ansible.builtin.file:
     path: '/etc/systemd/system/getty@tty1.service.d/autologin.conf'
     state: absent
+
+- name: Fix broken link to repository at login if needed
+  ansible.builtin.blockinfile:
+    path: '/home/{{ moodlebox_username }}/.profile'
+    block: |
+      # Fix soft link to repository if broken
+      SOFTLINK="{{ moodlebox_moodle_data_dir }}/repository/files"
+      if [ ! -e ${SOFTLINK} ] ; then
+          rm -f ${SOFTLINK}
+          ln -s /home/$(getent passwd 1000 | cut -d: -f1)/files ${SOFTLINK}
+      fi
