@@ -25,5 +25,11 @@
   notify:
     - Reboot box
 
+- name: Add script to fix hostname at the very first boot
+  ansible.builtin.template:
+    src: 'etc/init.d/fix_hostname_once.j2'
+    dest: '/etc/init.d/fix_hostname_once'
+    mode: '0755'
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
