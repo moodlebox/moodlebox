@@ -36,12 +36,13 @@ SCRIPTNAME="$(basename $0)"
 
 case "$1" in
   start)
-    log_daemon_msg "Fixing hostname"
+    log_daemon_msg "Fixing hostname" &&
     NEW_HOSTNAME=$(hostnamectl --static) &&
     CURRENT_HOSTNAME="moodlebox" &&
-    sed -ri "s/(((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?\b){4}).*$CURRENT_HOSTNAME/\1\t$NEW_HOSTNAME/g" /etc/hosts &&
-    rm -f $SCRIPTPATH/$SCRIPTNAME &&
-    log_end_msg 0
+    sed -ri "s/(((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?\b){4})\s+${CURRENT_HOSTNAME}/\1\t${NEW_HOSTNAME}/g" /etc/hosts &&
+    update-rc.d ${SCRIPTNAME} remove &&
+    rm -f ${SCRIPTPATH}/${SCRIPTNAME} &&
+    log_end_msg $?
     ;;
   *)
     echo "Usage: $0 start" >&2
