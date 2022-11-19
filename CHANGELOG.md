@@ -9,10 +9,12 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 
 ### Added
 - Update to Moodle 4.1 (issue #268).
+- Update to MoodleBox plugin v2.14.1 (issue #276).
 - H5P libraries are now available out of the box (issue #262).
+- USBMount updated to version 0.0.26 (issue #270).
+- Cloning program `rpi-clone` added (issue #259).
 - MathJax download size massively stripped down (issue #267).
 - Info about reference RPi OS image is available in `moodlebox-info`, that is also available in the `boot` partition (issues #256 and #257).
-- USBMount updated to version 0.0.25 (issue #269).
 
 ### Changed
 - Update to Raspberry Pi OS version date 2022-09-22, Debian Bullseye 64bit (issue #263).
@@ -23,6 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ### Fixed
 - Fix not hidden Moodle private paths in Nginx (issue #264).
 - Fix missing Moodle error page configuration in Nginx (issue #265).
+- Fix issue preventing Android Moodle Mobile app to connect to the MoodleBox (issue #271).
 - Fix an error in localized strings (no issue number, commit d977f9bee8423c9315ffe0aa601a6a811c237763)
 - Fix Ansible Lint errors for task and play names (no issue number, commits c9125d81ce670b4a7bb5a415ce2d5fdbc5085433, 112bcc05efca2dddf8098e001b14bc6b07dedf18, b51ec6040d90a74ff2c0341dde063479215dc0b9 and 112bcc05efca2dddf8098e001b14bc6b07dedf18).
 - Fix more Ansible Lint errors, notably in play names (no issue number, commits 74df8b70887a88a8304ff38910aeef7ea27ca3c0, 643137f8f74dde8a83c0966ade99af6f5dfb7de7).
