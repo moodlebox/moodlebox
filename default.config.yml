@@ -76,7 +76,7 @@ moodlebox_info_file: 'moodlebox-info'
 moodlebox_logo_file: 'moodlebox-logo.txt'
 
 # MoodleBox Moodle default build settings.
-moodlebox_moodle_branch: 'MOODLE_400_STABLE'
+moodlebox_moodle_branch: 'MOODLE_401_STABLE'
 moodlebox_moodle_username: 'moodlebox'
 moodlebox_moodle_password: '{{ moodlebox_password }}'
 moodlebox_moodle_db: 'moodle'
