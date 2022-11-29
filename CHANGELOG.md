@@ -21,18 +21,19 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Update to Raspberry Pi OS version date 2022-09-22, Debian Bullseye 64bit (issue #263).
 - Remove `xmlrpc` PHP module, not needed for Moodle 4.1 (issue #278).
 - Skip DNS lookup in MariadDB, for better performance (issue #266).
-- Simplify cron command (no issue number, commit c63b8f39cd83d80957eeed1606572a83ac880ca5).
-- Update resize2fs_once script to last upstream version (no issue number, commit ab50f5f802d6e3f44a6e27a9db7998f9e34316a7).
+- Simplify cron command (no issue number, commit c63b8f3).
+- Make Adminer download more robust (no issue number, commit bbafe4c)
+- Update resize2fs_once script to last upstream version (no issue number, commit ab50f5f).
 
 ### Fixed
 - Fix readable Moodle private paths in Nginx (issue #264).
 - Fix missing Moodle error page configuration in Nginx (issue #265).
 - Fix issue preventing Android Moodle Mobile app to connect to the MoodleBox (issue #271).
 - Fix issues when using Raspberry Pi Imager (issues #274 and #275).
-- Fix an error in localized strings (no issue number, commit d977f9bee8423c9315ffe0aa601a6a811c237763)
-- Fix Ansible Lint errors for task and play names (no issue number, commits c9125d81ce670b4a7bb5a415ce2d5fdbc5085433, 112bcc05efca2dddf8098e001b14bc6b07dedf18, b51ec6040d90a74ff2c0341dde063479215dc0b9 and 112bcc05efca2dddf8098e001b14bc6b07dedf18).
-- Fix more Ansible Lint errors, notably in play names (no issue number, commits 74df8b70887a88a8304ff38910aeef7ea27ca3c0, 643137f8f74dde8a83c0966ade99af6f5dfb7de7).
-- Create temporary build directory to fix an Ansible warning (no issue number, commit bb1a63538001ffb51db75413de5c81cea95b53c2).
+- Fix an error in localized strings (no issue number, commit d977f9b)
+- Fix Ansible Lint errors for task and play names (no issue number, commits c9125d8, 112bcc0, b51ec60 and 112bcc0).
+- Fix more Ansible Lint errors, notably in play names (no issue number, commits 74df8b7, 643137f).
+- Create temporary build directory to fix an Ansible warning (no issue number, commit bb1a635).
 
 ## Version 4.4.0, 2022-08-14
 
@@ -136,11 +137,11 @@ __This is the 5th anniversary release of MoodleBox__, which [version v1.0](https
 - Support of Raspberry Pi 400 via version 2.9.0 of MoodleBox plugin (issue https://github.com/moodlebox/moodle-tool_moodlebox/issues/93).
 - Set Moodle system paths to appropriate values (issue #197).
 - Configure some Moodle settings (issue #198).
-- SSH key added in developement builds (no issue number, commits 0aa322d690fefbf7419b8c4d040bf73afabc3ed1 and e6b77acb2c8bb8b043caeea64f858322add5526f).
+- SSH key added in developement builds (no issue number, commits 0aa322d and e6b77ac).
 
 ### Fixed
 - Restore WiFi AP capacity to about 30 clients via downgrading WiFi firmware (issue #196, PR #196, #200).
-- Enhance issue templates (no issue number, commits 91f670077e38a39ca16c30981228dfe3c7d992f9, 506216571f2c07ec840d3c2783cdc88798b4cb3b and 99e9588596d38943d60df5a68f59cb965277c232).
+- Enhance issue templates (no issue number, commits 91f6700, 5062165 and 99e9588).
 
 ## Version 3.9.0, 2020-11-08
 ### Changed
