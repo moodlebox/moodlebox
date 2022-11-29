@@ -14,7 +14,6 @@ moodlebox_install_packages:
   - php7.4-mbstring
   - php7.4-opcache
   - php7.4-readline
-  - php7.4-xmlrpc
   - php7.4-curl
   - php7.4-gd
   - php7.4-intl
