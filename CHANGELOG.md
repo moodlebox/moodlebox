@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.5.1, unreleased
+
+### Changed
+-  Remove useless build options (issue #283).
+
+### Fixed
+- Update wireless chip firmware swapping logic (issue #280).
+- Make wifi unblocking instructions more robust (issue #279).
+- Prevent issue when re-downloading MoodleBox plugin (issue #282).
+- Fix `ansible-lint` false positive (no issue number, commit f774321).
+
 ## Version 4.5.0, 2022-11-29
 
 ### Added
