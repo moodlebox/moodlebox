@@ -41,10 +41,10 @@
     - rpisettings
     - apt
     - { role: firmware, when: moodlebox_update_firmware | bool }
-    - { role: hostname, when: moodlebox_set_hostname | bool }
+    - hostname
     - useraccount
-    - { role: timezone, when: moodlebox_set_timezone | bool }
-    - { role: locales, when: moodlebox_set_locale | bool }
+    - timezone
+    - locales
     - wifi
     - accesspoint
     - zeroconf
