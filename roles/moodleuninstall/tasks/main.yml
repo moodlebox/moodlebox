@@ -17,7 +17,7 @@
     - { name: '{{ moodlebox_moodle_data_dir }}/temp' }
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions' }
 
-- name: Remove previous Moodle installation data
+- name: Remove previous Moodle installation data and plugin
   ansible.builtin.file:
     path: '{{ item }}'
     state: 'absent'
@@ -26,6 +26,7 @@
     - '{{ moodlebox_moodle_source_dir }}/config.php'
     - '/var/cache/moodle'
     - '/var/cache/moodle-cache-backup'
+    - '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
 
 - name: Set default direvent configuration
   ansible.builtin.copy:
