@@ -9,7 +9,7 @@
     - Restart networking
 
 - name: Get rfkill files
-  find:
+  ansible.builtin.find:
     paths: '/var/lib/systemd/rfkill'
     patterns: '*:wlan'
   register: rfkill_wlan
