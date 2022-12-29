@@ -12,6 +12,8 @@
 - name: Configure special time cron
   ansible.builtin.cron:
     name: '{{ item.name }}'
+    # noqa: args[module]
+    # the special times are OK
     special_time: '{{ item.special_time }}'
     job: '{{ item.job }}'
   with_items:
