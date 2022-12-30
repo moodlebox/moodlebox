@@ -1,8 +1,8 @@
 ---
 
 # MoodleBox version and release date.
-moodlebox_version: '4.5.0'
-moodlebox_release_date: '2022-11-29'
+moodlebox_version: '4.5.1'
+moodlebox_release_date: '2022-12-30'
 moodlebox_name: 'MoodleBox'
 
 # MoodleBox hostname (taken from inventory).
@@ -84,7 +84,7 @@ moodlebox_moodle_db_prefix: 'mdl_'
 moodlebox_moodle_lang: 'en'
 moodlebox_moodle_name: '{{ moodlebox_name }}'
 moodlebox_moodle_summary: |
-  <h5 style='text-align: center;'><span lang='en' class='multilang'>A <a href='https://moodle.org/' target='_blank'>Moodle 4.1</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a></span><span lang='fr' class='multilang'>Une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 4.1</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a></span><span lang='de' class='multilang'>Eine <a href='https://moodle.org/' target='_blank'>Moodle 4.1</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a></span></h5>
+  <h5 style='text-align: center;'><span lang='en' class='multilang'>A <a href='https://moodle.org/' target='_blank'>Moodle 4.1+</a> platform on <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a></span><span lang='fr' class='multilang'>Une plateforme <a href='https://moodle.org/' target='_blank'>Moodle 4.1+</a> sur <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a></span><span lang='de' class='multilang'>Eine <a href='https://moodle.org/' target='_blank'>Moodle 4.1+</a> Plattform auf <a href='https://www.raspberrypi.org/' target='_blank'>Raspberry Pi</a></span></h5>
   <h5 style='text-align: center;'><span lang='en' class='multilang'><a href='https://moodlebox.net/en' target='_blank'>MoodleBox</a> is made by <a href='https://blog.martignoni.net/a-propos/'>Nicolas Martignoni</a></span><span lang='fr' class='multilang'><a href='https://moodlebox.net/fr' target='_blank'>MoodleBox</a> est réalisée par <a href='https://blog.martignoni.net/a-propos/'>Nicolas Martignoni</a></span><span lang='de' class='multilang'><a href='https://moodlebox.net/de' target='_blank'>MoodleBox</a> ist von <a href='https://blog.martignoni.net/a-propos/'>Nicolas Martignoni</a> hergestellt</span></h5>
   <h5 style='text-align: center;'><span lang='en' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_en }}</span><span lang='fr' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_fr }}</span><span lang='de' class='multilang'>Version {{ moodlebox_version }}, {{ moodlebox_release_date_de }}</span></h5>
 moodlebox_moodle_source_dir: '/var/www/moodle'
