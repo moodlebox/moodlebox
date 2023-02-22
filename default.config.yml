@@ -38,9 +38,6 @@ moodlebox_external_dns_ip_address:
 moodlebox_db_username: '{{ moodlebox_username }}'
 moodlebox_db_password: '{{ moodlebox_password }}'
 
-# MoodleBox db root password.
-moodlebox_db_root_password: '{{ moodlebox_password }}'
-
 # MoodleBox Wi-Fi STA settings.
 moodlebox_wifi_sta_interface: 'wlan0'
 moodlebox_wifi_sta_ssid: '<Name of your wireless LAN>'
