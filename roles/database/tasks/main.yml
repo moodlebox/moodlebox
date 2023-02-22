@@ -1,21 +1,9 @@
 ---
 
-- name: Configure MariaDB root password
-  ansible.builtin.debconf:
-    name: 'mariadb-server'
-    question: '{{ item }}'
-    vtype: 'password'
-    value: '{{ moodlebox_db_root_password }}'
-  with_items:
-    - 'mysql-server/root_password'
-    - 'mysql-server/root_password_again'
-  register: configure_mariadb_install
-
 - name: Install MariaDB
   ansible.builtin.apt:
     pkg: 'mariadb-server'
     state: 'present'
-  when: configure_mariadb_install is successful
   register: install_mariadb
   until: install_mariadb is succeeded
 
