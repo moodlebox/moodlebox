@@ -67,13 +67,13 @@
     insertafter: '^\[Service\].*'
   with_items:
     - '/lib/systemd/system/nginx.service'
-    - '/lib/systemd/system/php7.4-fpm.service'
+    - '/lib/systemd/system/php8.2-fpm.service'
   notify:
     - Restart web services
 
 - name: Set 'group' of php-fpm process
   ansible.builtin.lineinfile:
-    path: '/etc/php/7.4/fpm/pool.d/www.conf'
+    path: '/etc/php/8.2/fpm/pool.d/www.conf'
     regexp: '^group\s*=\s*www-data.*'
     line: 'group = 1000'
   notify:
@@ -81,7 +81,7 @@
 
 - name: Set 'pm.max_requests' of php-fpm process
   ansible.builtin.lineinfile:
-    path: '/etc/php/7.4/fpm/pool.d/www.conf'
+    path: '/etc/php/8.2/fpm/pool.d/www.conf'
     regexp: '^;?pm.max_requests\s*=.*'
     line: 'pm.max_requests = 50'
   notify:
@@ -89,7 +89,7 @@
 
 - name: Set 'emergency_restart_threshold' for php-fpm to fix potential SIGSEGV
   ansible.builtin.lineinfile:
-    path: '/etc/php/7.4/fpm/php-fpm.conf'
+    path: '/etc/php/8.2/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_threshold\s*=.*'
     line: 'emergency_restart_threshold = 2'
   notify:
@@ -97,7 +97,7 @@
 
 - name: Set 'emergency_restart_interval' for php-fpm to fix potential SIGSEGV
   ansible.builtin.lineinfile:
-    path: '/etc/php/7.4/fpm/php-fpm.conf'
+    path: '/etc/php/8.2/fpm/php-fpm.conf'
     regexp: '^;?emergency_restart_interval\s*=.*'
     line: 'emergency_restart_interval = 1h'
   notify:
@@ -105,7 +105,7 @@
 
 - name: Set 'process_control_timeout' for php-fpm to fix potential SIGSEGV
   ansible.builtin.lineinfile:
-    path: '/etc/php/7.4/fpm/php-fpm.conf'
+    path: '/etc/php/8.2/fpm/php-fpm.conf'
     regexp: '^;?process_control_timeout\s*=.*'
     line: 'process_control_timeout = 5s'
   notify:
