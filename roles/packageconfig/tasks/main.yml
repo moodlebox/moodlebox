@@ -111,5 +111,11 @@
   notify:
     - Restart web services
 
+- name: Enable git to write to directories owned by anyone
+  community.general.git_config:
+    name: safe.directory
+    scope: global
+    value: '*'
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
