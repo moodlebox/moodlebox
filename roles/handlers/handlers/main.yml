@@ -15,7 +15,7 @@
     daemon_reload: 'yes'
   with_items:
     - 'nginx'
-    - 'php7.4-fpm'
+    - 'php8.2-fpm'
 
 - name: Restart direvent
   ansible.builtin.systemd:
