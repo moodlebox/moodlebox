@@ -111,6 +111,12 @@
   notify:
     - Restart web services
 
+- name: Set 'max_input_vars' to 5000
+  ansible.builtin.lineinfile:
+    path: '/etc/php/8.2/cli/php.ini'
+    regexp: '^;?max_input_vars\s*=.*'
+    line: 'max_input_vars = 5000'
+
 - name: Enable git to write to directories owned by anyone
   community.general.git_config:
     name: safe.directory
