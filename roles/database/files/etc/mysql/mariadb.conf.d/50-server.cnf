@@ -12,14 +12,11 @@
 # * Basic Settings
 #
 
-user                    = mysql
+#user                    = mysql
 pid-file                = /run/mysqld/mysqld.pid
 basedir                 = /usr
-datadir                 = /var/lib/mysql
-tmpdir                  = /tmp
-lc-messages-dir         = /usr/share/mysql
-lc-messages             = en_US
-skip-external-locking
+#datadir                 = /var/lib/mysql
+#tmpdir                  = /tmp
 
 # Broken reverse DNS slows down connections considerably and name resolve is
 # safe to skip if there are no "host by domain name" access grants
@@ -116,7 +113,7 @@ collation-server      = utf8mb4_general_ci
 # you can put MariaDB-only options here
 [mariadb]
 
-# This group is only read by MariaDB-10.5 servers.
+# This group is only read by MariaDB-10.6 servers.
 # If you use the same .cnf file for MariaDB of different versions,
 # use this group for options that older servers don't understand
-[mariadb-10.5]
+[mariadb-10.6]
