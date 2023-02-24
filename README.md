@@ -26,8 +26,8 @@ We have an active [discussion forum][forum] where users and developers can ask q
 To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3A, 3B, 3B+ or 4B.
 
 1. Clone [Raspberry Pi OS (64-bit) Lite image](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit) on your microSD card.
-1. Create a `ssh.txt` file on the `boot` partition with any content.
-1. Create a `userconf.txt` file on the `boot` partition, and add the following line to it:
+1. Create a `ssh.txt` file on the `bootfs` partition with any content.
+1. Create a `userconf.txt` file on the `bootfs` partition, and add the following line to it:
    `moodlebox:$6$rmLgDblolU16oLmc$i7QzARV8o84tCDQA/Kq1xU3eYwPWlocqVmpFTcSWqAqiWJpFyTLd.g9W5ktDDh16rq5lwYG9wpHY224m5nHLk0`
 1. Insert the microSD card into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
