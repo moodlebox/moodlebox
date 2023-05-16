@@ -11,7 +11,7 @@
     - { name: 'pathtopdftoppm', value: '/usr/bin/pdftoppm' }
     - { name: 'pathtounoconv', value: '' }
     - { name: 'pathtosassc', value: '' }
-    - { name: 'servicespage', value: 'http://{{ moodlebox_hostname }}.{{ moodlebox_tld }}/user/contactsitesupport.php' }
+    - { name: 'servicespage', value: '/user/contactsitesupport.php' }
   register: system_paths_result
   changed_when: 'system_paths_result.rc == 0'
 
