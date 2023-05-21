@@ -18,6 +18,8 @@
     - 'mdl_task_log'
     - 'mdl_upgrade_log'
   when: moodle_db_created is succeeded
+  register: moodle_db_emptied
+  changed_when: moodle_db_emptied.rc == 0
 
 - name: Remove useless packages from cache and no longer required dependencies
   ansible.builtin.apt:
