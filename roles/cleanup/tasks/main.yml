@@ -17,7 +17,7 @@
     - 'mdl_logstore_standard_log'
     - 'mdl_task_log'
     - 'mdl_upgrade_log'
-  when: moodle_db_created is succeeded
+  when: moodledatabase_created is succeeded
   register: cleanup_moodle_db_emptied
   changed_when: cleanup_moodle_db_emptied.rc == 0
 
