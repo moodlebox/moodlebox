@@ -3,6 +3,6 @@
 - name: Update tzdata
   ansible.builtin.command:
     cmd: >
-      dpkg-reconfigure -f noninteractive tzdata'
+      dpkg-reconfigure -f noninteractive tzdata
   register: tzdata_updated
   changed_when: tzdata_updated.rc == 0
