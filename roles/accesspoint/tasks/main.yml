@@ -56,8 +56,8 @@
 
 - name: Update dnsmasq configuration
   ansible.builtin.template:
-    src: 'etc/dnsmasq.conf.j2'
-    dest: '/etc/dnsmasq.conf'
+    src: 'etc/dnsmasq.d/uap0.conf.j2'
+    dest: '/etc/dnsmasq.d/uap0.conf'
     mode: '0664'
   notify:
     - Restart networking
