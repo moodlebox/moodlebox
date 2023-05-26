@@ -4,16 +4,16 @@
   ansible.builtin.apt:
     pkg: 'rpi-update'
     state: 'present'
-  register: rpi_update_installed
-  until: rpi_update_installed is succeeded
+  register: firmware_rpi_update_installed
+  until: firmware_rpi_update_installed is succeeded
 
 - name: Update firmware
   ansible.builtin.command: 'rpi-update'
   environment:
     SKIP_BACKUP: '1'
     PRUNE_MODULES: '1'
-  register: fw_result
-  changed_when: 'fw_result.rc == 0 and "Your firmware is already up to date" not in fw_result.stdout'
+  register: firmware_result
+  changed_when: 'firmware_result.rc == 0 and "Your firmware is already up to date" not in firmware_result.stdout'
 
 - name: Uninstall rpi-update
   ansible.builtin.apt:

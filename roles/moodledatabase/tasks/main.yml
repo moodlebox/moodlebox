@@ -5,4 +5,4 @@
     name: '{{ moodlebox_moodle_db }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'
     state: 'present'
-  register: moodle_db_created
+  register: moodledatabase_created

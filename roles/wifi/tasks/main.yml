@@ -12,14 +12,14 @@
   ansible.builtin.find:
     paths: '/var/lib/systemd/rfkill'
     patterns: '*:wlan'
-  register: rfkill_wlan
+  register: wifi_rfkill_wlan
 
 - name: Unblock wifi, since wifi country is set
   ansible.builtin.copy:
     dest: '{{ item.path }}'
     content: '0'
     mode: '0644'
-  with_items: '{{ rfkill_wlan.files }}'
+  with_items: '{{ wifi_rfkill_wlan.files }}'
   notify:
     - Restart networking
 

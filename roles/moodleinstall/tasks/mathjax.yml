@@ -30,9 +30,9 @@
 - name: Change MathJax library URL
   ansible.builtin.command:
     cmd: >
-      {{ moodle_config_cmd }}
+      {{ moodleinstall_config_cmd }}
       --component=filter_mathjaxloader
       --name=httpsurl
       --set=/lib/MathJax/MathJax.js
-  register: mathjax_url_result
-  changed_when: 'mathjax_url_result.rc == 0'
+  register: moodleinstall_mathjax_url_result
+  changed_when: 'moodleinstall_mathjax_url_result.rc == 0'

@@ -1,13 +1,13 @@
 ---
 
-- name: Read reference image version from '/boot/issue.txt'
+- name: Read reference RPiOS version from '/boot/issue.txt'
   ansible.builtin.slurp:
     src: /boot/issue.txt
-  register: issuefile
+  register: branding_issue_file
 
-- name: Set 'referenceimage' variable
+- name: Set 'branding_reference_version' variable
   ansible.builtin.set_fact:
-    referenceimage: "{{ issuefile['content'] | b64decode | regex_findall('^(.*)\\n') | first }}"
+    branding_reference_version: "{{ branding_issue_file['content'] | b64decode | regex_findall('^(.*)\\n') | first }}"
 
 - name: Write version file
   ansible.builtin.template:

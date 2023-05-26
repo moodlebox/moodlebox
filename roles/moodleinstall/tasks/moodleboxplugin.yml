@@ -49,5 +49,5 @@
     --non-interactive'
   args:
     chdir: '{{ moodlebox_moodle_source_dir }}'
-  register: moodlebox_plugin_installed
-  changed_when: moodlebox_plugin_installed.rc == 0
+  register: moodleinstall_moodlebox_plugin_installed
+  changed_when: moodleinstall_moodlebox_plugin_installed.rc == 0

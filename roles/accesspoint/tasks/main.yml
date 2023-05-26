@@ -14,8 +14,8 @@
     - 'iptables-persistent'
     - 'hostapd'
     - 'dnsmasq'
-  register: access_point_mode_packages_installed
-  until: access_point_mode_packages_installed is succeeded
+  register: accesspoint_mode_packages_installed
+  until: accesspoint_mode_packages_installed is succeeded
 
 - name: Configure dhcpcd with static IP address
   ansible.builtin.blockinfile:

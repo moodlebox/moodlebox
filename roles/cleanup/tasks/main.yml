@@ -2,11 +2,11 @@
 
 - name: Remove packages used only during the build
   ansible.builtin.apt:
-    pkg: '{{ packages }}'
+    pkg: '{{ cleanup_packages }}'
     state: 'absent'
     purge: 'yes'
   vars:
-    packages:
+    cleanup_packages:
       - 'python3-pymysql'
       - 'rpi-update'
 
@@ -18,15 +18,15 @@
     - 'mdl_task_log'
     - 'mdl_upgrade_log'
   when: moodle_db_created is succeeded
-  register: moodle_db_emptied
-  changed_when: moodle_db_emptied.rc == 0
+  register: cleanup_moodle_db_emptied
+  changed_when: cleanup_moodle_db_emptied.rc == 0
 
 - name: Remove useless packages from cache and no longer required dependencies
   ansible.builtin.apt:
     autoremove: 'yes'
     autoclean: 'yes'
-  register: useless_packages_removed
-  until: useless_packages_removed is succeeded
+  register: cleanup_useless_packages_removed
+  until: cleanup_useless_packages_removed is succeeded
 
 - name: Stop DHCP server
   ansible.builtin.systemd:
@@ -61,14 +61,14 @@
   ansible.builtin.find:
     paths: '/var/log'
     recurse: 'yes'
-  register: log_files
+  register: cleanup_log_files
 
 - name: Empty log files
   ansible.builtin.command: 'truncate --size 0 {{ item.path }}'
   with_items:
-    - '{{ log_files.files }}'
-  register: log_files_emptied
-  changed_when: log_files_emptied.rc == 0
+    - '{{ cleanup_log_files.files }}'
+  register: cleanup_log_files_emptied
+  changed_when: cleanup_log_files_emptied.rc == 0
 
 - name: Reboot box
   ansible.builtin.reboot:

@@ -4,20 +4,20 @@
 # See https://wrightturn.wordpress.com/2017/05/10/ansible-warning-the-loop-variable-item-is-already-in-use/
 - name: Define outer loop
   ansible.builtin.set_fact:
-    outer_loop: '{{ item }}'
+    cleanup_outer_loop: '{{ item }}'
 
 - name: Find files
   ansible.builtin.find:
-    paths: '{{ outer_loop }}'
+    paths: '{{ cleanup_outer_loop }}'
     pattern: '*'
     file_type: any
-  register: dir_content
+  register: cleanup_dir_content
 
 - name: Remove temp directories and files
   ansible.builtin.file:
     path: '{{ file_item.path }}'
     state: absent
   with_items:
-    - '{{ dir_content.files }}'
+    - '{{ cleanup_dir_content.files }}'
   loop_control:
     loop_var: file_item

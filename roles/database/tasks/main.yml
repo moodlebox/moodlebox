@@ -4,15 +4,15 @@
   ansible.builtin.apt:
     pkg: 'mariadb-server'
     state: 'present'
-  register: install_mariadb
-  until: install_mariadb is succeeded
+  register: database_install_mariadb
+  until: database_install_mariadb is succeeded
 
 - name: Install python3-pymysql
   ansible.builtin.apt:
     pkg: 'python3-pymysql'
     state: 'present'
-  register: pymysql_installed
-  until: pymysql_installed is succeeded
+  register: database_pymysql_installed
+  until: database_pymysql_installed is succeeded
 
 - name: Add MariaDB user with all privileges
   community.mysql.mysql_user:

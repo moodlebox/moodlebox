@@ -1,8 +1,8 @@
 ---
 
-- name: Set moodle_config_cmd variable
+- name: Set moodleinstall_config_cmd variable
   ansible.builtin.set_fact:
-    moodle_config_cmd: '/usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cfg.php'
+    moodleinstall_config_cmd: '/usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cfg.php'
 
 - name: Configure Moodle site summary
   ansible.builtin.import_tasks: summary.yml

@@ -7,9 +7,9 @@
   environment:
     LC_ALL: '{{ item.1 }}'
   with_indexed_items: '{{ moodlebox_locales }}'
-  when: 'dates_formatted is not defined or item.0 < moodlebox_locales|length'
-  register: dates_formatted
-  changed_when: dates_formatted.rc == 0
+  when: 'moodleinstall_dates_formatted is not defined or item.0 < moodlebox_locales|length'
+  register: moodleinstall_dates_formatted
+  changed_when: moodleinstall_dates_formatted.rc == 0
 
 - name: Set vars with formatted dates
   ansible.builtin.set_fact:
@@ -21,5 +21,7 @@
     - '{{ dates_formatted.results }}'
 
 - name: Set summary string with formatted dates
+  # noqa var-naming[no-role-prefix]
+  # var name is global
   ansible.builtin.set_fact:
     moodlebox_moodle_summary: '{{ moodlebox_moodle_summary }}'
