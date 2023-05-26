@@ -18,7 +18,7 @@
   # var name is valid after regex replacement
   with_together:
     - '{{ moodlebox_locales }}'
-    - '{{ dates_formatted.results }}'
+    - '{{ moodleinstall_dates_formatted.results }}'
 
 - name: Set summary string with formatted dates
   # noqa var-naming[no-role-prefix]
