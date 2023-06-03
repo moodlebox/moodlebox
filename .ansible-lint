@@ -3,3 +3,4 @@
 warn_list:
   - git-latest # Git checkouts must contain explicit version.
   - experimental # All rules tagged as experimental.
+  - var-naming[no-role-prefix] # Workaround ansible-lint bug
