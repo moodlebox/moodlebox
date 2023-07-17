@@ -18,7 +18,7 @@
     job: '{{ item.job }}'
   with_items:
     - { name: 'Restore cache', special_time: 'reboot', job: 'cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/' }
-    - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcm/brcmfmac43455-sdio.bin' }
+    - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'update-alternatives --set cyfmac43455-sdio.bin /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin' }
 
 - name: Configure direvent
   ansible.builtin.template:
