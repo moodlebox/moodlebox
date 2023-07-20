@@ -30,15 +30,18 @@
     mode: 'g+s'
     recurse: 'yes'
 
-- name: Create file repository directory
+- name: Create file and USB repository directories
   ansible.builtin.file:
-    path: '/home/{{ moodlebox_username }}/files'
+    path: '{{ item.path }}'
     state: 'directory'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
     mode: 'g+s'
+  with_items:
+    - { path: '/home/{{ moodlebox_username }}/files' }
+    - { path: '/media/{{ moodlebox_username }}' }
 
-- name: Link file repository directories
+- name: Link file and USB repository directories
   ansible.builtin.file:
     src: '{{ item.src }}'
     path: '{{ item.path }}'
