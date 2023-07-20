@@ -45,7 +45,7 @@
     state: 'link'
   with_items:
     - { src: '/home/{{ moodlebox_username }}/files', path: '{{ moodlebox_moodle_data_dir }}/repository/files' }
-    - { src: '/media/usb', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
+    - { src: '/media/{{ moodlebox_username }}', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
 
 - name: Configure temporary storage for Moodle cache
   ansible.posix.mount:
