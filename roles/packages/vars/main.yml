@@ -4,6 +4,7 @@ moodlebox_install_packages:
   - git
   - ntfs-3g
   - exfat-fuse
+  - udevil
   - direvent
   - nginx
   - ghostscript
