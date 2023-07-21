@@ -7,7 +7,6 @@
     job: '{{ item.job }}'
   with_items:
     - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n10 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
-    - { name: 'Backup cache', minute: '*/20', job: 'rsync -a --delete /var/cache/moodle/ /var/cache/moodle-cache-backup/' }
 
 - name: Configure special time cron
   ansible.builtin.cron:
@@ -17,7 +16,6 @@
     special_time: '{{ item.special_time }}'
     job: '{{ item.job }}'
   with_items:
-    - { name: 'Restore cache', special_time: 'reboot', job: 'cp -Rpf /var/cache/moodle-cache-backup/* /var/cache/moodle/' }
     - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'update-alternatives --set cyfmac43455-sdio.bin /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin' }
 
 - name: Configure direvent

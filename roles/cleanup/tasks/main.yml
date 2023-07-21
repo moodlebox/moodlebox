@@ -47,8 +47,6 @@
     - '{{ moodlebox_moodle_data_dir }}/temp/'
     - '{{ moodlebox_moodle_data_dir }}/trashdir/'
     - '{{ moodlebox_moodle_data_dir }}/sessions/'
-    - '/var/cache/moodle/'
-    - '/var/cache/moodle-cache-backup/'
     - '/var/lib/apt/lists/'
     - '/var/cache/debconf/'
     - '/tmp/'
