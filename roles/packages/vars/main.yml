@@ -8,6 +8,7 @@ moodlebox_install_packages:
   - direvent
   - nginx
   - ghostscript
+  - redis
   - php7.4-fpm
   - php7.4-cli
   - php7.4-common
@@ -24,4 +25,5 @@ moodlebox_install_packages:
   - php7.4-zip
   - php7.4
   - php-apcu
+  - php-redis
   - poppler-utils

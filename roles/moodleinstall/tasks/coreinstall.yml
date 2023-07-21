@@ -7,7 +7,7 @@
     dest: '{{ moodlebox_moodle_source_dir }}'
     depth: 1
 
-- name: Create Moodle data and cache directories and set adequate permissions
+- name: Create Moodle data directories and set adequate permissions
   ansible.builtin.file:
     path: '{{ item }}'
     state: 'directory'
@@ -20,8 +20,6 @@
     - '{{ moodlebox_moodle_data_dir }}/repository'
     - '{{ moodlebox_moodle_data_dir }}/temp'
     - '{{ moodlebox_moodle_data_dir }}/backup'
-    - '/var/cache/moodle'
-    - '/var/cache/moodle-cache-backup'
 
 - name: Set SGID permission on Moodle data directory
   ansible.builtin.file:
@@ -50,7 +48,7 @@
     - { src: '/home/{{ moodlebox_username }}/files', path: '{{ moodlebox_moodle_data_dir }}/repository/files' }
     - { src: '/media/{{ moodlebox_username }}', path: '{{ moodlebox_moodle_data_dir }}/repository/usb' }
 
-- name: Configure temporary storage for Moodle cache
+- name: Configure Moodle temporary storage
   ansible.posix.mount:
     path: '{{ item.name }}'
     src: 'tmpfs'
@@ -60,7 +58,6 @@
     passno: '0'
     state: 'mounted'
   with_items:
-    - { name: '/var/cache/moodle', size: '64M' }
     - { name: '{{ moodlebox_moodle_data_dir }}/temp', size: '64M' }
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions', size: '16M' }
 
