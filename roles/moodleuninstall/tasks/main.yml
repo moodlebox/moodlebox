@@ -8,12 +8,11 @@
   notify:
     - Drop database for Moodle
 
-- name: Remove temporary storage for Moodle cache
+- name: Remove Moodle temporary storage
   ansible.posix.mount:
     name: '{{ item.name }}'
     state: 'unmounted'
   with_items:
-    - { name: '/var/cache/moodle' }
     - { name: '{{ moodlebox_moodle_data_dir }}/temp' }
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions' }
 
@@ -24,8 +23,6 @@
   with_items:
     - '{{ moodlebox_moodle_data_dir }}'
     - '{{ moodlebox_moodle_source_dir }}/config.php'
-    - '/var/cache/moodle'
-    - '/var/cache/moodle-cache-backup'
     - '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
 
 - name: Set default direvent configuration

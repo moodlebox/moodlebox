@@ -8,6 +8,7 @@ moodlebox_install_packages:
   - direvent
   - nginx
   - ghostscript
+  - redis
   - poppler-utils
   - php8.2-fpm
   - php8.2-mbstring
@@ -20,3 +21,5 @@ moodlebox_install_packages:
   - php8.2-zip
   - php8.2-apcu
   - php8.2
+  - php-apcu
+  - php-redis
