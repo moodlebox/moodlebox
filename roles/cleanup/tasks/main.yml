@@ -33,12 +33,18 @@
     name: 'dnsmasq'
     state: 'stopped'
 
-- name: Cleanup DHCP leases
+- name: Delete files
   ansible.builtin.file:
-    path: '/var/lib/misc/dnsmasq.leases'
+    path: '{{ item }}'
     state: 'absent'
+  with_items:
+    - '/var/lib/misc/dnsmasq.leases'
+    - '/root/.bash_history'
+    - '/root/.mysql_history'
+    - '/root/.nano_history'
+    - '/root/.gitconfig'
 
-- name: Cleanup dirs and files
+- name: Cleanup dirs
   ansible.builtin.include_tasks: cleandirfile.yml
   with_items:
     - '{{ moodlebox_moodle_data_dir }}/cache/cachestore_file'
@@ -51,9 +57,6 @@
     - '/var/cache/debconf/'
     - '/tmp/'
     - '/var/tmp/'
-    - '/root/.bash_history'
-    - '/root/.mysql_history'
-    - '/root/.nano_history'
 
 - name: Find log files to truncate
   ansible.builtin.find:
