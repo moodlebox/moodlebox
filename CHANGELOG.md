@@ -5,6 +5,27 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.6.0, unreleased
+
+### Added
+- Use Redis for Moodle cache (issue #301).
+- Replace USBMount with devmon for USB keys automounting (issues #299 and #300).
+
+### Changed
+- Update to Raspberry Pi OS version 2023-05-03, Debian Bullseye 64bit (issue #293).
+- Update MoodleBox plugin to version v2.15.0 (issue #294).
+- Update to Raspberry Pi OS version 2023-02-21, Debian Bullseye 64bit (issue #290).
+- Update partition resize script to upstream version (no issue number, commit a5c4cc8).
+- Remove useless step defining mariaDB root password (no issue number, commit 9cf1070).
+- Update role and var names (issue #297).
+- Move `dnsmasq` configuration to sub-directory for better portability (issue #296).
+
+### Fixed
+- Enable Git to re-download Moodle without failing (issue #289).
+- Fix cron task for wireless chip firmware (part of issue #280).
+- Fix warnings during installation (no issue number, issue 8636335).
+- Fix Ansible Lint errors (no issue number, commits a6816d1, cc2d8c1 and 0e6f594).
+
 ## Version 4.5.1, 2022-12-30
 
 ### Changed
