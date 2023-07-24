@@ -10,7 +10,7 @@
   ansible.builtin.lineinfile:
     path: '/etc/udevil/udevil.conf'
     regexp: '^default_options_exfat\s*='
-    line: 'default_options_exfat     = nosuid, noexec, nodev, noatime, uid=$UID, gid=$GID, iocharset=utf8, namecase=0'
+    line: 'default_options_exfat     = nosuid, noexec, nodev, noatime, uid=$UID, gid=$GID, iocharset=utf8'
 
 - name: Add script to be run by root after a successful mount by udevil
   ansible.builtin.lineinfile:
