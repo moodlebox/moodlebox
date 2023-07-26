@@ -33,7 +33,7 @@
 
 - name: Copy nodogsplash deb package file
   ansible.builtin.copy:
-    src: 'nodogsplash_5.0.0-1_armhf.deb'
+    src: 'nodogsplash_5.0.1-1_arm64.deb'
     dest: '/tmp/nodogsplash.deb'
     mode: '0644'
 
