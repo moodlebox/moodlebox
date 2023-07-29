@@ -1,5 +1,13 @@
 ---
 
+- name: Copy udev rule to add wireless interface for AP mode
+  ansible.builtin.template:
+    src: 'etc/udev/rules.d/90-wireless.rules.j2'
+    dest: '/etc/udev/rules.d/90-wireless.rules'
+    mode: '0644'
+  notify:
+    - Reboot box
+
 - name: Switch wireless chip firmware to minimal one for AP mode
   community.general.alternatives:
     name: 'cyfmac43455-sdio.bin'
