@@ -28,17 +28,22 @@
   register: cleanup_useless_packages_removed
   until: cleanup_useless_packages_removed is succeeded
 
-- name: Stop DHCP server
-  ansible.builtin.systemd:
-    name: 'dnsmasq'
-    state: 'stopped'
+- name: Stop wifi access point
+  ansible.builtin.command:
+    cmd: 'nmcli device disconnect {{ moodlebox_wifi_ap_interface }}'
+  register: cleanup_wifi_access_point_stopped
+  changed_when:
+    - cleanup_wifi_access_point_stopped.rc == 0
+  failed_when:
+    - cleanup_wifi_access_point_stopped.rc != 0
+    - cleanup_wifi_access_point_stopped.rc != 6
 
 - name: Delete files
   ansible.builtin.file:
     path: '{{ item }}'
     state: 'absent'
   with_items:
-    - '/var/lib/misc/dnsmasq.leases'
+    - '/var/lib/NetworkManager/dnsmasq-{{ moodlebox_wifi_ap_interface }}.leases'
     - '/root/.bash_history'
     - '/root/.mysql_history'
     - '/root/.nano_history'
