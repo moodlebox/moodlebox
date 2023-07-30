@@ -1,10 +1,66 @@
 ---
 
-- name: Update wifi client configuration file 'wpa_supplicant.conf'
+- name: Switch wireless chip firmware to minimal one for AP mode
+  community.general.alternatives:
+    name: 'cyfmac43455-sdio.bin'
+    path: '/lib/firmware/cypress/cyfmac43455-sdio-minimal.bin'
+
+- name: Copy udev rule to add wireless interface for AP mode
   ansible.builtin.template:
-    src: 'etc/wpa_supplicant/wpa_supplicant.conf.j2'
-    dest: '/etc/wpa_supplicant/wpa_supplicant.conf'
+    src: 'etc/udev/rules.d/90-wireless.rules.j2'
+    dest: '/etc/udev/rules.d/90-wireless.rules'
     mode: '0644'
+  notify:
+    - Reboot box
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Create the wifi client connection
+  community.general.nmcli:
+    type: wifi
+    conn_name: 'Wifi client connection'
+    ifname: '{{ moodlebox_wifi_sta_interface }}'
+    ssid: '{{ moodlebox_wifi_sta_ssid }}'
+    wifi_sec:
+      key-mgmt: wpa-psk
+      psk: '{{ moodlebox_wifi_sta_password }}'
+    autoconnect: true
+    state: present
+  notify:
+    - Restart networking
+
+- name: Create the wifi access point connection
+  community.general.nmcli:
+    type: wifi
+    conn_name: 'Wifi access point connection'
+    ifname: '{{ moodlebox_wifi_ap_interface }}'
+    ssid: '{{ moodlebox_wifi_ap_ssid }}'
+    wifi:
+      mode: ap
+      channel: '{{ moodlebox_wifi_ap_channel }}'
+      band: bg
+      hidden: false
+    wifi_sec:
+      key-mgmt: wpa-psk
+      group: [ccmp]
+      pairwise: [ccmp]
+      proto: [rsn]
+      psk: '{{ moodlebox_wifi_ap_password }}'
+    ip4: '{{ moodlebox_ip_address }}'
+    gw4: '{{ moodlebox_ip_address | ansible.utils.ipaddr("address") }}'
+    method4: shared
+    method6: shared
+    autoconnect: true
+    state: present
+  notify:
+    - Restart networking
+
+- name: Configure AP settings
+  ansible.builtin.template:
+    src: 'etc/NetworkManager/dnsmasq-shared.d/00-dhcp.conf'
+    dest: '/etc/NetworkManager/dnsmasq-shared.d/00-dhcp.conf'
+    mode: '0600'
   notify:
     - Restart networking
 
@@ -22,13 +78,6 @@
   with_items: '{{ wifi_rfkill_wlan.files }}'
   notify:
     - Restart networking
-
-- name: Disable unused wpa_supplicant service
-  ansible.builtin.systemd:
-    name: 'wpa_supplicant'
-    state: 'stopped'
-    enabled: 'no'
-    masked: 'no'
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
