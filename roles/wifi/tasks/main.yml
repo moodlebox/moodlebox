@@ -19,7 +19,7 @@
 - name: Create the wifi client connection
   community.general.nmcli:
     type: wifi
-    conn_name: 'Wifi client connection'
+    conn_name: 'WifiSTA'
     ifname: '{{ moodlebox_wifi_sta_interface }}'
     ssid: '{{ moodlebox_wifi_sta_ssid }}'
     wifi_sec:
@@ -33,7 +33,7 @@
 - name: Create the wifi access point connection
   community.general.nmcli:
     type: wifi
-    conn_name: 'Wifi access point connection'
+    conn_name: 'WifiAP'
     ifname: '{{ moodlebox_wifi_ap_interface }}'
     ssid: '{{ moodlebox_wifi_ap_ssid }}'
     wifi:
