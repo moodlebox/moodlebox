@@ -1,2 +1,3 @@
 www-data ALL=(ALL) NOPASSWD:/sbin/parted /dev/mmcblk0 unit MB print free
 www-data ALL=(ALL) NOPASSWD:/usr/bin/vcgencmd
+www-data ALL=(ALL) NOPASSWD:/usr/bin/nmcli
