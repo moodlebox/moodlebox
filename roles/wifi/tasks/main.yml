@@ -64,6 +64,12 @@
   notify:
     - Restart networking
 
+- name: Update polkit
+  ansible.builtin.copy:
+    src: 'etc/polkit-1/rules.d/10-wifimanagement.rules'
+    dest: '/etc/polkit-1/rules.d/10-wifimanagement.rules'
+    mode: '0644'
+
 - name: Get rfkill files
   ansible.builtin.find:
     paths: '/var/lib/systemd/rfkill'

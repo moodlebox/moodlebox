@@ -1,0 +1,13 @@
+// Ref: https://wiki.archlinux.org/title/Polkit
+// /etc/polkit-1/rules.d/10-wifimanagement.rules
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.systemd1.manage-units") {
+        if (action.lookup("unit") == "NetworkManager.service" ||
+            action.lookup("unit") == "networking.service") {
+            var verb = action.lookup("verb");
+            if (verb == "start" || verb == "stop" || verb == "restart") {
+                return polkit.Result.YES;
+            }
+        }
+    }
+});
