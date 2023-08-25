@@ -5,6 +5,20 @@
     name: 'cyfmac43455-sdio.bin'
     path: '/lib/firmware/cypress/cyfmac43455-sdio-minimal.bin'
 
+- name: Set regulatory country with iw
+  ansible.builtin.command: 'iw reg set {{ moodlebox_wifi_ap_country }}'
+  register: wifi_reg_set_result
+  changed_when: 'wifi_reg_set_result.rc == 0'
+
+- name: Set regulatory country in kernel command line
+  ansible.builtin.lineinfile:
+    path: '/boot/cmdline.txt'
+    regexp: '^(.*)$'
+    line: '\1 cfg80211.ieee80211_regdom={{ moodlebox_wifi_ap_country }}'
+    backrefs: true
+  notify:
+    - Reboot box
+
 - name: Copy udev rule to add wireless interface for AP mode
   ansible.builtin.template:
     src: 'etc/udev/rules.d/90-wireless.rules.j2'
