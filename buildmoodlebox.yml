@@ -46,9 +46,7 @@
     - timezone
     - locales
     - wifi
-    - accesspoint
     - zeroconf
-    - ipforwarding
     - database
     - packages
     - packageconfig
