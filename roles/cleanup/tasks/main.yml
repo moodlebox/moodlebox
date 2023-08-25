@@ -52,7 +52,6 @@
 - name: Cleanup dirs
   ansible.builtin.include_tasks: cleandirfile.yml
   with_items:
-    - '{{ moodlebox_moodle_data_dir }}/cache/cachestore_file'
     - '{{ moodlebox_moodle_data_dir }}/cache/'
     - '{{ moodlebox_moodle_data_dir }}/localcache/'
     - '{{ moodlebox_moodle_data_dir }}/temp/'
