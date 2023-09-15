@@ -89,7 +89,7 @@ moodlebox_moodle_data_dir: '/var/www/moodledata'
 
 # MoodleBox default build options.
 moodlebox_update_firmware: 'false'
-moodlebox_moodlebox_plugin_version: 'v2.15.0'
+moodlebox_moodlebox_plugin_version: 'v2.16.1'
 moodlebox_mathjax_version: '2.7.9'
 moodlebox_adminer_version: '4.8.1'
 
