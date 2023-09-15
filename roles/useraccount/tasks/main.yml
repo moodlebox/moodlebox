@@ -1,5 +1,10 @@
 ---
 
+- name: Fix default user home directory permissions
+  ansible.builtin.file:
+    path: '/home/{{ moodlebox_username }}'
+    mode: 'u=rwx,g=rx,o=rx'
+
 - name: Change default user prompt definition
   ansible.builtin.lineinfile:
     path: '/home/{{ moodlebox_username }}/.bashrc'
