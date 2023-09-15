@@ -1,8 +1,8 @@
 ---
 
-- name: Read reference RPiOS version from '/boot/issue.txt'
+- name: Read reference RPiOS version from '/boot/firmware/issue.txt'
   ansible.builtin.slurp:
-    src: /boot/issue.txt
+    src: /boot/firmware/issue.txt
   register: branding_issue_file
 
 - name: Set 'branding_reference_version' variable
