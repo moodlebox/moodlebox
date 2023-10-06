@@ -23,5 +23,15 @@
     dest: '/etc/init.d/fix_hostname_once'
     mode: '0755'
 
+- name: Limit journald file size to 16 megabytes
+  ansible.builtin.blockinfile:
+    path: /etc/systemd/journald.conf.d/journald_moodlebox.conf
+    create: yes
+    block: |
+      [Journal]
+      SystemMaxUse=16M
+  notify:
+    - Restart journald service
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

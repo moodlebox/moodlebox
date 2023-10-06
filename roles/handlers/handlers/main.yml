@@ -17,6 +17,11 @@
     - 'nginx'
     - 'php8.2-fpm'
 
+- name: Restart journald service
+  ansible.builtin.systemd:
+    name: 'systemd-journald'
+    state: 'restarted'
+
 - name: Restart direvent
   ansible.builtin.systemd:
     name: 'direvent'
