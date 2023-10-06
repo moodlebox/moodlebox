@@ -21,12 +21,13 @@
   register: cleanup_moodle_db_emptied
   changed_when: cleanup_moodle_db_emptied.rc == 0
 
-- name: Remove useless packages from cache and no longer required dependencies
+- name: Empty apt cache
   ansible.builtin.apt:
     autoremove: 'yes'
     autoclean: 'yes'
-  register: cleanup_useless_packages_removed
-  until: cleanup_useless_packages_removed is succeeded
+    clean: 'yes'
+  register: cleanup_empty_apt_cache
+  until: cleanup_empty_apt_cache is succeeded
 
 - name: Stop wifi access point
   ansible.builtin.command:
