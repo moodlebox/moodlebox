@@ -10,6 +10,7 @@ moodlebox_install_packages:
   - ghostscript
   - redis
   - poppler-utils
+  - iptables
   - php8.2-fpm
   - php8.2-mbstring
   - php8.2-curl
