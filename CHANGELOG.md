@@ -8,14 +8,18 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ## Version 4.6.0, unreleased
 
 ### Added
+- Support Bookworm (issue #287).
 - Use Redis for Moodle cache (issue #301).
 - Replace USBMount with devmon for USB keys automounting (issues #299 and #300).
+- Limit size of journald log file (issue #313).
 
 ### Changed
-- Update to Raspberry Pi OS version 2023-05-03, Debian Bullseye 64bit (issue #293).
-- Update MoodleBox plugin to version v2.15.0 (issue #294).
-- Update to Raspberry Pi OS version 2023-02-21, Debian Bullseye 64bit (issue #290).
+- Update to Raspberry Pi OS version 2023-10-10, Debian Bullseye 64bit (issue #316).
+- Update Moodle version 4.3.0+ (issue #318).
+- Update MoodleBox plugin to version v2.17.1 (issue #310).
+- Update Nodogsplash to version v5.0.2 (issue #314).
 - Update partition resize script to upstream version (no issue number, commit a5c4cc8).
+- Clean apt cache (#312).
 - Remove useless step defining mariaDB root password (no issue number, commit 9cf1070).
 - Update role and var names (issue #297).
 - Move `dnsmasq` configuration to sub-directory for better portability (issue #296).
