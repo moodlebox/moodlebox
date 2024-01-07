@@ -2,18 +2,18 @@
 
 - name: Uninstall useless packages
   ansible.builtin.apt:
-    pkg: '{{ moodlebox_uninstall_packages }}'
+    pkg: '{{ packages_to_uninstall }}'
     state: 'absent'
     purge: 'yes'
-  when: 'moodlebox_uninstall_packages is defined'
+  when: 'packages_to_uninstall is defined'
   register: packages_uninstalled
   until: packages_uninstalled is succeeded
 
 - name: Install packages
   ansible.builtin.apt:
-    pkg: '{{ moodlebox_install_packages }}'
+    pkg: '{{ packages_to_install }}'
     state: 'present'
     autoremove: 'yes'
-  when: 'moodlebox_install_packages is defined'
+  when: 'packages_to_install is defined'
   register: packages_installed
   until: packages_installed is succeeded

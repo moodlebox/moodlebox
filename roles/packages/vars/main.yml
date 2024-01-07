@@ -1,6 +1,6 @@
 ---
 
-moodlebox_install_packages:
+packages_to_install:
   - git
   - ntfs-3g
   - exfat-fuse
