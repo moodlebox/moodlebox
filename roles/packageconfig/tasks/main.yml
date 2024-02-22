@@ -81,6 +81,17 @@
   notify:
     - Restart web services
 
+- name: Set php timezone
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: '^;?date.timezone\s*=.*'
+    replace: 'date.timezone = {{ moodlebox_timezone }}'
+  with_items:
+    - '/etc/php/8.2/fpm/php.ini'
+    - '/etc/php/8.2/cli/php.ini'
+  notify:
+    - Restart web services
+
 - name: Set 'group' of php-fpm process
   ansible.builtin.lineinfile:
     path: '/etc/php/8.2/fpm/pool.d/www.conf'
