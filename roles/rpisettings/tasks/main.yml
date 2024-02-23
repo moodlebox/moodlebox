@@ -2,7 +2,7 @@
 
 - name: Reduce memory split down to 16Mb, as we are on a headless system
   ansible.builtin.lineinfile:
-    path: '/boot/config.txt'
+    path: '/boot/firmware/config.txt'
     line: 'gpu_mem=16'
     insertafter: '^\[all\]'
     firstmatch: true
@@ -11,7 +11,7 @@
 
 - name: Enable shutdown/startup hardware button
   ansible.builtin.lineinfile:
-    path: '/boot/config.txt'
+    path: '/boot/firmware/config.txt'
     line: 'dtoverlay=gpio-shutdown'
     insertafter: '^# Additional overlays and parameters'
   notify:
