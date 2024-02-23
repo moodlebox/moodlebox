@@ -14,13 +14,11 @@
   register: database_pymysql_installed
   until: database_pymysql_installed is succeeded
 
-- name: Add MariaDB user with all privileges
-  community.mysql.mysql_user:
-    name: '{{ moodlebox_db_username }}'
-    password: '{{ moodlebox_db_password }}'
-    login_unix_socket: '/var/run/mysqld/mysqld.sock'
-    priv: '*.*:ALL,GRANT'
-  no_log: true
+- name: Set database collation
+  ansible.builtin.lineinfile:
+    path: '/etc/mysql/mariadb.conf.d/50-server.cnf'
+    regexp: '^#?collation-server\s*=\s*'
+    line: 'collation-server      = utf8mb4_unicode_ci'
 
 - name: Skip reverse DNS lookup in MariaDB
   ansible.builtin.lineinfile:
@@ -45,3 +43,11 @@
   ansible.builtin.systemd:
     name: 'mariadb'
     state: 'restarted'
+
+- name: Add MariaDB user with all privileges
+  community.mysql.mysql_user:
+    name: '{{ moodlebox_db_username }}'
+    password: '{{ moodlebox_db_password }}'
+    login_unix_socket: '/var/run/mysqld/mysqld.sock'
+    priv: '*.*:ALL,GRANT'
+  no_log: true
