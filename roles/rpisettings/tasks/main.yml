@@ -25,7 +25,7 @@
 
 - name: Limit journald file size to 16 megabytes
   ansible.builtin.blockinfile:
-    path: /etc/systemd/journald.conf.d/journald_moodlebox.conf
+    path: '/etc/systemd/journald.conf.d/journald_moodlebox.conf'
     create: true
     mode: '0644'
     block: |

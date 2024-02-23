@@ -24,19 +24,19 @@
 
 - name: Skip reverse DNS lookup in MariaDB
   ansible.builtin.lineinfile:
-    path: /etc/mysql/mariadb.conf.d/50-server.cnf
+    path: '/etc/mysql/mariadb.conf.d/50-server.cnf'
     regexp: '^#?skip-name-resolve'
     line: 'skip-name-resolve'
 
 - name: Set MariaDB query cache size
   ansible.builtin.lineinfile:
-    path: /etc/mysql/mariadb.conf.d/50-server.cnf
+    path: '/etc/mysql/mariadb.conf.d/50-server.cnf'
     line: 'query_cache_size        = 4M'
     insertafter: '^#thread_cache_size'
 
 - name: Log MariaDB errors into a separate file
   ansible.builtin.lineinfile:
-    path: /etc/mysql/mariadb.conf.d/50-server.cnf
+    path: '/etc/mysql/mariadb.conf.d/50-server.cnf'
     regexp: '^#?log_error\s*=\s*(.*)'
     line: 'log_error = \1'
     backrefs: true
