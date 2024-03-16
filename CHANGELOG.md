@@ -5,6 +5,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.7.0, unreleased
+
+### Added
+- Set PHP timezone to have it in sync with OS timezone (issue #324).
+- Set default DB collation to `utf8mb4_unicode_ci`, as recommended by Moodle (issue #323).
+
+### Changed
+- Update to Raspberry Pi OS version 2024-03-12, Debian Bullseye 64bit (issue #330).
+- Update Moodle version 4.4.0 (issue #331).
+- Update MoodleBox plugin to version v2.17.4 (issue #322).
+- Remove useless cronjob (related to https://github.com/moodlebox/moodle-tool_moodlebox/issues/128, commit 434c87d).
+
+### Fixed
+- Set correct file path for relevant boot files (issue #329).
+- Replace text logo for better compatibility (issue #251).
+- Mitigate Ansible Lint errors (no issue number, commit aa81008).
+
 ## Version 4.6.0, 2023-11-10
 
 ### Added
