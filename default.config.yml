@@ -64,7 +64,7 @@ moodlebox_locales:
 moodlebox_timezone: 'Europe/Zurich'
 
 # Public key filename.
-moodlebox_public_key_file: 'id_ed25519.pub'
+moodlebox_public_key_file: 'id_rsa.pub'
 
 # MoodleBox release info filename.
 moodlebox_info_file: 'moodlebox-info'
