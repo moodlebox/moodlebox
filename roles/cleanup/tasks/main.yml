@@ -44,6 +44,7 @@
     path: '{{ item }}'
     state: 'absent'
   with_items:
+    - '/var/lib/NetworkManager/dnsmasq-{{ moodlebox_wifi_ap_interface }}.leases'
     - '/root/.bash_history'
     - '/root/.mysql_history'
     - '/root/.nano_history'

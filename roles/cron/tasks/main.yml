@@ -7,6 +7,7 @@
     job: '{{ item.job }}'
   with_items:
     - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n10 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
+    - { name: 'Copy DHCP leases file', minute: '*', job: 'install -C -m 644 /var/lib/NetworkManager/dnsmasq-uap0.leases /tmp/dnsmasq.leases' }
 
 - name: Configure special time cron
   ansible.builtin.cron:
