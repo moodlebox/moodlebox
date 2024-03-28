@@ -12,10 +12,8 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Set default DB collation to `utf8mb4_unicode_ci`, as recommended by Moodle (issue #323).
 
 ### Changed
-- Update to Raspberry Pi OS version 2024-03-12, Debian Bullseye 64bit (issue #330).
-- Update Moodle version 4.4.0 (issue #331).
-- Update MoodleBox plugin to version v2.17.4 (issue #322).
-- Remove useless cronjob (related to https://github.com/moodlebox/moodle-tool_moodlebox/issues/128, commit 434c87d).
+- Update to Raspberry Pi OS version 2024-03-15, Debian Bullseye 64bit (issue #332).
+- Update MoodleBox plugin to version v2.17.5 (issue #333).
 
 ### Fixed
 - Set correct file path for relevant boot files (issue #329).
