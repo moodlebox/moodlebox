@@ -21,7 +21,7 @@ git commit -m "Update release notes for upcoming release x.y.z"
 - [ ] Update version date and other content in `CHANGELOG.md`, if needed
 - [ ] Update version number (can also be `patch` or `major` instead of `minor`):
 ```
-bumpversion minor --allow-dirty
+bump-my-version minor --allow-dirty
 ```
 - [ ] Push: `git push`
 - [ ] Push tags: `git push --tags`
