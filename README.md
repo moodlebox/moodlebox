@@ -9,11 +9,11 @@
 
 A Moodle server and Wi-Fi router on Raspberry Pi.
 
-## The MoodleBox Documentation
+## MoodleBox Documentation
 
 Visit the [MoodleBox web site][website] for more information about the MoodleBox features or any question about the usage of a MoodleBox.
 
-If you just want to use a MoodleBox, a [prepared disk image][download] of the latest released version is [available for downloading][download] and using out of the box on your Raspberry Pi 3A, 3B, 3B+ or 4B. Follow the instructions on the [MoodleBox web site][website].
+__If you just want to use a MoodleBox, just [install it with Raspberry Pi Imager][install] on your Raspberry Pi Zero 2 W, 3A, 3B, 3B+, 4B, 400 or 5 and use it out of the box. Follow the instructions on the [MoodleBox web site][website].__
 
 ### Asking Support Questions
 
@@ -21,9 +21,9 @@ We have an active [discussion forum][forum] where users and developers can ask q
 
 ## Building the MoodleBox disk image from scratch
 
-> If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image][download] and follow the instructions on the [MoodleBox web site][website].
+If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [install it with Raspberry Pi Imager][install] on your Raspberry Pi Zero 2 W, 3A, 3B, 3B+, 4B, 400 or 5 and use it out of the box. Follow the instructions on the [MoodleBox web site][website].
 
-To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3A, 3B, 3B+ or 4B.
+To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 3B+, 4B or 5.
 
 1. Clone [Raspberry Pi OS (64-bit) Lite image](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit) on your microSD card.
 1. Create a `ssh.txt` file on the `bootfs` partition with any content.
@@ -87,3 +87,4 @@ changed it substantially:
   [download]: https://moodlebox.net/download
   [forum]: https://discuss.moodlebox.net/
   [git]: https://github.com/moodlebox/moodlebox
+  [install]: https://moodlebox.net/en/help/copy-the-disk-image-on-a-sd-card/
