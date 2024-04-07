@@ -36,6 +36,7 @@ bump-my-version bump minor --allow-dirty
 - [ ] Upload disk images to release's page
 - [ ] Compute and upload SHA hash files to release's page
 - [ ] Publish the release on GitHub
+- [ ] Update file `moodlebox-rpi-imager.json` on MoodleBox website
 
 ### Update website and publish news about new release
 
