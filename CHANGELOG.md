@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.8.0, unreleased
+
+### Added
+- TODO
+
+### Changed
+- Update Moodle to version 4.4.0 (issue #331).
+
+### Fixed
+- Change the route metric of the wireless STA connection (issue #334).
+
 ## Version 4.7.0, 2024-03-30
 
 ### Added
