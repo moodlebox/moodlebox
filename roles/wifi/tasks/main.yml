@@ -39,6 +39,7 @@
     wifi_sec:
       key-mgmt: wpa-psk
       psk: '{{ moodlebox_wifi_sta_password }}'
+    route_metric4: '99'
     autoconnect: true
     state: present
   notify:
