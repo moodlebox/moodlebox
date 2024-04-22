@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 
 ### Changed
 - Update Moodle to version 4.4.0 (issue #331).
+- Update rpi-clone to version maintained by @geerlingguy (issue #337).
 
 ### Fixed
 - Change the route metric of the wireless STA connection (issue #334).
