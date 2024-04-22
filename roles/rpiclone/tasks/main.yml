@@ -2,12 +2,15 @@
 
 - name: Download and unarchive rpi-clone latest release
   ansible.builtin.unarchive:
-    src: 'https://github.com/billw2/rpi-clone/archive/refs/heads/master.tar.gz'
+    src: 'https://github.com/geerlingguy/rpi-clone/archive/refs/heads/master.tar.gz'
     dest: '/usr/local/sbin'
     remote_src: true
     exclude:
       - 'README.*'
       - 'LICENSE'
+      - 'docs'
+      - 'install'
+      - '.github'
     extra_opts: [--strip-components=1]
     owner: 'root'
     group: 'root'
