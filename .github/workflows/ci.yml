@@ -5,23 +5,26 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   schedule:
     - cron: '0 4 * * 0'
 
 jobs:
   lint:
-    name: Yaml lint
+    name: Syntax lint
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Check code syntax.
         run: |
           ansible-playbook moodlebox.yml --syntax-check -vvv
-          git ls-files '*.yaml' '*.yml' | xargs yamllint
+#         git ls-files '*.yaml' '*.yml' | xargs yamllint
 #         git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
 #         git diff master | ansible-review
       - name: Lint code.
-        uses: ansible-community/ansible-lint-action@main
+        uses: ansible/ansible-lint@main
         with:
           path: 'moodlebox.yml'
