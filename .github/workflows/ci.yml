@@ -26,5 +26,3 @@ jobs:
 #         git diff master | ansible-review
       - name: Lint code.
         uses: ansible/ansible-lint@main
-        with:
-          path: 'moodlebox.yml'
