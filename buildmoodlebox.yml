@@ -47,6 +47,7 @@
     - locales
     - wifi
     - zeroconf
+    - rpiconnect
     - database
     - packages
     - packageconfig

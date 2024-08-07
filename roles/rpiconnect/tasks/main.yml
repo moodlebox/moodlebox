@@ -1,0 +1,18 @@
+---
+# See https://rptl.io/rpi-connect.
+
+- name: Install Raspberry Pi Connect Lite software
+  ansible.builtin.apt:
+    pkg: 'rpi-connect-lite'
+    state: 'present'
+  register: rpiconnect_install_server
+  until: rpiconnect_install_server is succeeded
+  notify:
+    - Reboot box
+
+- name: Enable lingering for default user
+  ansible.builtin.command:
+    cmd: 'loginctl enable-linger {{ moodlebox_username }}'
+    creates: '/var/lib/systemd/linger/{{ moodlebox_username }}'
+  notify:
+    - Reboot box
