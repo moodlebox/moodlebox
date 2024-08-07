@@ -8,14 +8,18 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ## Version 4.8.0, unreleased
 
 ### Added
-- TODO
+- Install Raspberry Pi Connect (issue #341).
+- Install PHP tidy extension (issue #344).
 
 ### Changed
 - Update Moodle to version 4.4.0 (issue #331).
+- Update MoodleBox plugin to version v2.17.5 (issue #346).
+- Update to Raspberry Pi OS version 2024-07-04, Debian Bullseye 64bit (issue #343).
 - Update rpi-clone to version maintained by @geerlingguy (issue #337).
 
 ### Fixed
 - Change the route metric of the wireless STA connection (issue #334).
+- Fix several lint warnings and tidy a few files (no issue number, commits fc185a8, 3a51944, 7382ba9, e10b14c, c73aa6f, edbe73d).
 
 ## Version 4.7.0, 2024-03-30
 
