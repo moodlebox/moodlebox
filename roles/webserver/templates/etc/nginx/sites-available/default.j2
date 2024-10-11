@@ -47,7 +47,7 @@ server {
 	}
 
 	# Don't allow direct access to various internal files. See MDL-69333
-	location ~ (/vendor/|/node_modules/|composer\.json|/readme|/README|readme\.txt|/upgrade\.txt|db/install\.xml|/fixtures/|/behat/|phpunit\.xml|\.lock|environment\.xml) {
+	location ~ (/vendor/|/node_modules/|composer\.json|/readme|/README|readme\.txt|/upgrade\.txt|db/install\.xml|/fixtures/|/behat/|phpunit\.xml|\.lock|environment\.xml|/UPGRADING\.md) {
 		deny all;
 		return 404;
 	}
