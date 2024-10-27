@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Update MoodleBox plugin to version v2.17.5 (issue #346).
 - Update to Raspberry Pi OS version 2024-07-04, Debian Bullseye 64bit (issue #343).
 - Update rpi-clone to version maintained by @geerlingguy (issue #337).
+- Replace no more supported Adminer with AdminerEvo (issue #349) and update to version 4.8.4 (issue #351).
 
 ### Fixed
 - Change the route metric of the wireless STA connection (issue #334).
