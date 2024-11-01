@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Install PHP tidy extension (issue #344).
 
 ### Changed
-- Update Moodle to version 4.4.0 (issue #331).
+- Update Moodle to version 4.5.0 LTS (issue #357).
 - Update MoodleBox plugin to version v2.18.2 (issue #356).
 - Update to Raspberry Pi OS version 2024-10-22, Debian Bullseye 64bit (issue #353).
 - Update rpi-clone to version maintained by @geerlingguy (issue #337).
