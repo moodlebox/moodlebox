@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 
 ### Fixed
 - Change the route metric of the wireless STA connection (issue #334).
+- Workaround wireless AP bug on Raspberry Pi Model 3B (issue #354).
 - Fix several lint warnings and tidy a few files (no issue number, commits fc185a8, 3a51944, 7382ba9, e10b14c, c73aa6f, edbe73d).
 
 ## Version 4.7.0, 2024-03-30
