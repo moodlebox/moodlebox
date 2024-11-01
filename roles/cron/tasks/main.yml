@@ -18,7 +18,7 @@
     job: '{{ item.job }}'
   with_items:
     - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'update-alternatives --set cyfmac43455-sdio.bin /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin' }
-    - { name: 'Workaround wireless firmware bug on RPi 3B', special_time: 'reboot', job: 'grep -q "3 Model B Rev" /proc/device-tree/model && nmcli con mod WifiAP wifi-sec.proto rsn,wpa; systemctl restart NetworkManager.service' }
+    - { name: 'Workaround wireless firmware bug on RPi 3B', special_time: 'reboot', job: 'sleep 20; grep -q "3 Model B Rev" /proc/device-tree/model && nmcli con mod WifiAP wifi-sec.proto rsn,wpa; systemctl restart NetworkManager.service' }
 
 - name: Configure direvent
   ansible.builtin.template:
