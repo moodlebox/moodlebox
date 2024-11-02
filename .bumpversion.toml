@@ -1,0 +1,7 @@
+[tool.bumpversion]
+current_version = "4.8.0"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "default.config.yml"
