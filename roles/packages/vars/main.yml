@@ -22,6 +22,7 @@ packages_to_install:
   - php8.2-zip
   - php8.2-apcu
   - php8.2-tidy
+  - php8.2-yaml
   - php8.2
   - php-apcu
   - php-redis
