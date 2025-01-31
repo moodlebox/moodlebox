@@ -2,7 +2,7 @@
 
 - name: Install adminer latest release
   ansible.builtin.get_url:
-    url: 'https://github.com/adminerevo/adminerevo/releases/download/v{{ moodlebox_adminer_version }}/adminer-{{ moodlebox_adminer_version }}.php'
+    url: 'https://github.com/adminerneo/adminerneo/releases/download/v{{ moodlebox_adminerneo_version }}/adminer-{{ moodlebox_adminerneo_version }}.php'
     dest: '{{ moodlebox_moodle_source_dir }}/adminer.php'
     owner: 'www-data'
     group: '{{ moodlebox_username }}'
