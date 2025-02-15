@@ -5,7 +5,7 @@
 
 - name: Restart networking
   ansible.builtin.systemd:
-    name: 'networking'
+    name: 'NetworkManager'
     state: 'restarted'
 
 - name: Restart web services
