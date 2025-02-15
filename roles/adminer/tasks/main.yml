@@ -1,6 +1,6 @@
 ---
 
-- name: Install adminer latest release
+- name: Install adminerneo latest release
   ansible.builtin.get_url:
     url: 'https://github.com/adminerneo/adminerneo/releases/download/v{{ moodlebox_adminerneo_version }}/adminer-{{ moodlebox_adminerneo_version }}.php'
     dest: '{{ moodlebox_moodle_source_dir }}/adminer.php'
