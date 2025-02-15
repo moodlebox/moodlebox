@@ -25,7 +25,7 @@
     mode: '0755'
 
 - name: Unmask, enable and start devmon service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: 'devmon@{{ moodlebox_username }}'
     state: 'started'
     enabled: 'yes'
@@ -53,7 +53,7 @@
     mode: '0644'
 
 - name: Disable nodogsplash service at startup
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: 'nodogsplash'
     state: 'stopped'
     enabled: 'false'
