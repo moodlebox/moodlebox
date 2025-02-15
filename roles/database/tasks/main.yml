@@ -40,7 +40,7 @@
     backrefs: true
 
 - name: Restart MariaDB database
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: 'mariadb'
     state: 'restarted'
 

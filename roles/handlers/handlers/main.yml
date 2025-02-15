@@ -4,12 +4,12 @@
   ansible.builtin.reboot:
 
 - name: Restart networking
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: 'NetworkManager'
     state: 'restarted'
 
 - name: Restart web services
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: '{{ item }}'
     state: 'restarted'
     daemon_reload: 'yes'
@@ -18,11 +18,11 @@
     - 'php8.2-fpm'
 
 - name: Restart journald service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: 'systemd-journald'
     state: 'restarted'
 
 - name: Restart direvent
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: 'direvent'
     state: 'restarted'
