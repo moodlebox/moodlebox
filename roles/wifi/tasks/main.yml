@@ -100,5 +100,20 @@
   notify:
     - Restart networking
 
+- name: Get wifi radio status
+  ansible.builtin.command:
+    cmd: 'nmcli -t radio'
+  register: wifi_radio_status
+  changed_when: false
+
+- name: Enable wifi radio
+  ansible.builtin.command:
+    cmd: 'nmcli radio wifi on'
+  register: wifi_radio_enabled
+  when:
+    - "'disabled' in wifi_radio_status.stdout"
+  changed_when:
+    - wifi_radio_enabled.rc == 0
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
