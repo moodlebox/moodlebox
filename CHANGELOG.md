@@ -5,14 +5,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.9.0, unreleased
+## Version 4.9.0, 2025-03-23
 
 ### Added
-- Add `yaml` PHP module, enabling easier STACK plugin installation.
+- Add `yaml` PHP module, enabling easier STACK plugin installation (issue #361).
 
 ### Changed
-- Update to Moodle 4.5.2+ (no issue number).
-- Update MoodleBox plugin to version v2.18.2 (issue #373).
+- Update to Moodle 4.5.3+ (no issue number).
+- Update MoodleBox plugin to version v2.19.0 (issue #373).
 - Replace AdminerEvo with AdminerNeo (issue #363).
 - Replace `networking` service with `NetworkManager` service (issue #365).
 - Update `ansible.builtin.systemd_service` module name (issue #367).
