@@ -44,5 +44,6 @@ bump-my-version bump minor --allow-dirty
 - [ ] Update documentation on MoodleBox website, if needed
 - [ ] Publish news on MoodleBox website
 - [ ] Publish news on MoodleBox discussion forum
+- [ ] Publish news on Bluesky
 - [ ] Publish news on Mastodon
 - [ ] Publish news on Moodle website
