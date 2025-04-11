@@ -14,13 +14,15 @@
     dest: '{{ moodlebox_moodle_source_dir }}/lib/MathJax'
     remote_src: true
     exclude:
-      - 'fonts/HTML-CSS/TeX/png'
-      - 'unpacked'
-      - 'test'
-      - 'docs'
+      - 'es5/mml*.js'
+      - 'es5/tex-chtml*.js'
+      - 'es5/tex-mml-svg.js'
+      - 'es5/tex-svg*.js'
+      - '.github'
+      - '.gitignore'
+      - '.travis.yml'
       - '*.json'
       - '*.md'
-      - 'README'
       - 'LICENSE'
     extra_opts: [--strip-components=1]
     owner: 'www-data'
@@ -33,6 +35,6 @@
       {{ moodleinstall_config_cmd }}
       --component=filter_mathjaxloader
       --name=httpsurl
-      --set=/lib/MathJax/MathJax.js
+      --set=/lib/MathJax/es5/tex-mml-chtml.js
   register: moodleinstall_mathjax_url_result
   changed_when: 'moodleinstall_mathjax_url_result.rc == 0'
