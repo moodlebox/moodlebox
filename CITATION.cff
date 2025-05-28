@@ -1,0 +1,20 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: MoodleBox
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Nicolas
+    family-names: Martignoni
+    orcid: 'https://orcid.org/0000-0002-0193-0889'
+url: 'https://moodlebox.net/'
+repository-code: 'https://github.com/moodlebox/moodlebox'
+abstract: >-
+  MoodleBox is a standalone small and cheap mobile device
+  working without Internet. It combines a wireless access
+  point with a full featured Moodle server.
+license: AGPL-3.0
