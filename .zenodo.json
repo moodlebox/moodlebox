@@ -1,0 +1,20 @@
+{
+    "creators": [
+        {
+            "name": "Martignoni, Nicolas",
+            "orcid": "0000-0002-0193-0889",
+            "affiliation": "MoodleBox",
+            "type": "ProjectLeader"
+        }
+    ],
+    "title": "MoodleBox",
+    "description": "<p>MoodleBox is a standalone small and cheap mobile device working without Internet. It combines a wireless access point with a full featured Moodle server.",
+    "version": "4.9.0",
+    "access_right": "open",
+    "keywords": [
+        "Moodle",
+        "Raspberry Pi"
+    ],
+    "license": "agpl-3.0",
+    "upload_type": "software"
+}
