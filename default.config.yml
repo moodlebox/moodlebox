@@ -91,7 +91,7 @@ moodlebox_moodle_data_dir: '/var/www/moodledata'
 moodlebox_update_firmware: 'false'
 moodlebox_moodlebox_plugin_version: 'v2.19.0'
 moodlebox_mathjax_version: '3.2.2'
-moodlebox_adminerneo_version: '4.14'
+moodlebox_adminer_version: '5.3.0'
 
 moodlebox_build_type: 'release'
 
