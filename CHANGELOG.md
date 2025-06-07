@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Support smartphone USB tethering (issue #285).
 
 ### Changed
-- Update to Raspberry Pi OS version 2025-05-13, Debian Bullseye 64bit (issue #383).
+- Update to Raspberry Pi OS version 2025-05-13, Debian Bookworm 64bit (issue #383).
 - Revert to use original Adminer (issue #379).
 
 ### Fixed
@@ -43,7 +43,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ### Changed
 - Update Moodle to version 4.5.0 LTS (issue #357).
 - Update MoodleBox plugin to version v2.18.2 (issue #356).
-- Update to Raspberry Pi OS version 2024-10-22, Debian Bullseye 64bit (issue #353).
+- Update to Raspberry Pi OS version 2024-10-22, Debian Bookworm 64bit (issue #353).
 - Update rpi-clone to version maintained by @geerlingguy (issue #337).
 - Replace no more supported Adminer with AdminerEvo (issue #349) and update to version 4.8.4 (issue #351).
 
@@ -59,7 +59,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Set default DB collation to `utf8mb4_unicode_ci`, as recommended by Moodle (issue #323).
 
 ### Changed
-- Update to Raspberry Pi OS version 2024-03-15, Debian Bullseye 64bit (issue #332).
+- Update to Raspberry Pi OS version 2024-03-15, Debian Bookworm 64bit (issue #332).
 - Update MoodleBox plugin to version v2.17.5 (issue #333).
 
 ### Fixed
@@ -76,7 +76,7 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 - Limit size of journald log file (issue #313).
 
 ### Changed
-- Update to Raspberry Pi OS version 2023-10-10, Debian Bullseye 64bit (issue #316).
+- Update to Raspberry Pi OS version 2023-10-10, Debian Bookworm 64bit (issue #316).
 - Update Moodle version 4.3.0+ (issue #318).
 - Update MoodleBox plugin to version v2.17.1 (issue #310).
 - Update Nodogsplash to version v5.0.2 (issue #314).
