@@ -26,3 +26,4 @@ packages_to_install:
   - php8.2
   - php-apcu
   - php-redis
+  - usbmuxd
