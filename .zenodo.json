@@ -9,7 +9,7 @@
     ],
     "title": "MoodleBox",
     "description": "<p>MoodleBox is a standalone small and cheap mobile device working without Internet. It combines a wireless access point with a full featured Moodle server.",
-    "version": "4.9.0",
+    "version": "4.10.0",
     "access_right": "open",
     "keywords": [
         "Moodle",
