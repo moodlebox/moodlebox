@@ -5,7 +5,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.10.0, unreleased
+## Version 4.10.0, 2025-06-28
 
 ### Added
 - Update to Moodle version 5.0.x (issue #372).
@@ -15,9 +15,6 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follow pr
 ### Changed
 - Update to Raspberry Pi OS version 2025-05-13, Debian Bookworm 64bit (issue #383).
 - Revert to use original Adminer (issue #379).
-
-### Fixed
-- TODO
 
 ## Version 4.9.0, 2025-03-23
 
