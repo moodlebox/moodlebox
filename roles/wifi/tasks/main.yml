@@ -13,7 +13,7 @@
 - name: Set regulatory country in kernel command line
   ansible.builtin.lineinfile:
     path: '/boot/firmware/cmdline.txt'
-    regexp: '^(.*)$'
+    regexp: '^(.*?)(\s*cfg80211.ieee80211_regdom=.*)?$'
     line: '\1 cfg80211.ieee80211_regdom={{ moodlebox_wifi_ap_country }}'
     backrefs: true
   notify:
