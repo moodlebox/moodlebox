@@ -1,8 +1,5 @@
 ---
 
-- name: Reboot box
-  ansible.builtin.reboot:
-
 - name: Restart networking
   ansible.builtin.systemd_service:
     name: 'NetworkManager'
@@ -26,3 +23,6 @@
   ansible.builtin.systemd_service:
     name: 'direvent'
     state: 'restarted'
+
+- name: Reboot box
+  ansible.builtin.reboot:
