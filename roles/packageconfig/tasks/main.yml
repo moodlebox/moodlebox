@@ -16,12 +16,12 @@
   ansible.builtin.lineinfile:
     path: '/etc/udevil/udevil.conf'
     regexp: '^success_rootexec\s*='
-    line: 'success_rootexec = /usr/local/bin/fix-mount-permissions.sh'
+    line: 'success_rootexec = /usr/local/sbin/fix-mount-permissions.sh'
 
 - name: Copy script to fix USB mount permissions
   ansible.builtin.template:
-    src: 'usr/local/bin/fix-mount-permissions.sh.j2'
-    dest: '/usr/local/bin/fix-mount-permissions.sh'
+    src: 'usr/local/sbin/fix-mount-permissions.j2'
+    dest: '/usr/local/sbin/fix-mount-permissions.sh'
     mode: '0755'
 
 - name: Unmask, enable and start devmon service
