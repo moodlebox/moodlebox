@@ -1,0 +1,38 @@
+#! /bin/bash
+#
+# MoodleBox fix hostname at the very first boot script.
+# Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
+#
+# This script is part of MoodleBox
+# Copyright (C) 2025 onwards Nicolas Martignoni
+#
+# This script is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This script  is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this script.  If not, see <https://www.gnu.org/licenses/>.
+
+# Fix at the very first boot if needed.
+# This script is intended to be launched only at the very first boot by
+# systemd unit file `/etc/systemd/system/fix-hostname-once.service`.
+
+# This script MUST be run as root.
+[[ $EUID -ne 0 ]] && { echo "This script must be run as root"; exit 1; }
+
+set -e
+
+NEW_HOSTNAME=$(hostnamectl --static)
+CURRENT_HOSTNAME="{{ moodlebox_hostname }}"
+sed -ri "s/(((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?\b){4})\s+${CURRENT_HOSTNAME}/\1\t${NEW_HOSTNAME}/g" /etc/hosts
+
+# Remove the marker file so the service doesn't run again
+rm -f /etc/fix_hostname_once.marker
+
+exit 0
