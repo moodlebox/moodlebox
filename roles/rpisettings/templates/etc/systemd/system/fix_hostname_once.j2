@@ -1,51 +1,31 @@
-#! /bin/bash
-#
-# MoodleBox init script
+# MoodleBox fix_hostname_once systemd unit file
 # Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
 #
-# This script is part of MoodleBox
+# This file is part of MoodleBox
 # Copyright (C) 2022 onwards Nicolas Martignoni
 #
-# This script is free software: you can redistribute it and/or modify
+# This file is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published
 # by the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# This script  is distributed in the hope that it will be useful,
+# This file is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this script.  If not, see <https://www.gnu.org/licenses/>.
+# along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
-### BEGIN INIT INFO
-# Provides: fix_hostname_once
-# Required-Start:
-# Required-Stop:
-# Default-Start: 3
-# Default-Stop:
-# Short-Description: Starts fix_hostname_once to fix hostname
-# Description:
-### END INIT INFO
+[Unit]
+Description=Fix hostname in /etc/hosts (run once at first boot)
+ConditionPathExists=/etc/fix_hostname_once.marker
+After=network.target
 
-. /lib/lsb/init-functions
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/fix_hostname_once.sh
+RemainAfterExit=no
 
-SCRIPTPATH="$(cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P)"
-SCRIPTNAME="$(basename $0)"
-
-case "$1" in
-  start)
-    log_daemon_msg "Fixing hostname" &&
-    NEW_HOSTNAME=$(hostnamectl --static) &&
-    CURRENT_HOSTNAME="moodlebox" &&
-    sed -ri "s/(((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?\b){4})\s+${CURRENT_HOSTNAME}/\1\t${NEW_HOSTNAME}/g" /etc/hosts &&
-    update-rc.d ${SCRIPTNAME} remove &&
-    rm -f ${SCRIPTPATH}/${SCRIPTNAME} &&
-    log_end_msg $?
-    ;;
-  *)
-    echo "Usage: $0 start" >&2
-    exit 3
-    ;;
-esac
+[Install]
+WantedBy=multi-user.target
