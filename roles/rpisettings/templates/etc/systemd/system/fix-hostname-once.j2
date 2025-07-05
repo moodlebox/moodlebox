@@ -1,4 +1,4 @@
-# MoodleBox fix_hostname_once systemd unit file
+# MoodleBox fix-hostname-once systemd unit file
 # Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
 #
 # This file is part of MoodleBox
@@ -19,12 +19,12 @@
 
 [Unit]
 Description=Fix hostname in /etc/hosts (run once at first boot)
-ConditionPathExists=/etc/fix_hostname_once.marker
+ConditionPathExists=/etc/fix-hostname-once.marker
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/sbin/fix_hostname_once.sh
+ExecStart=/usr/local/sbin/fix-hostname-once.sh
 RemainAfterExit=no
 
 [Install]

@@ -19,14 +19,14 @@
 
 - name: Copy systemd unit file to fix hostname at the very first boot
   ansible.builtin.template:
-    src: 'etc/systemd/system/fix_hostname_once.j2'
+    src: 'etc/systemd/system/fix-hostname-once.j2'
     dest: '/etc/systemd/system/fix-hostname-once.service'
     mode: '0755'
 
 - name: Copy script to fix hostname at the very first boot
   ansible.builtin.template:
-    src: 'usr/local/sbin/fix_hostname_once.j2'
-    dest: '/usr/local/sbin/fix_hostname_once.sh'
+    src: 'usr/local/sbin/fix-hostname-once.j2'
+    dest: '/usr/local/sbin/fix-hostname-once.sh'
     mode: '0755'
 
 - name: Limit journald file size to 16 megabytes
