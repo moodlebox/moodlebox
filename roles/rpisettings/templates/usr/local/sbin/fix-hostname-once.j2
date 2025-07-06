@@ -30,9 +30,11 @@ set -e
 
 NEW_HOSTNAME=$(hostnamectl --static)
 CURRENT_HOSTNAME="{{ moodlebox_hostname }}"
-sed -ri "s/(((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?\b){4})\s+${CURRENT_HOSTNAME}/\1\t${NEW_HOSTNAME}/g" /etc/hosts
+sed -ri "s/(((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?\b){4})\s+${CURRENT_HOSTNAME}/\1\t${NEW_HOSTNAME}/g" /etc/hosts &&
+logger -t fix-hostname-once hostname fixed
 
 # Remove the marker file so the service doesn't run again
-rm -f /etc/fix-hostname-once.marker
+rm -f /etc/fix-hostname-once.marker &&
+logger -t fix-hostname-once marker file deleted
 
 exit 0
