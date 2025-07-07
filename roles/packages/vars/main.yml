@@ -1,29 +1,28 @@
 ---
 
 packages_to_install:
-  - git
-  - ntfs-3g
-  - exfat-fuse
-  - udevil
   - direvent
-  - nginx
+  - exfat-fuse
   - ghostscript
-  - redis
-  - poppler-utils
+  - git
   - iptables
-  - php8.4-fpm
-  - php8.4-mbstring
-  - php8.4-curl
-  - php8.4-gd
-  - php8.4-intl
-  - php8.4-soap
-  - php8.4-mysql
-  - php8.4-xml
-  - php8.4-zip
-  - php8.4-apcu
-  - php8.4-tidy
-  - php8.4-yaml
-  - php8.4
+  - nginx
+  - ntfs-3g
   - php-apcu
+  - php-curl
+  - php-fpm
+  - php-gd
+  - php-intl
+  - php-mbstring
+  - php-mysql
   - php-redis
+  - php-soap
+  - php-tidy
+  - php-xml
+  - php-yaml
+  - php-zip
+  - php
+  - poppler-utils
+  - redis
+  - udevil
   - usbmuxd
