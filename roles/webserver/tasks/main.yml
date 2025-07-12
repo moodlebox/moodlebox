@@ -1,10 +1,28 @@
 ---
 
-- name: Configure nginx
+- name: Copy nginx Moodle web server config
   ansible.builtin.template:
-    src: 'etc/nginx/sites-available/default.j2'
-    dest: '/etc/nginx/sites-available/default'
+    src: 'etc/nginx/sites-available/moodle.j2'
+    dest: '/etc/nginx/sites-available/moodle'
     mode: '0644'
+  notify:
+    - Restart web services
+
+- name: Enable Moodle web server
+  ansible.builtin.file:
+    src: '/etc/nginx/sites-available/moodle'
+    dest: '/etc/nginx/sites-enabled/moodle'
+    state: link
+  notify:
+    - Restart web services
+
+- name: Delete nginx default server configuration files
+  ansible.builtin.file:
+    path: '/etc/nginx/{{ item }}/default'
+    state: 'absent'
+  with_items:
+    - 'sites-available'
+    - 'sites-enabled'
   notify:
     - Restart web services
 
