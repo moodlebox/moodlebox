@@ -13,7 +13,7 @@
   ansible.builtin.lineinfile:
     path: '/boot/firmware/config.txt'
     line: 'dtoverlay=gpio-shutdown'
-    insertafter: '^# Additional overlays and parameters'
+    insertafter: '^# /boot/firmware/overlays/README\s*$'
   notify:
     - Reboot box
 
