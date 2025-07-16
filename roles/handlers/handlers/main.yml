@@ -1,8 +1,5 @@
 ---
 
-- name: Reboot box
-  ansible.builtin.reboot:
-
 - name: Restart networking
   ansible.builtin.systemd_service:
     name: 'NetworkManager'
@@ -15,7 +12,7 @@
     daemon_reload: 'yes'
   with_items:
     - 'nginx'
-    - 'php8.2-fpm'
+    - 'php8.4-fpm'
 
 - name: Restart journald service
   ansible.builtin.systemd_service:
@@ -26,3 +23,6 @@
   ansible.builtin.systemd_service:
     name: 'direvent'
     state: 'restarted'
+
+- name: Reboot box
+  ansible.builtin.reboot:
