@@ -3,13 +3,13 @@
 - name: Get MoodleBox plugin from git repository
   ansible.builtin.git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
-    dest: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
+    dest: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox'
     version: '{{ moodlebox_moodlebox_plugin_version }}'
     depth: 1
 
 - name: Touch files for MoodleBox plugin functionality
   ansible.builtin.file:
-    path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/{{ item }}'
+    path: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/{{ item }}'
     state: 'touch'
     mode: '0664'
   with_items:
@@ -22,7 +22,7 @@
 
 - name: Change MoodleBox plugin file permissions (1)
   ansible.builtin.file:
-    path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
+    path: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox'
     state: 'directory'
     owner: 'www-data'
     group: '{{ moodlebox_username }}'
@@ -31,7 +31,7 @@
 
 - name: Change MoodleBox plugin file permissions (2)
   ansible.builtin.file:
-    path: '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin'
+    path: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin'
     state: 'directory'
     mode: '0774'
     recurse: 'yes'
