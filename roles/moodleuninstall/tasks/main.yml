@@ -23,7 +23,7 @@
   with_items:
     - '{{ moodlebox_moodle_data_dir }}'
     - '{{ moodlebox_moodle_source_dir }}/config.php'
-    - '{{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox'
+    - '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox'
 
 - name: Set default direvent configuration
   ansible.builtin.copy:

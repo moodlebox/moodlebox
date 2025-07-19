@@ -4,43 +4,43 @@
 debug 1;
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
   file .reboot-server;
   event CLOSE_WRITE;
   command "/sbin/shutdown -r now";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
   file .shutdown-server;
   event CLOSE_WRITE;
   command "/sbin/shutdown -h now";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
   file .set-server-datetime;
   event CLOSE_WRITE;
-  command "/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/.set-server-datetime";
+  command "/bin/bash {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/.set-server-datetime";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
   file .newpassword;
   event CLOSE_WRITE;
-  command "/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changepassword.sh";
+  command "/bin/bash {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin/changepassword.sh";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
   file .wifisettings;
   event CLOSE_WRITE;
-  command "/usr/bin/python3 {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/changewifisettings.py";
+  command "/usr/bin/python3 {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin/changewifisettings.py";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
   file .resize-partition;
   event CLOSE_WRITE;
-  command "/bin/bash {{ moodlebox_moodle_source_dir }}/admin/tool/moodlebox/bin/resizepartition.sh";
+  command "/bin/bash {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin/resizepartition.sh";
 }
