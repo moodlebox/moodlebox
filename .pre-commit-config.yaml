@@ -1,0 +1,38 @@
+---
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ["--unsafe"] # Allow custom YAML tags used by Ansible
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+
+  # Ansible-specific checks
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v25.7.0
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+        entry: ansible-lint
+        language: python
+        pass_filenames: false
+        always_run: false
+
+  # YAML formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        types: [yaml]
+        exclude: |
+          (?x)^(
+            .*vault\.yaml$|
+            .*\.vault\.yml$
+          )$
