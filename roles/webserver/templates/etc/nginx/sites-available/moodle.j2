@@ -11,7 +11,7 @@ server {
 	# ssl_certificate /etc/nginx/ssl/moodlebox.pem;
 	# ssl_certificate_key /etc/nginx/ssl/moodlebox.key;
 
-	root {{ moodlebox_moodle_source_dir }};
+	root {{ moodlebox_moodle_source_dir }}/public;
 
 	error_page 404 /error/index.php;
 	error_page 403 =404 /error/index.php;
