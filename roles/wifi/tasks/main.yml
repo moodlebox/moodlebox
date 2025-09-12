@@ -1,5 +1,4 @@
 ---
-
 - name: Switch wireless chip firmware to minimal one for AP mode
   community.general.alternatives:
     name: 'cyfmac43455-sdio.bin'
@@ -73,9 +72,12 @@
 
 - name: Configure AP settings
   ansible.builtin.template:
-    src: 'etc/NetworkManager/dnsmasq-shared.d/00-dhcp.conf'
-    dest: '/etc/NetworkManager/dnsmasq-shared.d/00-dhcp.conf'
+    src: '{{ item }}'
+    dest: '/{{ item }}'
     mode: '0600'
+  with_items:
+    - 'etc/NetworkManager/conf.d/00-use-dnsmasq.conf'
+    - 'etc/NetworkManager/dnsmasq-shared.d/00-dhcp.conf'
   notify:
     - Restart networking
 
