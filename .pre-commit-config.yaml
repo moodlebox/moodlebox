@@ -22,7 +22,7 @@ repos:
         files: \.(yaml|yml)$
         entry: ansible-lint
         language: python
-        pass_filenames: false
+        pass_filenames: true
         always_run: false
 
   # YAML formatting
