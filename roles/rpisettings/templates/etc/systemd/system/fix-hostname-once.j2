@@ -1,0 +1,31 @@
+# MoodleBox fix-hostname-once systemd unit file
+# Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
+#
+# This file is part of MoodleBox
+# Copyright (C) 2022 onwards Nicolas Martignoni
+#
+# This file is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this file.  If not, see <https://www.gnu.org/licenses/>.
+
+[Unit]
+Description=Fix hostname in /etc/hosts (run once at first boot)
+ConditionPathExists=/etc/fix-hostname-once.marker
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/fix-hostname-once.sh
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
