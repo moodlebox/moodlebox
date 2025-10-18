@@ -1,6 +1,6 @@
 ---
-
 packages_to_install:
+  - composer
   - direvent
   - exfat-fuse
   - ghostscript
