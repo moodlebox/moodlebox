@@ -1,5 +1,4 @@
 ---
-
 - name: Playbook to provision most of the MoodleBox
   hosts: all
   vars:
@@ -51,7 +50,6 @@
     - database
     - packages
     - packageconfig
-    - partitionresize
     - webserver
     - moodleuninstall
     - moodledatabase
