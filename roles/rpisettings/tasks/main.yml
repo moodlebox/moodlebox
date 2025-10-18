@@ -1,5 +1,4 @@
 ---
-
 - name: Reduce memory split down to 16Mb, as we are on a headless system
   ansible.builtin.lineinfile:
     path: '/boot/firmware/config.txt'
@@ -44,6 +43,12 @@
       SystemMaxUse=16M
   notify:
     - Restart journald service
+
+- name: Silence system-udevd logging bug
+  ansible.builtin.lineinfile:
+    path: '/usr/lib/udev/rules.d/90-alsa-restore.rules'
+    search_string: 'LABEL="alsa_restore_go"'
+    line: 'LABEL="alsa_restore_std"'
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
