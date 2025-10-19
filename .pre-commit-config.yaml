@@ -31,7 +31,6 @@ repos:
     hooks:
       - id: prettier
         types: [yaml]
-        args: ['--single-quote']
         exclude: |
           (?x)^(
             .*vault\.yaml$|

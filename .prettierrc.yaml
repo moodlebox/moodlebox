@@ -1,0 +1,4 @@
+# .prettierrc.yaml
+singleQuote: true
+object-wrap: 'collapse'
+printWidth: 120
