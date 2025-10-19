@@ -1,5 +1,4 @@
 ---
-
 - name: Get MoodleBox plugin from git repository
   ansible.builtin.git:
     repo: 'https://github.com/moodlebox/moodle-tool_moodlebox.git'
@@ -27,14 +26,14 @@
     owner: 'www-data'
     group: '{{ moodlebox_username }}'
     mode: 'ug+w,o-w'
-    recurse: 'yes'
+    recurse: true
 
 - name: Change MoodleBox plugin file permissions (2)
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin'
     state: 'directory'
     mode: '0774'
-    recurse: 'yes'
+    recurse: true
 
 - name: Create sudoers file for MoodleBox plugin usage
   ansible.builtin.copy:

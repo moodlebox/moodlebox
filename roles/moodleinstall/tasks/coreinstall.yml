@@ -13,7 +13,7 @@
     owner: 'www-data'
     group: '{{ moodlebox_username }}'
     mode: 'ug+w,o-w'
-    recurse: 'yes'
+    recurse: true
   with_items:
     - '{{ moodlebox_moodle_source_dir }}'
     - '{{ moodlebox_moodle_data_dir }}/repository'
@@ -25,7 +25,7 @@
     path: '{{ moodlebox_moodle_data_dir }}'
     state: 'directory'
     mode: 'g+s'
-    recurse: 'yes'
+    recurse: true
 
 - name: Create file and USB repository directories
   ansible.builtin.file:

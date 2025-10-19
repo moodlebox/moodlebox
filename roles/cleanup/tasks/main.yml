@@ -1,5 +1,4 @@
 ---
-
 - name: Remove packages used only during the build
   ansible.builtin.apt:
     pkg: '{{ cleanup_packages }}'
@@ -66,7 +65,7 @@
 - name: Find log files to truncate
   ansible.builtin.find:
     paths: '/var/log'
-    recurse: 'yes'
+    recurse: true
   register: cleanup_log_files
 
 - name: Empty log files
