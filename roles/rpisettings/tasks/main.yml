@@ -1,5 +1,4 @@
 ---
-
 - name: Reduce memory split down to 16Mb, as we are on a headless system
   ansible.builtin.lineinfile:
     path: '/boot/firmware/config.txt'
@@ -17,11 +16,22 @@
   notify:
     - Reboot box
 
-- name: Add script to fix hostname at the very first boot
+- name: Copy script to fix hostname at the very first boot
   ansible.builtin.template:
-    src: 'etc/init.d/fix_hostname_once.j2'
-    dest: '/etc/init.d/fix_hostname_once'
+    src: 'usr/local/sbin/fix-hostname-once.j2'
+    dest: '/usr/local/sbin/fix-hostname-once.sh'
     mode: '0755'
+
+- name: Copy systemd unit file to fix hostname at the very first boot
+  ansible.builtin.template:
+    src: 'etc/systemd/system/fix-hostname-once.j2'
+    dest: '/etc/systemd/system/fix-hostname-once.service'
+    mode: '0644'
+
+- name: Enable and reload fix-hostname-once service
+  ansible.builtin.systemd_service:
+    name: 'fix-hostname-once.service'
+    enabled: 'yes'
 
 - name: Limit journald file size to 16 megabytes
   ansible.builtin.blockinfile:
@@ -33,6 +43,12 @@
       SystemMaxUse=16M
   notify:
     - Restart journald service
+
+- name: Silence system-udevd logging bug
+  ansible.builtin.lineinfile:
+    path: '/usr/lib/udev/rules.d/90-alsa-restore.rules'
+    search_string: 'LABEL="alsa_restore_go"'
+    line: 'LABEL="alsa_restore_std"'
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

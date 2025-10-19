@@ -1,7 +1,0 @@
----
-
-- name: Add script to resize partition on first boot
-  ansible.builtin.copy:
-    src: 'etc/init.d/resize2fs_once'
-    dest: '/etc/init.d/resize2fs_once'
-    mode: '0755'
