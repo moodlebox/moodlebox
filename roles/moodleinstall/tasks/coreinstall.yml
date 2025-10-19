@@ -6,6 +6,14 @@
     dest: '{{ moodlebox_moodle_source_dir }}'
     depth: 1
 
+- name: Download and installs Moodle dependencies
+  community.general.composer:
+    classmap_authoritative: true
+    no_dev: true
+    working_dir: '{{ moodlebox_moodle_source_dir }}'
+  environment:
+    COMPOSER_ALLOW_SUPERUSER: '1'
+
 - name: Create Moodle data directories and set adequate permissions
   ansible.builtin.file:
     path: '{{ item }}'

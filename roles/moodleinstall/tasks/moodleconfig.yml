@@ -20,20 +20,3 @@
       {{ moodleinstall_config_cmd }} --name=debugdisplay --set=0
   register: moodleinstall_debugdisplay_result
   changed_when: 'moodleinstall_debugdisplay_result.rc == 0'
-
-- name: Download and installs Moodle dependencies
-  community.general.composer:
-    classmap_authoritative: true
-    no_dev: true
-    working_dir: '{{ moodlebox_moodle_source_dir }}'
-  environment:
-    COMPOSER_ALLOW_SUPERUSER: '1'
-
-- name: Set vendor folder owner, group and permissions
-  ansible.builtin.file:
-    path: '{{ moodlebox_moodle_source_dir }}/vendor'
-    state: directory
-    recurse: true
-    owner: 'www-data'
-    group: '{{ moodlebox_username }}'
-    mode: 'ug+w,o-w'
