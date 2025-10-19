@@ -1,5 +1,4 @@
 ---
-
 - name: Get Moodle from git repository
   ansible.builtin.git:
     repo: 'git://git.moodle.org/moodle.git'
@@ -102,6 +101,8 @@
     - { name: 'backuptempdir', value: "'{{ moodlebox_moodle_data_dir }}/backup'" }
     - { name: 'xsendfile', value: "'X-Accel-Redirect'" }
     - { name: 'xsendfilealiases', value: "array('/dataroot/' => $CFG->dataroot)" }
+    - { name: 'routerconfigured', value: 'true' }
+    # prettier-ignore
     - { name: 'customfiletypes', value: "array(\n  (object)array(\n    'extension' => 'crt',\n    'icon' => 'sourcecode',\n    'type' => 'application/x-x509-ca-cert',\n    'customdescription' => 'X.509 CA certificate'\n  )\n)"}
     - { name: 'site_is_public', value: 'false' }
     - { name: 'showcampaigncontent', value: 'false' }
