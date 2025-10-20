@@ -5,7 +5,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.11.0, unreleased
+## Version 4.11.0, 25-10-21
 
 ### Added
 - Support Debian Trixie (issue #384).
