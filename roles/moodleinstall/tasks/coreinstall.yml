@@ -65,7 +65,7 @@
     passno: '0'
     state: 'mounted'
   with_items:
-    - { name: '{{ moodlebox_moodle_data_dir }}/temp', size: '64M' }
+    - { name: '{{ moodlebox_moodle_data_dir }}/temp', size: '128M' }
     - { name: '{{ moodlebox_moodle_data_dir }}/sessions', size: '16M' }
 
 # https://github.com/HCPSS/ansible-role-moodle/blob/master/tasks/install.yml
