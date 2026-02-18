@@ -11,10 +11,7 @@ authors:
   - given-names: Nicolas
     family-names: Martignoni
     orcid: 'https://orcid.org/0000-0002-0193-0889'
-identifiers:
-  - type: doi
-    value: 10.5281/zenodo.15763860
-    description: MoodleBox
+doi: 10.5281/zenodo.15763860
 repository-code: 'https://github.com/moodlebox/moodlebox'
 url: 'https://moodlebox.net/'
 abstract: >-
