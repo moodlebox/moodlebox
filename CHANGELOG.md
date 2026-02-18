@@ -5,7 +5,28 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.11.0, 2025-10-21
+## Version 4.11.1, 2026-02-18
+
+### Added
+- Support Debian Trixie (issue #384).
+- Implement Moodle routing (issue #399).
+- Pre-commit CI with prettier support (no issue number, commits 1be126c, 1ecd3ce and eee1132).
+
+### Changed
+- Update to Raspberry Pi OS version 2025-12-04, Debian Trixie 64bit (issue #417).
+- Update Moodle to version 5.1+ (issues #390 and #391).
+- Update MoodleBox plugin to version v3.1.0 (issue #413).
+- Update Adminer to version v5.4.2 (issue #414).
+- Change Nginx configuration file name (issue #387).
+- Increase Moodle temp folder size (issue #409).
+
+### Fixed
+- Fix dnsmasq configuration (issue #394).
+- Fix ansible-lint issue (no issue number, commit 6ec63c9)
+
+## Version 4.11.0, 2025-10-21, preview release
+
+__This is a preview release. Do not use in production!__
 
 ### Added
 - Support Debian Trixie (issue #384).
