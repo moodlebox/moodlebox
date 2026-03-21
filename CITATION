@@ -1,0 +1,18 @@
+To cite MoodleBox in publications use:
+
+  Martignoni, Nicolas (2026). MoodleBox v4.11.1.
+  URL https://moodlebox.net/.
+  DOI: 10.5281/zenodo.15763860
+
+A BibTeX entry for LaTeX users is
+
+.. code-block:: latex
+
+  @software{Martignoni_MoodleBox,
+    title = {{MoodleBox} v4.11.1},
+    author = {Martignoni, Nicolas},
+    year = {2026},
+    doi = {10.5281/zenodo.15763860},
+    license = {AGPL-3.0}
+    url = {https://moodlebox.net/},
+  }
