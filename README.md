@@ -25,18 +25,16 @@ If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox d
 
 To build a MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 3B+, 4B or 5.
 
-1. Clone [Raspberry Pi OS (64-bit) Lite image](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit) on your microSD card.
-1. Create a `ssh.txt` file on the `bootfs` partition with any content.
-1. Create a `userconf.txt` file on the `bootfs` partition, and add the following line to it:
-   `moodlebox:$6$rmLgDblolU16oLmc$i7QzARV8o84tCDQA/Kq1xU3eYwPWlocqVmpFTcSWqAqiWJpFyTLd.g9W5ktDDh16rq5lwYG9wpHY224m5nHLk0`
-1. Insert the microSD card into your Raspberry Pi.
+1. Clone [Raspberry Pi OS (64-bit) Lite image](https://www.raspberrypi.com/software/) on your microSD card using __Raspberry Pi Imager__.
+1. During the _Customization_ step, set your hostname, your localization, a username (e.g. _moodlebox_) and a password (e.g. _MoodleBox4$_); enable SSH and tick the radio button _Use password authentication_.
+1. When finished, eject the microSD card and insert it into your Raspberry Pi.
 1. Connect your Raspberry Pi to your Ethernet network and boot it.
 1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) on your computer. On macOS, use e.g. `brew install ansible`.
 1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
 1. [Clone this repository][git] to your local drive.
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
 1. Get the IP address of your Raspberry Pi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
-1. Run `ansible-playbook moodlebox.yml` from the repository folder.
+1. Run `ansible-playbook moodlebox.yml -K` from the repository folder and enter the user password you gave in when cloning your microSD card.
 1. Wait 15–50 minutes, depending on your Raspberry Pi model, SD card speed and Internet bandwidth. You're done.
 
 ### Overriding defaults
