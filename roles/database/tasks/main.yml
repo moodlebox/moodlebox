@@ -1,5 +1,4 @@
 ---
-
 - name: Install MariaDB
   ansible.builtin.apt:
     pkg: 'mariadb-server'
@@ -42,5 +41,6 @@
     name: '{{ moodlebox_db_username }}'
     password: '{{ moodlebox_db_password }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'
+    column_case_sensitive: true
     priv: '*.*:ALL,GRANT'
   no_log: true
