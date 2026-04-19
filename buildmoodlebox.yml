@@ -60,4 +60,5 @@
     - rpiclone
     - branding
     - { role: sshkey, when: moodlebox_build_type == 'development' }
+    - { role: sudo, when: moodlebox_build_type == 'development' }
     - cleanup

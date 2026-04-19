@@ -1,0 +1,7 @@
+---
+- name: Enable passwordless sudo
+  ansible.builtin.template:
+    src: 'etc/sudoers.d/020_moodlebox-nopasswd.j2'
+    dest: '/etc/sudoers.d/020_{{ moodlebox_username }}-nopasswd'
+    mode: '0440'
+    validate: 'visudo -cf %s'
