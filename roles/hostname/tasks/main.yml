@@ -1,5 +1,4 @@
 ---
-
 - name: Change hostname
   ansible.builtin.hostname:
     name: '{{ moodlebox_hostname }}'
@@ -11,6 +10,6 @@
     src: 'etc/hosts.j2'
     dest: '/etc/hosts'
     mode: '0644'
-  when: ansible_hostname == moodlebox_hostname
+  when: ansible_facts["hostname"] == moodlebox_hostname
   notify:
     - Restart networking
