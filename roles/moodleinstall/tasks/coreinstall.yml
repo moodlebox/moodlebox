@@ -1,7 +1,7 @@
 ---
 - name: Get Moodle from git repository
   ansible.builtin.git:
-    repo: 'git://git.moodle.org/moodle.git'
+    repo: 'https://github.com/moodle/moodle'
     version: '{{ moodlebox_moodle_branch }}'
     dest: '{{ moodlebox_moodle_source_dir }}'
     depth: 1
