@@ -41,7 +41,6 @@
     - apt
     - { role: firmware, when: moodlebox_update_firmware | bool }
     - useraccount
-    - timezone
     - locales
     - wifi
     - zeroconf

@@ -1,7 +1,0 @@
----
-- name: Update tzdata
-  ansible.builtin.command:
-    cmd: >
-      dpkg-reconfigure -f noninteractive tzdata
-  register: timezone_updated
-  changed_when: timezone_updated.rc == 0
