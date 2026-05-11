@@ -40,7 +40,6 @@
     - rpisettings
     - apt
     - { role: firmware, when: moodlebox_update_firmware | bool }
-    - hostname
     - useraccount
     - timezone
     - locales
