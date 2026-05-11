@@ -25,19 +25,6 @@
       # TAB cycles through the list of partial matches
       bind 'TAB:menu-complete'
 
-# disable autologin, step 1
-- name: Change default target to multi-user.target
-  ansible.builtin.file:
-    src: '/usr/lib/systemd/system/multi-user.target'
-    path: '/etc/systemd/system/default.target'
-    state: link
-
-# disable autologin, step 2
-- name: Remove `autologin.conf` file
-  ansible.builtin.file:
-    path: '/etc/systemd/system/getty@tty1.service.d/autologin.conf'
-    state: absent
-
 - name: Fix broken link to repository at login if needed
   ansible.builtin.blockinfile:
     path: '/home/{{ moodlebox_username }}/.profile'
