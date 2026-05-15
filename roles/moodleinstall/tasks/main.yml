@@ -1,5 +1,4 @@
 ---
-
 - name: Set moodleinstall_config_cmd variable
   ansible.builtin.set_fact:
     moodleinstall_config_cmd: '/usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cfg.php'
@@ -18,3 +17,19 @@
 
 - name: Configure additional Moodle settings
   ansible.builtin.import_tasks: moodleconfig.yml
+
+- name: Workaround missing UUID for H5P hub in database
+  ansible.builtin.command:
+    cmd: >
+      /usr/bin/php -r '
+      define("CLI_SCRIPT", true);
+      require("config.php");
+      $d = random_bytes(16);
+      $d[6] = chr((ord($d[6])&0x0f)|0x40);
+      $d[8] = chr((ord($d[8])&0x3f)|0x80);
+      $u=vsprintf("%s%s-%s-%s-%s-%s%s%s", str_split(bin2hex($d), 4));
+      set_config("site_uuid", $u, "core_h5p");
+      '
+    chdir: '{{ moodlebox_moodle_source_dir }}'
+  register: moodleinstall_fix_h5p_uuid_result
+  changed_when: 'moodleinstall_fix_h5p_uuid_result.rc == 0'
