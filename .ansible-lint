@@ -2,6 +2,7 @@
 warn_list:
   - git-latest # Git checkouts must contain explicit version.
   - experimental # All rules tagged as experimental.
+  - fqcn[canonical]
 
 skip_list:
   - yaml[line-length] # Violations reported by yamllint.

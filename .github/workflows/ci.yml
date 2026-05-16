@@ -25,4 +25,4 @@ jobs:
       #   git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
       #   git diff master | ansible-review
       - name: Lint code.
-        uses: ansible/ansible-lint@v25
+        uses: ansible/ansible-lint@main
