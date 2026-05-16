@@ -17,12 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Check code syntax.
         run: |
           ansible-playbook moodlebox.yml --syntax-check -vvv
-#         git ls-files '*.yaml' '*.yml' | xargs yamllint
-#         git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
-#         git diff master | ansible-review
+      #   git ls-files '*.yaml' '*.yml' | xargs yamllint
+      #   git ls-files *yml roles/ vars/ tests/  | xargs ansible-review
+      #   git diff master | ansible-review
       - name: Lint code.
-        uses: ansible/ansible-lint@main
+        uses: ansible/ansible-lint
+        with:
+          override_version: '@v26.4.0'
