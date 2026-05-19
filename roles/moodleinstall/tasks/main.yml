@@ -1,5 +1,4 @@
 ---
-
 - name: Set moodleinstall_config_cmd variable
   ansible.builtin.set_fact:
     moodleinstall_config_cmd: '/usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cfg.php'
