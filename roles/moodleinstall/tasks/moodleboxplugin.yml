@@ -6,19 +6,6 @@
     version: '{{ moodlebox_moodlebox_plugin_version }}'
     depth: 1
 
-- name: Touch files for MoodleBox plugin functionality
-  ansible.builtin.file:
-    path: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/{{ item }}'
-    state: 'touch'
-    mode: '0664'
-  with_items:
-    - '.reboot-server'
-    - '.shutdown-server'
-    - '.set-server-datetime'
-    - '.newpassword'
-    - '.wifisettings'
-    - '.resize-partition'
-
 - name: Change MoodleBox plugin file permissions (1)
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox'
@@ -34,6 +21,36 @@
     state: 'directory'
     mode: '0774'
     recurse: true
+
+- name: Create directory for MoodleBox plugin settings files
+  ansible.builtin.file:
+    path: '{{ moodlebox_moodle_data_dir }}/moodlebox'
+    state: 'directory'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: '0775'
+
+- name: Touch settings files for MoodleBox plugin functionality
+  ansible.builtin.file:
+    path: '{{ moodlebox_moodle_data_dir }}/moodlebox/{{ item }}'
+    state: 'touch'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: '0664'
+  with_items:
+    - '.reboot-server'
+    - '.shutdown-server'
+    - '.set-server-datetime'
+    - '.newpassword'
+    - '.wifisettings'
+    - '.resize-partition'
+
+- name: Configure direvent
+  ansible.builtin.template:
+    src: 'etc/direvent.conf.j2'
+    dest: '/etc/direvent.conf'
+    mode: '0644'
+  register: moodleinstall__direvent_configured
 
 - name: Create sudoers file for MoodleBox plugin usage
   ansible.builtin.copy:

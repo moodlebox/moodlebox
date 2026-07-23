@@ -20,3 +20,11 @@
       {{ moodleinstall_config_cmd }} --name=debugdisplay --set=0
   register: moodleinstall_debugdisplay_result
   changed_when: 'moodleinstall_debugdisplay_result.rc == 0'
+
+- name: Set permissions for Moodle data directory
+  ansible.builtin.file:
+    path: '{{ moodlebox_moodle_data_dir }}'
+    owner: 'www-data'
+    group: '{{ moodlebox_username }}'
+    mode: 'o-w'
+    recurse: 'true'

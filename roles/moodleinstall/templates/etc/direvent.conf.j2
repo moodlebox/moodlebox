@@ -1,45 +1,45 @@
 # MoodleBox direvent configuration
 # Created for {{ moodlebox_name }} {{ moodlebox_version }}, {{ moodlebox_release_date }}
 
-debug 1;
+debug 0;
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .reboot-server;
   event CLOSE_WRITE;
   command "/sbin/shutdown -r now";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .shutdown-server;
   event CLOSE_WRITE;
   command "/sbin/shutdown -h now";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .set-server-datetime;
   event CLOSE_WRITE;
-  command "/bin/bash {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/.set-server-datetime";
+  command "/bin/bash {{ moodlebox_moodle_data_dir }}/moodlebox/.set-server-datetime";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .newpassword;
   event CLOSE_WRITE;
   command "/bin/bash {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin/changepassword.sh";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .wifisettings;
   event CLOSE_WRITE;
   command "/usr/bin/python3 {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin/changewifisettings.py";
 }
 
 watcher {
-  path {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/;
+  path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .resize-partition;
   event CLOSE_WRITE;
   command "/bin/bash {{ moodlebox_moodle_source_dir }}/public/admin/tool/moodlebox/bin/resizepartition.sh";
