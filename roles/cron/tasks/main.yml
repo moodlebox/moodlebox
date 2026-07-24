@@ -1,12 +1,13 @@
 ---
-
 - name: Configure timely cron
   ansible.builtin.cron:
     name: '{{ item.name }}'
     minute: '{{ item.minute }}'
     job: '{{ item.job }}'
   with_items:
+    # prettier-ignore
     - { name: 'Launch Moodle tasks', minute: '*', job: 'nice -n10 /usr/bin/php {{ moodlebox_moodle_source_dir }}/admin/cli/cron.php' }
+    # prettier-ignore
     - { name: 'Copy DHCP leases file', minute: '*', job: 'install -C -m 644 /var/lib/NetworkManager/dnsmasq-uap0.leases /tmp/dnsmasq.leases' }
 
 - name: Configure special time cron
@@ -17,15 +18,10 @@
     special_time: '{{ item.special_time }}'
     job: '{{ item.job }}'
   with_items:
+    # prettier-ignore
     - { name: 'Ensure minimal wireless firmware is used', special_time: 'reboot', job: 'update-alternatives --set cyfmac43455-sdio.bin /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin' }
+    # prettier-ignore
     - { name: 'Workaround wireless firmware bug on RPi 3B', special_time: 'reboot', job: 'sleep 20; grep -q "3 Model B Rev" /proc/device-tree/model && nmcli con mod WifiAP wifi-sec.proto rsn,wpa; systemctl restart NetworkManager.service' }
-
-- name: Configure direvent
-  ansible.builtin.template:
-    src: 'etc/direvent.conf.j2'
-    dest: '/etc/direvent.conf'
-    mode: '0644'
-  register: cron_direvent_configured
 
 - name: Configure cron mailto variable to suppress warnings in log
   community.general.cronvar:
