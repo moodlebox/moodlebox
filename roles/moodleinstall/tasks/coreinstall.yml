@@ -115,3 +115,4 @@
     - { name: 'site_is_public', value: 'false' }
     - { name: 'showcampaigncontent', value: 'false' }
     - { name: 'showservicesandsupportcontent', value: 'false' }
+    - { name: 'disablenotificationctas', value: "['marketplace', 'moodlecloud', 'partners', 'feedback']" }
