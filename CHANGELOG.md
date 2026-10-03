@@ -5,6 +5,30 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.12.0, unreleased
+
+__This is the 10th anniversary release of MoodleBox__, which [version v1.0](https://github.com/moodlebox/moodlebox/releases/tag/v1.0) was released about ten years ago.
+
+### Added
+- No new features, stability improvements only.
+
+### Changed
+- Update to latest Raspberry Pi OS version, Debian Trixie 64bit (issues #418, #423 and #437).
+- Update Moodle to version 5.2 (issues #419).
+- Update Moodle to version 5.3 (issues #438).
+- Update MoodleBox plugin to version v3.2.0 (issue #420).
+- Update MoodleBox plugin to version v3.3.0 (issue #429).
+- Update MoodleBox plugin to version v3.3.1 (issue #431).
+- Update MoodleBox plugin to version v3.3.2 (issue #433).
+- Update Adminer to version v6.6.1 (issue #435).
+
+### Fixed
+- Fix ansible deprecations issue (no issue number, commits 01e33ed and efcc22c).
+- Remove several useless ansible roles and tasks (no issue number, commits 246fd24, c61f46b, f72e2dd and 693b80d).
+- Install `php-common` package instead of `php` package (no issue number, commit d501beb).
+- Workaround failing Moodle scheduled task (issue #425).
+- Fix CI
+
 ## Version 4.11.1, 2026-02-18
 
 ### Added
