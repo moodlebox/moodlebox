@@ -5,7 +5,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
-## Version 4.12.0, unreleased
+## Version 4.12.0, 2026-10-04
 
 __This is the 10th anniversary release of MoodleBox__, which [version v1.0](https://github.com/moodlebox/moodlebox/releases/tag/v1.0) was released about ten years ago.
 
