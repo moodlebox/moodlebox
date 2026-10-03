@@ -2,7 +2,7 @@
 - name: Switch wireless chip firmware to minimal one for AP mode
   community.general.alternatives:
     name: 'cyfmac43455-sdio.bin'
-    path: '/lib/firmware/cypress/cyfmac43455-sdio-minimal.bin'
+    path: '/usr/lib/firmware/cypress/cyfmac43455-sdio-minimal.bin'
 
 - name: Copy udev rule to add wireless interface for AP mode
   ansible.builtin.template:
