@@ -41,7 +41,7 @@
     state: 'directory'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
-    mode: 'g+s'
+    mode: 'g+ws'
   with_items:
     - { path: '/home/{{ moodlebox_username }}/files' }
     - { path: '/media/{{ moodlebox_username }}' }
