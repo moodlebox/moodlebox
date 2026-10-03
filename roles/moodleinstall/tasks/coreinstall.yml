@@ -41,7 +41,7 @@
     state: 'directory'
     owner: '{{ moodlebox_username }}'
     group: 'www-data'
-    mode: 'g+s'
+    mode: 'g+ws'
   with_items:
     - { path: '/home/{{ moodlebox_username }}/files' }
     - { path: '/media/{{ moodlebox_username }}' }
@@ -115,3 +115,4 @@
     - { name: 'site_is_public', value: 'false' }
     - { name: 'showcampaigncontent', value: 'false' }
     - { name: 'showservicesandsupportcontent', value: 'false' }
+    - { name: 'disablenotificationctas', value: "['marketplace', 'moodlecloud', 'partners', 'feedback']" }
