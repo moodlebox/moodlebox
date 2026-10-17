@@ -6,7 +6,7 @@
     dest: '{{ moodlebox_moodle_source_dir }}'
     depth: 1
 
-- name: Download and installs Moodle dependencies
+- name: Download and install Moodle dependencies
   community.general.composer:
     classmap_authoritative: true
     no_dev: true
