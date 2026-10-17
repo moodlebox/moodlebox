@@ -21,7 +21,8 @@ watcher {
   path {{ moodlebox_moodle_data_dir }}/moodlebox/;
   file .set-server-datetime;
   event CLOSE_WRITE;
-  command "/bin/bash {{ moodlebox_moodle_data_dir }}/moodlebox/.set-server-datetime";
+  command "/usr/bin/xargs -a $file -I{} /usr/bin/date -s @{}";
+  option (stdout);
 }
 
 watcher {
