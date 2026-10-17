@@ -6,6 +6,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/moodlebox/moodlebox.svg)](https://github.com/moodlebox/moodlebox/commits/)
 [![CI](https://img.shields.io/github/actions/workflow/status/moodlebox/moodlebox/ci.yml)](https://github.com/moodlebox/moodlebox/actions/workflows/ci.yml)
 [![Donate PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://www.paypal.me/moodlebox/50)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15763860.svg)](https://doi.org/10.5281/zenodo.15763860)
 
 A Moodle server and Wi-Fi router on Raspberry Pi.
 
