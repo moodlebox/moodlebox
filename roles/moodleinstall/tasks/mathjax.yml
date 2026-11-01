@@ -1,5 +1,4 @@
 ---
-
 - name: Create directory for MathJax library
   ansible.builtin.file:
     path: '{{ moodlebox_moodle_source_dir }}/public/lib/mathjax'
@@ -14,13 +13,12 @@
     dest: '{{ moodlebox_moodle_source_dir }}/public/lib/mathjax'
     remote_src: true
     exclude:
-      - 'es5/mml*.js'
-      - 'es5/tex-chtml*.js'
-      - 'es5/tex-mml-svg.js'
-      - 'es5/tex-svg*.js'
+      - 'mml*.js'
+      - 'tex-chtml*.js'
+      - 'tex-mml-svg.js'
+      - 'tex-svg*.js'
       - '.github'
       - '.gitignore'
-      - '.travis.yml'
       - '*.json'
       - '*.md'
       - 'LICENSE'
@@ -35,6 +33,6 @@
       {{ moodleinstall_config_cmd }}
       --component=filter_mathjaxloader
       --name=httpsurl
-      --set=/lib/mathjax/es5/tex-mml-chtml.js
+      --set=/lib/mathjax/tex-mml-chtml.js
   register: moodleinstall_mathjax_url_result
   changed_when: 'moodleinstall_mathjax_url_result.rc == 0'
