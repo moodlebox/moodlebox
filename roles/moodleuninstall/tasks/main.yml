@@ -1,7 +1,6 @@
 ---
-
 - name: Check if database for Moodle exists
-  ansible.builtin.command: mysql -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
+  ansible.builtin.command: mariadb -e 'SHOW DATABASES LIKE "{{ moodlebox_moodle_db }}"' -sN
   register: moodleuninstall_db_exists
   failed_when: moodleuninstall_db_exists.rc > 0
   changed_when: moodleuninstall_db_exists.stdout | length > 0

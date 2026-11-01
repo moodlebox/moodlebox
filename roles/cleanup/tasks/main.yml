@@ -10,7 +10,7 @@
       - 'rpi-update'
 
 - name: Clean Moodle database log tables
-  ansible.builtin.command: mysql -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
+  ansible.builtin.command: mariadb -e 'TRUNCATE TABLE {{ moodlebox_moodle_db }}.{{ item }}'
   with_items:
     - 'mdl_config_log'
     - 'mdl_logstore_standard_log'
@@ -57,6 +57,7 @@
     - '{{ moodlebox_moodle_data_dir }}/temp/'
     - '{{ moodlebox_moodle_data_dir }}/trashdir/'
     - '{{ moodlebox_moodle_data_dir }}/sessions/'
+    - '{{ moodlebox_moodle_data_dir }}/moodlebox/'
     - '/var/lib/apt/lists/'
     - '/var/cache/debconf/'
     - '/tmp/'

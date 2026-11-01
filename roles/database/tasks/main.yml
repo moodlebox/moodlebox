@@ -37,7 +37,7 @@
     state: 'restarted'
 
 - name: Add MariaDB user with all privileges
-  community.mysql.mysql_user:
+  ansible.mariadb.mariadb_user:
     name: '{{ moodlebox_db_username }}'
     password: '{{ moodlebox_db_password }}'
     login_unix_socket: '/var/run/mysqld/mysqld.sock'
