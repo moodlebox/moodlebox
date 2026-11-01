@@ -5,6 +5,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/) and follow principles of [keep a changelog](https://keepachangelog.com).
 
+## Version 4.13.0, unreleased
+
+### Added
+- TODO
+
+### Changed
+- Update to latest Raspberry Pi OS version, Debian Trixie 64bit (issues #446).
+- Update MoodleBox plugin to version v3.4.0 (issue #442).
+- Implement MathJax 4.1.3 integration (issues #444).
+
+### Fixed
+- Change Ansible module `community.mysql` to `ansible.mariadb` (no issue number, issue 4d71e94).
+
 ## Version 4.12.0, 2026-10-04
 
 __This is the 10th anniversary release of MoodleBox__, which [version v1.0](https://github.com/moodlebox/moodlebox/releases/tag/v1.0) was released about ten years ago.
